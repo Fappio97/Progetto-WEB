@@ -1,0 +1,207 @@
+/* --- INDEX --- */
+#linkSelezionaProdotto {
+	text-align: right;
+}
+
+/* --- GUIDA PRODOTTO --- */
+
+/* relative per metterci il div description del testo dentro
+con absolute*/
+#imageDescription {
+	position: relative;
+}
+
+#description {
+	background-color: #3465a4;
+	color: white;
+	right: 0;
+	bottom: 0;
+	border-radius: 3px 10px 20px;
+	position: absolute;
+	width: 35%;
+	padding: 10px;
+}
+
+/* per le ombre */
+#rigaIndiceDomande, #rigaDomandeDescrizione {
+	padding: 9px 27px;
+	box-shadow: 5px 5px 5px 5px #888888;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-bottom: 15px;
+	margin-top: 15px;
+	padding-left: none;
+	padding-right: none;
+}
+
+#pulsanteIndietro, #indiceDomandeCenter, #pulsanteInvia {
+	color: #3465a4;
+	text-align: center;
+}
+
+#indiceDomandeDX {
+	text-align: right;
+}
+
+#indiceDomandeSX {
+	text-align: left;
+}
+
+#descrizione {
+	margin: auto;
+}
+
+#domande {
+	padding: 30px;
+	font-size: 20px;
+}
+
+#indietro {
+	text-align: right;
+}
+
+#pulsanteAvanti, #pulsanteIndietro {
+	width: 50%;
+}
+
+#pulsanteAvanti, #pulsanteIndietro, #pulsanteProblema, #pulsanteInvia {
+	opacity: 1;
+}
+
+#pulsanteAvanti:hover, #pulsanteIndietro:hover, #pulsanteProblema:hover,
+	#pulsanteInvia:hover {
+	opacity: 0.9;
+}
+
+#descrizione {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#pulsanteAvanti, #pulsanteProblema {
+	background-color: #3465a4;
+	border-color: #3465a4;
+}
+
+#rigaIndiceDomande .button, #rigaIndiceDomande .text {
+	background-color: transparent;
+	color: #3465a4;
+}
+
+#segnalazione {
+	margin: auto;
+	width: 50%;
+	text-align: center;
+}
+
+
+
+/* --- JS --- */
+
+.domanda {
+	text-align: center;
+	font-weight: bold;
+	font-size: 30px;
+	padding-top: 10px;
+}
+
+#rispostaJS {
+	border: 1px solid #888888;
+  	border-radius: 5px;
+}
+
+#descrizioneJS img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 40%;
+}
+
+#descrizioneJS p {
+	text-align: center;
+}
+
+#descrizioneJS {
+	padding: 10px;
+  	margin-bottom: 10px;
+}
+
+/* da implementare ancora*/
+.numDomande {
+	background-color: white;
+	color: #3465a4;
+	border-radius: 100%;
+	border: none;
+}
+
+/* --- CONDIVISA --- */
+.button {
+	background-color: white;
+	border: none;
+	border-radius: 2px;
+	padding: 10px;
+	opacity: 1;
+}
+
+.button:hover {
+	opacity: 0.9;
+}
+
+
+
+
+
+
+
+
+
+.image {
+	margin-bottom: 0px;
+	padding: 0px;
+}
+
+@media screen and (max-width: 850px) {
+	/* --- GUIDA PRODOTTO --- */
+	#description {
+		text-align: center;
+		margin: auto;
+		width: 100%;
+		border-radius: 0px;
+		position: static;
+		padding: 0px;
+	}
+	#imageDescription {
+		padding: none 15px;
+	}
+
+	/* --- INDEX --- */
+	
+	/* --- JS --- */
+	
+}
+
+
+
+
+@media screen and (max-width: 580px) {
+	/* --- INDEX --- */
+	#serveAiuto, #linkSelezionaProdotto, #divSceltaProdotto {
+		text-align: center;
+		margin: auto;
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+
+	/* --- GUIDA PRODOTTO --- */
+	#pulsanteAvanti, #pulsanteIndietro {
+		width: 100%;
+	}
+	.container {
+		padding-left: 0px !important;
+		padding-right: 0px !important;
+	}
+
+	/* --- JS --- */
+	
+}
