@@ -24,7 +24,7 @@
     <!-- Grafica superiore %% immagine sfondo più descrizione -->
     <div>
     	<div id = "imageDescription">
-			<img src="../immagini/stampante.jpg" width = 100% height = 35%/>
+			<img src="../immagini/guidaSceltaProdotto/stampante.jpg" width = 100% height = 35%/>
 			
 			<div id = "description" >
 				<h1>Trova il prodotto</h1>
@@ -35,50 +35,10 @@
 	
 	<!-- Parte centrale %% seleziona categoria / rispondi domande -->
 	<div class="container container--grid">
-		${categoria}
-	 	<c:if test= "${categoria != null}">
-			<div class="row" id = "rigaIndiceDomande">
-				<div class="col-3" id = "indiceDomandeSX">
-					<button class ="button">
-						<img src="../immagini/reset.png" width = 30%/><br />
-						Rinizia
-					</button>
-				</div>
-				<div class="col-6" id = "indiceDomandeCenter">
-					Ambito di utilizzo <br />
-					<button type ="button" class = "numDomande">
-						1
-					</button>
-					<button type ="button" class = "numDomande">
-						1
-					</button>
-					<button type ="button" class = "numDomande">
-						1
-					</button>
-					<button type ="button" class = "numDomande">
-						1
-					</button>
-					<button type ="button" class = "numDomande">
-						1
-					</button>
-					<button type ="button" class = "numDomande">
-						1
-					</button>
-					<button type ="button" class = "numDomande">
-						1
-					</button>
-					<button type ="button" class = "numDomande">
-						1
-					</button>
-				</div>
-				<div class="col-3" id = "indiceDomandeDX">
-					<button class ="button">
-						<img src="../immagini/result.png" width = 30%/><br />
-						Risultati
-					</button>
-				</div>
-			</div>
-		</c:if>
+	
+		<div class="row" id = "rigaIndiceDomande">
+		</div>
+				
 		<div id = "rigaDomandeDescrizione">
 			<div class="row">
 				<div class="col-sm-6" id = "domandeRisposte">

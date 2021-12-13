@@ -7,7 +7,7 @@ function Risposta(risposta, descrizione) {
 	}
 }
 
-function Domanda(domanda, risposte, descrizione) {
+function Domanda(domanda, descrizione, risposte) {
 	this.domanda = domanda;
 	this.risposte = risposte;
 	this.descrizione = descrizione;
@@ -28,7 +28,7 @@ categorie = {
 	"descrizione": "Benvenuto!%Rispondi a queste semplici domande e ti aiuteremo a trovare il prodotto ideale per le tue esigenze."
 };
 
-categorie.categoria.push("notebook", "stampanti");
+categorie.categoria.push("Notebook", "Stampanti");
 
 console.log(categorie.domanda);
 
@@ -64,6 +64,10 @@ domande.stampanti.elencoDomande.push(new Domanda("Cosa vuoi fare con il tuo disp
 				new Risposta("Scansione", ""),
 				new Risposta("Fax", ""))));
 				
+domande.stampanti.elencoDomande.push(new Domanda("Voglio stampare …", "",
+	new Array(new Risposta("A colori e in bianco e nero", ""), 
+				new Risposta("Solo in bianco e nero", "" ))));				
+				
 domande.stampanti.elencoDomande.push(new Domanda("Devo poter stampare…%Puoi selezionare più opzioni", "Formato di stampa%Scegli il formato sui cui desideri stampare, dallo standard A4 fino ai grandi formati o alle foto.",
 	new Array(new Risposta("Documenti con solo testo", "I documenti stampati saranno soprattutto documenti di testo come email, fogli Word o fogli di calcolo."), 
 				new Risposta("Fotografie e immagini", "Foto o altre immagini in alta risoluzione." ),
@@ -85,11 +89,10 @@ domande.stampanti.elencoDomande.push(new Domanda("Voglio collegare il mio dispos
 				new Risposta("Porta parallela", "Porta parallela%Sei una grande azienda e vuoi connettere il tuo dispositivo tramite porta parallela?\nQuesta interfaccia ti consente di inviare dati simultaneamente da più cavi in una volta sola."))));
 
 domande.stampanti.elencoDomande.push(new Domanda("Voglio…%Puoi selezionare più opzioni", "Requisiti aggiuntivi%Prima di mostrarti il dispositivo più adatto alle tue esigenze, ci sono altre caratteristiche o funzionalità che desideri?",
-	new Array(new Risposta("Stampare fronte/retro", "Stampa automaticamente su entrabe i lati del foglio, risparmiando carta e costi."), 
+	new Array(new Risposta("Stampare fronte retro", "Stampa automaticamente su entrabe i lati del foglio, risparmiando carta e costi."), 
 				new Risposta("Stampare da dispositivo mobile", "Ideale per chi vuole stampare comodamente dal proprio smartphone." ), 
 				new Risposta("Aggiungere altri cassetti carta", "Ideale per chi stampa con una frequenza elevata e vuole evitare di ricaricare spesso il vassoio carta, risparmiando tempo.\nOppure puoi utilizzare vassoi specifici per i differenti formati di carta."))));
 
 console.log(domande.stampanti);
 
-console.log(domande.stampanti.elencoDomande[0].risposte);
 	

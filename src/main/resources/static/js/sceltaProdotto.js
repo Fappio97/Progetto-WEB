@@ -2,6 +2,13 @@ window.addEventListener("load", function(){
 	aggiungiEventi();
 });
 
+/* --- Variabili --- */ 
+
+var categoriaSelezionata;
+var numDomandeTotaliCategoria;
+
+/* --- Funzioni --- */
+
 function aggiungiEventi(){
 	
 	var pulsanteProblema = document.getElementById("pulsanteProblema");
@@ -19,6 +26,24 @@ function aggiungiEventi(){
 
 	abilitaDisabilita();
 }
+
+/* -- FUNZIONI CHE INVOCO DAI OBTTONI CREATI DA JS --- */
+function rinizia() {
+	ind = 0;
+	compila();
+}
+
+function risultati() {
+	ind = numDomandeTotaliCategoria;
+	compila();
+}
+
+function vaiAllaDomanda(i) {
+	ind = i;
+	compila();
+}
+
+/* -- FUNZIONI --- */
 
 function segnalazione(){
 	var row = document.getElementById("segnalazione2");	
@@ -42,6 +67,7 @@ function inviaSegnalazione(){
 	document.getElementById("pulsanteInvia").style.display = 'none';
 }
 
+
 function paginaAvanti() {
 	
 	if(ind == -1) {
@@ -51,6 +77,14 @@ function paginaAvanti() {
 			ind++;
 			console.log(ind);
 			
+			selectedRadio.forEach(function(radio, indice){
+				categoriaSelezionata = radio.getAttribute('id');
+			}); 
+
+			numeroDomandeCategoriaSelezionata();
+			caricaBarraNavigazione();
+			abilitaDisabilita();
+/*			
 			let categoria;
 			selectedRadio.forEach(function(radio, indice){
 				categoria = radio.getAttribute('id');
@@ -71,12 +105,33 @@ function paginaAvanti() {
 					alert("tutto male");
 				}
 			});
-			
+			*/
 		} else {
 			alert("Seleziona una categoria di prodotti per proseguire!");
+			return;
+		}
+	} else {
+		if(ind < numDomandeTotaliCategoria) {
+			ind++;
+		}
+		else {
+			document.getElementById("pulsanteAvanti").disabled = true;	
+			/* stamapare lista prodotti finale */
 		}
 	}
-	else {
+	compila();
+}
+
+function paginaIndietro() {
+	if(ind == 0) {
+		abilitaDisabilita();
+	}
+	if(ind > -1) {
+		ind--;
+		compila();
+		document.getElementById("pulsanteAvanti").disabled = false;	
+	} else {
+		/* nascondere il pannello sopra di visualizzazione */
 	}
 }
 
@@ -104,27 +159,6 @@ btnCancella.addEventListener("click", function(){
 });
 */
 
-function paginaIndietro() {
-	if(ind == 0) {
-		
-		$.ajax({
-			type: "POST",
-			url: "/eliminaCategoria",
-			contentType: "application/json",
-			success: function(){
-				alert("tutto ok");
-				abilitaDisabilita();
-			},
-			error: function(xhr){
-				alert("tutto male");
-			}
-		});
-		
-		ind--;
-		console.log(ind);
-		abilitaDisabilita();
-	}
-}
 
 function abilitaDisabilita() {
 	if(ind == -1)
