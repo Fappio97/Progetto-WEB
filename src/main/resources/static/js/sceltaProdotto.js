@@ -175,7 +175,7 @@ function abilitaDisabilita() {
 		document.getElementById("pulsanteIndietro").disabled = true;
 	else
 		document.getElementById("pulsanteIndietro").disabled = false;
-	if(ind < numDomandeTotaliCategoria)
+	if(ind < numDomandeTotaliCategoria || categoriaSelezionata != undefined)
 		document.getElementById("pulsanteAvanti").disabled = false;	
 	else {
 		document.getElementById("pulsanteAvanti").disabled = true;

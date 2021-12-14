@@ -33,7 +33,7 @@ categorie.categoria.push("Notebook", "Stampanti");
 /*console.log(categorie);
 
 
-/* --- DOMANDE SPECIFICHE --- */ 
+/* --- DOMANDE  --- */ 
 
 
 var domande = new Object();
@@ -43,11 +43,14 @@ domande = {
 	["notebook"]: {}
 };
 
-/* --- DOMANDE STAMPANTE --- */ 
+/* --- DOMANDE SPECIFICHE --- */ 
 
 domande.stampanti = {
-	["elencoDomande"]: new Array(), 
-	
+	["elencoDomande"]: new Array()
+};
+
+domande.notebook = {
+	"elencoDomande": new Array()
 };
 
 /* --- DOMANDE SPECIFICHE STAMPANTE --- */
@@ -95,4 +98,30 @@ domande.stampanti.elencoDomande.push(new Domanda("Voglio…%Puoi selezionare pi�
 
 /* --- DOMANDE SPECIFICHE NOTEBOOK --- */
 
+domande.notebook.elencoDomande.push(new Domanda("Il mio nuovo notebook è per …", "Utilizzo del notebook%Scegli l'utilizzo che ne farai del dispositivo ricercato.",
+	new Array(new Risposta("Gaming", "Gaming%Progettato per giocare ai più potenti videogiochi"), 
+				new Risposta("Uso quotidiano", "Uso quotidiano%Progettato per una migliore esperienza di utilizzo nelle operazioni quotidiane." ), 
+				new Risposta("Editing", "Editing%Progettato per manipolare e preparare file multimediali tramite software grafici."))));
+	
+domande.notebook.elencoDomande.push(new Domanda("Voglio il processore …", "Voglio il processore …%Non esiste una famiglia migliore dell'altra, ogni modello ha i suoi punti di forza ed i suoi punti deboli.",
+	new Array(new Risposta("AMD", "AMD%Multinazionale statunitense leader mondiale nella produzione di CPU per il mercato di workstation e server"), 
+				new Risposta("Intel", "Intel%Multinazionale statunitense leader mondiale nella produzione di CPU." ))));	
+			
+domande.notebook.elencoDomande.push(new Domanda("RAM", "Dimensioni display%Sceglia la grandezza del display del tuo nuovo notebook.",
+	new Array(new Risposta("13.3\"", "13.3\"%Pregi: trasportabilità, minor consumo display, durata batteria%Difetti: ram saldata, tastiera priva di tastierino numerico."), 
+				new Risposta("14\"", "14\"%Pregi: trasportabilità, minor consumo display, durata batteria%Difetti: ram saldata, tastiera priva di tastierino numerico." ),
+				new Risposta("15.6\"", "15.6\"%Pregi: versatilità%Difetti: espansioni memorie" ),
+				new Risposta("17.3\"", "17.3\"%Pregi: miglior esperienza visiva%Difetti: costo" ))));				
+
+domande.notebook.elencoDomande.push(new Domanda("Voglio…%Puoi selezionare più opzioni", "Dimensioni display%Sceglia la grandezza del display del tuo nuovo notebook.",
+	new Array(new Risposta("WiFi 6", "13.3\"%Pregi: trasportabilità, minor consumo display, durata batteria%Difetti: ram saldata, tastiera priva di tastierino numerico."), 
+				new Risposta("14\"", "14\"%Pregi: trasportabilità, minor consumo display, durata batteria%Difetti: ram saldata, tastiera priva di tastierino numerico." ),
+				new Risposta("15.6\"", "15.6\"%Pregi: versatilità%Difetti: espansioni memorie" ),
+				new Risposta("17.3\"", "17.3\"%Pregi: miglior esperienza visiva%Difetti: costo" ))));	
+				
+domande.notebook.elencoDomande.push(new Domanda("Cosa vuoi fare con il tuo dispositivo?%Puoi selezionare più opzioni", "Funzionalità del dispositivo%La nostra gamma di prodotti offre una vasta scelta di caratteristiche e funzionalità.\nScegli la funzionalità di cui hai bisogno.",
+	new Array(new Risposta("Stampa", ""), 
+				new Risposta("Copia", "" ), 
+				new Risposta("Scansione", ""),
+				new Risposta("Fax", ""))));
 	

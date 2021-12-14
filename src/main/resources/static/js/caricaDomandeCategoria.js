@@ -147,7 +147,7 @@ function inserisciRisposta(risposta, id, righe){
 	}
 	
 	let resourceImg = "../immagini/guidaSceltaProdotto/risposte/";
-	if(categoriaSelezionata != undefined)
+	if(categoriaSelezionata != undefined && ind != -1)
 		resourceImg = "../immagini/guidaSceltaProdotto/" + categoriaSelezionata + "/risposte/";
 		
 	row.innerHTML = row.innerHTML + rigaInizio + "<label for = \""+ risposta.toLowerCase() + "\" class= \"col-sm-4 \">"
@@ -172,7 +172,7 @@ function caricaDescrizione(stringa) {
 	}
 	
 	let resourceImg = "../immagini/guidaSceltaProdotto/descrizione/";
-	if(categoriaSelezionata != undefined)
+	if(categoriaSelezionata != undefined && ind != numDomandeTotaliCategoria && ind != -1)
 		resourceImg = "../immagini/guidaSceltaProdotto/" + categoriaSelezionata + "/descrizione/";
 	
 	row.innerHTML = "<div id = \"descrizioneJS\">" 
