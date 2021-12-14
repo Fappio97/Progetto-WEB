@@ -18,7 +18,7 @@
 	<div class="container container--grid" id = "divSceltaProdotto">
 		<!-- Mi crea una riga dove metto i due div -->
 		<div class="row" id = "serveAiuto"> 
-			<div class="col-sm-8 p-3 bg-primary text-white">
+			<div class="col-sm-8 p-3 bg-primary text-white" >
 				<h3>Serve aiuto per scegliere il prodotto perfetto per te?</h3>
 			</div>
     		<div class="col-sm-4 p-3 bg-primary text-white" id = "linkSelezionaProdotto">

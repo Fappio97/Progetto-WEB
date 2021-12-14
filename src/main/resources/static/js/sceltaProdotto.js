@@ -69,12 +69,22 @@ function inviaSegnalazione(){
 	var testo = document.getElementById("testoSegnalazione");
 	var row = document.getElementById("segnalazione2");
 	
-	let s = testo.value;
-	if(s == 'Inserisci il tuo problema ...' || s == '')
+	let segnalazione = testo.value;
+	if(segnalazione == 'Inserisci il tuo problema ...' || segnalazione == '')
 		row.innerHTML = "Segnalazione vuota!";
 	else {
 		row.innerHTML = "Segnalazione inviata";
 		//funzione per inviare la segnalazione con ajax
+		
+		let origineProblema = "Origine problema in: ";
+		if(ind != -1) {
+			origineProblema += categoriaSelezionata + "\n";
+			origineProblema += "Domanda n° " + ind + "\n";
+		} else
+			origineProblema += "scelta categorie\n";
+			
+		console.log(origineProblema + "Problema: " + segnalazione);
+		
 	}
 	document.getElementById("pulsanteProblema").style.display = 'inline';
 	document.getElementById("pulsanteInvia").style.display = 'none';

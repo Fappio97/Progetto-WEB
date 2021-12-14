@@ -1,7 +1,22 @@
+/* --- ELEMENTI EREDITATI DAL GRUPPO --- */
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  color: #333;
+  margin: 0;
+}
+
 /* --- INDEX --- */
 #linkSelezionaProdotto {
 	text-align: right;
 }
+
+#serveAiuto div {
+	/* important altrimenti il bootstrap me lo annulla */
+	background-color: #0b3de1 !important;
+}
+
 
 /* --- GUIDA PRODOTTO --- */
 
@@ -12,7 +27,7 @@ con absolute*/
 }
 
 #description {
-	background-color: #3465a4;
+	background-color: #0b3de1;
 	color: white;
 	right: 0;
 	bottom: 0;
@@ -35,7 +50,7 @@ con absolute*/
 }
 
 #pulsanteIndietro, #indiceDomandeCenter, #pulsanteInvia {
-	color: #3465a4;
+	color: #0b3de1;
 	text-align: center;
 }
 
@@ -80,13 +95,13 @@ con absolute*/
 }
 
 #pulsanteAvanti, #pulsanteProblema {
-	background-color: #3465a4;
-	border-color: #3465a4;
+	background-color: #0b3de1;
+	border-color: #0b3de1;
 }
 
 #rigaIndiceDomande .button, #rigaIndiceDomande .text {
 	background-color: transparent;
-	color: #3465a4;
+	color: #0b3de1;
 }
 
 #segnalazione {
@@ -129,7 +144,7 @@ con absolute*/
 /* da implementare ancora*/
 .numDomande {
 	background-color: white;
-	color: #3465a4;
+	color: #0b3de1;
 	border-radius: 100%;
 	border: none;
 }

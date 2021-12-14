@@ -4,14 +4,16 @@ window.onload = function() {
 
 function compila() {
 	if(ind == -1) {
+		/* prima pagina */
 		pannelloSuperiore("guidaSceltaProdotto");
 		inserisciDomanda(categorie.domanda);
 		inserisciRisposteCategoria(categorie.categoria);
 		caricaDescrizione(categorie.descrizione);
 		document.getElementById("rigaIndiceDomande").style.display = "none"; 
 	} else if(ind == numDomandeTotaliCategoria) {
+		/*Pagina risultati */
 		inserisciDomanda("Prodotti consigliati");
-		inserisciRisposte("");
+		inserisciRisposteRadio("");
 		caricaDescrizione("Hai finito!%Ecco la nostra lista di " + categoriaSelezionata + " ideali in base alle tue esigenze!");
 		document.getElementById("rigaIndiceDomande").style.display = ""; 
 	} else {
@@ -20,12 +22,18 @@ function compila() {
 		switch(categoriaSelezionata) {
 			case "stampanti":
 				inserisciDomanda(domande.stampanti.elencoDomande[ind].domanda);
-				inserisciRisposte(domande.stampanti.elencoDomande[ind].risposte);
+				if(domande.stampanti.elencoDomande[ind].unaOpzione)
+					inserisciRisposteRadio(domande.stampanti.elencoDomande[ind].risposte);
+				else
+					inserisciRisposteCheck(domande.stampanti.elencoDomande[ind].risposte);
 				caricaDescrizione(domande.stampanti.elencoDomande[ind].descrizione);
 				break;
 			case "notebook":
 				inserisciDomanda(domande.notebook.elencoDomande[ind].domanda);
-				inserisciRisposte(domande.notebook.elencoDomande[ind].risposte);
+				if(domande.notebook.elencoDomande[ind].unaOpzione)
+					inserisciRisposteRadio(domande.notebook.elencoDomande[ind].risposte);
+				else
+					inserisciRisposteCheck(domande.notebook.elencoDomande[ind].risposte);
 				caricaDescrizione(domande.notebook.elencoDomande[ind].descrizione);
 				break;
 			default:
@@ -83,11 +91,13 @@ function inserisciRisposteCategoria(oggetto) {
 	
 	var righe = 0;
 	for (let i = 0; i < oggetto.length; ++i){
-		inserisciRisposta(oggetto[i], i, righe);
+		inserisciRispostaRadio(oggetto[i], i, righe);
 	}
 }
 
-function inserisciRisposte(oggetto) {
+/* Risposta radio button */
+
+function inserisciRisposteRadio(oggetto) {
 	/* svuoto il div contenente le risposte */
 	var row = document.getElementById("risposte");
 	row.innerHTML = "";
@@ -95,13 +105,13 @@ function inserisciRisposte(oggetto) {
 	var righe = 0;
 	for (let i = 0; i < oggetto.length; ++i){
 		if(oggetto[i].descrizione != "")
-			inserisciRispostaConInfo(oggetto[i].risposta, i, righe);
+			inserisciRispostaRadioConInfo(oggetto[i].risposta, i, righe);
 		else
-			inserisciRisposta(oggetto[i].risposta, i, righe);
+			inserisciRispostaRadio(oggetto[i].risposta, i, righe);
 	}
 }
 
-function inserisciRispostaConInfo(risposta, id, righe){
+function inserisciRispostaRadioConInfo(risposta, id, righe){
 
 	var row = document.getElementById("risposte");
 	
@@ -122,17 +132,17 @@ function inserisciRispostaConInfo(risposta, id, righe){
 	row.innerHTML = row.innerHTML + rigaInizio + "<label for = \""+ risposta.toLowerCase() + "\" class= \"col-sm-4 \">"
 													+ "<div id = \"rispostaJS\" >" 
 														+ "<input id=\"" + risposta.toLowerCase() + "\" type=\"radio\" name = \"collega\" />"
-														+ "<img src=\"" + resourceImg + risposta.toLowerCase() + ".png\"/>" 	
+														+ "<img src=\"" + resourceImg + risposta.toLowerCase() + ".png\" class=\"img-fluid\"/>" 	
 														+ risposta 
 														+ "<button type=\"button\" class = \"informazione\" id = " + risposta + " onclick = caricaInfo(" + id + ")>"
-															+"<img src = ../immagini/guidaSceltaProdotto/icone/info.png />"
+															+"<img src = ../immagini/guidaSceltaProdotto/icone/info.png  class=\"img-fluid\"/>"
 														+ "</button>"
 													+ "</div>"
 											+ "</label>" 
 								  + rigaFine;
 }
 
-function inserisciRisposta(risposta, id, righe){
+function inserisciRispostaRadio(risposta, id, righe){
 
 	var row = document.getElementById("risposte");
 	
@@ -153,10 +163,86 @@ function inserisciRisposta(risposta, id, righe){
 	row.innerHTML = row.innerHTML + rigaInizio + "<label for = \""+ risposta.toLowerCase() + "\" class= \"col-sm-4 \">"
 													+ "<div id = \"rispostaJS\" >" 
 														+ "<input id=\"" + risposta.toLowerCase() + "\" type=\"radio\" name = \"collega\" />"
-														+ "<img src=\"" + resourceImg + risposta.toLowerCase() + ".png\"/>" 	
-													+ risposta + "</div>"
+														+ "<img src=\"" + resourceImg + risposta.toLowerCase() + ".png\" class=\"img-fluid\" />" 	
+														+ risposta 
+													+ "</div>"
 											+ "</label>" 
 								  + rigaFine;
+}
+
+/* Risposta check box */
+
+function inserisciRisposteCheck(oggetto) {
+	/* svuoto il div contenente le risposte */
+	var row = document.getElementById("risposte");
+	row.innerHTML = "";
+	
+	var righe = 0;
+	for (let i = 0; i < oggetto.length; ++i){
+		if(oggetto[i].descrizione != "")
+			inserisciRispostaCheckConInfo(oggetto[i].risposta, i, righe);
+		else
+			inserisciRispostaCheck(oggetto[i].risposta, i, righe);
+	}
+}
+
+function inserisciRispostaCheckConInfo(risposta, id, righe){
+
+	var row = document.getElementById("risposte");
+	
+	let rigaInizio = "";
+	let rigaFine = "";
+	if(id % 3 == 0) {
+		rigaInizio = "<div class = \"row\" id = " + righe + " >";	
+		rigaFine = "</div>";
+		righe++;
+	} else {
+		row = document.getElementById(righe);
+	}
+	
+	let resourceImg = "../immagini/guidaSceltaProdotto/risposte/";
+	if(categoriaSelezionata != undefined)
+		resourceImg = "../immagini/guidaSceltaProdotto/" + categoriaSelezionata + "/risposte/";
+		
+	row.innerHTML = row.innerHTML + rigaInizio + "<label for = \""+ risposta.toLowerCase() + "\" class= \"col-sm-4 \">"
+													+ "<div id = \"rispostaJS\" >" 
+														+ "<input id=\"" + risposta.toLowerCase() + "\" type=\"checkbox\" name = \"collega\" />"
+														+ "<img src=\"" + resourceImg + risposta.toLowerCase() + ".png\" class=\"img-fluid\" />" 	
+														+ risposta
+														+ "<button type=\"button\" class = \"informazione\" id = " + risposta + " onclick = caricaInfo(" + id + ")>"
+															+"<img src = ../immagini/guidaSceltaProdotto/icone/info.png class=\"img-fluid\" />"
+														+ "</button>"
+													+ "</div>"
+												+ "</label>"
+								 		 + rigaFine;
+}
+
+function inserisciRispostaCheck(risposta, id, righe){
+
+	var row = document.getElementById("risposte");
+	
+	let rigaInizio = "";
+	let rigaFine = "";
+	if(id % 3 == 0) {
+		rigaInizio = "<div class = \"row\" id = " + righe + " >";	
+		rigaFine = "</div>";
+		righe++;
+	} else {
+		row = document.getElementById(righe);
+	}
+	
+	let resourceImg = "../immagini/guidaSceltaProdotto/risposte/";
+	if(categoriaSelezionata != undefined && ind != -1)
+		resourceImg = "../immagini/guidaSceltaProdotto/" + categoriaSelezionata + "/risposte/";
+		
+	row.innerHTML = row.innerHTML + rigaInizio + "<label for = \""+ risposta.toLowerCase() + "\" class= \"col-xs-4 \">"
+													+ "<div id = \"rispostaJS\" >" 
+														+ "<input id=\"" + risposta.toLowerCase() + "\" type=\"checkbox\" name = \"collega\" />"
+														+ "<img src=\"" + resourceImg + risposta.toLowerCase() + ".png\" class=\"img-fluid\"/>" 	
+														+ risposta
+													+ "</div>"
+											   + "</label>" 
+									 + rigaFine;
 }
 
 function caricaDescrizione(stringa) {
@@ -175,8 +261,8 @@ function caricaDescrizione(stringa) {
 	if(categoriaSelezionata != undefined && ind != numDomandeTotaliCategoria && ind != -1)
 		resourceImg = "../immagini/guidaSceltaProdotto/" + categoriaSelezionata + "/descrizione/";
 	
-	row.innerHTML = "<div id = \"descrizioneJS\">" 
-						+ "<img src=\"" + resourceImg + stringhe[0].toLowerCase() + ".png\" />"
+	row.innerHTML = "<div id = \"descrizioneJS\" >" 
+						+ "<img src=\"" + resourceImg + stringhe[0].toLowerCase() + ".png\" class=\"img-fluid\" />"
 				 		+ "<p>" 
 							+ s
 						+ "</p>"
