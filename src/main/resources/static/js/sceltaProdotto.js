@@ -5,7 +5,7 @@ window.addEventListener("load", function(){
 /* --- Variabili --- */ 
 
 var categoriaSelezionata;
-var numDomandeTotaliCategoria;
+var numDomandeTotaliCategoria = 2;
 
 /* --- Funzioni --- */
 
@@ -43,6 +43,19 @@ function vaiAllaDomanda(i) {
 	compila();
 }
 
+function caricaInfo(indiceRisposta) {
+	switch(categoriaSelezionata) {
+		case("stampanti"):
+			caricaDescrizione(domande.stampanti.elencoDomande[ind].risposte[indiceRisposta].descrizione);
+			break;
+		case("notebook"):
+			caricaDescrizione(domande.notebook.elencoDomande[ind].risposte[indiceRisposta].descrizione);
+			break;
+		default:
+			break;
+	}
+}
+
 /* -- FUNZIONI --- */
 
 function segnalazione(){
@@ -75,7 +88,6 @@ function paginaAvanti() {
 				
 		if (selectedRadio.length == 1){
 			ind++;
-			console.log(ind);
 			
 			selectedRadio.forEach(function(radio, indice){
 				categoriaSelezionata = radio.getAttribute('id');
@@ -115,24 +127,22 @@ function paginaAvanti() {
 			ind++;
 		}
 		else {
-			document.getElementById("pulsanteAvanti").disabled = true;	
 			/* stamapare lista prodotti finale */
 		}
 	}
+	abilitaDisabilita();
 	compila();
 }
 
 function paginaIndietro() {
-	if(ind == 0) {
-		abilitaDisabilita();
-	}
+	
 	if(ind > -1) {
 		ind--;
 		compila();
-		document.getElementById("pulsanteAvanti").disabled = false;	
 	} else {
 		/* nascondere il pannello sopra di visualizzazione */
 	}
+	abilitaDisabilita();
 }
 
 /*--- mi serve per le future risposte
@@ -165,6 +175,11 @@ function abilitaDisabilita() {
 		document.getElementById("pulsanteIndietro").disabled = true;
 	else
 		document.getElementById("pulsanteIndietro").disabled = false;
+	if(ind < numDomandeTotaliCategoria)
+		document.getElementById("pulsanteAvanti").disabled = false;	
+	else {
+		document.getElementById("pulsanteAvanti").disabled = true;
+	}	
 }
 
 function clearText(field){

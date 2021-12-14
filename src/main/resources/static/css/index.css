@@ -115,7 +115,6 @@ con absolute*/
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-	width: 40%;
 }
 
 #descrizioneJS p {
@@ -133,6 +132,18 @@ con absolute*/
 	color: #3465a4;
 	border-radius: 100%;
 	border: none;
+}
+
+.informazione {
+	background-color: white;
+	border: none;
+	border-radius: 100%;
+	padding: 0px;
+}
+
+.informazione img {
+	right: 0px;
+	width: 50%;
 }
 
 /* --- CONDIVISA --- */

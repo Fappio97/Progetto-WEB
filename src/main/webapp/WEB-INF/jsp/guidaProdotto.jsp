@@ -23,12 +23,8 @@
  
     <!-- Grafica superiore %% immagine sfondo più descrizione -->
     <div>
-    	<div id = "imageDescription">
-			<img src="../immagini/guidaSceltaProdotto/stampante.jpg" width = 100% height = 35%/>
-			
-			<div id = "description" >
-				<h1>Trova il prodotto</h1>
-				<p>Scopri il dispositivo per le tue esigenze. Il nostro sistema ti consiglia il prodotto migliore.</p>
+    	<div>
+			<div id = "imageDescription">
 			</div>
 		</div>
 	</div>
