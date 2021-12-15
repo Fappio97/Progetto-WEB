@@ -26,6 +26,7 @@ function compila() {
 					inserisciRisposteRadio(domande.stampanti.elencoDomande[ind].risposte);
 				else
 					inserisciRisposteCheck(domande.stampanti.elencoDomande[ind].risposte);
+				selezionaRisposteScelte();
 				caricaDescrizione(domande.stampanti.elencoDomande[ind].descrizione);
 				break;
 			case "notebook":
@@ -34,6 +35,7 @@ function compila() {
 					inserisciRisposteRadio(domande.notebook.elencoDomande[ind].risposte);
 				else
 					inserisciRisposteCheck(domande.notebook.elencoDomande[ind].risposte);
+				selezionaRisposteScelte();
 				caricaDescrizione(domande.notebook.elencoDomande[ind].descrizione);
 				break;
 			default:
@@ -62,7 +64,7 @@ function pannelloSuperiore(stringa) {
 	var row = document.getElementById("imageDescription");		
 	row.innerHTML = "<img src= \"../immagini/guidaSceltaProdotto/pannelloSopra/" + stringa + ".png\" width = 100% height = 40%/>"
 						+ "<div id = \"description\" >"
-							+ "<h1>Find the " + prodotto + "</h1>"
+							+ "<p class = \"titolo\">Find the " + prodotto + "</p>"
 							+ "<p>Discover the device for your needs. Our system advises you the best " + prodotto + ".</p>"
 						+"</div>";
 }
@@ -130,7 +132,7 @@ function inserisciRispostaRadioConInfo(risposta, tag, id, righe){
 		
 	row.innerHTML = row.innerHTML + rigaInizio + "<label for = \""+ risposta.toLowerCase() + "\" class= \"col-sm-4 \">"
 													+ "<div id = \"rispostaJS\" >" 
-														+ "<input id=\"" + risposta.toLowerCase() + "\" type=\"radio\" name = \"collega\" value = \"" + tag + "\" />"
+														+ "<input id=\"" + risposta.toLowerCase() + "\" type=\"radio\" name = \"collega\" value = \"" + tag + "\" onclick = \"focusRisposte()\" />"
 														+ "<img src=\"" + resourceImg + risposta.toLowerCase() + ".png\" class=\"img-fluid\"/>" 	
 														+ risposta 
 														+ "<button type=\"button\" class = \"informazione\" id = " + risposta + " onclick = caricaInfo(" + id + ")>"
@@ -161,7 +163,7 @@ function inserisciRispostaRadio(risposta, tag, id, righe){
 		
 	row.innerHTML = row.innerHTML + rigaInizio + "<label for = \""+ risposta.toLowerCase() + "\" class= \"col-sm-4 \">"
 													+ "<div id = \"rispostaJS\" >" 
-														+ "<input id=\"" + risposta.toLowerCase() + "\" type=\"radio\" name = \"collega\" value = \"" + tag + "\" />"
+														+ "<input id=\"" + risposta.toLowerCase() + "\" type=\"radio\" name = \"collega\" value = \"" + tag + "\" onclick = \"focusRisposte()\" />"
 														+ "<img src=\"" + resourceImg + risposta.toLowerCase() + ".png\" class=\"img-fluid\" />" 	
 														+ risposta 
 													+ "</div>"
@@ -205,7 +207,7 @@ function inserisciRispostaCheckConInfo(risposta, tag,  id, righe){
 		
 	row.innerHTML = row.innerHTML + rigaInizio + "<label for = \""+ risposta.toLowerCase() + "\" class= \"col-sm-4 \">"
 													+ "<div id = \"rispostaJS\" >" 
-														+ "<input id=\"" + risposta.toLowerCase() + "\" type=\"checkbox\" name = \"collega\" value = \"" + tag + "\" />"
+														+ "<input id=\"" + risposta.toLowerCase() + "\" type=\"checkbox\" name = \"collega\" value = \"" + tag + "\" onclick = \"focusRisposte()\" />"
 														+ "<img src=\"" + resourceImg + risposta.toLowerCase() + ".png\" class=\"img-fluid\" />" 	
 														+ risposta
 														+ "<button type=\"button\" class = \"informazione\" id = " + risposta + " onclick = caricaInfo(" + id + ")>"
@@ -235,7 +237,7 @@ function inserisciRispostaCheck(risposta, tag, id, righe){
 		
 	row.innerHTML = row.innerHTML + rigaInizio + "<label for = \""+ risposta.toLowerCase() + "\" class= \"col-xs-4 \">"
 													+ "<div id = \"rispostaJS\" >" 
-														+ "<input id=\"" + risposta.toLowerCase() + "\" type=\"checkbox\" name = \"collega\" value = \"" + tag + "\" />"
+														+ "<input id=\"" + risposta.toLowerCase() + "\" type=\"checkbox\" name = \"collega\" value = \"" + tag + "\" onclick = \"focusRisposte()\"/>"
 														+ "<img src=\"" + resourceImg + risposta.toLowerCase() + ".png\" class=\"img-fluid\"/>" 	
 														+ risposta
 													+ "</div>"
@@ -306,6 +308,26 @@ function caricaBarraNavigazione() {
 								+ "Results"
 						+ "</button> "
 					+ "</div>";
+}
+
+function selezionaRisposteScelte() {
+	
+	var risposte = document.getElementsByName("collega");
+	
+	if(preferenzeUtente[ind] != undefined) {
+		for(let i = 0; i < preferenzeUtente[ind].length; ++i) {
+			for(let j = 0; j < risposte.length; ++j) {
+				if(risposte[j].getAttribute('value') == preferenzeUtente[ind][i]) {
+					risposte[j].checked = true;
+					
+					/* Prende il nodo padre dell'elemento passato */
+					let parentDiv = risposte[j].parentNode;
+					parentDiv.style.border = "2px solid #0b3de1";
+					break;
+				}
+			}
+		}
+	}
 }
 
 function caricaFocusDomanda() {

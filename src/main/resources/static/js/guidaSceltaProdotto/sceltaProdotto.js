@@ -1,3 +1,4 @@
+/* --- Post caricamento pagina carica le funzioni js --- */
 window.addEventListener("load", function(){
 	aggiungiEventi();
 });
@@ -28,7 +29,7 @@ function aggiungiEventi(){
 	abilitaDisabilita();
 }
 
-/* -- FUNZIONI CHE INVOCO DAI OBTTONI CREATI DA JS --- */
+/* -- FUNZIONI CHE INVOCO DAI BOTTONI CREATI DA JS --- */
 function rinizia() {
 	if(ind == 0 && preferenzeUtente.length == 0)
 		return;
@@ -68,6 +69,21 @@ function caricaInfo(indiceRisposta) {
 	}
 }
 
+function focusRisposte() {
+	
+	var risposte = document.getElementsByName("collega");
+	for(let j = 0; j < risposte.length; ++j) {
+		if(risposte[j].checked == true) {
+			let parentDiv = risposte[j].parentNode;
+			parentDiv.style.border = "2px solid #0b3de1";
+		} else {
+			let parentDiv = risposte[j].parentNode;
+			parentDiv.style.border = "";
+		}
+	}
+}
+
+
 /* -- FUNZIONI --- */
 
 function segnalazione(){
@@ -85,7 +101,7 @@ function inviaSegnalazione(){
 	if(segnalazione == 'Enter your problem ...' || segnalazione == '')
 		row.innerHTML = "Blank report!";
 	else {
-		row.innerHTML = "Report sent";
+		row.innerHTML = "Report sent!";
 		//funzione per inviare la segnalazione con ajax
 		
 		let origineProblema = "Problem origin: ";
@@ -123,21 +139,10 @@ function paginaAvanti() {
 		}
 	} else {
 		if(ind < numDomandeTotaliCategoria) {
-			var selected = document.querySelectorAll('input[name=collega]:checked');
-				
-			if (selected.length >= 1){
-				
-				let risposte = new Array();
-				
-				selected.forEach(function(input, indice){
-					risposte.push(input.getAttribute('value'));
-				}); 
-				
-			preferenzeUtente[ind] = risposte;
 			
-			}
-			
+			salvaPreferenza();
 			ind++;
+			
 		}else {
 			/* --- STAMPA ALLA FINE MA POI CON L'AJAX INVOCO IL DB E SCELGO QUELLO GIUSTO --- */
 			let tag = new Array();
@@ -182,6 +187,7 @@ function paginaAvanti() {
 function paginaIndietro() {
 	
 	if(ind > -1) {
+		salvaPreferenza();
 		ind--;
 		compila();
 	} 
@@ -191,30 +197,6 @@ function paginaIndietro() {
 	
 	abilitaDisabilita();
 }
-
-/*--- mi serve per le future risposte
-btnCancella.addEventListener("click", function(){
-		var selectedCheckBoxes = document.querySelectorAll("input:checked");
-		
-		if (selectedCheckBoxes.length > 0){
-			selectedCheckBoxes.forEach(function(checkBox, indice){
-				console.log(checkBox);
-				console.log(checkBox.getAttribute("id"));
-				
-				var matricola = checkBox.getAttribute("id");
-				var studente = studentiConId[matricola];
-				console.log(studente.nome);
-				
-				delete studentiConId[matricola];
-				
-				cancellaStudenteDaTabella(studente);
-				
-			});
-		}else{
-			alert("Si prega di selezionare almeno un elemento");
-		}
-});
-*/
 
 function abilitaDisabilita() {
 	if(ind == -1)
@@ -242,5 +224,21 @@ function clearText(field){
 function svuotaArray(array) {
 	while(array.length > 0) 
 		array.pop();
+}
+
+function salvaPreferenza() {
+	var selected = document.querySelectorAll('input[name=collega]:checked');
+				
+	if (selected.length >= 1){
+				
+		let risposte = new Array();
+				
+		selected.forEach(function(input, indice){
+			risposte.push(input.getAttribute('value'));
+		}); 
+				
+		preferenzeUtente[ind] = risposte;
+			
+	}
 }
 
