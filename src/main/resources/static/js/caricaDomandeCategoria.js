@@ -12,15 +12,15 @@ function compila() {
 		document.getElementById("rigaIndiceDomande").style.display = "none"; 
 	} else if(ind == numDomandeTotaliCategoria) {
 		/*Pagina risultati */
-		inserisciDomanda("Prodotti consigliati");
+		inserisciDomanda("Recommended products");
 		inserisciRisposteRadio("");
-		caricaDescrizione("Hai finito!%Ecco la nostra lista di " + categoriaSelezionata + " ideali in base alle tue esigenze!");
+		caricaDescrizione("Done!%Here is our list of " + categoriaSelezionata + " ideal according to your needs!");
 		document.getElementById("rigaIndiceDomande").style.display = ""; 
 	} else {
 		document.getElementById("rigaIndiceDomande").style.display = ""; 
 		pannelloSuperiore(categoriaSelezionata.toLowerCase());
 		switch(categoriaSelezionata) {
-			case "stampanti":
+			case "printers":
 				inserisciDomanda(domande.stampanti.elencoDomande[ind].domanda);
 				if(domande.stampanti.elencoDomande[ind].unaOpzione)
 					inserisciRisposteRadio(domande.stampanti.elencoDomande[ind].risposte);
@@ -50,21 +50,21 @@ function pannelloSuperiore(stringa) {
 	
 	switch(stringa) {
 		case("notebook"):
-			prodotto = "il notebook";
+			prodotto = "notebook";
 			break;
-		case("stampanti"):
-			prodotto = "la stampante";
+		case("printers"):
+			prodotto = "printer";
 			break;
 		default:
-			prodotto = "il prodotto";
+			prodotto = "product";
 			break;
 	}
 	
 	var row = document.getElementById("imageDescription");		
 	row.innerHTML = "<img src= \"../immagini/guidaSceltaProdotto/pannelloSopra/" + stringa + ".png\" width = 100% height = 40%/>"
 						+ "<div id = \"description\" >"
-							+ "<h1>Trova " + prodotto + "</h1>"
-							+ "<p>Scopri il dispositivo per le tue esigenze. Il nostro sistema ti consiglia " + prodotto + " migliore.</p>"
+							+ "<h1>Find the " + prodotto + "</h1>"
+							+ "<p>Discover the device for your needs. Our system advises you the best " + prodotto + ".</p>"
 						+"</div>";
 }
 
@@ -105,13 +105,13 @@ function inserisciRisposteRadio(oggetto) {
 	var righe = 0;
 	for (let i = 0; i < oggetto.length; ++i){
 		if(oggetto[i].descrizione != "")
-			inserisciRispostaRadioConInfo(oggetto[i].risposta, i, righe);
+			inserisciRispostaRadioConInfo(oggetto[i].risposta, oggetto[i].tag, i, righe);
 		else
-			inserisciRispostaRadio(oggetto[i].risposta, i, righe);
+			inserisciRispostaRadio(oggetto[i].risposta, oggetto[i].tag, i, righe);
 	}
 }
 
-function inserisciRispostaRadioConInfo(risposta, id, righe){
+function inserisciRispostaRadioConInfo(risposta, tag, id, righe){
 
 	var row = document.getElementById("risposte");
 	
@@ -131,7 +131,7 @@ function inserisciRispostaRadioConInfo(risposta, id, righe){
 		
 	row.innerHTML = row.innerHTML + rigaInizio + "<label for = \""+ risposta.toLowerCase() + "\" class= \"col-sm-4 \">"
 													+ "<div id = \"rispostaJS\" >" 
-														+ "<input id=\"" + risposta.toLowerCase() + "\" type=\"radio\" name = \"collega\" />"
+														+ "<input id=\"" + risposta.toLowerCase() + "\" type=\"radio\" name = \"collega\" value = \"" + tag + "\" />"
 														+ "<img src=\"" + resourceImg + risposta.toLowerCase() + ".png\" class=\"img-fluid\"/>" 	
 														+ risposta 
 														+ "<button type=\"button\" class = \"informazione\" id = " + risposta + " onclick = caricaInfo(" + id + ")>"
@@ -142,7 +142,7 @@ function inserisciRispostaRadioConInfo(risposta, id, righe){
 								  + rigaFine;
 }
 
-function inserisciRispostaRadio(risposta, id, righe){
+function inserisciRispostaRadio(risposta, tag, id, righe){
 
 	var row = document.getElementById("risposte");
 	
@@ -162,7 +162,7 @@ function inserisciRispostaRadio(risposta, id, righe){
 		
 	row.innerHTML = row.innerHTML + rigaInizio + "<label for = \""+ risposta.toLowerCase() + "\" class= \"col-sm-4 \">"
 													+ "<div id = \"rispostaJS\" >" 
-														+ "<input id=\"" + risposta.toLowerCase() + "\" type=\"radio\" name = \"collega\" />"
+														+ "<input id=\"" + risposta.toLowerCase() + "\" type=\"radio\" name = \"collega\" value = \"" + tag + "\" />"
 														+ "<img src=\"" + resourceImg + risposta.toLowerCase() + ".png\" class=\"img-fluid\" />" 	
 														+ risposta 
 													+ "</div>"
@@ -176,17 +176,17 @@ function inserisciRisposteCheck(oggetto) {
 	/* svuoto il div contenente le risposte */
 	var row = document.getElementById("risposte");
 	row.innerHTML = "";
-	
+
 	var righe = 0;
 	for (let i = 0; i < oggetto.length; ++i){
 		if(oggetto[i].descrizione != "")
-			inserisciRispostaCheckConInfo(oggetto[i].risposta, i, righe);
+			inserisciRispostaCheckConInfo(oggetto[i].risposta, oggetto[i].tag, i, righe);
 		else
-			inserisciRispostaCheck(oggetto[i].risposta, i, righe);
+			inserisciRispostaCheck(oggetto[i].risposta, oggetto[i].tag, i, righe);
 	}
 }
 
-function inserisciRispostaCheckConInfo(risposta, id, righe){
+function inserisciRispostaCheckConInfo(risposta, tag,  id, righe){
 
 	var row = document.getElementById("risposte");
 	
@@ -206,7 +206,7 @@ function inserisciRispostaCheckConInfo(risposta, id, righe){
 		
 	row.innerHTML = row.innerHTML + rigaInizio + "<label for = \""+ risposta.toLowerCase() + "\" class= \"col-sm-4 \">"
 													+ "<div id = \"rispostaJS\" >" 
-														+ "<input id=\"" + risposta.toLowerCase() + "\" type=\"checkbox\" name = \"collega\" />"
+														+ "<input id=\"" + risposta.toLowerCase() + "\" type=\"checkbox\" name = \"collega\" value = \"" + tag + "\" />"
 														+ "<img src=\"" + resourceImg + risposta.toLowerCase() + ".png\" class=\"img-fluid\" />" 	
 														+ risposta
 														+ "<button type=\"button\" class = \"informazione\" id = " + risposta + " onclick = caricaInfo(" + id + ")>"
@@ -217,10 +217,9 @@ function inserisciRispostaCheckConInfo(risposta, id, righe){
 								 		 + rigaFine;
 }
 
-function inserisciRispostaCheck(risposta, id, righe){
+function inserisciRispostaCheck(risposta, tag, id, righe){
 
 	var row = document.getElementById("risposte");
-	
 	let rigaInizio = "";
 	let rigaFine = "";
 	if(id % 3 == 0) {
@@ -237,7 +236,7 @@ function inserisciRispostaCheck(risposta, id, righe){
 		
 	row.innerHTML = row.innerHTML + rigaInizio + "<label for = \""+ risposta.toLowerCase() + "\" class= \"col-xs-4 \">"
 													+ "<div id = \"rispostaJS\" >" 
-														+ "<input id=\"" + risposta.toLowerCase() + "\" type=\"checkbox\" name = \"collega\" />"
+														+ "<input id=\"" + risposta.toLowerCase() + "\" type=\"checkbox\" name = \"collega\" value = \"" + tag + "\" />"
 														+ "<img src=\"" + resourceImg + risposta.toLowerCase() + ".png\" class=\"img-fluid\"/>" 	
 														+ risposta
 													+ "</div>"
@@ -271,7 +270,7 @@ function caricaDescrizione(stringa) {
 
 function numeroDomandeCategoriaSelezionata() {
 	switch(categoriaSelezionata) {
-		case "stampanti":
+		case "printers":
 			numDomandeTotaliCategoria = domande.stampanti.elencoDomande.length;
 			break;
 		case "notebook":

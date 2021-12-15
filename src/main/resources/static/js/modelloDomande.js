@@ -1,10 +1,10 @@
-function Risposta(risposta, descrizione) {
+function Risposta(risposta, tag, descrizione) {
 	this.risposta = risposta;
 	this.descrizione = descrizione;
-	
+	this.tag = tag;
 	/* Serve????? */	
 	this.dammiRisposta = function() {
-		return this.risposta + "\n" + this.descrizione + "\n";
+		return this.risposta + "\n" + this.descrizione + "\n" + this.tag;
 	}
 }
 
@@ -26,12 +26,12 @@ var ind = -1;
 /* --- CATEGORIE --- */ 
 
 categorie = {
-	["domanda"]: "Su quale categoria vuoi trovare il prodotto adatto a te?",
+	["domanda"]: "In which category do you want to find the right product for you?",
 	"categoria": new Array(),
-	"descrizione": "Benvenuto!%Rispondi a queste semplici domande e ti aiuteremo a trovare il prodotto ideale per le tue esigenze."
+	"descrizione": "Welcome!%Answer these simple questions and we will help you find the ideal product for your needs."
 };
 
-categorie.categoria.push("Notebook", "Stampanti");
+categorie.categoria.push("Notebook", "Printers");
 
 /*console.log(categorie);
 
@@ -58,68 +58,68 @@ domande.notebook = {
 
 /* --- DOMANDE SPECIFICHE STAMPANTE --- */
 
-domande.stampanti.elencoDomande.push(new Domanda("La mia nuova stampante è per …", "Utilizzo della stampante%Scegli il contesto dove utilizzerai la tua stampante.", true, 
-	new Array(new Risposta("Uso personale", "Uso personale%Il dispositivo sarà utilizzato per documenti personali, da me e la mia famiglia."), 
-				new Risposta("Home office", "Home office%Il dispositivo sarà utilizzato in un home office per creare documenti professionali." ), 
-				new Risposta("Piccola azienda", "Piccola azienda%Il dispositivo sarà utilizzato in un ufficio con un massimo di 10 persone."),
-				new Risposta("Grande azienda", "Grande azienda%Il dispositivo sarà utilizzato in un ufficio con più di 10 persone."))));
+domande.stampanti.elencoDomande.push(new Domanda("My new printer is for …", "Printer usage%Choose the context in which you will use the printer.", true, 
+	new Array(new Risposta("Personal use", "Personal use", "Personal use%The device will be used for personal documents, by me and my family."), 
+				new Risposta("Home office", "Home office", "Home office%The device will be used in a home office to create professional documents."), 
+				new Risposta("Small business", "Small business", "Small business%The device will be used in an office with up to 10 people."),
+				new Risposta("Large company", "Large company", "Large company%The device will be used in an office with more than 10 people."))));
 
-domande.stampanti.elencoDomande.push(new Domanda("Cosa vuoi fare con il tuo dispositivo?%Puoi selezionare più opzioni", "Funzionalità del dispositivo%La nostra gamma di prodotti offre una vasta scelta di caratteristiche e funzionalità.\nScegli la funzionalità di cui hai bisogno.", false,
-	new Array(new Risposta("Stampa", ""), 
-				new Risposta("Copia", "" ), 
-				new Risposta("Scansione", ""),
-				new Risposta("Fax", ""))));
+domande.stampanti.elencoDomande.push(new Domanda("What do you want to do with your device?%You can select multiple options","Device features%Our product range offers a wide choice of features and functionalities.%Choose the functionality you need.", false,
+	new Array(new Risposta("Print", "Print", ""), 
+				new Risposta("Copy", "Copy", "" ), 
+				new Risposta("Scanner", "Scanner", ""),
+				new Risposta("Fax", "Fax", ""))));
 				
-domande.stampanti.elencoDomande.push(new Domanda("Voglio stampare …", "Colore di stampa%Scegli il colore in cui desideri stampare.", true,
-	new Array(new Risposta("A colori e in bianco e nero", ""), 
-				new Risposta("Solo in bianco e nero", "" ))));				
+domande.stampanti.elencoDomande.push(new Domanda("I want to print …","Print color%Choose the color you want to print in.", true,
+	new Array(new Risposta("In color and black and white ", "color", ""), 
+				new Risposta("Only in black and white ", "black and white", "" ))));				
 				
-domande.stampanti.elencoDomande.push(new Domanda("Devo poter stampare…%Puoi selezionare più opzioni", "Formato di stampa%Scegli il formato sui cui desideri stampare, dallo standard A4 fino ai grandi formati o alle foto.", false,
-	new Array(new Risposta("Documenti con solo testo", "Documenti con solo testo%I documenti stampati saranno soprattutto documenti di testo come email, fogli Word o fogli di calcolo."), 
-				new Risposta("Fotografie e immagini", "Fotografie e immagini%Foto o altre immagini in alta risoluzione." ),
-				new Risposta("Su etichette e buste", "Su etichette e buste%Ideale per chi vuole stampare su etichette o buste." ),
-				new Risposta("In formato standard A4", "In formato standard A4%Documenti in formato standard A4." ),
-				new Risposta("Nel grande formato A3", "Nel grande formato A3%Documenti in A3 per chi vuole stampare in un formato più grande." ),
-				new Risposta("Nei formati più piccoli A5 e A6", "Nei formati più piccoli A5 e A6%Documenti in formato A5 / A6 ideali per piccoli volantini." ))));
+domande.stampanti.elencoDomande.push(new Domanda("I need to be able to print …%You can select multiple options","Print size%Choose the size you want to print on, from standard A4 to large sizes or photos.", false,
+	new Array(new Risposta("Text-only documents", "text", "Text-only documents%Printed documents will mainly be text documents such as e-mails, Word sheets or spreadsheets."), 
+				new Risposta("Photographs and images", "photos", "Photographs and images%Photos or other images in high resolution." ),
+				new Risposta("On labels and envelopes", "label", "On labels and envelopes%Ideal for those who want to print on labels or envelopes." ),
+				new Risposta("In standard A4 size", "a4", "In standard A4 size%Standard A4 size documents." ),
+				new Risposta("In large A3 size", "a3", "In large A3 size%A3 documents for those who want to print in a larger size." ),
+				new Risposta("In the smaller sizes A5", "a5", "In the smaller sizes A5%A5 size documents ideal for small flyers." ))));
 				
-domande.stampanti.elencoDomande.push(new Domanda("Frequenza di stampa", "Frequenza di utilizzo%Indica quanto spesso stampi.\nIn questo modo ti consiglieremo il modello più adatto.", true,
-	new Array(new Risposta("Poche volte al mese", ""), 
-				new Risposta("Una volta a settimana", "" ), 
-				new Risposta("Più volte a settimana", ""),
-				new Risposta("Ogni giorno", ""))));
+domande.stampanti.elencoDomande.push(new Domanda("Print frequency","Frequency of use%Indicates how often you print.%This way we will recommend the most suitable model for you.", true,
+	new Array(new Risposta("A few times a month", "few", ""), 
+				new Risposta("Once a week", "a little", "" ), 
+				new Risposta("Several times a week", "often", ""),
+				new Risposta("Everyday", "always", ""))));
 				
-domande.stampanti.elencoDomande.push(new Domanda("Voglio collegare il mio dispositivo tramite…%Puoi selezionare più opzioni ", "Connettività del dispositivo%Indica come vuoi installare e collegare il tuo dispositivo.\nAbbiamo un modello per ogni tua esigenza: dal wireless alla rete cablata.", false,
-	new Array(new Risposta("LAN (cavo di rete)", "LAN%Vuoi utilizzare una connessione LAN?\nCosì la stampante sarà disponibile ad ogni utente che è conesso alla stessa rete."), 
-				new Risposta("USB", "USB%Scegli l'interfaccia USB se vuoi connettere il dispositivo direttamente al tuo pc o laptop.\nIl dispositivo sarà accessibile solo dal pc o laptop connesso." ), 
-				new Risposta("WiFi", "WiFi%Connetti senza fili tramite WiFi e accedi al tuo dispositivo da qualunque punto della casa o dell'ufficio."),
-				new Risposta("Porta parallela", "Porta parallela%Sei una grande azienda e vuoi connettere il tuo dispositivo tramite porta parallela?\nQuesta interfaccia ti consente di inviare dati simultaneamente da più cavi in una volta sola."))));
+domande.stampanti.elencoDomande.push(new Domanda("I want to connect my device by ...%You can select more options ","Device connectivity%Indicate how you want to install and connect your device.%We have a model for all your needs: from wireless to wired network.", false,
+	new Array(new Risposta("LAN (network cable)", "lan","LAN%Do you want to use a LAN connection?%This will make the printer available to every user connected to the same network."), 
+				new Risposta("USB", "USB", "USB%Choose the USB interface if you want to connect the device directly to your pc or laptop.%The device will only be accessible from the connected pc or laptop." ), 
+				new Risposta("WiFi", "WiFi", "WiFi%Connect wirelessly by WiFi and access your device from anywhere in your home or office."),
+				new Risposta("Parallel port", "Parallel port", "Parallel port%Are you a large company and want to connect your device via parallel port?%This interface allows you to send data simultaneously from multiple cables at the same time."))));
 
-domande.stampanti.elencoDomande.push(new Domanda("Voglio…%Puoi selezionare più opzioni", "Requisiti aggiuntivi%Prima di mostrarti il dispositivo più adatto alle tue esigenze, ci sono altre caratteristiche o funzionalità che desideri?", false,
-	new Array(new Risposta("Stampare fronte retro", "Stampare fronte retro%Stampa automaticamente su entrabe i lati del foglio, risparmiando carta e costi."), 
-				new Risposta("Stampare da dispositivo mobile", "Stampare da dispositivo mobile%Ideale per chi vuole stampare comodamente dal proprio smartphone." ), 
-				new Risposta("Aggiungere altri cassetti carta", "Aggiungere altri cassetti carta%Ideale per chi stampa con una frequenza elevata e vuole evitare di ricaricare spesso il vassoio carta, risparmiando tempo.\nOppure puoi utilizzare vassoi specifici per i differenti formati di carta."))));
+domande.stampanti.elencoDomande.push(new Domanda("I want to…%You can select more options","Additional requirements%Before I show you the device that best suits your needs, are there any other features or functionalities you want?", false,
+	new Array(new Risposta("Print on both sides", "both sides", "Print on both sides%Automatically prints on both sides of the paper, saving paper and costs."), 
+				new Risposta("Print from mobile device", "smartphone", "Print from mobile device%Ideal for those who want to print from the comfort of their smartphone." ), 
+				new Risposta("Add more paper trays", "more trays", "Add more paper trays%Ideal for those who print frequently and want to avoid refilling the paper tray often, saving time.%Or you can use specific trays for different paper sizes."))));
 
 /* --- DOMANDE SPECIFICHE NOTEBOOK --- */
 
-domande.notebook.elencoDomande.push(new Domanda("Il mio nuovo notebook è per …", "Utilizzo del notebook%Scegli l'utilizzo che ne farai del dispositivo ricercato.", true,
-	new Array(new Risposta("Gaming", "Gaming%Progettato per giocare ai più potenti videogiochi"), 
-				new Risposta("Uso quotidiano", "Uso quotidiano%Progettato per una migliore esperienza di utilizzo nelle operazioni quotidiane." ), 
-				new Risposta("Editing", "Editing%Progettato per manipolare e preparare file multimediali tramite software grafici."))));
+domande.notebook.elencoDomande.push(new Domanda("My new notebook is for …","Using the notebook%Choose how you will use the device you are looking for.", true,
+	new Array(new Risposta("Gaming", "Gaming", "Gaming%Designed to play the most powerful video games"), 
+				new Risposta("Daily use", "Daily use", "Daily use%Designed for a better experience of using in daily operations." ), 
+				new Risposta("Editing", "Editing", "Editing%Designed to manipulate and prepare multimedia files using graphics software."))));
 
-domande.notebook.elencoDomande.push(new Domanda("Voglio il processore …", "Voglio il processore …%Non esiste una famiglia migliore dell'altra, ogni modello ha i suoi punti di forza ed i suoi punti deboli.", true,
-	new Array(new Risposta("AMD", "AMD%Multinazionale statunitense leader mondiale nella produzione di CPU per il mercato di workstation e server"), 
-				new Risposta("Intel", "Intel%Multinazionale statunitense leader mondiale nella produzione di CPU." ))));		
+domande.notebook.elencoDomande.push(new Domanda("I want the processor ...","I want the processor%There is no better family than the other, each model has its strengths and weaknesses.", true,
+	new Array(new Risposta("AMD", "AMD", "AMD%US multinational, world leader in the production of CPUs for the workstation and server market"), 
+				new Risposta("Intel", "Intel", "Intel%US multinational world leader in CPU manufacturing." ))));		
 			
-domande.notebook.elencoDomande.push(new Domanda("Voglio il display …", "Dimensioni display%Sceglia la grandezza del display del tuo nuovo notebook.", true,
-	new Array(new Risposta("13 pollici", ""), 
-				new Risposta("14 pollici", "" ),
-				new Risposta("15 pollici", "" ),
-				new Risposta("17 pollici", "" ))));				
+domande.notebook.elencoDomande.push(new Domanda("I want the display ...", "Display size%Choose the display size of your new notebook.", true,
+	new Array(new Risposta("13 inch", "13", ""), 
+				new Risposta("14 inch", "14", "" ),
+				new Risposta("15 inch", "15", "" ),
+				new Risposta("17 inch", "17", "" ))));				
 
-domande.notebook.elencoDomande.push(new Domanda("Voglio…%Puoi selezionare più opzioni", "Requisiti aggiuntivi%Prima di mostrarti il dispositivo più adatto alle tue esigenze, ci sono altre caratteristiche o funzionalità che desideri?", false,
-	new Array(new Risposta("WiFi 6", "WiFi 6%Un WiFi più veloce comporta maggiori velocità di upload e download."), 
-				new Risposta("Tastiera retroilluminata", "Tastiera retroilluminata%Sotto ad ogni tasto integra un LED luminoso, che può essere di colore bianco o addirittura RGB e personalizzabile." ),
-				new Risposta("Lettore di impronte digitali", "Lettore impronte digitali%Riconoscimento dell'impronta del proprietario del dispositivo.'" ),
-				new Risposta("Touch - screen", "Touch - screen%Permette all'utente di interagire con il dispositivo mediante le dita o altri oggetti." ))));	
+domande.notebook.elencoDomande.push(new Domanda("I want ...%You can select more options", "Additional requirements%Before I show you the device that best suits your needs, are there any other features or functionalities you want?", false,
+	new Array(new Risposta("WiFi 6", "WiFi 6", "WiFi 6%Faster WiFi means higher upload and download speeds."), 
+				new Risposta("Backlit keyboard", "Backlit keyboard", "Backlit keyboard%Under each key integrates a bright LED, which can be white or even RGB and customizable." ),
+				new Risposta("Fingerprint", "Fingerprint", "Fingerprint%Acknowledgment of the device owner's fingerprint." ),
+				new Risposta("Touch - screen", "touchscreen", "Touch - screen%Allows the user to interact with the device using their fingers or other objects." ))));	
 		
 	

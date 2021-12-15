@@ -45,7 +45,7 @@ function vaiAllaDomanda(i) {
 
 function caricaInfo(indiceRisposta) {
 	switch(categoriaSelezionata) {
-		case("stampanti"):
+		case("printers"):
 			caricaDescrizione(domande.stampanti.elencoDomande[ind].risposte[indiceRisposta].descrizione);
 			break;
 		case("notebook"):
@@ -70,10 +70,10 @@ function inviaSegnalazione(){
 	var row = document.getElementById("segnalazione2");
 	
 	let segnalazione = testo.value;
-	if(segnalazione == 'Inserisci il tuo problema ...' || segnalazione == '')
-		row.innerHTML = "Segnalazione vuota!";
+	if(segnalazione == 'Enter your problem ...' || segnalazione == '')
+		row.innerHTML = "Blank report!";
 	else {
-		row.innerHTML = "Segnalazione inviata";
+		row.innerHTML = "Report sent ";
 		//funzione per inviare la segnalazione con ajax
 		
 		let origineProblema = "Origine problema in: ";
@@ -129,7 +129,7 @@ function paginaAvanti() {
 			});
 			*/
 		} else {
-			alert("Seleziona una categoria di prodotti per proseguire!");
+			alert("Select a product category to continue !");
 			return;
 		}
 	} else {
@@ -139,6 +139,7 @@ function paginaAvanti() {
 		else {
 			/* stamapare lista prodotti finale */
 		}
+		
 	}
 	abilitaDisabilita();
 	compila();
