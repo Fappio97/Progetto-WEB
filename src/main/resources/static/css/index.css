@@ -141,6 +141,10 @@ con absolute*/
   	margin-bottom: 10px;
 }
 
+.row label {
+	padding-top: 5%;
+}
+
 /* da implementare ancora*/
 .numDomande {
 	background-color: white;
@@ -230,4 +234,5 @@ con absolute*/
 
 	/* --- JS --- */
 	
+
 }

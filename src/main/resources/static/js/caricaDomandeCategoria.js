@@ -40,13 +40,12 @@ function compila() {
 				return;		
 		}
 	}
+	caricaFocusDomanda();
 }
 
 function pannelloSuperiore(stringa) {
 	
 	let prodotto;
-	
-	console.log(stringa);
 	
 	switch(stringa) {
 		case("notebook"):
@@ -91,7 +90,7 @@ function inserisciRisposteCategoria(oggetto) {
 	
 	var righe = 0;
 	for (let i = 0; i < oggetto.length; ++i){
-		inserisciRispostaRadio(oggetto[i], i, righe);
+		inserisciRispostaRadio(oggetto[i], "", i, righe);
 	}
 }
 
@@ -284,27 +283,44 @@ function numeroDomandeCategoriaSelezionata() {
 function caricaBarraNavigazione() {	
 	let s = "";
 	
-	for(let i = 0; i < numDomandeTotaliCategoria; ++i) {
-		s += "<button type =\"button\" class = \"numDomande\" id = dom value =" + i + " onclick = \"vaiAllaDomanda(" + i + ")\" >"
+	for(let i = 0; i < numDomandeTotaliCategoria + 1; ++i) {
+		s += "<button type =\"button\" class = \"numDomande\" value =" + i + " onclick = \"vaiAllaDomanda(" + i + ")\" >"
 								+ (i + 1) 
 						+ "</button>";
 	}
 		
-	var row1 = document.getElementById("rigaIndiceDomande");
-	row1.innerHTML = "<div class= \"col-3\" id = \"indiceDomandeSX\">"
+	var row = document.getElementById("rigaIndiceDomande");
+	row.innerHTML = "<div class= \"col-3\" id = \"indiceDomandeSX\">"
 						+ "<button class = \"button\" id = \"pulsanteReset\" onclick=\"rinizia()\">"
 							+ "<img src=\"../immagini/guidaSceltaProdotto/icone/rinizia.png\" width = 30%/><br />"
-								+ "Rinizia"
+								+ "Reset"
 						+ "</button>"
 					+ "</div>"
 					+ "<div class=\"col-6\" id = \"indiceDomandeCenter\">"
-						+ "Ambito di utilizzo" + "<br />"
+						+ "<strong>Scope of use</strong>" + "<br />"
 						+ s
 					+ "</div>"
 					+ "<div class=\"col-3\" id = \"indiceDomandeDX\">"
 						+ "<button class =\"button\" id = \"pulsanteResult\" onclick=\"risultati()\">"
 							+ "<img src=\"../immagini/guidaSceltaProdotto/icone/risultati.png\" width = 30%/><br />"
-								+ "Risultati"
+								+ "Results"
 						+ "</button> "
 					+ "</div>";
+}
+
+function caricaFocusDomanda() {
+	if(ind == -1)
+		return;
+	
+	var elementi = document.getElementsByClassName("numDomande");
+	for(let i = 0; i < elementi.length; ++i) {
+		if(elementi[i].value == ind) {
+			elementi[i].style.background = '#0b3de1';
+			elementi[i].style.color = 'white';
+		}
+		else {
+			elementi[i].style.background = 'white';
+			elementi[i].style.color = '#0b3de1';	
+		}
+	}
 }

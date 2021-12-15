@@ -49,20 +49,20 @@
 			
 			<div class="row">
 				<div class="col-sm-6" id = "indietro">
-					<button type="button" class="btn btn-light" id = "pulsanteIndietro">Indietro</button>
+					<button type="button" class="btn btn-light" id = "pulsanteIndietro">Back</button>
 				</div>
 				<div class="col-sm-6" id = "avanti">
-					<button type="button" class="btn btn-primary" id = "pulsanteAvanti">Avanti</button>
+					<button type="button" class="btn btn-primary" id = "pulsanteAvanti">Next</button>
 				</div>
 			</div>
 		</div>
 	</div>
 
 	<div id = "segnalazione">
-		<button type="button" class="btn btn-primary" id = "pulsanteProblema">Problema</button>
+		<button type="button" class="btn btn-primary" id = "pulsanteProblema">Problem</button>
 		<div id = "segnalazione2">
 		</div>
-		<button type="button" class="btn btn-light" id = "pulsanteInvia" style = "display: none;">Invia segnalazione</button>
+		<button type="button" class="btn btn-light" id = "pulsanteInvia" style = "display: none;">Send report</button>
 	</div>
 
 </body>
