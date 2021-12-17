@@ -1,15 +1,7 @@
-window.onload = function() {
-	
+function vaiTesto1() {
+	document.getElementById("testo1").scrollIntoView();
 }
 
-function vaiPresentazioneAzienda() {
-	document.getElementById("obiettiviAziendali").scrollIntoView();
-}
-
-function vaiPresentazioneTeam() {
-	document.getElementById("presentazioneTeam").scrollIntoView();
-}
-
-function vaiPosizioniAperte() {
-	document.getElementById("posizioniAperte").scrollIntoView();
+function vaiTesto2() {
+	document.getElementById("testo2").scrollIntoView();
 }

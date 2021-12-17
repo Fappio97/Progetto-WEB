@@ -13,6 +13,7 @@
 
 	<!-- JS -->
 	<script language="javascript" src="../js/lavoraConNoi/vaiA.js"></script>
+	<script language="javascript" src="../js/lavoraConNoi/descrizionePosizione.js"></script>
 <!--	<script language="javascript" src="../js/guidaSceltaProdotto/sceltaProdotto.js"></script>
 	<script language="javascript" src="../js/guidaSceltaProdotto/caricaDomandeCategoria.js"></script>
 	-->
@@ -209,22 +210,23 @@
 		<div class = "row" id = "divSovrapposto">
  			<div class="col-sm-10" id = "presentazioneAzienda">
 				
-				<nav class="navbar navbar-expand-sm navbar-light bg-light" id = "barra">
-					<ul class="navbar-nav" id = "navbar">
-						<li class="nav-item"> 
-							<a class="nav-link" href = "/lavoraConNoi/presentazioneAzienda" ><strong>Company Presentation</strong></a>
-						</li>
-						<li class="nav-item"> 
-							<a class="nav-link" href = "javascript:vaiPosizioniAperte()" ><strong>Open Positions</strong></a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="javascript:vaiPresentazioneTeam()"><strong>Spontaneous Candidature</strong></a>
-						</li>
-					</ul>
-				</nav>
-				
+				<div id = "contenutoBarra">
+					<nav class="navbar navbar-expand-sm navbar-light bg-light" id = "barra">
+						<ul class="navbar-nav" id = "navbar">
+							<li class="nav-item"> 
+								<a class="nav-link" href = "/lavoraConNoi/presentazioneAzienda" ><strong>Company Presentation</strong></a>
+							</li>
+							<li class="nav-item"> 
+								<a class="nav-link" href = "javascript:vaiPosizioniAperte()" ><strong>Open Positions</strong></a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="javascript:avanti()"><strong>Spontaneous Candidature</strong></a>
+							</li>
+						</ul>
+					</nav>
+				</div>
 			
-				<div id = "posizioniAperte">
+				<div id = "testo1">
 					<div class = "row">
 						<div class = "col-sm-12" id = "listaPosizioniAperte">
 							<table class="table">
@@ -254,7 +256,7 @@
 				</div>
 				
 				<br /><br />
-				<div id = "mancaLaTuaPosizione">
+				<div id = "testo2">
 					<div class = "row">
 						<div class = "col-sm-12">
 							<p><i>If at the moment there are no positions in line with your profile, you can in any case send us your application spontaneously: you will be contacted in case positions are opened in line with your characteristics.</i></p>

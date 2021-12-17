@@ -12,7 +12,10 @@
   	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>	
 
 	<!-- JS -->
+	<script language="javascript" src="../js/lavoraConNoi/modelloLavoraConNoi.js"></script>
 	<script language="javascript" src="../js/lavoraConNoi/vaiA.js"></script>
+	<script language="javascript" src="../js/lavoraConNoi/funzioni.js"></script>
+	<script language="javascript" src="../js/lavoraConNoi/caricaPagineLavoraConNoi.js"></script>
 <!--	<script language="javascript" src="../js/guidaSceltaProdotto/sceltaProdotto.js"></script>
 	<script language="javascript" src="../js/guidaSceltaProdotto/caricaDomandeCategoria.js"></script>
 	-->
@@ -207,62 +210,21 @@
 		
 		<!-- Obiettivi aziendali -->
 		<div class = "row" id = "divSovrapposto">
- 			<div class="col-sm-10" id = "presentazioneAzienda">
-				
-				<nav class="navbar navbar-expand-sm navbar-light bg-light" id = "barra">
-					<ul class="navbar-nav" id = "navbar">
-						<li class="nav-item"> 
-							<a class="nav-link" href = "javascript:vaiPresentazioneAzienda()" ><strong>Get to know Tech Planet</strong></a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="javascript:vaiPresentazioneTeam()"><strong>Team</strong></a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="/lavoraConNoi/posizioniAperte"><strong>Open Positions</strong></a>
-						</li>
-					</ul>
-				</nav>
+ 			<div class="col-sm-10" id = "indice">
+				<div id = "barra">
+				</div>
 				
 			
-				<div id = "obiettiviAziendali">
-					<div class = "row">
-						<div class = "col-sm-6" id = "testoObiettiviAziendali">
-						    <br />
-							<p id = "titoloSezione">Working in Tech Planet</p><br /><br />
-							<p>Enter a company that is constantly expanding and very stimulating.</p>
-							<p>We create the best conditions for each employee to express themselves at their best and develop their skills and passions. The centrality of people, their talent and commitment, the sense and pride of belonging are values that have always guided our company.</p>
-							<p>Every day we look for talent, reliability and the desire to grow in the people we meet.</p>
-							<p>If you find yourself in this description, do not hesitate to send us your  
-								<a href = "#">candidature.</a></p><br />	
-						</div>
-						<div class = "col-sm-6" id = "immagineObiettiviAziendali">
-							<figure>
-								<img src = "../immagini/lavoraConNoi/azienda.png" class = "img-fluid"/>
-							</figure>
-						</div>
-					</div>
+				<div id = "testo1">
 				</div>
 				
-				<br />
-				<div id = "presentazioneTeam">
-					<div class = "row">
-						<div class = "col-sm-6" id = "immagineAzienda">
-							<figure>
-								<img src = "../immagini/lavoraConNoi/team.png" class = "img-fluid"/>
-							</figure>
-						</div>
-						<div class = "col-sm-6" id = "testoAzienda">
-							<br />
-							<p id = "titoloSezione">Work environment</p>
-							<br />
-							<p>We offer the opportunity to become professionals in a stimulating context, accompanied by a culture that promotes merit-based growth, enhancing individual skills, equal opportunities, new ideas and an innovative spirit in a context of corporate well-being.</p>
-							<p>The growth of our Collaborators is always accompanied by constant company training, with refresher courses on specialist and managerial areas.</p>
-							<p>We recognize the centrality of Human Resources and the contribution of the individual Collaborator that adds distinctiveness to our Value Chain.</p>
-						</div>
-						
-					</div>
+				
+				<br /><br />
+				<div id = "testo2">
+					
 				</div>
-
+				<br />
+				
 			</div>
 		</div>
 	</div>
