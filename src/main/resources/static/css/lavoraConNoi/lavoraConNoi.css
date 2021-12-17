@@ -112,6 +112,64 @@
 	color: #0b3de1;
 }
 
+/* FORM */
+#formSX tr{
+	text-align: right;
+}
+
+#formSX input {
+	width: 100%;
+}
+
+#formSX table {
+	padding-top: 0px;
+}
+
+#datiPersonali {
+	width: 100%;
+	text-align: right;
+	padding-top: 10px;
+}
+
+#datiPersonali p {
+	padding-bottom: 0px;
+	margin-bottom: 0px;
+}
+
+#formDX {
+	text-align: left;
+}
+
+#formDX select {
+	width: 100%;
+}
+
+#formDX th {
+	width: 60%;
+}
+
+#centro {
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#formCentrale th {
+	width: 100%;
+}
+
+#formCenter input {
+	text-align: left;
+}
+
+.dx {
+	text-align: right;
+}
+
+.navbar {
+	text-align: center;
+}
+
 /* candidatura spontanea */
 
 #mancaLaTuaPosizione div {

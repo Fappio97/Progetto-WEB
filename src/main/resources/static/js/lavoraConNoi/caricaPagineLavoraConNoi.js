@@ -14,12 +14,20 @@ function compila() {
 		case 1:
 			barraNavigazione(elementiNav[ind]);
 			soloTabella("testo1");
-			inviaCandidaturaSpontanea("testo2", candidaturaSpontanea[ind - 1]);
+			inviaCandidatura("testo2", candidatura[ind - 1]);
 			break;
 		case 2:
 			barraNavigazione(elementiNav[ind]);
-			soloTesto("testo1", sezioniTesti[ind].titolo, sezioniTesti[ind].testo);
-			inviaCandidaturaSpontanea("testo2", candidaturaSpontanea[ind - 1]);
+			soloTesto("testo1", posizioneAperta, sezioniTesti[ind].testo, "descrizione dal DB");
+			inviaCandidatura("testo2", candidatura[ind - 1]);
+			break;
+		case 3:
+			barraNavigazione(elementiNav[ind]);
+			form("testo1", posizioneAperta);
+			inviaCandidatura("testo2", candidatura[ind - 1]);
+			popolaComboBox();
+			break;
+		default:
 			break;
 	}
 }
@@ -103,16 +111,12 @@ function soloTabella(elemento) {
 							  	+ "</thead>"
 							  	+ "<tbody>"
 							    	+ "<tr>"
-							      		+ "<th scope=\"row\"><a href = \"#\">Store</a></th>"
+							      		+ "<th scope=\"row\"><a href = \"javascript:posizione('Store')\">Store</a></th>"
 							      		+ "<td>Human resources</td>"
 							    	+ "</tr>"
 									+ "<tr>"
-							      		+ "<th scope=\"row\"><a href = \"#\">Store</a></th>"
-							      		+ "<td>Human resources</td>"
-							    	+ "</tr>"
-									+ "<tr>"
-							      		+ "<th scope=\"row\"><a href = \"#\">Store</a></th>"
-							      		+ "<td>Human resources</td>"
+							      		+ "<th scope=\"row\"><a href = \"javascript:posizione('Seller')\">Seller</a></th>"
+							      		+ "<td>Buyer</td>"
 							    	+ "</tr>"
 								+ "</tbody>"
 							+ "</table>"
@@ -120,33 +124,155 @@ function soloTabella(elemento) {
 					+ "</div>";
 }
 
-function soloTesto(elemento, titolo, testo) {
+function soloTesto(elemento, titolo, testo, descrizione) {
 	var div = document.getElementById(elemento);
 	
-	let frasi = testo.split("%");
+	let t = testo.split("#");
 	
-	let s = "";
-	for(let i = 0; i < frasi.length; ++i) {
-		s += "<p>" + frasi[i] + "</p>";
+	let frasi = new Array();
+	for(let i = 0; i < t.length; ++i) 
+		frasi[i] = t[i].split("%");
+		
+	let s = new Array();
+	for(let i = 0; i < 2; ++i) {
+		s[i] = "";
+		for(let j = 0; j < frasi[i].length; ++j)
+			s[i] += "<p>" + frasi[i][j] + "</p>";
 	}
 	
 	div.innerHTML = "<div class = \"row\">"
 						+ "<div class = \"col-sm-12\" id = \"testoSezione\">"
 						    + "<br />"
 							+ "<p id = \"titoloSezione\">" + titolo + "</p><br /><br />"
-							+ s
+							+ s[0]
+							+ "<br />"
+							+ descrizione
+							+ "<br /><br /><br />"
+							+ s[1]
+							+ "<br /><br /><br />"
+							+ "<div>"
+								+ "Introduce yourself<br />"
+								+ "<button class = \"button\" onclick = \"avanti()\">Send your CV</button>"
+							+ "</div>"
 						+ "</div>"
 					+ "</div>";
 }
 
+function form(elemento, titolo) {
+	var div = document.getElementById(elemento);
+	div.innerHTML = "<div class = \"row\">"
+							+ "<div class = \"col-sm-12\" id = \"formCentrale\">"
+								+ titolo
+							+ "</div>"
+							+ "<div class = \"col-md-6\" id = \"formSX\">"
+								+ "<table class=\"table table-borderless\">"
+									+ "<div id = \"datiPersonali\">"
+										+ "<p><strong>Personal data</strong></p>"
+									+ "</div>"
+									+ "<thead>"
+	      								+ "<tr>"
+									       + "<th></th>"
+	      								+ "</tr>"
+									+ "</thead>"
+									+ "<tbody>"
+										+ "<form>"
+											+ "<tr>"
+												+ "<td>First name</td>"
+												+ "<td><input type=\"text\" id=\"nome\" placeholder=\"Enter your first name ...\"></td>"
+										    + "</tr>"
+										    + "<tr>"
+											    + "<td>Last name</td>"
+											    + "<td><input type=\"text\" id=\"cognome\" placeholder=\"Enter your last name ...\"></td>"
+										    + "</tr>"
+											+ "<tr>"
+											    + "<td>Date of birth</td>"
+											    + "<td><input type=\"date\" id=\"dataNascita\"></td>"
+										    + "</tr>"
+											+ "<tr>"
+											    + "<td>E-Mail</td>"
+											    + "<td><input type=\"email\" id=\"mail\" placeholder=\"Enter your e-mail ...\" pattern=\"/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/\" required></td>"
+										    + "</form>"
+										+ "</tr>"	
+									+ "</tbody>"
+								+ "</table>"		
+							+ "</div>"
+							+ "<div class = \"col-md-6\" id = \"formDX\">"
+							    + "<table class=\"table table-borderless\">"
+									+ "<thead>"
+	      								+ "<tr>"
+									       + "<th>Education</th>"
+	      								+ "</tr>"
+									+ "</thead>"
+									+ "<tbody>"
+										+ "<form>"
+											+ "<tr>"
+												+ "<td><select name=\"titoloStudio\" onclick = \"caricaOpzioni('titoloStudio', 'materiaStudio')\" id = \"titoloStudio\">"
+												+ "</td>"
+										    	+ "<td>Educational qualification</td>"
+											+ "</tr>"
+										    + "<tr>"
+												+ "<td><select name=\"materiaStudio\" id = \"materiaStudio\"></td>"
+										    	+ "<td>Study subject</td>"
+											+ "</tr>"
+										+ "</form>"
+									+ "</tbody>"
+								+ "</table>"
+								+ "<table class=\"table table-borderless\">"
+									+ "<thead>"
+	      								+ "<tr>"
+									       + "<th>Last Job Position</th>"
+	      								+ "</tr>"
+									+ "</thead>"
+									+ "<tbody>"
+										+ "<tr>"
+											+ "<td><select name=\"funzioneLavoro\" onclick = \"caricaOpzioni('funzioneLavoro', 'classificazioneLavoro')\" id = \"funzioneLavoro\"></td>"
+											+ "<td>Function</td>"
+										+ "</tr>"
+									    + "<tr>"
+											+ "<td><select name=\"classificazioneLavoro\" id = \"classificazioneLavoro\"></td>"
+											+ "<td>Classification</td>"
+										+ "</tr>"	
+									+ "</tbody>"
+								+ "</table>"
+							+ "</div>"
+							+ "<div class = \"col-sm-12\" id = \"formCentrale\">"
+								+ "<div id = \"centro\">"
+									+ "<strong>Curriculum"
+								+ "</div>"
+								+ "<table class=\"table table-borderless\">"
+									+ "<thead>"
+	      								+ "<tr>"
+									       + "<th></th>"
+	      								+ "</tr>"
+									+ "</thead>"
+									+ "<tbody>"
+										+ "<tr>"
+											+ "<td class = \"dx\">Photo</td>"
+											+ "<td><input type=\"file\" name=\"foto\" id = \"foto\" accept=\"image/png, image/jpeg, image/jpg\"></td>"
+									    + "</tr>"
+									    + "<tr>"
+										    + "<td class = \"dx\">CV Attachment</td>"
+										    + "<td><input type=\"file\" name=\"cv\" id = \"cv\" accept=\"application/pdf\"></td>"
+									    + "</tr>"
+										+ "<tr>"
+										    + "<td class = \"dx\">Cover letter</td>"
+										    + "<td><textarea name=\"letteraPresentazione\" rows=\"4\" cols=\"50\"></textarea></td>"
+									    + "</tr>"
+									+ "</tbody>"
+								+ "</table>"
+							+ "</div>"
+					+ "</div>";
+					
+}
 
-function inviaCandidaturaSpontanea(elemento, stringa) {
+
+function inviaCandidatura(elemento, candidatura) {
 	var div = document.getElementById(elemento);
 	div.innerHTML = "<div class = \"row\" id = \"mancaLaTuaPosizione\">"
 						+ "<div class = \"col-sm-12\">"
-							+ "<p><i>" + stringa + "</i></p>"
+							+ "<p><i>" + candidatura.testo + "</i></p>"
 							+ "<div>"
-								+ "<button class = \"button\">Submit your CV</button>"
+								+ "<button class = \"button\" onclick = \" " + candidatura.funzione + "\">Submit your CV</button>"
 							+ "</div>"
 						+ "</div>"
 					+ "</div>";

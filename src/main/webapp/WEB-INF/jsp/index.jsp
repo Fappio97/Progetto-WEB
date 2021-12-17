@@ -1,6 +1,6 @@
 <head>	
 <!------------------------CSS FABIO-------------------------------------------->
-	<link href="../css/guidaSceltaProdotto/guidaSceltaProdotto.css" rel="stylesheet" type="text/css" />
+	<link href="css/guidaSceltaProdotto/guidaSceltaProdotto.css" rel="stylesheet" type="text/css" />
 
 <!------------------------GRUPPO-------------------------------------------->	
 	<meta charset="utf-8">
@@ -614,7 +614,7 @@
 	</div>
 
 <!------------------------------INIZIO---FABIO--------------------------------->	
-	<!-- Spazio ai lati -->
+
 	<div class="container container--grid" id = "divSceltaProdotto">
 		<!-- Mi crea una riga dove metto i due div -->
 		<div class="row" id = "serveAiuto"> 
@@ -671,7 +671,7 @@
 							<ul class="footer-links">
 								<li><a href="#">About Us</a></li>
 								<li><a href="#">Contact Us</a></li>
-								<li><a href="/lavoraConNoi/presentazioneAzienda">Work with Us</a></li>
+								<li><a href="/lavoraConNoi/lavoraInAzienda">Work with Us</a></li>
 								<li><a href="#">Privacy Policy</a></li>
 								<li><a href="#">Terms & Conditions</a></li>
 							</ul>

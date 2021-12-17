@@ -8,15 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/lavoraConNoi")
 public class LavoraConNoi {
 	
-	@GetMapping("/presentazioneAzienda")
-	public String lavoraConNoi() {
+	@GetMapping("/lavoraInAzienda")
+	public String lavoraInAzienda() {
 				
-		return "/presentazioneAzienda";	
+		return "/lavoraInAzienda";	
 	}
 	
-	@GetMapping("/posizioniAperte")
-	public String posizioniAperte() {
-				
-		return "/posizioniAperte";	
-	}
 }
