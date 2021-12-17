@@ -1,7 +1,7 @@
 <head>	
 <!------------------------CSS FABIO-------------------------------------------->
-	<link href="css/guidaSceltaProdotto/guidaSceltaProdotto.css" rel="stylesheet" type="text/css" />
-	
+	<link href="../css/guidaSceltaProdotto/guidaSceltaProdotto.css" rel="stylesheet" type="text/css" />
+
 <!------------------------GRUPPO-------------------------------------------->	
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,7 +24,7 @@
 			<div class="container">
 				<ul class="header-links pull-left">
 					<li><a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a></li>
-					<li><a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a></li>
+					<li><a href="#"><i class="fa fa-envelope"></i> email@email.com</a></li>
 					<li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
 					<li><a href="#"><i class="fa fa-eur"></i> EUR</a></li>
 			</div>
@@ -41,7 +41,7 @@
 					<div class="col-md-3">
 						<div class="header-logo">
 							<a href="#" class="logo">
-								<img src="immagini/img/logo.png" alt="">
+								<img id = "logo" src="immagini/img/logo.png" alt="">
 							</a>
 						</div>
 					</div>
@@ -53,8 +53,9 @@
 							<form>
 								<select class="input-select">
 									<option value="0">All Categories</option>
-									<option value="1">Category 01</option>
-									<option value="1">Category 02</option>
+									<option value="1">Smartphone</option>
+									<option value="2">TV</option>
+									<option value="3">Accessories</option>
 								</select>
 								<input class="input" placeholder="Search here">
 								<button class="search-btn">Search</button>
@@ -64,61 +65,28 @@
 					<!-- /SEARCH BAR -->
 
 					<!-- ACCOUNT -->
-					<div class="col-md-3 clearfix">
+					<div class="col-md-3">
 						<div class="header-ctn">
 							<!-- Wishlist -->
-							<div>
+							<div style = "padding-right: 10%; padding-left: 25%;">
 								<a href="#" style="text-decoration: none;">
 									<i class="fa fa-heart" id="heart"></i>
-									<div class="qty">0</div>
+									<!--<div class="qty">0</div>-->
 								</a>
 							</div>
 
 							<!-- Cart -->
-							<div class="dropdown">
-								<a style="text-decoration: none;" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+							<div style = "padding-right: 10%;">
+								<a href="#" style="text-decoration: none;">
 									<i class="fa fa-shopping-cart"></i>
-									<div class="qty">0</div>
+									<!--<div class="qty">0</div>-->
 								</a>
-								<div class="cart-dropdown">
-									<div class="cart-list">
-										<div class="product-widget">
-											<div class="product-img">
-												<img src="immagini/img/product01.png" alt="">
-											</div>
-											<div class="product-body">
-												<h3 class="product-name"><a href="#">product name goes here</a></h3>
-												<h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
-											</div>
-											<button class="delete"><i class="fa fa-close"></i></button>
-										</div>
-
-										<div class="product-widget">
-											<div class="product-img">
-												<img src="immagini/img/product02.png" alt="">
-											</div>
-											<div class="product-body">
-												<h3 class="product-name"><a href="#">product name goes here</a></h3>
-												<h4 class="product-price"><span class="qty">3x</span>$980.00</h4>
-											</div>
-											<button class="delete"><i class="fa fa-close"></i></button>
-										</div>
-									</div>
-									<div class="cart-summary">
-										<small>3 Item(s) selected</small>
-										<h5>SUBTOTAL: $2940.00</h5>
-									</div>
-									<div class="cart-btns">
-										<a href="#">View Cart</a>
-										<a href="#">Checkout <i class="fa fa-arrow-circle-right"></i></a>
-									</div>
-								</div>
 							</div>
 							<!-- /Cart -->
 
 							<!-- User Toogle -->
-							<div class="menu-toggle">
-								<a href="#" style="text-decoration: none;">
+							<div>
+								<a href="account.html" style="text-decoration: none;">
 									<i class="fa fa-user"></i>
 								</a>
 							</div>
@@ -130,9 +98,8 @@
 		</div>
 	</header>
 	<!--/HEADER-->
-	
-	
-	
+
+
 	<nav id="navigation" class="navbar navbar-expand-sm bg-dark">
 		<div class="container-fluid">
 		  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
@@ -145,12 +112,12 @@
 				<li class="nav-item">
 					<a class="nav-link" href="javascript:void(0)">Home</a>
 				  </li>
-				  <li class="nav-item">
+				  <!--<li class="nav-item">
 					<a class="nav-link" href="javascript:void(0)">Hot Deals</a>
 				  </li>
 				  <li class="nav-item">
 					<a class="nav-link" href="javascript:void(0)">Categories</a>
-				  </li>
+				  </li>-->
 				  <li class="nav-item">
 					<a class="nav-link" href="javascript:void(0)">Laptops</a>
 				  </li>
@@ -167,8 +134,7 @@
 		  </div>
 		</div>
 	  </nav>
-
-<div class="section">
+    <div class="section">
 	<!-- container -->
 	<div class="container">
 		<!-- row -->
@@ -177,7 +143,7 @@
 			<div class="col-md-4 col-xs-6">
 				<div class="shop">
 					<div class="shop-img">
-						<img src="immagini/img/shop01.png" alt="">
+						<img src="./img/shop01.png" alt="">
 					</div>
 					<div class="shop-body">
 						<h3>Laptops<br>Collection</h3>
@@ -191,7 +157,7 @@
 			<div class="col-md-4 col-xs-6">
 				<div class="shop">
 					<div class="shop-img">
-						<img src="immagini/img/shop03.png" alt="">
+						<img src="./img/shop03.png" alt="">
 					</div>
 					<div class="shop-body">
 						<h3>Accessories<br>Collection</h3>
@@ -205,7 +171,7 @@
 			<div class="col-md-4 col-xs-6">
 				<div class="shop">
 					<div class="shop-img">
-						<img src="immagini/img/shop02.png" alt="">
+						<img src="./img/shop02.png" alt="">
 					</div>
 					<div class="shop-body">
 						<h3>TVs<br>Collection</h3>
@@ -267,62 +233,385 @@
 	</div>
 	<!-- /HOT DEAL SECTION -->
 	
-		<!-- /HOT DEAL SECTION -->
-		<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-			<div class="carousel-inner">
-			  <div class="carousel-item active">
-				<div class="card">
-					<img src="immagini/img/product01.png" class="d-block w-100" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Card title 1</h5>
-						<p class="card-text">prima card.</p>
-						<a href="#" class="btn btn-primary">Go somewhere</a>
+	<div class="container">
+		<div class="row my-5">
+			<h1 class="text-center">Featured Products</h1>
+			<p class="fw-light w-75 mx-auto text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias
+				 expedita placeat enim laudantium esse aperiam iure, reiciendis nobis 
+				 totam earum ex unde ab, ullam pariatur nisi laborum quam. Porro, corporis!</p>
+		</div>
+		<div class="row g-4 my-5 mx-auto owl-carousel owl-theme">
+			<div class="col product-item mx-auto">
+				<div class="product-img">
+					<img src="img/product01.png" alt = "" class="img-fluid d-block mx-auto">
+					<span class="heart-icon">
+						<i class="far fa-heart"></i>
+					</span>
+					<div class="row btns w-100 mx-auto text-center">
+						<button type="button" class="col-6 py-2">
+							<i class="fa fa-cart-plus"></i>add to Cart
+						</button>
+						<button type="button" class="col-6 py-2">
+							<i class="fa fa-binoculars"></i>View
+						</button>
 					</div>
 				</div>
-			  </div>
-			  <div class="carousel-item">
-				<div class="card">
-					<img src="immagini/img/product02.png" class="d-block w-100" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Card title 2</h5>
-						<p class="card-text">seconda card.</p>
-						<a href="#" class="btn btn-primary">Go somewhere</a>
+				<div class="product-info p-3">
+					<span class="product-type">
+						Electronics & accessories
+					</span>
+					<a href="#" class="d-block text-dark text-decoration-none py-2 product-name">pc windows</a>
+					<span class="product-price">€ 100.50</span>
+					<div class="rating d-flex mt-1">
+						<span>
+							<i class="fa fa-star"></i>
+						</span>
+						<span>
+							<i class="fa fa-star"></i>
+						</span>
+						<span>
+							<i class="fa fa-star"></i>
+						</span>
+						<span>
+							<i class="fa fa-star"></i>
+						</span>
+						<span>
+							<i class="fa fa-star"></i>
+						</span>
+						<span>(25 reviews)</span>
 					</div>
-				</div>
-			  </div>
-			  <div class="carousel-item">
-				<div class="card">
-					<img src="immagini/img/product03.png" class="d-block w-100" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Card title 3</h5>
-						<p class="card-text">terza card.</p>
-						<a href="#" class="btn btn-primary">Go somewhere</a>
-					</div>
-				</div>
-			  </div>
+				</div>	
 			</div>
-			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-
-				<img src="immagini/img/goLeft.png" class="arrowButton">
-	
-				<!--<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-	
-			  <span class="visually-hidden">Previous</span>-->
-	
-			</button>
-	
-			<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-	
-				<img src="immagini/img/goRight.png" class="arrowButton">
-	
-				<!--<span class="carousel-control-next-icon" aria-hidden="true"></span>
-	
-			  <span class="visually-hidden">Next</span>-->
-	
-			</button>
-		  </div>
-		  
-		  
+			<div class="col product-item mx-auto">
+				<div class="product-img">
+					<img src="img/product02.png" alt = "" class="img-fluid d-block mx-auto">
+					<span class="heart-icon">
+						<i class="far fa-heart"></i>
+					</span>
+					<div class="row btns w-100 mx-auto text-center">
+						<button type="button" class="col-6 py-2">
+							<i class="fa fa-cart-plus"></i>add to Cart
+						</button>
+						<button type="button" class="col-6 py-2">
+							<i class="fa fa-binoculars"></i>View
+						</button>
+					</div>
+				</div>
+				<div class="product-info p-3">
+					<span class="product-type">
+						Electronics & accessories
+					</span>
+					<a href="#" class="d-block text-dark text-decoration-none py-2 product-name">pc windows</a>
+					<span class="product-price">€ 100.50</span>
+					<div class="rating d-flex mt-1">
+						<span>
+							<i class="fa fa-star" aria-hidden="true"></i>
+						</span>
+						<span>
+							<i class="fa fa-star"></i>
+						</span>
+						<span>
+							<i class="fa fa-star"></i>
+						</span>
+						<span>
+							<i class="fa fa-star"></i>
+						</span>
+						<span>
+							<i class="fa fa-star"></i>
+						</span>
+						<span>(25 reviews)</span>
+					</div>
+				</div>	
+			</div>
+			<div class="col product-item mx-auto">
+				<div class="product-img">
+					<img src="img/product03.png" alt = "" class="img-fluid d-block mx-auto">
+					<span class="heart-icon">
+						<i class="far fa-heart"></i>
+					</span>
+					<div class="row btns w-100 mx-auto text-center">
+						<button type="button" class="col-6 py-2">
+							<i class="fa fa-cart-plus"></i>add to Cart
+						</button>
+						<button type="button" class="col-6 py-2">
+							<i class="fa fa-binoculars"></i>View
+						</button>
+					</div>
+				</div>
+				<div class="product-info p-3">
+					<span class="product-type">
+						Electronics & accessories
+					</span>
+					<a href="#" class="d-block text-dark text-decoration-none py-2 product-name">pc windows</a>
+					<span class="product-price">€ 100.50</span>
+					<div class="rating d-flex mt-1">
+						<span>
+							<i class="fa fa-star" aria-hidden="true"></i>
+						</span>
+						<span>
+							<i class="fa fa-star"></i>
+						</span>
+						<span>
+							<i class="fa fa-star"></i>
+						</span>
+						<span>
+							<i class="fa fa-star"></i>
+						</span>
+						<span>
+							<i class="fa fa-star"></i>
+						</span>
+						<span>(25 reviews)</span>
+					</div>
+				</div>	
+			</div>
+			<div class="col product-item mx-auto">
+				<div class="product-img">
+					<img src="img/product04.png" alt = "" class="img-fluid d-block mx-auto">
+					<span class="heart-icon">
+						<i class="far fa-heart"></i>
+					</span>
+					<div class="row btns w-100 mx-auto text-center">
+						<button type="button" class="col-6 py-2">
+							<i class="fa fa-cart-plus"></i>add to Cart
+						</button>
+						<button type="button" class="col-6 py-2">
+							<i class="fa fa-binoculars"></i>View
+						</button>
+					</div>
+				</div>
+				<div class="product-info p-3">
+					<span class="product-type">
+						Electronics & accessories
+					</span>
+					<a href="#" class="d-block text-dark text-decoration-none py-2 product-name">pc windows</a>
+					<span class="product-price">€ 100.50</span>
+					<div class="rating d-flex mt-1">
+						<span>
+							<i class="fa fa-star" aria-hidden="true"></i>
+						</span>
+						<span>
+							<i class="fa fa-star"></i>
+						</span>
+						<span>
+							<i class="fa fa-star"></i>
+						</span>
+						<span>
+							<i class="fa fa-star"></i>
+						</span>
+						<span>
+							<i class="fa fa-star"></i>
+						</span>
+						<span>(25 reviews)</span>
+					</div>
+				</div>	
+			</div>
+			<div class="col product-item mx-auto">
+				<div class="product-img">
+					<img src="img/product05.png" alt = "" class="img-fluid d-block mx-auto">
+					<span class="heart-icon">
+						<i class="far fa-heart"></i>
+					</span>
+					<div class="row btns w-100 mx-auto text-center">
+						<button type="button" class="col-6 py-2">
+							<i class="fa fa-cart-plus"></i>add to Cart
+						</button>
+						<button type="button" class="col-6 py-2">
+							<i class="fa fa-binoculars"></i>View
+						</button>
+					</div>
+				</div>
+				<div class="product-info p-3">
+					<span class="product-type">
+						Electronics & accessories
+					</span>
+					<a href="#" class="d-block text-dark text-decoration-none py-2 product-name">pc windows</a>
+					<span class="product-price">€ 100.50</span>
+					<div class="rating d-flex mt-1">
+						<span>
+							<i class="fa fa-star" aria-hidden="true"></i>
+						</span>
+						<span>
+							<i class="fa fa-star"></i>
+						</span>
+						<span>
+							<i class="fa fa-star"></i>
+						</span>
+						<span>
+							<i class="fa fa-star"></i>
+						</span>
+						<span>
+							<i class="fa fa-star"></i>
+						</span>
+						<span>(25 reviews)</span>
+					</div>
+				</div>	
+			</div>
+			<div class="col product-item mx-auto">
+				<div class="product-img">
+					<img src="img/product06.png" alt = "" class="img-fluid d-block mx-auto">
+					<span class="heart-icon">
+						<i class="far fa-heart"></i>
+					</span>
+					<div class="row btns w-100 mx-auto text-center">
+						<button type="button" class="col-6 py-2">
+							<i class="fa fa-cart-plus"></i>add to Cart
+						</button>
+						<button type="button" class="col-6 py-2">
+							<i class="fa fa-binoculars"></i>View
+						</button>
+					</div>
+				</div>
+				<div class="product-info p-3">
+					<span class="product-type">
+						Electronics & accessories
+					</span>
+					<a href="#" class="d-block text-dark text-decoration-none py-2 product-name">pc windows</a>
+					<span class="product-price">€ 100.50</span>
+					<div class="rating d-flex mt-1">
+						<span>
+							<i class="fa fa-star" aria-hidden="true"></i>
+						</span>
+						<span>
+							<i class="fa fa-star"></i>
+						</span>
+						<span>
+							<i class="fa fa-star"></i>
+						</span>
+						<span>
+							<i class="fa fa-star"></i>
+						</span>
+						<span>
+							<i class="fa fa-star"></i>
+						</span>
+						<span>(25 reviews)</span>
+					</div>
+				</div>	
+			</div>
+			<div class="col product-item mx-auto">
+				<div class="product-img">
+					<img src="img/product07.png" alt = "" class="img-fluid d-block mx-auto">
+					<span class="heart-icon">
+						<i class="far fa-heart"></i>
+					</span>
+					<div class="row btns w-100 mx-auto text-center">
+						<button type="button" class="col-6 py-2">
+							<i class="fa fa-cart-plus"></i>add to Cart
+						</button>
+						<button type="button" class="col-6 py-2">
+							<i class="fa fa-binoculars"></i>View
+						</button>
+					</div>
+				</div>
+				<div class="product-info p-3">
+					<span class="product-type">
+						Electronics & accessories
+					</span>
+					<a href="#" class="d-block text-dark text-decoration-none py-2 product-name">pc windows</a>
+					<span class="product-price">€ 100.50</span>
+					<div class="rating d-flex mt-1">
+						<span>
+							<i class="fa fa-star" aria-hidden="true"></i>
+						</span>
+						<span>
+							<i class="fa fa-star"></i>
+						</span>
+						<span>
+							<i class="fa fa-star"></i>
+						</span>
+						<span>
+							<i class="fa fa-star"></i>
+						</span>
+						<span>
+							<i class="fa fa-star"></i>
+						</span>
+						<span>(25 reviews)</span>
+					</div>
+				</div>	
+			</div>
+			<div class="col product-item mx-auto">
+				<div class="product-img">
+					<img src="img/product08.png" alt = "" class="img-fluid d-block mx-auto">
+					<span class="heart-icon">
+						<i class="far fa-heart"></i>
+					</span>
+					<div class="row btns w-100 mx-auto text-center">
+						<button type="button" class="col-6 py-2">
+							<i class="fa fa-cart-plus"></i>add to Cart
+						</button>
+						<button type="button" class="col-6 py-2">
+							<i class="fa fa-binoculars"></i>View
+						</button>
+					</div>
+				</div>
+				<div class="product-info p-3">
+					<span class="product-type">
+						Electronics & accessories
+					</span>
+					<a href="#" class="d-block text-dark text-decoration-none py-2 product-name">pc windows</a>
+					<span class="product-price">€ 100.50</span>
+					<div class="rating d-flex mt-1">
+						<span>
+							<i class="fa fa-star" aria-hidden="true"></i>
+						</span>
+						<span>
+							<i class="fa fa-star"></i>
+						</span>
+						<span>
+							<i class="fa fa-star"></i>
+						</span>
+						<span>
+							<i class="fa fa-star"></i>
+						</span>
+						<span>
+							<i class="fa fa-star"></i>
+						</span>
+						<span>(25 reviews)</span>
+					</div>
+				</div>	
+			</div>
+			<div class="col product-item mx-auto">
+				<div class="product-img">
+					<img src="img/product09.png" alt = "" class="img-fluid d-block mx-auto">
+					<span class="heart-icon">
+						<i class="far fa-heart"></i>
+					</span>
+					<div class="row btns w-100 mx-auto text-center">
+						<button type="button" class="col-6 py-2">
+							<i class="fa fa-cart-plus"></i>add to Cart
+						</button>
+						<button type="button" class="col-6 py-2">
+							<i class="fa fa-binoculars"></i>View
+						</button>
+					</div>
+				</div>
+				<div class="product-info p-3">
+					<span class="product-type">
+						Electronics & accessories
+					</span>
+					<a href="#" class="d-block text-dark text-decoration-none py-2 product-name">pc windows</a>
+					<span class="product-price">€ 100.50</span>
+					<div class="rating d-flex mt-1">
+						<span>
+							<i class="fa fa-star" aria-hidden="true"></i>
+						</span>
+						<span>
+							<i class="fa fa-star"></i>
+						</span>
+						<span>
+							<i class="fa fa-star"></i>
+						</span>
+						<span>
+							<i class="fa fa-star"></i>
+						</span>
+						<span>
+							<i class="fa fa-star"></i>
+						</span>
+						<span>(25 reviews)</span>
+					</div>
+				</div>	
+			</div>
+		</div>
+	</div>
 
 <!------------------------------INIZIO---FABIO--------------------------------->	
 	<!-- Spazio ai lati -->
@@ -343,7 +632,6 @@
 	</div>	
 	<br />
 <!------------------------------FINE-----FABIO--------------------------------->	
-
 
 	<!-- FOOTER -->
 	<footer id="footer">
@@ -383,7 +671,7 @@
 							<ul class="footer-links">
 								<li><a href="#">About Us</a></li>
 								<li><a href="#">Contact Us</a></li>
-								<li><a href="#">Work with Us</a></li>
+								<li><a href="/lavoraConNoi/presentazioneAzienda">Work with Us</a></li>
 								<li><a href="#">Privacy Policy</a></li>
 								<li><a href="#">Terms & Conditions</a></li>
 							</ul>

@@ -29,11 +29,14 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
   	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+<!------------------------GRUPPO-------------------------------------------->	
+
 
 </head>
 
 <body>
 <!-------------------------GRUPPO--------------------------------------------->
+	
 	<!-- HEADER -->
 	<header>
 		<!-- TOP HEADER -->
@@ -44,6 +47,7 @@
 					<li><a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a></li>
 					<li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
 					<li><a href="#"><i class="fa fa-eur"></i> EUR</a></li>
+				</ul>
 			</div>
 		</div>
 		<!-- /TOP HEADER -->
@@ -57,7 +61,7 @@
 					<!-- LOGO -->
 					<div class="col-md-3">
 						<div class="header-logo">
-							<a href="#" class="logo">
+							<a href="../" class="logo">
 								<img src="../immagini/img/logo.png" alt="">
 							</a>
 						</div>
@@ -84,7 +88,7 @@
 					<div class="col-md-3 clearfix">
 						<div class="header-ctn">
 							<!-- Wishlist -->
-							<div>
+							<div style = "margin-right: 20%;">
 								<a href="#" style="text-decoration: none;">
 									<i class="fa fa-heart" id="heart"></i>
 									<div class="qty">0</div>
@@ -92,7 +96,7 @@
 							</div>
 
 							<!-- Cart -->
-							<div class="dropdown">
+							<div class="dropdown" style = "margin-right: 20%;">
 								<a style="text-decoration: none;" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 									<i class="fa fa-shopping-cart"></i>
 									<div class="qty">0</div>
@@ -109,7 +113,7 @@
 											</div>
 											<button class="delete"><i class="fa fa-close"></i></button>
 										</div>
-
+ 
 										<div class="product-widget">
 											<div class="product-img">
 												<img src="../immagini/img/product02.png" alt="">
@@ -135,7 +139,7 @@
 
 							<!-- User Toogle -->
 							<div class="menu-toggle">
-								<a href="#" style="text-decoration: none;">
+								<a href="#" style="text-decoration: none; width: 15%;">
 									<i class="fa fa-user"></i>
 								</a>
 							</div>
@@ -147,6 +151,44 @@
 		</div>
 	</header>
 	<!--/HEADER-->
+	
+	
+	<!-- /SECTION -->
+	<nav id="navigation" class="navbar navbar-expand-sm bg-dark">
+			<div class="container-fluid">
+			  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+				  <span class="navbar-toggler-icon">
+					  <i class="fa fa-navicon" style="color:white; font-size:28px"></i>
+				  </span>
+			  </button>
+			  <div class="collapse navbar-collapse" id="mynavbar">
+				<ul class="navbar-nav me-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="javascript:void(0)">Home</a>
+					  </li>
+					  <!--<li class="nav-item">
+						<a class="nav-link" href="javascript:void(0)">Hot Deals</a>
+					  </li>
+					  <li class="nav-item">
+						<a class="nav-link" href="javascript:void(0)">Categories</a>
+					  </li>-->
+					  <li class="nav-item">
+						<a class="nav-link" href="javascript:void(0)">Laptops</a>
+					  </li>
+					  <li class="nav-item">
+						<a class="nav-link" href="javascript:void(0)">Smartphones</a>
+					  </li>
+					  <li class="nav-item">
+						<a class="nav-link" href="javascript:void(0)">Tvs</a>
+					  </li>
+					  <li class="nav-item">
+						<a class="nav-link" href="javascript:void(0)">Accessories</a>
+					  </li>
+				</ul>
+			  </div>
+			</div>
+		  </nav>
+	<!-- /SECTION -->
 <!-------------------------GRUPPO--------------------------------------------->
 	
 	
@@ -161,7 +203,7 @@
 	</div>
 	
 	<!-- Parte centrale %% seleziona categoria / rispondi domande -->
-	<div class="container container--grid">
+	<div class="container container--grid" id = "container">
 	
 		<div class="row" id = "rigaIndiceDomande">
 		</div>
@@ -194,7 +236,7 @@
 		<button type="button" class="btn btn-primary" id = "pulsanteProblema">Problem</button>
 		<div id = "segnalazione2">
 		</div>
-		<button type="button" class="btn btn-light" id = "pulsanteInvia" style = "display: none;">Send report</button>
+		<button type="button" class="btn btn-light" id = "pulsanteInvia" >Send report</button>
 	</div>
 	<br />
 <!-------------------------FABIO--------------------------------------------->
@@ -242,7 +284,7 @@
 							<ul class="footer-links">
 								<li><a href="#">About Us</a></li>
 								<li><a href="#">Contact Us</a></li>
-								<li><a href="#">Work with Us</a></li>
+								<li><a href="/lavoraConNoi/lavoraConNoi">Work with Us</a></li>
 								<li><a href="#">Privacy Policy</a></li>
 								<li><a href="#">Terms & Conditions</a></li>
 							</ul>

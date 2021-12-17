@@ -62,7 +62,9 @@ function pannelloSuperiore(stringa) {
 	}
 	
 	var row = document.getElementById("imageDescription");		
-	row.innerHTML = "<img src= \"../immagini/guidaSceltaProdotto/pannelloSopra/" + stringa + ".png\" width = 100% height = 40%/>"
+	row.innerHTML = "<figure>"
+						+ "<img src= \"../immagini/guidaSceltaProdotto/pannelloSopra/" + stringa + ".png\" width = 100% height = 50%/>"
+					+ "</figure>"
 						+ "<div id = \"description\" >"
 							+ "<p class = \"titolo\">Find the " + prodotto + "</p>"
 							+ "<p>Discover the device for your needs. Our system advises you the best " + prodotto + ".</p>"
@@ -133,7 +135,9 @@ function inserisciRispostaRadioConInfo(risposta, tag, id, righe){
 	row.innerHTML = row.innerHTML + rigaInizio + "<label for = \""+ risposta.toLowerCase() + "\" class= \"col-sm-4 \">"
 													+ "<div id = \"rispostaJS\" >" 
 														+ "<input id=\"" + risposta.toLowerCase() + "\" type=\"radio\" name = \"collega\" value = \"" + tag + "\" onclick = \"focusRisposte()\" />"
-														+ "<img src=\"" + resourceImg + risposta.toLowerCase() + ".png\" class=\"img-fluid\"/>" 	
+														+ "<figure>"	
+															+ "<img src=\"" + resourceImg + risposta.toLowerCase() + ".png\" class=\"img-fluid\"/>" 	
+														+ "</figure>"
 														+ risposta 
 														+ "<button type=\"button\" class = \"informazione\" id = " + risposta + " onclick = caricaInfo(" + id + ")>"
 															+"<img src = ../immagini/guidaSceltaProdotto/icone/info.png  class=\"img-fluid\"/>"
@@ -164,7 +168,9 @@ function inserisciRispostaRadio(risposta, tag, id, righe){
 	row.innerHTML = row.innerHTML + rigaInizio + "<label for = \""+ risposta.toLowerCase() + "\" class= \"col-sm-4 \">"
 													+ "<div id = \"rispostaJS\" >" 
 														+ "<input id=\"" + risposta.toLowerCase() + "\" type=\"radio\" name = \"collega\" value = \"" + tag + "\" onclick = \"focusRisposte()\" />"
-														+ "<img src=\"" + resourceImg + risposta.toLowerCase() + ".png\" class=\"img-fluid\" />" 	
+														+ "<figure>"
+															+ "<img src=\"" + resourceImg + risposta.toLowerCase() + ".png\" class=\"img-fluid\" />" 	
+														+ "</figure>"
 														+ risposta 
 													+ "</div>"
 											+ "</label>" 
@@ -208,7 +214,9 @@ function inserisciRispostaCheckConInfo(risposta, tag,  id, righe){
 	row.innerHTML = row.innerHTML + rigaInizio + "<label for = \""+ risposta.toLowerCase() + "\" class= \"col-sm-4 \">"
 													+ "<div id = \"rispostaJS\" >" 
 														+ "<input id=\"" + risposta.toLowerCase() + "\" type=\"checkbox\" name = \"collega\" value = \"" + tag + "\" onclick = \"focusRisposte()\" />"
-														+ "<img src=\"" + resourceImg + risposta.toLowerCase() + ".png\" class=\"img-fluid\" />" 	
+														+ "<figure>"
+															+ "<img src=\"" + resourceImg + risposta.toLowerCase() + ".png\" class=\"img-fluid\" />" 	
+														+ "</figure>"
 														+ risposta
 														+ "<button type=\"button\" class = \"informazione\" id = " + risposta + " onclick = caricaInfo(" + id + ")>"
 															+"<img src = ../immagini/guidaSceltaProdotto/icone/info.png class=\"img-fluid\" />"
@@ -238,7 +246,9 @@ function inserisciRispostaCheck(risposta, tag, id, righe){
 	row.innerHTML = row.innerHTML + rigaInizio + "<label for = \""+ risposta.toLowerCase() + "\" class= \"col-xs-4 \">"
 													+ "<div id = \"rispostaJS\" >" 
 														+ "<input id=\"" + risposta.toLowerCase() + "\" type=\"checkbox\" name = \"collega\" value = \"" + tag + "\" onclick = \"focusRisposte()\"/>"
-														+ "<img src=\"" + resourceImg + risposta.toLowerCase() + ".png\" class=\"img-fluid\"/>" 	
+														+ "<figure>"
+															+ "<img src=\"" + resourceImg + risposta.toLowerCase() + ".png\" class=\"img-fluid\"/>" 	
+														+ "</figure>"
 														+ risposta
 													+ "</div>"
 											   + "</label>" 
@@ -262,8 +272,10 @@ function caricaDescrizione(stringa) {
 		resourceImg = "../immagini/guidaSceltaProdotto/" + categoriaSelezionata + "/descrizione/";
 	
 	row.innerHTML = "<div id = \"descrizioneJS\" >" 
-						+ "<img src=\"" + resourceImg + stringhe[0].toLowerCase() + ".png\" class=\"img-fluid\" />"
-				 		+ "<p>" 
+						+ "<figure>"
+							+ "<img src=\"" + resourceImg + stringhe[0].toLowerCase() + ".png\" class=\"img-fluid\" />"
+				 		+ "</figure>"
+						+ "<p>" 
 							+ s
 						+ "</p>"
 					+ "</div>";
@@ -285,6 +297,10 @@ function numeroDomandeCategoriaSelezionata() {
 function caricaBarraNavigazione() {	
 	let s = "";
 	
+	s += "<button type =\"button\" class = \"numDomande\" value =\"-1\" onclick = \"vaiAllaDomanda(-1)\" >"
+								+ "C" 
+						+ "</button>";
+						
 	for(let i = 0; i < numDomandeTotaliCategoria + 1; ++i) {
 		s += "<button type =\"button\" class = \"numDomande\" value =" + i + " onclick = \"vaiAllaDomanda(" + i + ")\" >"
 								+ (i + 1) 
@@ -294,7 +310,9 @@ function caricaBarraNavigazione() {
 	var row = document.getElementById("rigaIndiceDomande");
 	row.innerHTML = "<div class= \"col-3\" id = \"indiceDomandeSX\">"
 						+ "<button class = \"button\" id = \"pulsanteReset\" onclick=\"rinizia()\">"
-							+ "<img src=\"../immagini/guidaSceltaProdotto/icone/rinizia.png\" width = 30%/><br />"
+							+ "<figure>"
+								+ "<img src=\"../immagini/guidaSceltaProdotto/icone/rinizia.png\" width = 30%/><br />"
+							+ "</figure>"
 								+ "Reset"
 						+ "</button>"
 					+ "</div>"
@@ -304,7 +322,9 @@ function caricaBarraNavigazione() {
 					+ "</div>"
 					+ "<div class=\"col-3\" id = \"indiceDomandeDX\">"
 						+ "<button class =\"button\" id = \"pulsanteResult\" onclick=\"risultati()\">"
-							+ "<img src=\"../immagini/guidaSceltaProdotto/icone/risultati.png\" width = 30%/><br />"
+							+ "<figure>"
+								+ "<img src=\"../immagini/guidaSceltaProdotto/icone/risultati.png\" width = 30%/><br />"
+							+ "</figure>"
 								+ "Results"
 						+ "</button> "
 					+ "</div>";

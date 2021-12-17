@@ -518,7 +518,7 @@ header{
 }
 
 .header-search form .input {
-  width: calc(100% - 300px);
+  width: calc(100% - 240px);
   height: 40px;
   margin-right: -4px;
 }
@@ -526,7 +526,7 @@ header{
 .header-search form .search-btn {
   position: relative;
   height: 41px;
-  width: 99px;
+  width: 100px;
   background: #0b3de1;
   color: #FFF;
   font-weight: 700;
@@ -561,7 +561,6 @@ header{
 .header-ctn>div>a {
   display: flex;
   position: relative;
-  width: 80px;
   text-align: center;
   color: #FFF;
 }
@@ -2264,6 +2263,12 @@ header{
   .section-tab-nav li {
     margin-top: 10px;
   }
+  .header-ctn > div + div {
+  	margin-top: 0;
+  }
+  .header-ctn div {
+  	margin-top: 0;
+  }
 }
 
 @media only screen and (max-width: 480px) {
@@ -2322,4 +2327,18 @@ header{
 .carousel-item{
   width: 50%;
   height: 50%;
+}
+
+#logo {
+		padding-left: 20%;
+}
+
+@media screen and (max-width: 1200px) { 
+	#logo {
+		padding-left: 0%;
+	}
+}
+
+.header-search select {
+	width: 140px;
 }

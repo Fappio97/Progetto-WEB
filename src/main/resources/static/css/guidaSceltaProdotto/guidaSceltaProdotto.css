@@ -1,4 +1,5 @@
 /* --- INDEX --- */
+
 #linkSelezionaProdotto {
 	text-align: right;
 }
@@ -11,6 +12,11 @@
 .titolo {
 	font-size: 1.8em;
 	margin: auto;
+}
+
+.figure {
+	margin: 0px;
+	display: inline !important;
 }
 
 /* --- GUIDA PRODOTTO --- */
@@ -32,7 +38,7 @@ con absolute*/
 	padding: 10px;
 }
 
-/* per le ombre */
+
 #rigaIndiceDomande, #rigaDomandeDescrizione {
 	padding: 9px 27px;
 	box-shadow: 5px 5px 5px 5px #888888;
@@ -81,6 +87,10 @@ con absolute*/
 #pulsanteAvanti:hover, #pulsanteIndietro:hover, #pulsanteProblema:hover,
 	#pulsanteInvia:hover {
 	opacity: 0.9;
+}
+
+#pulsanteInvia {
+	display: none;
 }
 
 #descrizione {
@@ -222,7 +232,7 @@ con absolute*/
 	#pulsanteAvanti, #pulsanteIndietro {
 		width: 100%;
 	}
-	.container {
+	#container {
 		padding-left: 0px !important;
 		padding-right: 0px !important;
 	}

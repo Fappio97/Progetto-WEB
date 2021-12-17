@@ -47,10 +47,21 @@ function rinizia() {
 function risultati() {
 	ind = numDomandeTotaliCategoria;
 	compila();
-	/* MOSTRARE RISULTATI PREFERENZE ----------------------------------------------------------*/
+	if(preferenzeUtente.length == 0) {
+		/* MOSTRARE PRODOTTI PIù venduti di quella categoria ----------------------------------------------------------*/
+	}
+	else {
+		/* MOSTRARE RISULTATI PREFERENZE del cliente ----------------------------------------------------------*/
+	}
 }
 
 function vaiAllaDomanda(i) {
+	if(i == -1) {
+		if(cambiaCategoria())
+			svuotaArray(preferenzeUtente);
+		else
+			return;
+	}
 	ind = i;
 	compila();
 	abilitaDisabilita();
@@ -98,9 +109,10 @@ function inviaSegnalazione(){
 	var row = document.getElementById("segnalazione2");
 	
 	let segnalazione = testo.value;
-	if(segnalazione == 'Enter your problem ...' || segnalazione == '')
-		row.innerHTML = "Blank report!";
-	else {
+	if(segnalazione == 'Enter your problem ...' || segnalazione == '' || segnalazione == 'Write your problem here ...') {
+		testo.style.borderColor = "red";
+		testo.value = 'Write your problem here ...';
+ 	} else {
 		row.innerHTML = "Report sent!";
 		//funzione per inviare la segnalazione con ajax
 		
@@ -113,9 +125,9 @@ function inviaSegnalazione(){
 			
 		console.log(origineProblema + "Problem: " + segnalazione);
 		
+		document.getElementById("pulsanteProblema").style.display = 'inline';
+		document.getElementById("pulsanteInvia").style.display = 'none';
 	}
-	document.getElementById("pulsanteProblema").style.display = 'inline';
-	document.getElementById("pulsanteInvia").style.display = 'none';
 }
 
 
@@ -185,15 +197,19 @@ function paginaAvanti() {
 }
 
 function paginaIndietro() {
+
+	if(ind == 0) {
+		if(cambiaCategoria())
+			svuotaArray(preferenzeUtente);
+		else
+			return;
+	}
 	
 	if(ind > -1) {
 		salvaPreferenza();
 		ind--;
 		compila();
 	} 
-	if(ind == -1) {
-		svuotaArray(preferenzeUtente);
-	}
 	
 	abilitaDisabilita();
 }
@@ -212,8 +228,10 @@ function abilitaDisabilita() {
 /* --- FUNZIONI AUSILIARIE --- */
 
 function clearText(field){
+	
+	field.style.borderColor = "";
     
-	if (field.defaultValue == field.value)  {
+	if (field.defaultValue == field.value || field.value == 'Write your problem here ...')  {
 		field.value = '';
 	}    
 	else if (field.value == '') {
@@ -240,5 +258,10 @@ function salvaPreferenza() {
 		preferenzeUtente[ind] = risposte;
 			
 	}
+}
+
+function cambiaCategoria() {
+	var domanda = confirm("Do you really want to change category? You will lose all your answers");
+	return domanda;
 }
 
