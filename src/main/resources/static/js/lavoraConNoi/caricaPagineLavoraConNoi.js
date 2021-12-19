@@ -21,17 +21,26 @@ function compila() {
 			soloTesto("testo1", posizioneAperta, sezioniTesti[ind].testo, "descrizione dal DB");
 			inviaCandidatura("testo2", candidatura[ind - 1]);
 			break;
-		case 3:
+/*		case 3:
 			barraNavigazione(elementiNav[ind]);
 			form("testo1", posizioneAperta);
 			inviaCandidatura("testo2", candidatura[ind - 1]);
 			popolaComboBox();
-			break;
+			campiForm();
+			break;*/
 		default:
 			break;
 	}
+	mostraNascondiLogin();
 }
-
+/*
+function mostraNascondiLogin() {
+	if(ind == 3) 
+		document.getElementById("login").style.display = "inline";
+	else
+		document.getElementById("login").style.display = "none";
+}
+*/
 function barraNavigazione(voceNav) {
 	var div = document.getElementById("barra");
 	
@@ -42,7 +51,7 @@ function barraNavigazione(voceNav) {
 			+ "</li>";
 	}
 	
-	div.innerHTML = "<nav class=\"navbar navbar-expand-sm navbar-light bg-light\">"
+	div.innerHTML = "<nav class=\"navbar navbar-expand-sm navbar-light\">"
 						+ "<ul class=\"navbar-nav\" id = \"navbar\">"
 							+ s
 						+ "</ul>"
@@ -157,12 +166,18 @@ function soloTesto(elemento, titolo, testo, descrizione) {
 						+ "</div>"
 					+ "</div>";
 }
-
+/*
 function form(elemento, titolo) {
 	var div = document.getElementById(elemento);
+	
+	if(titolo == "")
+		titolo = "Spontaneous candidature";
+	
 	div.innerHTML = "<div class = \"row\">"
 							+ "<div class = \"col-sm-12\" id = \"formCentrale\">"
-								+ titolo
+								+ "<strong>" 
+									+ titolo
+								+ "</strong>"
 							+ "</div>"
 							+ "<div class = \"col-md-6\" id = \"formSX\">"
 								+ "<table class=\"table table-borderless\">"
@@ -175,24 +190,52 @@ function form(elemento, titolo) {
 	      								+ "</tr>"
 									+ "</thead>"
 									+ "<tbody>"
-										+ "<form>"
+										+ "<form class = \"presentazione\" action = \"salvaPresentazione\">"
 											+ "<tr>"
-												+ "<td>First name</td>"
-												+ "<td><input type=\"text\" id=\"nome\" placeholder=\"Enter your first name ...\"></td>"
+												+ "<td>"
+													+ "<label for=\"nome\">"
+														+ "First name" 
+														+ "<nobr class = \"asterisco\">*</nobr>"
+													+ "</label>"
+												+ "</td>"
+												+ "<td>"
+													+ "<input type=\"text\" name = \"nome\" id=\"nome\" placeholder=\"Your first name ...\">"
+												+ "</td>"
 										    + "</tr>"
 										    + "<tr>"
-											    + "<td>Last name</td>"
-											    + "<td><input type=\"text\" id=\"cognome\" placeholder=\"Enter your last name ...\"></td>"
+											    + "<td>"
+													+ "<label for=\"cognome\">"
+														+ "Last name "
+														+ "<nobr class = \"asterisco\">*</nobr>"
+													+ "</label>"
+												+ "</td>"
+											    + "<td>"
+													+ "<input type=\"text\" name = \"cognome\" id=\"cognome\" placeholder=\"Your last name ...\">"
+												+ "</td>"
 										    + "</tr>"
 											+ "<tr>"
-											    + "<td>Date of birth</td>"
-											    + "<td><input type=\"date\" id=\"dataNascita\"></td>"
+											    + "<td>" 
+													+ "<label for=\"dataNascita\">" 
+														+ "Date of birth "
+														+ "<nobr class = \"asterisco\">*</nobr>"
+													+ "</label>"
+												+ "</td>"
+											    + "<td>"
+													+ "<input type=\"date\" name = \"dataNascita\" id=\"dataNascita\">"
+												+ "</td>"
 										    + "</tr>"
 											+ "<tr>"
-											    + "<td>E-Mail</td>"
-											    + "<td><input type=\"email\" id=\"mail\" placeholder=\"Enter your e-mail ...\" pattern=\"/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/\" required></td>"
-										    + "</form>"
-										+ "</tr>"	
+											    + "<td>"
+													+ "<label for=\"email\">"
+														+ "E-Mail "
+														+ "<nobr class = \"asterisco\">*</nobr>"
+													+ "</label>"
+												+ "</td>"
+											    + "<td>"
+													+ "<input type=\"email\" name = \"email\" id=\"mail\" placeholder=\"Your e-mail ...\" pattern=\"/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/\" required>"
+												+ "</td>"
+											+ "</tr>"
+										+ "</form>"	
 									+ "</tbody>"
 								+ "</table>"		
 							+ "</div>"
@@ -204,15 +247,28 @@ function form(elemento, titolo) {
 	      								+ "</tr>"
 									+ "</thead>"
 									+ "<tbody>"
-										+ "<form>"
+										+ "<form class = \"presentazione\" action = \"salvaPresentazione\">"
 											+ "<tr>"
-												+ "<td><select name=\"titoloStudio\" onclick = \"caricaOpzioni('titoloStudio', 'materiaStudio')\" id = \"titoloStudio\">"
+												+ "<td>"
+													+ "<select class = \"studio\" name=\"titoloStudio\" onclick = \"caricaOpzioni('titoloStudio', 'materiaStudio')\" id = \"titoloStudio\">"
 												+ "</td>"
-										    	+ "<td>Educational qualification</td>"
+										    	+ "<td>"
+													+ "<label for=\"titoloStudio\">"
+														+ "<nobr class = \"asterisco\">*</nobr>"
+														+ " Educational qualification"
+													+ "</label>"
+												+ "</td>"
 											+ "</tr>"
 										    + "<tr>"
-												+ "<td><select name=\"materiaStudio\" id = \"materiaStudio\"></td>"
-										    	+ "<td>Study subject</td>"
+												+ "<td>"
+													+ "<select class = \"studio\" name=\"materiaStudio\" id = \"materiaStudio\">"
+												+ "</td>"
+										    	+ "<td>"
+													+ "<label for=\"materiaStudio\">"
+														+ "<nobr class = \"asterisco\">*</nobr>"
+														+ "Study subject"
+													+ "</label>"
+												+ "</td>"
 											+ "</tr>"
 										+ "</form>"
 									+ "</tbody>"
@@ -224,14 +280,28 @@ function form(elemento, titolo) {
 	      								+ "</tr>"
 									+ "</thead>"
 									+ "<tbody>"
-										+ "<tr>"
-											+ "<td><select name=\"funzioneLavoro\" onclick = \"caricaOpzioni('funzioneLavoro', 'classificazioneLavoro')\" id = \"funzioneLavoro\"></td>"
-											+ "<td>Function</td>"
-										+ "</tr>"
-									    + "<tr>"
-											+ "<td><select name=\"classificazioneLavoro\" id = \"classificazioneLavoro\"></td>"
-											+ "<td>Classification</td>"
-										+ "</tr>"	
+										+ "<form class = \"presentazione\" action = \"salvaPresentazione\">"
+											+ "<tr>"
+												+ "<td>"
+													+ "<select name=\"funzioneLavoro\" onclick = \"caricaOpzioni('funzioneLavoro', 'classificazioneLavoro')\" id = \"funzioneLavoro\">"
+												+ "</td>"
+												+ "<td>"
+													+ "<label for=\"funzioneLavoro\">"
+														+ "Function"
+													+ "</label>"
+												+ "</td>"
+											+ "</tr>"
+										    + "<tr>"
+												+ "<td>"
+													+ "<select name=\"classificazioneLavoro\" id = \"classificazioneLavoro\">"
+												+ "</td>"
+												+ "<td>"
+													+ "<label for=\"classificazioneLavoro\">"
+														+ "Classification"
+													+ "</label>"
+												+ "</td>"
+											+ "</tr>"	
+										+ "</form>"
 									+ "</tbody>"
 								+ "</table>"
 							+ "</div>"
@@ -246,25 +316,47 @@ function form(elemento, titolo) {
 	      								+ "</tr>"
 									+ "</thead>"
 									+ "<tbody>"
-										+ "<tr>"
-											+ "<td class = \"dx\">Photo</td>"
-											+ "<td><input type=\"file\" name=\"foto\" id = \"foto\" accept=\"image/png, image/jpeg, image/jpg\"></td>"
-									    + "</tr>"
-									    + "<tr>"
-										    + "<td class = \"dx\">CV Attachment</td>"
-										    + "<td><input type=\"file\" name=\"cv\" id = \"cv\" accept=\"application/pdf\"></td>"
-									    + "</tr>"
-										+ "<tr>"
-										    + "<td class = \"dx\">Cover letter</td>"
-										    + "<td><textarea name=\"letteraPresentazione\" rows=\"4\" cols=\"50\"></textarea></td>"
-									    + "</tr>"
+										+ "<form class = \"presentazione\" action = \"salvaPresentazione\">"
+											+ "<tr>"
+												+ "<td class = \"dx\">"
+													+ "<label for=\"foto\">"
+														+ "Photo "
+														+ "<nobr class = \"asterisco\">*</nobr>"
+													+ "</label>"
+												+ "</td>"
+												+ "<td>"
+													+ "<input type=\"file\" name=\"foto\" id = \"foto\" accept=\"image/png, image/jpeg, image/jpg\">"
+												+ "</td>"
+										    + "</tr>"
+										    + "<tr>"
+											    + "<td class = \"dx\">"
+													+ "<label for=\"cv\">"
+														+ "CV Attachment "
+														+ "<nobr class = \"asterisco\">*</nobr>"
+													+ "</label>"
+												+ "</td>"
+											    + "<td>"
+													+ "<input type=\"file\" name=\"cv\" id = \"cv\" accept=\"application/pdf\">"
+												+ "</td>"
+										    + "</tr>"
+											+ "<tr>"
+											    + "<td class = \"dx\">"
+													+ "<label for=\"letteraPresentazione\">"
+														+ "Cover letter"
+													+ "</label>"
+												+ "</td>"
+											    + "<td>"
+													+ "<textarea name=\"letteraPresentazione\" rows=\"4\" cols=\"20\"></textarea>"
+												+ "</td>"
+										    + "</tr>"
+										+ "</form>"
 									+ "</tbody>"
 								+ "</table>"
 							+ "</div>"
 					+ "</div>";
 					
 }
-
+*/
 
 function inviaCandidatura(elemento, candidatura) {
 	var div = document.getElementById(elemento);

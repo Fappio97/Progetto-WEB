@@ -4,6 +4,9 @@
 	<!-- Termini accentati -->
 	<meta charset="utf-8">
 	
+	<!-- Favicon -->
+	<link rel="icon" href="images/index/logo.png" type="image/x-icon"/>
+	
 	<!-- CSS -->
 	<link href="../css/guidaSceltaProdotto/guidaSceltaProdotto.css" rel="stylesheet" type="text/css" />
 	
@@ -13,6 +16,7 @@
 
 	<!-- JS -->
 	<script language="javascript" src="../js/guidaSceltaProdotto/modelloDomande.js"></script>
+	<script language="javascript" src="../js/guidaSceltaProdotto/chiamateAjax.js"></script>
 	<script language="javascript" src="../js/guidaSceltaProdotto/sceltaProdotto.js"></script>
 	<script language="javascript" src="../js/guidaSceltaProdotto/caricaDomandeCategoria.js"></script>
 	

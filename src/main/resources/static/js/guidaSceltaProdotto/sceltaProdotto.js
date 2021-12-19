@@ -9,6 +9,7 @@ var categoriaSelezionata;
 var numDomandeTotaliCategoria = 2;
 var preferenzeUtente = new Array();
 
+
 /* --- Funzioni --- */
 
 function aggiungiEventi(){
@@ -38,20 +39,19 @@ function rinizia() {
 	
   	if (domanda === true) {
     	ind = 0;
-		compila();
 		svuotaArray(preferenzeUtente);
+		compila();
+		abilitaDisabilita();
   	} 
 
 }
 
 function risultati() {
-	ind = numDomandeTotaliCategoria;
-	compila();
-	if(preferenzeUtente.length == 0) {
-		/* MOSTRARE PRODOTTI PIù venduti di quella categoria ----------------------------------------------------------*/
-	}
-	else {
-		/* MOSTRARE RISULTATI PREFERENZE del cliente ----------------------------------------------------------*/
+	if(ind != numDomandeTotaliCategoria) {
+		ind = numDomandeTotaliCategoria;
+		compila();
+		abilitaDisabilita();
+		trovaProdottiCorrelati();
 	}
 }
 
@@ -94,8 +94,29 @@ function focusRisposte() {
 	}
 }
 
+function cercaProdottiMeglioRecensiti() {
+	prodottiMeglioRecensiti();
+}
+
+function aggiungiAlCarrello(id) {
+	alert("Prodotto con id " + id + " aggiunto al carrello");
+}
 
 /* -- FUNZIONI --- */
+
+function deselezionaRadioButton() {
+	var check;
+
+	$('input[type="radio"]').hover(function() {
+	    check = $(this).is(':checked');
+	});
+	
+	$('input[type="radio"]').click(function() {
+	    check = !check;
+	    $(this).attr("checked", check);
+	});
+	focusRisposte();
+}
 
 function segnalazione(){
 	var row = document.getElementById("segnalazione2");	
@@ -132,7 +153,6 @@ function inviaSegnalazione(){
 
 
 function paginaAvanti() {
-	
 	if(ind == -1) {
 		var selectedRadio = document.querySelectorAll('input[name=collega]:checked');
 				
@@ -150,46 +170,17 @@ function paginaAvanti() {
 			return;
 		}
 	} else {
-		if(ind < numDomandeTotaliCategoria) {
+		if(ind < numDomandeTotaliCategoria - 1) {
 			
 			salvaPreferenza();
 			ind++;
 			
-		}else {
-			/* --- STAMPA ALLA FINE MA POI CON L'AJAX INVOCO IL DB E SCELGO QUELLO GIUSTO --- */
-			let tag = new Array();
-			for(let i = 0; i < preferenzeUtente.length; ++i)
-				if(preferenzeUtente[i] != undefined) {
-					console.log(preferenzeUtente[i] + " " + i + "\n");
-					tag.push(preferenzeUtente[i]);
-				}
-					
-			console.log(preferenzeUtente);
+		} else {
+			salvaPreferenza();
 			
-			console.log(tag);
+			trovaProdottiCorrelati();
 			
-			/*			
-			let categoria;
-			selectedRadio.forEach(function(radio, indice){
-				categoria = radio.getAttribute('id');
-			}); 
-			console.log(categoria);
-			
-			$.ajax({
-				type: "POST",
-				url: "/categoriaScelta",
-				contentType: "application/json",
-				data: JSON.stringify(categoria),
-				success: function(){
-					alert("tutto ok");
-					abilitaDisabilita();
-					compila();
-				},
-				error: function(xhr){
-					alert("tutto male");
-				}
-			});
-			*/
+			ind++;
 		}
 	}
 	abilitaDisabilita();
@@ -197,7 +188,6 @@ function paginaAvanti() {
 }
 
 function paginaIndietro() {
-
 	if(ind == 0) {
 		if(cambiaCategoria())
 			svuotaArray(preferenzeUtente);
@@ -206,11 +196,11 @@ function paginaIndietro() {
 	}
 	
 	if(ind > -1) {
-		salvaPreferenza();
+		if(ind != 0)
+			salvaPreferenza();
 		ind--;
 		compila();
 	} 
-	
 	abilitaDisabilita();
 }
 
@@ -240,7 +230,7 @@ function clearText(field){
 }
 
 function svuotaArray(array) {
-	while(array.length > 0) 
+	while(array.length > 0)
 		array.pop();
 }
 

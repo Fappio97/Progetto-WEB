@@ -13,9 +13,8 @@ function compila() {
 	} else if(ind == numDomandeTotaliCategoria) {
 		/*Pagina risultati */
 		inserisciDomanda("Recommended products");
-		inserisciRisposteRadio("");
 		caricaDescrizione("Done!%Here is our list of " + categoriaSelezionata + " ideal according to your needs!");
-		document.getElementById("rigaIndiceDomande").style.display = ""; 
+		caricaPulsanteAltriProdotti();
 	} else {
 		document.getElementById("rigaIndiceDomande").style.display = ""; 
 		pannelloSuperiore(categoriaSelezionata.toLowerCase());
@@ -42,7 +41,9 @@ function compila() {
 				return;		
 		}
 	}
+	deselezionaRadioButton();
 	caricaFocusDomanda();
+	console.log(preferenzeUtente.length);
 }
 
 function pannelloSuperiore(stringa) {
@@ -255,6 +256,115 @@ function inserisciRispostaCheck(risposta, tag, id, righe){
 									 + rigaFine;
 }
 
+function inserisciProdottiTag(prodottiTag) {
+	var row = document.getElementById("risposte");
+	
+	let tag = new Array();
+	for(let i = 0; i < preferenzeUtente.length; ++i)
+		if(preferenzeUtente[i] != undefined) {
+			if(preferenzeUtente[i].length > 1)
+				for(let j = 0; j < preferenzeUtente.length; ++j)
+					tag.push(preferenzeUtente[i][j]);
+			else
+				tag.push(preferenzeUtente[i]);
+		}
+	
+	if(prodottiTag.length == 0) {
+		row.innerHTML = "<p class = \"testoCentrale\">We don't have products that meet your needs at the moment.</p>"
+						+ "<p class = \"testoCentrale\">Look for the best " + categoriaSelezionata +  " favorites by users.</p>"
+						+ "<br />"
+						+ "<button type=\"button\" class=\"btn btn-light\" id = \"cercaProdottiMeglioRecensiti\" onclick = \"cercaProdottiMeglioRecensiti()\">"
+							+ "Search"
+						+ "</button>";
+		return;
+	}
+	
+	let stringa = ""; 
+	let s = "";
+	for(let i = 0; i < prodottiTag.length; ++i) {
+		
+		s = "<br /><strong>" + prodottiTag[i].product.brand + " " + prodottiTag[i].product.model + "</strong><br /><br />";
+		for(let j = 0; j < tag.length; ++j) {
+			if(prodottiTag[i].tagSoddisfatti[j] == true)
+				s += "<div class = \"requisito\">"
+						+ "<figure>"
+							+ "<img id = \"requisitoSoddisfatto\" src = \"../immagini/guidaSceltaProdotto/risposte/si.png\">"
+							+ tag[j] + "<br />"
+						+ "</figure>"
+					+ "</div>";
+			else
+				s += "<div class = \"requisito\">"
+						+ "<figure>"
+							+ "<img id = \"requisitoSoddisfatto\" src = \"../immagini/guidaSceltaProdotto/risposte/no.png\">" 
+							+ tag[j] + "<br />"
+						+ "</figure>"
+					+ "</div>";
+		}
+		
+		s += "<br/>"
+				+ "<div>"
+					+ "<button id = \"pulsanteCompraOra\" class=\"btn btn-light\" onclick = \"aggiungiAlCarrello(" + prodottiTag[i].product.id + ")\">"
+						+ "Buy Now"
+					+ "</button>"
+				+ "</div>";
+		
+		stringa += "<div class = \"row\" id = \"prodotto\">"
+						+ "<div class=\"col-8\"id = \"immagineProdotto\">"
+							+ "<figure>"
+								+ "<img src = \"../immagini/prodotti/" + prodottiTag[i].product.model.toLowerCase() + ".png\">"
+							+ "</figure>"
+						+ "</div>"
+						+ "<div class=\"col-4\" id = \"requisitiUtente\">"
+							+ s
+						+ "</div>"
+				  	+ "</div>"
+					+ "<br />";
+	}
+					
+	row.innerHTML = stringa;
+}
+
+function inserisciProdotti(prodotti) {
+	var row = document.getElementById("risposte");
+	
+	let stringa = ""; 
+	let s = "";
+	for(let i = 0; i < prodotti.length; ++i) {
+		
+		s = "<br /><strong>" + prodotti[i].brand + " " + prodotti[i].model + "</strong><br /><br />";
+		var tags = prodotti[i].tags.split(",");
+		for(let j = 0; j < tags.length; ++j) {
+			s += "<div class = \"requisito\">"
+					+ "<figure>"
+						+ "<img id = \"requisitoSoddisfatto\" src = \"../immagini/guidaSceltaProdotto/risposte/tag.png\">"
+						+ tags[j] + "<br />"
+					+ "</figure>"
+				+ "</div>";
+		}
+		
+		s += "<br/>"
+				+ "<div>"
+					+ "<button id = \"pulsanteCompraOra\" class=\"btn btn-light\" onclick = \"aggiungiAlCarrello(" + prodotti[i].id + ")\">"
+						+ "Buy Now"
+					+ "</button>"
+				+ "</div>";
+		
+		stringa += "<div class = \"row\" id = \"prodotto\">"
+						+ "<div class=\"col-8\"id = \"immagineProdotto\">"
+							+ "<figure>"
+								+ "<img src = \"../immagini/prodotti/" + prodotti[i].model.toLowerCase() + ".png\">"
+							+ "</figure>"
+						+ "</div>"
+						+ "<div class=\"col-4\" id = \"requisitiUtente\">"
+							+ s
+						+ "</div>"
+				  	+ "</div>"
+					+ "<br />";
+	}
+					
+	row.innerHTML = stringa;
+}
+
 function caricaDescrizione(stringa) {
 	var row = document.getElementById("descrizione");
 	let stringhe = stringa.split("%");
@@ -279,6 +389,21 @@ function caricaDescrizione(stringa) {
 							+ s
 						+ "</p>"
 					+ "</div>";
+}
+
+function caricaPulsanteAltriProdotti() {
+	var row = document.getElementById("descrizione");
+	row.innerHTML += "<div id = \"altriProdotti\" >" 
+					+ "<p>" 
+						+ "Are you not satisfied with the search?"
+					+ "</p>"
+					+ "<p>"
+						+ "Discover the best reviewed."
+					+ "</p>"
+					+ "<button type=\"button\" class=\"btn btn-light\" id = \"cercaProdottiMeglioRecensiti\" onclick = \"cercaProdottiMeglioRecensiti()\">"
+						+ "Search"
+					+ "</button>"
+				+ "</div>";
 }
 
 function numeroDomandeCategoriaSelezionata() {
@@ -333,8 +458,8 @@ function caricaBarraNavigazione() {
 function selezionaRisposteScelte() {
 	
 	var risposte = document.getElementsByName("collega");
-	
-	if(preferenzeUtente[ind] != undefined) {
+	if(preferenzeUtente[ind] != undefined && preferenzeUtente[ind].length > 0) {
+		console.log(preferenzeUtente[ind]);
 		for(let i = 0; i < preferenzeUtente[ind].length; ++i) {
 			for(let j = 0; j < risposte.length; ++j) {
 				if(risposte[j].getAttribute('value') == preferenzeUtente[ind][i]) {
@@ -350,6 +475,7 @@ function selezionaRisposteScelte() {
 	}
 }
 
+/* barra sopra */
 function caricaFocusDomanda() {
 	if(ind == -1)
 		return;

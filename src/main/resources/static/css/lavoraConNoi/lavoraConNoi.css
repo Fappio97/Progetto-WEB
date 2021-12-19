@@ -93,10 +93,6 @@
 	position:relative;
 }
 
-#testo1 {
-	padding-bottom: 5%;
-}
-
 /* tabella */
 .table {
 	border-collapse: separate !important;	
@@ -111,6 +107,36 @@
 	text-decoration: none;
 	color: #0b3de1;
 }
+
+/* login */
+#login a {
+	color: #212529;
+	text-decoration: none;
+}
+
+#formLogin {
+	display: none;
+}
+
+#formLogin form {
+	margin-left: 20%;
+}
+
+#pulsanteLogin {
+	color: #0b3de1;
+	text-align: center;
+	background-color: white;
+	border: none;
+	border-radius: 2px;
+	padding: 10px;
+	opacity: 1;
+}
+
+#pulsanteLogin {
+	opacity: 0.9;
+}
+
+
 
 /* FORM */
 #formSX tr{
@@ -155,7 +181,7 @@
 }
 
 #formCentrale th {
-	width: 100%;
+	width: 50%;
 }
 
 #formCenter input {
@@ -168,6 +194,10 @@
 
 .navbar {
 	text-align: center;
+}
+
+input[type=text] {
+	border: "blue";
 }
 
 /* candidatura spontanea */
@@ -190,4 +220,8 @@
 
 #presentazioneAzienda button {
 	background-color: trasparent;
+}
+
+.asterisco {
+	color: red;
 }

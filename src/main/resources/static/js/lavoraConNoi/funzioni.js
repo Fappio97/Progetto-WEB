@@ -1,3 +1,9 @@
+window.onload = function() {
+	if(ind == 3) {
+		
+	}
+}
+
 /* FUNZIONI */
 
 function avanti() {
@@ -32,6 +38,7 @@ function eliminaPosizioneAvanti() {
 	posizioneAperta = "";
 	avanti();
 }
+
 
 function caricaOpzioni(stringa1, stringa2) {
 	var titoloStudio = document.getElementById(stringa1).value;
@@ -106,73 +113,6 @@ function popola(stringa) {
 		opt.innerHTML = variabile[i];
 		section.appendChild(opt);	
 	}	
-}
-
-function inviaPresentazione() {
-	/* AJAX per salvare la presentazione sul db */
-	if(campiValidi())
-		alert("CV inviato");
-}
-
-function campiValidi() {
-	controllaInputTypeText();
-	controllaDataNascita();
-	controllaSelects();
-	controllaImmagini();
-	controllaCV();
-}
-
-function controllaInputTypeText() {
-	var input = document.querySelectorAll('input[type=text]');
-	let condizione = true;
-	for(let i = 0; i < input.length; ++i) {
-		if(input[i].value == "") {
-			input[i].style.borderColor = "red";
-			condizione = false;
-		}
-	}
-	return condizione;
-}
-
-function controllaDataNascita() {
-	var input = document.getElementById("dataNascita");
-	if(!input.value) {
-		input.style.borderColor = "red";
-		return false;
-	}
-	return true;
-}
-
-function controllaSelects() {
-	var input = document.querySelectorAll('select');
-	let condizione = true;
-	for(let i = 0; i < input.length; ++i) {
-		if(input[i].value == "" || input[i].value == " -- select an option -- ") {
-			input[i].style.borderColor = "red";
-			condizione = false;
-		}
-	}
-	return condizione;
-}
-
-function controllaImmagini() {
-	let foto = document.getElementById("foto");
-	let idxDot = foto.value.lastIndexOf(".") + 1;
-	let extFile = foto.value.substr(idxDot, foto.length).toLowerCase();
-	alert(extFile);
-	if (extFile!="jpg" && extFile!="jpeg" && extFile!="png"){
-		alert("Only jpg/jpeg and png files are allowed!");
-	} 
-}
-
-function controllaCV() {
-	let cv = document.getElementById("cv");
-	let idxDot = cv.value.lastIndexOf(".") + 1;
-	let extFile = cv.value.substr(idxDot, cv.length).toLowerCase();
-	if (extFile!="pdf"){
-		alert("Only pdf files are allowed!");
-		foto.style.borderColor = "red";
-	} 
 }
 
 
