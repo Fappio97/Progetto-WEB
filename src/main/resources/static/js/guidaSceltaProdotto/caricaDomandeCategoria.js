@@ -135,7 +135,7 @@ function inserisciRispostaRadioConInfo(risposta, tag, id, righe){
 		
 	row.innerHTML = row.innerHTML + rigaInizio + "<label for = \""+ risposta.toLowerCase() + "\" class= \"col-sm-4 \">"
 													+ "<div id = \"rispostaJS\" >" 
-														+ "<input id=\"" + risposta.toLowerCase() + "\" type=\"radio\" name = \"collega\" value = \"" + tag + "\" onclick = \"focusRisposte()\" />"
+														+ "<input id=\"" + risposta.toLowerCase() + "\" type=\"radio\" name = \"collega\" value = \"" + tag + "\" onclick = \"focusRisposte()Risposte()\" />"
 														+ "<figure>"	
 															+ "<img src=\"" + resourceImg + risposta.toLowerCase() + ".png\" class=\"img-fluid\"/>" 	
 														+ "</figure>"

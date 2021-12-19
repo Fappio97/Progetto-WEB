@@ -4,6 +4,9 @@
 	<!-- Termini accentati -->
 	<meta charset="utf-8">
 	
+	<!-- Favicon -->
+	<link rel="icon" href="../immagini/index/logo.png" type="image/x-icon"/>
+	
 	<!-- CSS -->
 	<link href="../css/lavoraConNoi/lavoraConNoi.css" rel="stylesheet" type="text/css" />
 	
@@ -67,7 +70,7 @@
 					<div class="col-md-3">
 						<div class="header-logo">
 							<a href="../" class="logo">
-								<img src="../immagini/img/logo.png" alt="">
+								</immagini/index src="../immagini/index/logo.png" alt="">
 							</a>
 						</div>
 					</div>
@@ -110,7 +113,7 @@
 									<div class="cart-list">
 										<div class="product-widget">
 											<div class="product-img">
-												<img src="../immagini/img/product01.png" alt="">
+												<img src="../immagini/index/product01.png" alt="">
 											</div>
 											<div class="product-body">
 												<h3 class="product-name"><a href="#">product name goes here</a></h3>
@@ -121,7 +124,7 @@
  
 										<div class="product-widget">
 											<div class="product-img">
-												<img src="../immagini/img/product02.png" alt="">
+												<img src="../immagini/index/product02.png" alt="">
 											</div>
 											<div class="product-body">
 												<h3 class="product-name"><a href="#">product name goes here</a></h3>

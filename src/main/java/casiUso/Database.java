@@ -22,7 +22,7 @@ public class Database {
 	private Database() {
 		try {
 			conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/techplanet", 
-											"postgres", "sediarotta");
+											"postgres", "postgres");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

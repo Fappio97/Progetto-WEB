@@ -79,7 +79,6 @@ function caricaInfo(indiceRisposta) {
 			break;
 	}
 }
-
 function focusRisposte() {
 	
 	var risposte = document.getElementsByName("collega");
@@ -105,17 +104,16 @@ function aggiungiAlCarrello(id) {
 /* -- FUNZIONI --- */
 
 function deselezionaRadioButton() {
-	var check;
-
-	$('input[type="radio"]').hover(function() {
-	    check = $(this).is(':checked');
+/*	
+	$('').click(function(){
+	    if (this.previous) {
+	        this.checked = false;
+			$(this).css("border-color", "#0b3de1");
+	    }
+	    this.previous = this.checked;
 	});
 	
-	$('input[type="radio"]').click(function() {
-	    check = !check;
-	    $(this).attr("checked", check);
-	});
-	focusRisposte();
+	selezionaRisposteScelte();*/
 }
 
 function segnalazione(){

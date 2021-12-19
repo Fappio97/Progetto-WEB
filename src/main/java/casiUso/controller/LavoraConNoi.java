@@ -37,7 +37,7 @@ public class LavoraConNoi {
 		
 		try {
 			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/TechPlanet", 
-															"postgres", "sediarotta");
+															"postgres", "postgres");
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(sql);
 			if (rs.next()) {
