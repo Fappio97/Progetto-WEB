@@ -1,0 +1,19 @@
+.divContatto {
+	border: 1px solid #888888;
+  	border-radius: 5px;
+  	margin-top: 2%;
+  	margin-bottom: 2%;
+}
+
+.row div {
+	padding: 10px;
+}
+
+#contatti a {
+	text-decoration: none;
+	color: gray;
+}
+
+body {
+	overflow-wrap: break-word;
+}

@@ -11,34 +11,33 @@ function avanti() {
 	compila();
 }
 
-function avantiDueVolte() {
-	ind += 2;
-	compila();
-}
-
 function posizione(stringa) {
-	posizioneAperta = stringa;
+	var diviso = stringa.split("%");
+	posizioneApertaTitle = diviso[0];
+	posizioneApertaDescription = diviso[1];
 	avanti();
 }
 
 function indietro() {
-	if(posizioneAperta != "" && ind == 2)
-		posizioneAperta = "";
-
-	ind--;
-	compila();
+	if(ind != 0) {
+		ind--;
+		compila();
+	}
 }
 
-function indietroDueVolte() {
-	ind--;
-	indietro();
+function caricaListeAperte(data) {
+	var div = document.getElementById("listaPosizioniAperta");
+	
+	var s = "";
+	for(let i = 0; i < data.length; ++i) {
+		s += "<tr>"
+				+ "<th scope=\"row\"><a href = \"javascript:posizione('" + data[i].title + "%" + data[i].description + "')\">" + data[i].title + "</a></th>"
+				+ "<td>" + data[i].description + "</td>"
+			+ "</tr>";
+	}
+	
+	div.innerHTML = s;
 }
-
-function eliminaPosizioneAvanti() {
-	posizioneAperta = "";
-	avanti();
-}
-
 
 function caricaOpzioni(stringa1, stringa2) {
 	var titoloStudio = document.getElementById(stringa1).value;

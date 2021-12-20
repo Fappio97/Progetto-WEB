@@ -64,7 +64,7 @@ function pannelloSuperiore(stringa) {
 	
 	var row = document.getElementById("imageDescription");		
 	row.innerHTML = "<figure>"
-						+ "<img src= \"../immagini/guidaSceltaProdotto/pannelloSopra/" + stringa + ".png\" width = 100% height = 50%/>"
+						+ "<img src= \"../immagini/guidaSceltaProdotto/pannelloSopra/" + stringa + ".png\" width = 100% height = 50% class = \"img-fluid\"/>"
 					+ "</figure>"
 						+ "<div id = \"description\" >"
 							+ "<p class = \"titolo\">Find the " + prodotto + "</p>"
@@ -288,14 +288,14 @@ function inserisciProdottiTag(prodottiTag) {
 			if(prodottiTag[i].tagSoddisfatti[j] == true)
 				s += "<div class = \"requisito\">"
 						+ "<figure>"
-							+ "<img id = \"requisitoSoddisfatto\" src = \"../immagini/guidaSceltaProdotto/risposte/si.png\">"
+							+ "<img id = \"requisitoSoddisfatto\" src = \"../immagini/guidaSceltaProdotto/risposte/si.png\" class = \"img-fluid\">"
 							+ tag[j] + "<br />"
 						+ "</figure>"
 					+ "</div>";
 			else
 				s += "<div class = \"requisito\">"
 						+ "<figure>"
-							+ "<img id = \"requisitoSoddisfatto\" src = \"../immagini/guidaSceltaProdotto/risposte/no.png\">" 
+							+ "<img id = \"requisitoSoddisfatto\" src = \"../immagini/guidaSceltaProdotto/risposte/no.png\" class = \"img-fluid\">" 
 							+ tag[j] + "<br />"
 						+ "</figure>"
 					+ "</div>";
@@ -352,7 +352,7 @@ function inserisciProdotti(prodotti) {
 		stringa += "<div class = \"row\" id = \"prodotto\">"
 						+ "<div class=\"col-8\"id = \"immagineProdotto\">"
 							+ "<figure>"
-								+ "<img src = \"../immagini/prodotti/" + prodotti[i].model.toLowerCase() + ".png\">"
+								+ "<img src = \"../immagini/prodotti/" + prodotti[i].model.toLowerCase() + ".png\" class = \"img-fluid\">"
 							+ "</figure>"
 						+ "</div>"
 						+ "<div class=\"col-4\" id = \"requisitiUtente\">"
@@ -436,7 +436,7 @@ function caricaBarraNavigazione() {
 	row.innerHTML = "<div class= \"col-3\" id = \"indiceDomandeSX\">"
 						+ "<button class = \"button\" id = \"pulsanteReset\" onclick=\"rinizia()\">"
 							+ "<figure>"
-								+ "<img src=\"../immagini/guidaSceltaProdotto/icone/rinizia.png\" width = 30%/><br />"
+								+ "<img src=\"../immagini/guidaSceltaProdotto/icone/rinizia.png\" width = 30% class = \"img-fluid\"/><br />"
 							+ "</figure>"
 								+ "Reset"
 						+ "</button>"
@@ -448,7 +448,7 @@ function caricaBarraNavigazione() {
 					+ "<div class=\"col-3\" id = \"indiceDomandeDX\">"
 						+ "<button class =\"button\" id = \"pulsanteResult\" onclick=\"risultati()\">"
 							+ "<figure>"
-								+ "<img src=\"../immagini/guidaSceltaProdotto/icone/risultati.png\" width = 30%/><br />"
+								+ "<img src=\"../immagini/guidaSceltaProdotto/icone/risultati.png\" width = 30% class = \"img-fluid\"/><br />"
 							+ "</figure>"
 								+ "Results"
 						+ "</button> "

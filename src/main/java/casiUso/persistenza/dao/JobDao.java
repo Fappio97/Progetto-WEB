@@ -1,0 +1,12 @@
+package casiUso.persistenza.dao;
+
+import java.util.List;
+
+import casiUso.model.Job;
+
+public interface JobDao {
+	public List<Job> findAll();
+	public List<Job> findAllStatus(boolean active);
+	public boolean saveOrUpdate(Job job);
+	public boolean delete(Job job);
+}

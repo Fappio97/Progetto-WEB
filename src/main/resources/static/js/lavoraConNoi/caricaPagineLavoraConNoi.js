@@ -15,10 +15,11 @@ function compila() {
 			barraNavigazione(elementiNav[ind]);
 			soloTabella("testo1");
 			inviaCandidatura("testo2", candidatura[ind - 1]);
+			listeAperte();
 			break;
 		case 2:
 			barraNavigazione(elementiNav[ind]);
-			soloTesto("testo1", posizioneAperta, sezioniTesti[ind].testo, "descrizione dal DB");
+			soloTesto("testo1", posizioneApertaTitle, sezioniTesti[ind].testo, posizioneApertaDescription);
 			inviaCandidatura("testo2", candidatura[ind - 1]);
 			break;
 /*		case 3:
@@ -31,7 +32,7 @@ function compila() {
 		default:
 			break;
 	}
-	mostraNascondiLogin();
+/*	mostraNascondiLogin();*/
 }
 /*
 function mostraNascondiLogin() {
@@ -118,15 +119,7 @@ function soloTabella(elemento) {
 							      		+ "<th scope=\"col\">Business Unit</th>"
 							    	+ "</tr>"
 							  	+ "</thead>"
-							  	+ "<tbody>"
-							    	+ "<tr>"
-							      		+ "<th scope=\"row\"><a href = \"javascript:posizione('Store')\">Store</a></th>"
-							      		+ "<td>Human resources</td>"
-							    	+ "</tr>"
-									+ "<tr>"
-							      		+ "<th scope=\"row\"><a href = \"javascript:posizione('Seller')\">Seller</a></th>"
-							      		+ "<td>Buyer</td>"
-							    	+ "</tr>"
+							  	+ "<tbody id = \"listaPosizioniAperta\">"
 								+ "</tbody>"
 							+ "</table>"
 						+ "</div>"
@@ -161,7 +154,7 @@ function soloTesto(elemento, titolo, testo, descrizione) {
 							+ "<br /><br /><br />"
 							+ "<div>"
 								+ "Introduce yourself<br />"
-								+ "<button class = \"button\" onclick = \"avanti()\">Send your CV</button>"
+									+ "<button class = \"button\" onclick = \"javascript:salvaPosizioneLavoro('" + titolo + "')\">Send your CV</button>"
 							+ "</div>"
 						+ "</div>"
 					+ "</div>";
@@ -358,13 +351,16 @@ function form(elemento, titolo) {
 }
 */
 
+
 function inviaCandidatura(elemento, candidatura) {
 	var div = document.getElementById(elemento);
 	div.innerHTML = "<div class = \"row\" id = \"mancaLaTuaPosizione\">"
 						+ "<div class = \"col-sm-12\">"
-							+ "<p><i>" + candidatura.testo + "</i></p>"
+							+ "<p><i>" + candidatura + "</i></p>"
 							+ "<div>"
-								+ "<button class = \"button\" onclick = \" " + candidatura.funzione + "\">Submit your CV</button>"
+								+ "<a href = \"/lavoraConNoi/curriculumSpontaneo\">"
+									+ "<button class = \"button\">Submit your CV</button>"
+								+ "</a>"
 							+ "</div>"
 						+ "</div>"
 					+ "</div>";

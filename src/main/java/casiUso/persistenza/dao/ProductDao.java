@@ -3,7 +3,6 @@ package casiUso.persistenza.dao;
 import java.util.List;
 
 import casiUso.model.Product;
-import casiUso.model.ProductTag;
 
 public interface ProductDao {
 	public List<Product> findAll();

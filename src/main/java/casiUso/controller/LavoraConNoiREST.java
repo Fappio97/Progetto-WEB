@@ -2,24 +2,41 @@ package casiUso.controller;
 
 import java.io.File;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import casiUso.Database;
+import casiUso.model.Job;
+
 @RestController
-@RequestMapping("/lavoraConNoi")
 public class LavoraConNoiREST {
 
-	@PostMapping("/salvaPresentazione")
-	public String salvaPresentazione(HttpServletRequest req, HttpServletResponse res, String nome, String cognome, Date dataNascita, String email, String materiaStudio, String titoloStudio, String funzioneLavoro, String classificazioneLavoro, File foto, File cv) {
-		System.out.println(nome + " " + cognome + " " + dataNascita.toString() + " " + email + " " + titoloStudio + " " + materiaStudio + " " + classificazioneLavoro + " " + funzioneLavoro + " " + foto.toString() + " " + cv.toString());
-		return "home";
+	@GetMapping("/listaPosizioniAperte")
+	public List<Job> listaPosizioniAperte(HttpServletRequest req, HttpServletResponse res) {
+		
+		List<Job> lavori = Database.getInstance().getJobDao().findAllStatus(true);
+		
+		return lavori;
+		
 	}
 	
-	
+	@PostMapping("/salvaPosizioneLavoro")
+	public String salvaPosizioneLavoro(HttpServletRequest req, @RequestBody String titolo) {
+		
+		titolo = titolo.replaceAll("[-+.^:,=%$!&/()]"," ");
+		
+		HttpSession session = req.getSession(true);
+		session.setAttribute("posizioneLavoro", titolo);
+		
+		return null;
+	}
 	
 }

@@ -5,7 +5,6 @@ window.onload = function() {
 function compila() {
 	popolaComboBox();
 	campiForm();
-	titolo();
 }
 
 function faiLogin(event) {
@@ -42,13 +41,6 @@ function faiLogin(event) {
 	document.querySelector("#login").submit;
 }
 
-function titolo() {
-	let form = document.getElementById("formLogin");
-	form.innerHTML += "<strong>"
-						+ posizioneAperta
-					+ "</strong>"
-}
-
 function inviaPresentazione(event) {
 		let messaggioErrore = "";
 		if(!controllaInputTypeText() || !controllaSelects() || !controllaDataNascita() || !controllaMail()) {
@@ -69,7 +61,7 @@ function inviaPresentazione(event) {
 		else
 			alert(messaggioErrore);
 			
-		document.querySelector(".presentazione").submit;
+		document.querySelector("#presentazione").submit;
 }
 
 function controllaInputTypeText() {

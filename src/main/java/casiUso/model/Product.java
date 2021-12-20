@@ -15,10 +15,9 @@ public class Product {
 	public Product() {
 	}
 
-	public Product(long id, String model, int quantity, String tags, String description, String type, String brand,
+	public Product(String model, int quantity, String tags, String description, String type, String brand,
 			Float reviews) {
 		super();
-		this.id = id;
 		this.model = model;
 		this.quantity = quantity;
 		this.tags = tags;

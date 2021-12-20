@@ -6,12 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import casiUso.model.Product;
-import casiUso.model.ProductTag;
 import casiUso.persistenza.dao.ProductDao;
 
 public class ProductDaoJDBC implements ProductDao {

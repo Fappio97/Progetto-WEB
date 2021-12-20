@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import casiUso.persistenza.dao.JobDao;
 import casiUso.persistenza.dao.ProductDao;
+import casiUso.persistenza.dao.jdbc.JobDaoJDBC;
+import casiUso.persistenza.dao.jdbc.Login;
 import casiUso.persistenza.dao.jdbc.ProductDaoJDBC;
 
 public class Database {
@@ -31,6 +34,14 @@ public class Database {
 	
 	public ProductDao getProductsDao() {
 		return new ProductDaoJDBC(conn);
+	}
+
+	public JobDao getJobDao() {
+		return new JobDaoJDBC(conn);
+	}
+	
+	public Login getLogin() {
+		return new Login(conn);
 	}
 
 }
