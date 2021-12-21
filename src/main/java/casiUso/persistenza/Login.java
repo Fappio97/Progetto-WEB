@@ -1,4 +1,4 @@
-package casiUso.persistenza.dao.jdbc;
+package casiUso.persistenza;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import casiUso.model.Job;
-import casiUso.model.Product;
 import casiUso.persistenza.dao.IdJob;
 import casiUso.persistenza.dao.JobDao;
 
@@ -31,7 +30,6 @@ public class JobDaoJDBC implements JobDao {
 			ResultSet rs = st.executeQuery(query);
 			while (rs.next()) {
 				Job job = new Job();
-				job.setId(rs.getLong("id"));
 				job.setTitle(rs.getString("title"));
 				job.setDescription(rs.getString("description"));
 				job.setActive(rs.getBoolean("active"));
@@ -54,7 +52,6 @@ public class JobDaoJDBC implements JobDao {
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
 				Job job = new Job();
-				job.setId(rs.getLong("id"));
 				job.setTitle(rs.getString("title"));
 				job.setDescription(rs.getString("description"));
 				job.setActive(rs.getBoolean("active"));
@@ -69,17 +66,15 @@ public class JobDaoJDBC implements JobDao {
 
 	@Override
 	public boolean saveOrUpdate(Job job) {
-		if (job.getId() == 0) {
+		if (findByPrimaryKey(job.getTitle()) == null) {
 			//INSERT
 			try {
-				job.setId(IdJob.getId(con));
 				String query = "insert into job "
 						+ "values (?, ?, ?, ?)";
 				PreparedStatement st = con.prepareStatement(query);
-				st.setLong(1, job.getId());
-				st.setString(2, job.getTitle());
-				st.setString(3, job.getDescription());
-				st.setBoolean(4, job.isActive());
+				st.setString(1, job.getTitle());
+				st.setString(2, job.getDescription());
+				st.setBoolean(3, job.isActive());
 				st.executeUpdate();
 				
 			} catch (SQLException e) {
@@ -91,13 +86,13 @@ public class JobDaoJDBC implements JobDao {
 			//UPDATE
 			try {
 				String query = "update job "
-						+ "set name = ?, description = ?, active = ? "
-						+ "where id = ?";
+						+ "set description = ?, active = ? "
+						+ "where title = ?";
 				PreparedStatement st = con.prepareStatement(query);
-				st.setString(1, job.getTitle());
-				st.setString(2, job.getDescription());
-				st.setBoolean(3, job.isActive());
-				st.setLong(4, job.getId());
+				
+				st.setString(1, job.getDescription());
+				st.setBoolean(2, job.isActive());
+				st.setString(3, job.getTitle());
 				
 				st.executeUpdate();
 				
@@ -115,6 +110,27 @@ public class JobDaoJDBC implements JobDao {
 	public boolean delete(Job job) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public Job findByPrimaryKey(String nome) {
+		Job lavoro = null;
+		String query = "select * from job where title = ?";
+		try {
+			PreparedStatement st = con.prepareStatement(query);
+			st.setString(1, nome);
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				lavoro = new Job();
+				lavoro.setTitle(rs.getString("title"));
+				lavoro.setDescription(rs.getString("description"));
+				lavoro.setActive(rs.getBoolean("active"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lavoro;
 	}
 
 }

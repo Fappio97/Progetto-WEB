@@ -154,41 +154,43 @@
 	<!--/HEADER-->
 
 	<!-- /SECTION -->
-		<nav id="navigation" class="navbar navbar-expand-sm bg-dark">
-			<div class="container-fluid">
-			  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-				  <span class="navbar-toggler-icon">
-					  <i class="fa fa-navicon" style="color:white; font-size:28px"></i>
-				  </span>
-			  </button>
-			  <div class="collapse navbar-collapse" id="mynavbar">
-				<ul class="navbar-nav me-auto">
-					<li class="nav-item">
-						<a class="nav-link" href="javascript:void(0)">Home</a>
-					  </li>
-					  <!--<li class="nav-item">
-						<a class="nav-link" href="javascript:void(0)">Hot Deals</a>
-					  </li>
-					  <li class="nav-item">
-						<a class="nav-link" href="javascript:void(0)">Categories</a>
-					  </li>-->
-					  <li class="nav-item">
-						<a class="nav-link" href="javascript:void(0)">Laptops</a>
-					  </li>
-					  <li class="nav-item">
-						<a class="nav-link" href="javascript:void(0)">Smartphones</a>
-					  </li>
-					  <li class="nav-item">
-						<a class="nav-link" href="javascript:void(0)">Tvs</a>
-					  </li>
-					  <li class="nav-item">
-						<a class="nav-link" href="javascript:void(0)">Accessories</a>
-					  </li>
-				</ul>
-			  </div>
-			</div>
-		  </nav>
- 	<!-- /SECTION -->
+		<div class = "sticky">
+			<nav id="navigation" class="navbar navbar-expand-sm bg-dark">
+				<div class="container-fluid">
+				  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+					  <span class="navbar-toggler-icon">
+						  <i class="fa fa-navicon" style="color:white; font-size:28px"></i>
+					  </span>
+				  </button>
+				  <div class="collapse navbar-collapse" id="mynavbar">
+					<ul class="navbar-nav me-auto">
+						<li class="nav-item">
+							<a class="nav-link" href="javascript:void(0)">Home</a>
+						  </li>
+						  <!--<li class="nav-item">
+							<a class="nav-link" href="javascript:void(0)">Hot Deals</a>
+						  </li>
+						  <li class="nav-item">
+							<a class="nav-link" href="javascript:void(0)">Categories</a>
+						  </li>-->
+						  <li class="nav-item">
+							<a class="nav-link" href="javascript:void(0)">Laptops</a>
+						  </li>
+						  <li class="nav-item">
+							<a class="nav-link" href="javascript:void(0)">Smartphones</a>
+						  </li>
+						  <li class="nav-item">
+							<a class="nav-link" href="javascript:void(0)">Tvs</a>
+						  </li>
+						  <li class="nav-item">
+							<a class="nav-link" href="javascript:void(0)">Accessories</a>
+						  </li>
+					</ul>
+				  </div>
+				</div>
+			  </nav>
+		</div>
+	<!-- /SECTION -->
 <!-------------------------GRUPPO--------------------------------------------->
 	
 	

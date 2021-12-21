@@ -4,10 +4,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import casiUso.persistenza.dao.CurriculumDao;
 import casiUso.persistenza.dao.JobDao;
 import casiUso.persistenza.dao.ProductDao;
+import casiUso.persistenza.dao.jdbc.CurriculumDaoJDBC;
 import casiUso.persistenza.dao.jdbc.JobDaoJDBC;
-import casiUso.persistenza.dao.jdbc.Login;
+import casiUso.persistenza.Login;
 import casiUso.persistenza.dao.jdbc.ProductDaoJDBC;
 
 public class Database {
@@ -42,6 +44,10 @@ public class Database {
 	
 	public Login getLogin() {
 		return new Login(conn);
+	}
+	
+	public CurriculumDao getCurriculum() {
+		return new CurriculumDaoJDBC(conn);
 	}
 
 }

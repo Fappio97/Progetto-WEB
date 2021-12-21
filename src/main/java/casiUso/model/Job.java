@@ -3,17 +3,10 @@ package casiUso.model;
 import java.util.Objects;
 
 public class Job {
-	private long id;
 	private String title;
 	private String description;
 	private boolean active;
 	
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
 	public String getTitle() {
 		return title;
 	}
@@ -42,7 +35,7 @@ public class Job {
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(title);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -53,7 +46,7 @@ public class Job {
 		if (getClass() != obj.getClass())
 			return false;
 		Job other = (Job) obj;
-		return id == other.id;
+		return Objects.equals(title, other.title);
 	}
 	
 }

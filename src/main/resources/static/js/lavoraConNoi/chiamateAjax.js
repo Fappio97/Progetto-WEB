@@ -16,7 +16,9 @@ function salvaPosizioneLavoro(titolo) {
 	$.ajax({
 		type: "POST",
 		url: "/salvaPosizioneLavoro",
-		data: titolo,
+		data: {
+			titolo: titolo
+		},
 		success: function(){
 			alert("tutto ok");
 			window.location.href = "/lavoraConNoi/curriculum";

@@ -66,8 +66,6 @@ public class GuidaSceltaProdottoREST {
 	
 	@PostMapping("/prodottiMeglioRecensiti")
 	public List<Product> prodottiMeglioRecensiti(@RequestBody String categoria) {
-
-		System.out.println(categoria);
 			
 		List<Product> prodotti = Database.getInstance().getProductsDao().findByType(categoria);
 		

@@ -41,7 +41,6 @@ function compila() {
 				return;		
 		}
 	}
-	deselezionaRadioButton();
 	caricaFocusDomanda();
 	console.log(preferenzeUtente.length);
 }
@@ -135,7 +134,7 @@ function inserisciRispostaRadioConInfo(risposta, tag, id, righe){
 		
 	row.innerHTML = row.innerHTML + rigaInizio + "<label for = \""+ risposta.toLowerCase() + "\" class= \"col-sm-4 \">"
 													+ "<div id = \"rispostaJS\" >" 
-														+ "<input id=\"" + risposta.toLowerCase() + "\" type=\"radio\" name = \"collega\" value = \"" + tag + "\" onclick = \"focusRisposte()Risposte()\" />"
+														+ "<input id=\"" + risposta.toLowerCase() + "\" type=\"radio\" name = \"collega\" value = \"" + tag + "\" onclick = \"focusRisposte()\" />"
 														+ "<figure>"	
 															+ "<img src=\"" + resourceImg + risposta.toLowerCase() + ".png\" class=\"img-fluid\"/>" 	
 														+ "</figure>"
@@ -381,18 +380,20 @@ function caricaDescrizione(stringa) {
 	if(categoriaSelezionata != undefined && ind != numDomandeTotaliCategoria && ind != -1)
 		resourceImg = "../immagini/guidaSceltaProdotto/" + categoriaSelezionata + "/descrizione/";
 	
-	row.innerHTML = "<div id = \"descrizioneJS\" >" 
+	row.innerHTML = "<div id = \"tuttaLaDescrizione\" class = \"sticky\">"
+					+ "<div id = \"descrizioneJS\" >" 
 						+ "<figure>"
 							+ "<img src=\"" + resourceImg + stringhe[0].toLowerCase() + ".png\" class=\"img-fluid\" />"
 				 		+ "</figure>"
 						+ "<p>" 
 							+ s
 						+ "</p>"
-					+ "</div>";
+					+ "</div>"
+				+ "</div>";
 }
 
 function caricaPulsanteAltriProdotti() {
-	var row = document.getElementById("descrizione");
+	var row = document.getElementById("tuttaLaDescrizione");
 	row.innerHTML += "<div id = \"altriProdotti\" >" 
 					+ "<p>" 
 						+ "Are you not satisfied with the search?"

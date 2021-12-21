@@ -70,7 +70,7 @@
 						Hi ${username}
 					</c:if>
 					<div id = "formLogin">
-						<form method="post" action="loginCurriculum">
+						<form id = "formCurriculum" method="post" action="loginCurriculum">
 							<label for ="username">Username: </label> 
 							<input type="text" id = "user" name="username" placeholder="Your username.."/> <br/>
 							<label for ="pass">Password: </label>
@@ -83,30 +83,40 @@
 				
 				<div id = "titolo">
 					<c:if test= "${posizioneLavoro == null}">
-						<p><strong>Candidatura Spontanea</strong></p>
+						<p><strong id = "tipoLavoro">Candidatura Spontanea</strong></p>
 					</c:if>
 					<c:if test= "${posizioneLavoro != null}">
-						<strong>${posizioneLavoro}</strong>
+						<p><strong id = "tipoLavoro">${posizioneLavoro}</strong></p>
 					</c:if>
 				</div>
 				<br />
 				
 				<div id = "testo1">
+					<form method = "post" action = "/lavoraConNoi/salvaPresentazione" enctype="multipart/form-data">
 					<div class = "row">
 							<div class = "col-sm-12" id = "formCentrale">
 								<div id = "titolo">
 								</div>
 							</div>
-							<form method = "post" action = "/salvaPresentazione">
-							<div class = "col-md-6" id = "formSX">
+<!-- 						<c:if test= "${posizioneLavoro == null}">
+								<input type="hidden" name = "lavoro" value ="candidatura spontanea">
+							</c:if>
+							<c:if test= "${posizioneLavoro != null}">
+								<input type="hidden" name = "lavoro" />${posizioneLavoro}
+							</c:if>
+							
+ -->						<input type="hidden" id = "lavoro" name = "lavoro" value ="candidatura spontanea">
+ 							<div id = "divLavoro">
+ 							</div>
+ 							<div class = "col-md-6" id = "formSX">
 								<table class="table table-borderless">
 									<div id = "datiPersonali">
 										<p><strong>Personal data</strong></p>
 									</div>
 									<thead>
-	      								<tr>
+		      							<tr>
 									       <th></th>
-	      								</tr>
+		      							</tr>
 									</thead>
 									<tbody>
 										<tr>
@@ -150,87 +160,87 @@
 												</label>
 											</td>
 										    <td>
-												<input type="email" name = "email" id="mail" placeholder="Your e-mail ..." pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$/" required>
+												<input type="email" name = "email" id="mail" placeholder="Your e-mail ..." >
 											</td>
 										</tr>
 									</tbody>
-								</table>		
+								</table>	
 							</div>
-							<div class = "col-md-6" id = "formDX">
-							    <table class="table table-borderless">
-									<thead>
-	      								<tr>
-									       <th>Education</th>
-	      								</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>
-												<select class = "studio" name="titoloStudio" onclick = "caricaOpzioni('titoloStudio', 'materiaStudio')" id = "titoloStudio"></select>
-											</td>
-										    <td>
-												<label for="titoloStudio">
-													<nobr class = "asterisco">*</nobr>
-													 <nobr>Educational qualification</nobr>
-												</label>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<select class = "studio" name="materiaStudio" id = "materiaStudio"></select>
-											</td>
-										    <td>
-												<label for="materiaStudio">
-													<nobr class = "asterisco">*</nobr>
-													<nobr>Study subject</nobr>
-												</label>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-								<table class="table table-borderless">
-									<thead>
-	      								<tr>
-									       <th>Last Job Position</th>
-	      								</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>
-												<select name="funzioneLavoro" onclick = "caricaOpzioni('funzioneLavoro', 'classificazioneLavoro')" id = "funzioneLavoro"></select>
-											</td>
-											<td>
-												<label for="funzioneLavoro">
-													<nobr>Function</nobr>
-												</label>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<select name="classificazioneLavoro" id = "classificazioneLavoro"></select>
-											</td>
-											<td>
-												<label for="classificazioneLavoro">
-													<nobr>Classification</nobr>
-												</label>
-											</td>
-										</tr>	
-									</tbody>
-								</table>
+						<div class = "col-md-6" id = "formDX">
+							<table class="table table-borderless">
+								<thead>
+	      							<tr>
+										<th>Education</th>
+	      							</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<select class = "studio" name="titoloStudio" onclick = "caricaOpzioni('titoloStudio', 'materiaStudio')" id = "titoloStudio"></select>
+										</td>
+										<td>
+											<label for="titoloStudio">
+												<nobr class = "asterisco">*</nobr>
+												<nobr>Educational qualification</nobr>
+											</label>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<select class = "studio" name="materiaStudio" id = "materiaStudio"></select>
+										</td>
+									    <td>
+											<label for="materiaStudio">
+												<nobr class = "asterisco">*</nobr>
+												<nobr>Study subject</nobr>
+											</label>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<table class="table table-borderless">
+								<thead>
+	      							<tr>
+										<th>Last Job Position</th>
+	      							</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<select name="funzioneLavoro" onclick = "caricaOpzioni('funzioneLavoro', 'classificazioneLavoro')" id = "funzioneLavoro"></select>
+										</td>
+										<td>
+											<label for="funzioneLavoro">
+												<nobr>Function</nobr>
+											</label>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<select name="classificazioneLavoro" id = "classificazioneLavoro"></select>
+										</td>
+										<td>
+											<label for="classificazioneLavoro">
+												<nobr>Classification</nobr>
+											</label>
+										</td>
+									</tr>	
+								</tbody>
+							</table>
+						</div>
+						<div class = "col-sm-12" id = "formCentrale">
+							<div id = "centro">
+								<strong>Curriculum</strong>
 							</div>
-							<div class = "col-sm-12" id = "formCentrale">
-								<div id = "centro">
-									<strong>Curriculum</strong>
-								</div>
-								<table class="table table-borderless">
-									<thead>
+							<table class="table table-borderless">
+								<thead>
 	      								<tr>
 									       <th></th>
 	      								</tr>
 									</thead>
 									<tbody>
 										<tr>
-											<td class = "dx">
+				 						<td class = "dx">
 												<label for="foto">
 													<nobr>Photo</nobr>
 													<nobr class="asterisco">*</nobr>
@@ -250,7 +260,7 @@
 											<td>
 												<input type="file" name="cv" id = "cv" accept="application/pdf">
 											</td>
-										</tr>
+										</tr>	
 										<tr>
 											<td class = "dx">
 												<label for="letteraPresentazione">
@@ -264,23 +274,21 @@
 									</tbody>
 								</table>
 							</div>
-						</form>
-					</div>
-				</div>
-				
-				
-				<br /><br />
-				<div id = "testo2">
-					<div class = "row" id = "mancaLaTuaPosizione">
-						<div class = "col-sm-12">
-							<p><i>By clicking on the "send curriculum" button, you accept the information on online candidates pursuant to art. 13 of Regulation (EU) 2016/679.</i></p>
-							<div>
-								<button class = "button" id = "presentazione" onclick = "javascript:inviaPresentazione(event)">Submit your CV</button>
+						</div>
+						<br /><br />
+						<div id = "testo2">
+							<div class = "row" id = "mancaLaTuaPosizione">
+								<div class = "col-sm-12">
+									<p><i>By clicking on the "send curriculum" button, you accept the information on online candidates pursuant to art. 13 of Regulation (EU) 2016/679.</i></p>
+									<div>
+										<button class = "button" id = "presentazione" onclick = "javascript:inviaPresentazione(event)">Submit your CV</button>
+									</div>
+								</div>
 							</div>
 						</div>
-					</div>;
+						<br />
+					</form>
 				</div>
-				<br />
 				
 			</div>
 		</div>

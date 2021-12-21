@@ -12,6 +12,7 @@ function campiForm() {
 	$('input[type=email]').focusin(function(){
 		$(this).css("border-color", "");
 	});
+		
 	$('input[type=email]').focusout(function(){
 		let valore = $(this).val();
 		let chiocciola = valore.indexOf("@");
@@ -19,7 +20,7 @@ function campiForm() {
 		if (chiocciola < 1 || punto < chiocciola + 2 || punto + 2 >= valore.length)
 			$(this).css("border-color", "red");
 	});
-	
+
 	$('.studio').each(function() {
 		$(this).focusin(function(){
 			$(this).css("border-color", "");

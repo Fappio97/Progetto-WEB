@@ -107,6 +107,13 @@ con absolute*/
 	margin-right: auto;
 }
 
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  font-size: 20px;
+}
+
 #pulsanteAvanti, #pulsanteProblema {
 	background-color: #0b3de1;
 	border-color: #0b3de1;

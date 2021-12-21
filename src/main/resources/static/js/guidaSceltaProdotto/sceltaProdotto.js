@@ -65,6 +65,8 @@ function vaiAllaDomanda(i) {
 	ind = i;
 	compila();
 	abilitaDisabilita();
+	if(ind == numDomandeTotaliCategoria)
+		trovaProdottiCorrelati();
 }
 
 function caricaInfo(indiceRisposta) {
@@ -80,7 +82,7 @@ function caricaInfo(indiceRisposta) {
 	}
 }
 function focusRisposte() {
-	
+
 	var risposte = document.getElementsByName("collega");
 	for(let j = 0; j < risposte.length; ++j) {
 		if(risposte[j].checked == true) {
@@ -95,6 +97,9 @@ function focusRisposte() {
 
 function cercaProdottiMeglioRecensiti() {
 	prodottiMeglioRecensiti();
+	
+	var div = document.getElementById("altriProdotti");
+	div.innerHTML = "";
 }
 
 function aggiungiAlCarrello(id) {

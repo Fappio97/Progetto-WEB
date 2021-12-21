@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import casiUso.Database;
@@ -29,9 +29,9 @@ public class LavoraConNoiREST {
 	}
 	
 	@PostMapping("/salvaPosizioneLavoro")
-	public String salvaPosizioneLavoro(HttpServletRequest req, @RequestBody String titolo) {
+	public String salvaPosizioneLavoro(HttpServletRequest req, @RequestParam String titolo) {
 		
-		titolo = titolo.replaceAll("[-+.^:,=%$!&/()]"," ");
+		System.out.println(titolo);
 		
 		HttpSession session = req.getSession(true);
 		session.setAttribute("posizioneLavoro", titolo);

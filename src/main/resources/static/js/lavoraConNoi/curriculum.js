@@ -5,6 +5,14 @@ window.onload = function() {
 function compila() {
 	popolaComboBox();
 	campiForm();
+	caricaLavoro();
+}
+
+/* setto il tipo di lavoro in un input hidden perché mi serve passarla nel form */
+function caricaLavoro() {
+	var tipoLavoro = document.getElementById("tipoLavoro").innerHTML;
+	
+	$("#lavoro").val(tipoLavoro);
 }
 
 function faiLogin(event) {
