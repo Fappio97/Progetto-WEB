@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import casiUso.model.Job;
-import casiUso.persistenza.dao.IdJob;
 import casiUso.persistenza.dao.JobDao;
 
 public class JobDaoJDBC implements JobDao {
@@ -32,6 +31,7 @@ public class JobDaoJDBC implements JobDao {
 				Job job = new Job();
 				job.setTitle(rs.getString("title"));
 				job.setDescription(rs.getString("description"));
+				job.setRequirements(rs.getString("requirements"));
 				job.setActive(rs.getBoolean("active"));
 				lavori.add(job);
 			}
@@ -54,6 +54,7 @@ public class JobDaoJDBC implements JobDao {
 				Job job = new Job();
 				job.setTitle(rs.getString("title"));
 				job.setDescription(rs.getString("description"));
+				job.setRequirements(rs.getString("requirements"));
 				job.setActive(rs.getBoolean("active"));
 				lavori.add(job);
 			}
@@ -70,11 +71,12 @@ public class JobDaoJDBC implements JobDao {
 			//INSERT
 			try {
 				String query = "insert into job "
-						+ "values (?, ?, ?, ?)";
+						+ "values (?, ?, ?, ?, ?)";
 				PreparedStatement st = con.prepareStatement(query);
 				st.setString(1, job.getTitle());
 				st.setString(2, job.getDescription());
-				st.setBoolean(3, job.isActive());
+				st.setString(3, job.getRequirements());
+				st.setBoolean(4, job.isActive());
 				st.executeUpdate();
 				
 			} catch (SQLException e) {
@@ -86,13 +88,14 @@ public class JobDaoJDBC implements JobDao {
 			//UPDATE
 			try {
 				String query = "update job "
-						+ "set description = ?, active = ? "
+						+ "set description = ?, requirements = ?, active = ? "
 						+ "where title = ?";
 				PreparedStatement st = con.prepareStatement(query);
 				
 				st.setString(1, job.getDescription());
-				st.setBoolean(2, job.isActive());
-				st.setString(3, job.getTitle());
+				st.setString(2, job.getRequirements());
+				st.setBoolean(3, job.isActive());
+				st.setString(4, job.getTitle());
 				
 				st.executeUpdate();
 				
@@ -124,6 +127,7 @@ public class JobDaoJDBC implements JobDao {
 				lavoro = new Job();
 				lavoro.setTitle(rs.getString("title"));
 				lavoro.setDescription(rs.getString("description"));
+				lavoro.setRequirements(rs.getString("requirements"));
 				lavoro.setActive(rs.getBoolean("active"));
 			}
 		} catch (SQLException e) {

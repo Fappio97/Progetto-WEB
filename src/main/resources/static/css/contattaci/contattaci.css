@@ -14,12 +14,24 @@
 	color: gray;
 }
 
-.sticky {
+
+body {
+	overflow-wrap: break-word;
+}
+
+#navigation {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
 }
 
-body {
-	overflow-wrap: break-word;
+.header-ctn>div {
+  display: flex;
+  margin-top:0% !important;
 }
+
+.header-ctn>div+div {
+  margin-left: 2%;
+  margin-top:0% !important;
+}
+

@@ -14,7 +14,6 @@ function avanti() {
 function posizione(stringa) {
 	var diviso = stringa.split("%");
 	posizioneApertaTitle = diviso[0];
-	posizioneApertaDescription = diviso[1];
 	avanti();
 }
 
@@ -25,17 +24,30 @@ function indietro() {
 	}
 }
 
+function requisitiSpezzati(requisiti) {
+	var stringhe = requisiti.split("%");
+	
+	var s = "";
+	for(let i = 0; i < stringhe.length; ++i)
+		s += stringhe[i] + "<br />"; 
+	
+	return s;
+}
+
 function caricaListeAperte(data) {
 	var div = document.getElementById("listaPosizioniAperta");
 	
 	var s = "";
 	for(let i = 0; i < data.length; ++i) {
-		s += "<tr>"
-				+ "<th scope=\"row\"><a href = \"javascript:posizione('" + data[i].title + "%" + data[i].description + "')\">" + data[i].title + "</a></th>"
-				+ "<td>" + data[i].description + "</td>"
-			+ "</tr>";
+		if(data[i].title != "Spontaneous Candidature") {
+			s += "<tr>"
+					+ "<th scope=\"row\"><a href = \"javascript:posizione('" + data[i].title + "')\">" + data[i].title + "</a></th>"
+					+ "<td>" + data[i].description + "</td>"
+				+ "</tr>";
+			posLavoro.push(new PosizioneLavoro(data[i].title, data[i].description, data[i].requirements));
+		}
 	}
-	
+	console.log(posLavoro);
 	div.innerHTML = s;
 }
 

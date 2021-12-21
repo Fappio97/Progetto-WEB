@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Job {
 	private String title;
 	private String description;
+	private String requirements;
 	private boolean active;
 	
 	public String getTitle() {
@@ -27,10 +28,11 @@ public class Job {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
-	public Job(String title, String description, boolean active) {
+	public Job(String title, String description, String requirements, boolean active) {
 		super();
 		this.title = title;
 		this.description = description;
+		this.requirements = requirements;
 		this.active = active;
 	}
 	@Override
@@ -47,6 +49,12 @@ public class Job {
 			return false;
 		Job other = (Job) obj;
 		return Objects.equals(title, other.title);
+	}
+	public String getRequirements() {
+		return requirements;
+	}
+	public void setRequirements(String requirements) {
+		this.requirements = requirements;
 	}
 	
 }

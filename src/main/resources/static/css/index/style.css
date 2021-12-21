@@ -96,6 +96,71 @@ body {
   transform:translate(-50%, -50%);
 }
 
+.product-item {
+  border: 1px solid rgb(219,219,219);
+}
+
+.product-img{
+  position: relative;
+  overflow: hidden;
+}
+
+.btns{
+  position: absolute;
+  left: 0;
+  bottom: -100%;
+  font-size: 15px;
+  font-weight: 300;
+  transition: all 0.3s ease-in-out;
+}
+
+.btns button{
+  border: none;
+  background-color: rgb(39,39,39);
+  color: #FFF;
+  transition: all 0.3s ease-in-out;
+}
+
+.btns button:hover{
+  color: #fcb941;
+}
+
+.product-img:hover .btns{
+  bottom:0;
+}
+
+.heart-icon{
+  position: absolute;
+  top: 16px;
+  right: 15px;
+  font-size: 18px;;
+}
+
+.product-type{
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+.product-name{
+  transition: all 0.3s ease-in-out;
+}
+
+.product-name:hover{
+  color: #fcb941!important
+}
+
+.product-price{
+  color: #fcb941;
+}
+
+.rating{
+  font-size: 13px;
+}
+
+.product-item{
+  width: 300px;
+}
+
 
 @keyframes slide {
   0% {
@@ -524,7 +589,7 @@ header{
 }
 
 .header-search form .search-btn {
-  position: relative;
+  position: absolute;
   height: 41px;
   width: 100px;
   background: #0b3de1;
@@ -878,7 +943,7 @@ header{
   padding: 60px 0px;
   margin: 30px 0px;
   background-color: transparent;
-  background-image: url('../img/hotdeal.png');
+  background-image: url('../../images/index/hotdeal.png');
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -2342,3 +2407,36 @@ header{
 .header-search select {
 	width: 140px;
 }
+
+@import url('https://fonts.googleapis.com/css?family=Lato:100&display=swap');
+
+.btnLog {
+  width: 100px;
+  height: 40px;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid #0b3de1;
+  outline: none;
+  transition: 1s ease-in-out;
+  border-radius: 30px 30px 30px 30px;
+}
+.btnLog:hover {
+  transition: 1s ease-in-out;
+  background: #4F95DA;
+}
+
+.btnLog:hover svg {
+  stroke-dashoffset: -480;
+}
+
+.btnLog span {
+  color: white;
+  font-size: 18px;
+  font-weight: 100;
+}
+
+.profilePic{
+	margin-right: 7px;
+}
+
+	

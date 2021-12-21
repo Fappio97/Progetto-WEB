@@ -19,7 +19,7 @@ function compila() {
 			break;
 		case 2:
 			barraNavigazione(elementiNav[ind]);
-			soloTesto("testo1", posizioneApertaTitle, sezioniTesti[ind].testo, posizioneApertaDescription);
+			soloTesto("testo1", posizioneApertaTitle, sezioniTesti[ind].testo);
 			inviaCandidatura("testo2", candidatura[ind - 1]);
 			break;
 /*		case 3:
@@ -126,7 +126,7 @@ function soloTabella(elemento) {
 					+ "</div>";
 }
 
-function soloTesto(elemento, titolo, testo, descrizione) {
+function soloTesto(elemento, titolo, testo) {
 	var div = document.getElementById(elemento);
 	
 	let t = testo.split("#");
@@ -141,14 +141,26 @@ function soloTesto(elemento, titolo, testo, descrizione) {
 		for(let j = 0; j < frasi[i].length; ++j)
 			s[i] += "<p>" + frasi[i][j] + "</p>";
 	}
-	
+	console.log(titolo);
+	let indice = -1;
+	for(let i = 0; i < posLavoro.length; ++i) {
+		console.log(posLavoro[i]);
+		if(posLavoro[i].titolo == titolo) {
+			indice = i;
+			break;
+		}
+	}
+		
 	div.innerHTML = "<div class = \"row\">"
 						+ "<div class = \"col-sm-12\" id = \"testoSezione\">"
 						    + "<br />"
 							+ "<p id = \"titoloSezione\">" + titolo + "</p><br /><br />"
 							+ s[0]
 							+ "<br />"
-							+ descrizione
+							+ posLavoro[indice].descrizione
+							+ "<br /><br /><br />"
+							+ "<p>Requirements</p>"
+							+ posLavoro[indice].requisiti
 							+ "<br /><br /><br />"
 							+ s[1]
 							+ "<br /><br /><br />"

@@ -41,7 +41,7 @@ public class LavoraConNoi {
 	@PostMapping("/loginCurriculum")
 	public String faiLogin(HttpServletRequest req, HttpServletResponse resp, String username, String pass) throws IOException {
 		
-		Database.getInstance().getLogin().faiLogin(req, resp, username, pass);
+		Database.getInstance().getLogin().faiLoginCurriculum(req, resp, username, pass);
 		
 		return "curriculum";
 	}

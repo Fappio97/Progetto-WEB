@@ -98,8 +98,8 @@ function controllaDataNascita() {
 }
 
 function controllaSelects() {
-	var input = document.querySelectorAll('select');
-	for(let i = 1; i < 3; ++i)
+	var input = document.querySelectorAll('.studio');
+	for(let i = 0; i < input.length; ++i)
 		if(input[i].value == "" || input[i].value == " -- select an option -- ")
 			return false;
 	return true;

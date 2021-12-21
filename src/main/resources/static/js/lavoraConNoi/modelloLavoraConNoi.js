@@ -8,10 +8,20 @@ function Sezione(titolo, testo) {
 	this.testo = testo;
 }
 
+function PosizioneLavoro(titolo, descrizione, requisiti) {
+	this.titolo = titolo;
+	this.descrizione = descrizione;
+	this.requisiti = requisitiSpezzati(requisiti);
+}
+
 /* --- INDICE PER SCORRERE --- */
 var ind = 0;
 var posizioneApertaTitle = "";
-var posizioneApertaDescription = "";
+
+
+/* salvaPosizioniLavoro */
+
+posLavoro = new Array();
 
 /* nav */
 
