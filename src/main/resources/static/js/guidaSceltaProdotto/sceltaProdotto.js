@@ -137,21 +137,26 @@ function inviaSegnalazione(){
 		testo.style.borderColor = "red";
 		testo.value = 'Write your problem here ...';
  	} else {
-		row.innerHTML = "Report sent!";
-		//funzione per inviare la segnalazione con ajax
 		
-		let origineProblema = "Problem origin: ";
+		let origineProblema = "";
 		if(ind != -1) {
-			origineProblema += categoriaSelezionata + "\n";
-			origineProblema += "Question n° " + ind + "\n";
+			origineProblema += categoriaSelezionata + ". ";
+			origineProblema += "Question n° " + ind + "";
 		} else
-			origineProblema += "choice of categories\n";
+			origineProblema += "choice of categorie";
 			
-		console.log(origineProblema + "Problem: " + segnalazione);
+		segnalazioneAjax(origineProblema, segnalazione);
 		
 		document.getElementById("pulsanteProblema").style.display = 'inline';
 		document.getElementById("pulsanteInvia").style.display = 'none';
 	}
+}
+
+function stampaEsitoSegnalazione(data) {
+	var row = document.getElementById("segnalazione2");
+	console.log(data);
+	if(data) 
+		row.innerHTML = "Report sent!";
 }
 
 

@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/guidaSceltaProdotto")
 public class GuidaSceltaProdotto {
 
-	@GetMapping("/guidaProdotto")
+	@GetMapping("/guidaSceltaProdotto")
 	public String guidaProdotto(HttpServletRequest req) {
-		return "guidaProdotto";
+		return "guidaSceltaProdotto";
 	}
 	
 }

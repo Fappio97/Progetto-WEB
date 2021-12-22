@@ -11,12 +11,15 @@ public class Product {
 	private String type;
 	private String brand;
 	private Float reviews;
+	private Float price;
 	
 	public Product() {
 	}
 
+
+
 	public Product(String model, int quantity, String tags, String description, String type, String brand,
-			Float reviews) {
+			Float reviews, Float price) {
 		super();
 		this.model = model;
 		this.quantity = quantity;
@@ -25,7 +28,10 @@ public class Product {
 		this.type = type;
 		this.brand = brand;
 		this.reviews = reviews;
+		this.price = price;
 	}
+
+
 
 	@Override
 	public int hashCode() {
@@ -110,6 +116,14 @@ public class Product {
 
 	public void setReviews(Float reviews) {
 		this.reviews = reviews;
+	}
+
+	public Float getPrice() {
+		return price;
+	}
+
+	public void setPrice(Float price) {
+		this.price = price;
 	}
 	
 }

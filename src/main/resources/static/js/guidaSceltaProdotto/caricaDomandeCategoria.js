@@ -63,7 +63,7 @@ function pannelloSuperiore(stringa) {
 	
 	var row = document.getElementById("imageDescription");		
 	row.innerHTML = "<figure>"
-						+ "<img src= \"../immagini/guidaSceltaProdotto/pannelloSopra/" + stringa + ".png\" width = 100% height = 50% class = \"img-fluid\"/>"
+						+ "<img src= \"../immagini/guidaSceltaProdotto/pannelloSopra/" + stringa + ".png\" class = \"img-fluid\"/>"
 					+ "</figure>"
 						+ "<div id = \"description\" >"
 							+ "<p class = \"titolo\">Find the " + prodotto + "</p>"
@@ -343,6 +343,7 @@ function inserisciProdotti(prodotti) {
 		
 		s += "<br/>"
 				+ "<div>"
+					+ "<strong> €" + prodotti[i].price + "</strong>"
 					+ "<button id = \"pulsanteCompraOra\" class=\"btn btn-light\" onclick = \"aggiungiAlCarrello(" + prodotti[i].id + ")\">"
 						+ "Buy Now"
 					+ "</button>"

@@ -7,11 +7,13 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import casiUso.Database;
 import casiUso.model.Product;
 import casiUso.model.ProductTag;
+import casiUso.model.Report;
 
 @RestController
 public class GuidaSceltaProdottoREST {
@@ -82,5 +84,10 @@ public class GuidaSceltaProdottoREST {
 			prodottiMeglioRecensiti.add(prodotti.get(i));
 		
 		return prodottiMeglioRecensiti;
+	}
+	
+	@PostMapping("/salvaReport")
+	public boolean salvaReport(@RequestParam String origin, @RequestParam String description) {
+		return Database.getInstance().getReport().saveOrUpdate(new Report(origin, description));
 	}
 }

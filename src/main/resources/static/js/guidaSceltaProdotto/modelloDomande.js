@@ -17,6 +17,7 @@ function CategoriaTag(categoria, tag) {
 }
 
 /* --- INDICE PER SCORRERE --- */
+
 var ind = -1;
 
 /* --- CATEGORIE --- */ 

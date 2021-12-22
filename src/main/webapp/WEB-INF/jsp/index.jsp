@@ -175,7 +175,7 @@
 			</div>
     		<div class="col-sm-4 p-3 bg-primary text-white" id = "linkSelezionaProdotto">
     			
-    			<a class="clearfix" href="guidaSceltaProdotto/guidaProdotto">
+    			<a class="clearfix" href="guidaSceltaProdotto/guidaSceltaProdotto">
     				<button class ="button" >Select your product</button>	
     			</a>
     	<!--	<a href="guidaSceltaProdotto/guidaProdotto" class="btn btn-light" stretched-link">Seleziona il tuo prodotto</a>  -->

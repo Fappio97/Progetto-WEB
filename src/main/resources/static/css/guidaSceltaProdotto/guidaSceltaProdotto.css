@@ -32,6 +32,11 @@ con absolute*/
 	position: relative;
 }
 
+#imageDescription img {
+	height: 50%;
+	width: 100%;
+}
+
 #description {
 	background-color: #0b3de1;
 	color: white;

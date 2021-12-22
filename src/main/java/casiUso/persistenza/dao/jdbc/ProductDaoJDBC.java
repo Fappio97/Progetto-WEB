@@ -37,6 +37,7 @@ public class ProductDaoJDBC implements ProductDao {
 				prodotto.setType(rs.getString("type"));
 				prodotto.setBrand(rs.getString("brand"));
 				prodotto.setReviews(rs.getFloat("reviews"));
+				prodotto.setPrice(rs.getFloat("price"));
 				prodotti.add(prodotto);
 			}
 		} catch (SQLException e) {
@@ -64,6 +65,7 @@ public class ProductDaoJDBC implements ProductDao {
 				prodotto.setType(rs.getString("type"));
 				prodotto.setBrand(rs.getString("brand"));
 				prodotto.setReviews(rs.getFloat("reviews"));
+				prodotto.setPrice(rs.getFloat("price"));
 				prodotti.add(prodotto);
 			}
 		} catch (SQLException e) {

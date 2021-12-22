@@ -42,3 +42,21 @@ function prodottiMeglioRecensiti() {
 		}
 	});
 }
+
+function segnalazioneAjax(origine, descrizione) {
+	$.ajax({
+		type: "POST",
+		url: "/salvaReport",
+		data: {
+			origin: origine,
+			description: descrizione
+		},
+		success: function(data){
+			alert("tutto ok");
+			stampaEsitoSegnalazione(data);
+		},
+		error: function(xhr){
+			alert("tutto male");
+		}
+	});
+}
