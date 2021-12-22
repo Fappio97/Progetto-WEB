@@ -239,7 +239,21 @@ con absolute*/
 	opacity: 0.9;
 }
 
+figure img {
+	margin-right: auto;
+	margin-left: auto;
+	display: block;
+}
 
+#icona, #requisitoSoddisfatto {
+	display: inline !important;
+}
+
+.prezzo a {
+	text-decoration: none;
+	color: #0b3de1;
+	font-weight: bold;
+}
 
 
 

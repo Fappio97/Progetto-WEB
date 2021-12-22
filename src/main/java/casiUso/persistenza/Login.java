@@ -27,8 +27,6 @@ public class Login {
 			ResultSet rs = st.executeQuery(sql);
 			if (rs.next()) {
 				session.setAttribute("username", rs.getString("username"));
-				session.setAttribute("nome", rs.getString("first_name"));
-				session.setAttribute("cognome", rs.getString("last_name"));
 				return true;
 			}
 				

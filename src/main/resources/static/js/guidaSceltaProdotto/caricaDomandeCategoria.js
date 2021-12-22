@@ -270,11 +270,11 @@ function inserisciProdottiTag(prodottiTag) {
 	
 	if(prodottiTag.length == 0) {
 		row.innerHTML = "<p class = \"testoCentrale\">We don't have products that meet your needs at the moment.</p>"
-						+ "<p class = \"testoCentrale\">Look for the best " + categoriaSelezionata +  " favorites by users.</p>"
+						+ "<figure>"
+							+ "<img src = \"../immagini/guidaSceltaProdotto/risposte/triste.png\">"
+						+ "</figure>"
+						+ "<p class = \"testoCentrale\">You can always see the best reviewed " + categoriaSelezionata +  ".</p>"
 						+ "<br />"
-						+ "<button type=\"button\" class=\"btn btn-light\" id = \"cercaProdottiMeglioRecensiti\" onclick = \"cercaProdottiMeglioRecensiti()\">"
-							+ "Search"
-						+ "</button>";
 		return;
 	}
 	
@@ -282,7 +282,7 @@ function inserisciProdottiTag(prodottiTag) {
 	let s = "";
 	for(let i = 0; i < prodottiTag.length; ++i) {
 		
-		s = "<br /><strong>" + prodottiTag[i].product.brand + " " + prodottiTag[i].product.model + "</strong><br /><br />";
+		s = "<br /><strong>" + prodottiTag[i].product.name + "</strong><br /><br />";
 		for(let j = 0; j < tag.length; ++j) {
 			if(prodottiTag[i].tagSoddisfatti[j] == true)
 				s += "<div class = \"requisito\">"
@@ -301,16 +301,15 @@ function inserisciProdottiTag(prodottiTag) {
 		}
 		
 		s += "<br/>"
-				+ "<div>"
-					+ "<button id = \"pulsanteCompraOra\" class=\"btn btn-light\" onclick = \"aggiungiAlCarrello(" + prodottiTag[i].product.id + ")\">"
-						+ "Buy Now"
-					+ "</button>"
+				+ "<div class = \"prezzo\">"
+					+ "<strong> € " + prodottiTag[i].product.price + " </strong>"
+					+ "<a href=\"/visualizzaProdotto?id=" + prodottiTag[i].id + "\">View details</a>"
 				+ "</div>";
 		
 		stringa += "<div class = \"row\" id = \"prodotto\">"
 						+ "<div class=\"col-8\"id = \"immagineProdotto\">"
 							+ "<figure>"
-								+ "<img src = \"../immagini/prodotti/" + prodottiTag[i].product.model.toLowerCase() + ".png\">"
+								+ "<img src = \"../immagini/prodotti/" + prodottiTag[i].product.name.toLowerCase() + ".png\">"
 							+ "</figure>"
 						+ "</div>"
 						+ "<div class=\"col-4\" id = \"requisitiUtente\">"
@@ -330,7 +329,7 @@ function inserisciProdotti(prodotti) {
 	let s = "";
 	for(let i = 0; i < prodotti.length; ++i) {
 		
-		s = "<br /><strong>" + prodotti[i].brand + " " + prodotti[i].model + "</strong><br /><br />";
+		s = "<br /><strong>" + prodotti[i].name + "</strong><br /><br />";
 		var tags = prodotti[i].tags.split(",");
 		for(let j = 0; j < tags.length; ++j) {
 			s += "<div class = \"requisito\">"
@@ -342,17 +341,15 @@ function inserisciProdotti(prodotti) {
 		}
 		
 		s += "<br/>"
-				+ "<div>"
-					+ "<strong> €" + prodotti[i].price + "</strong>"
-					+ "<button id = \"pulsanteCompraOra\" class=\"btn btn-light\" onclick = \"aggiungiAlCarrello(" + prodotti[i].id + ")\">"
-						+ "Buy Now"
-					+ "</button>"
+				+ "<div class = \"prezzo\">"
+					+ "<strong> €" + prodotti[i].price + " </strong>"
+					+ "<a href=\"/visualizzaProdotto?id=" + prodotti[i].id + "\">View details</a>"
 				+ "</div>";
 		
 		stringa += "<div class = \"row\" id = \"prodotto\">"
 						+ "<div class=\"col-8\"id = \"immagineProdotto\">"
 							+ "<figure>"
-								+ "<img src = \"../immagini/prodotti/" + prodotti[i].model.toLowerCase() + ".png\" class = \"img-fluid\">"
+								+ "<img src = \"../immagini/prodotti/" + prodotti[i].name.toLowerCase() + ".png\" class = \"img-fluid\">"
 							+ "</figure>"
 						+ "</div>"
 						+ "<div class=\"col-4\" id = \"requisitiUtente\">"
@@ -438,7 +435,7 @@ function caricaBarraNavigazione() {
 	row.innerHTML = "<div class= \"col-3\" id = \"indiceDomandeSX\">"
 						+ "<button class = \"button\" id = \"pulsanteReset\" onclick=\"rinizia()\">"
 							+ "<figure>"
-								+ "<img src=\"../immagini/guidaSceltaProdotto/icone/rinizia.png\" width = 30% class = \"img-fluid\"/><br />"
+								+ "<img id = \"icona\" src=\"../immagini/guidaSceltaProdotto/icone/rinizia.png\" width = 30% class = \"img-fluid\"/><br />"
 							+ "</figure>"
 								+ "Reset"
 						+ "</button>"
@@ -450,7 +447,7 @@ function caricaBarraNavigazione() {
 					+ "<div class=\"col-3\" id = \"indiceDomandeDX\">"
 						+ "<button class =\"button\" id = \"pulsanteResult\" onclick=\"risultati()\">"
 							+ "<figure>"
-								+ "<img src=\"../immagini/guidaSceltaProdotto/icone/risultati.png\" width = 30% class = \"img-fluid\"/><br />"
+								+ "<img id = \"icona\" src=\"../immagini/guidaSceltaProdotto/icone/risultati.png\" width = 30% class = \"img-fluid\"/><br />"
 							+ "</figure>"
 								+ "Results"
 						+ "</button> "

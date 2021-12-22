@@ -14,5 +14,5 @@ public class GuidaSceltaProdotto {
 	public String guidaProdotto(HttpServletRequest req) {
 		return "guidaSceltaProdotto";
 	}
-	
+
 }

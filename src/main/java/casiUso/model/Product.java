@@ -4,12 +4,11 @@ import java.util.Objects;
 
 public class Product {
 	private long id;
-	private String model;
+	private String name;
 	private int quantity;
 	private String tags;
 	private String description;
 	private String type;
-	private String brand;
 	private Float reviews;
 	private Float price;
 	
@@ -18,15 +17,14 @@ public class Product {
 
 
 
-	public Product(String model, int quantity, String tags, String description, String type, String brand,
+	public Product(String name, int quantity, String tags, String description, String type,
 			Float reviews, Float price) {
 		super();
-		this.model = model;
+		this.name = name;
 		this.quantity = quantity;
 		this.tags = tags;
 		this.description = description;
 		this.type = type;
-		this.brand = brand;
 		this.reviews = reviews;
 		this.price = price;
 	}
@@ -58,12 +56,12 @@ public class Product {
 		this.id = id;
 	}
 
-	public String getModel() {
-		return model;
+	public String getName() {
+		return name;
 	}
 
-	public void setModel(String model) {
-		this.model = model;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public int getQuantity() {
@@ -97,16 +95,6 @@ public class Product {
 	public void setType(String type) {
 		this.type = type;
 	}
-
-	public String getBrand() {
-		return brand;
-	}
-
-	public void setBrand(String brand) {
-		this.brand = brand;
-	}
-
-
 
 	public Float getReviews() {
 		return reviews;
