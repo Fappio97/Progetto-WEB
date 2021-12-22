@@ -7,6 +7,9 @@
 	<!-- Favicon -->
 	<link rel="icon" href="../immagini/index/logo.png" type="image/x-icon"/>
 	
+	<!-- Titolo -->
+	<title>Select your product</title>
+	
 	<!-- CSS -->
 	<link href="../css/guidaSceltaProdotto/guidaSceltaProdotto.css" rel="stylesheet" type="text/css" />
 	

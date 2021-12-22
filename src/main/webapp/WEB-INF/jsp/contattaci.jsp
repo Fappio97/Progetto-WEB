@@ -6,6 +6,9 @@
 	
 	<!-- Favicon -->
 	<link rel="icon" href="../immagini/index/logo.png" type="image/x-icon"/>
+
+	<!-- Titolo -->
+	<title>Contact us</title>
 	
 	<!-- CSS -->
 	<link href="../css/contattaci/contattaci.css" rel="stylesheet" type="text/css" />
@@ -19,7 +22,7 @@
 
 	<!--AJAX ha la dipendenza nel pom -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+	
 <!------------------------GRUPPO-------------------------------------------->	
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">

@@ -7,6 +7,9 @@
 	<!-- Favicon -->
 	<link rel="icon" href="../immagini/index/logo.png" type="image/x-icon"/>
 	
+	<!-- Titolo -->
+	<title>Work with us</title>
+	
 	<!-- CSS -->
 	<link href="../css/lavoraConNoi/lavoraConNoi.css" rel="stylesheet" type="text/css" />
 	

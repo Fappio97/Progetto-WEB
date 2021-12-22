@@ -8,4 +8,5 @@ public interface ReportDao {
 	public List<Report> findAll();
 	public boolean saveOrUpdate(Report report);
 	public boolean delete(Report report);
+	public Report findById(Long id);
 }
