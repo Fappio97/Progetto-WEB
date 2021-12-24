@@ -159,7 +159,7 @@ function soloTesto(elemento, titolo, testo) {
 							+ "<br />"
 							+ posLavoro[indice].descrizione
 							+ "<br /><br /><br />"
-							+ "<p>Requirements</p>"
+							+ "<p><strong>Requirements</strong></p>"
 							+ posLavoro[indice].requisiti
 							+ "<br /><br /><br />"
 							+ s[1]

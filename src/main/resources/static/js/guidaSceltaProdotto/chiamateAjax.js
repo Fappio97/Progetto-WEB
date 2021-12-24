@@ -51,9 +51,9 @@ function segnalazioneAjax(origine, descrizione) {
 			origin: origine,
 			description: descrizione
 		},
-		success: function(data){
+		success: function(){
 			alert("tutto ok");
-			stampaEsitoSegnalazione(data);
+			stampaEsitoSegnalazione();
 		},
 		error: function(xhr){
 			alert("tutto male");

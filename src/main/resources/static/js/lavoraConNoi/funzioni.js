@@ -25,7 +25,7 @@ function indietro() {
 }
 
 function requisitiSpezzati(requisiti) {
-	var stringhe = requisiti.split("%");
+	var stringhe = requisiti.split(".");
 	
 	var s = "";
 	for(let i = 0; i < stringhe.length; ++i)

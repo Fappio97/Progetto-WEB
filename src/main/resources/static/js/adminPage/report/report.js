@@ -4,7 +4,7 @@ window.onload = function() {
 
 function pulsanteCancella() {
 	btnCancella.addEventListener("click", function(){
-		var selectedCheckBoxes = document.querySelectorAll("input:checked");
+		var selectedCheckBoxes = document.querySelectorAll("input.report:checked");
 		
 		if (selectedCheckBoxes.length > 0){
 			if(confirm("Are you sure you want to delete?")) {
@@ -30,10 +30,30 @@ function pulsanteCancella() {
 					});
 						
 				});
+				
+				$("#checkBoxTh").prop("checked", false);
+				
 			}
-		}else{
+			
+		} else
 			alert("Select at least one element!");
-		}
 		
+	});
+}
+
+function checkBoxTh() {
+	if($("#checkBoxTh").attr('checked')) {
+		selezionaDeselezionaTuttiCheckBox(false);
+		$("#checkBoxTh").attr('checked', false);
+	}
+	else {
+		selezionaDeselezionaTuttiCheckBox(true);
+		$("#checkBoxTh").attr('checked', true);
+	}	
+}
+
+function selezionaDeselezionaTuttiCheckBox(selezionare) {
+	$("input[type=checkbox]").each(function() {
+		$(this).prop("checked", selezionare);
 	});
 }

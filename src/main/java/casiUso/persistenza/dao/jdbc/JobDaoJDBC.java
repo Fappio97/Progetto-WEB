@@ -71,12 +71,12 @@ public class JobDaoJDBC implements JobDao {
 			//INSERT
 			try {
 				String query = "insert into job "
-						+ "values (?, ?, ?, ?, ?)";
+						+ "values (?, ?, ?, ?)";
 				PreparedStatement st = con.prepareStatement(query);
 				st.setString(1, job.getTitle());
 				st.setString(2, job.getDescription());
-				st.setString(3, job.getRequirements());
-				st.setBoolean(4, job.isActive());
+				st.setBoolean(3, job.isActive());
+				st.setString(4, job.getRequirements());
 				st.executeUpdate();
 				
 			} catch (SQLException e) {
@@ -111,8 +111,19 @@ public class JobDaoJDBC implements JobDao {
 
 	@Override
 	public boolean delete(Job job) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			String query = "delete from job "
+					+ "where title = ?";
+			PreparedStatement st = con.prepareStatement(query);
+			st.setString(1, job.getTitle());
+			st.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 
 	@Override
@@ -137,4 +148,21 @@ public class JobDaoJDBC implements JobDao {
 		return lavoro;
 	}
 
+	@Override
+	public boolean checkByPrimaryKey(String nome) {
+		String query = "select * from job where title = ?";
+		try {
+			PreparedStatement st = con.prepareStatement(query);
+			st.setString(1, nome);
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				return true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
 }

@@ -48,11 +48,11 @@ public class Database {
 		return new Login(conn);
 	}
 	
-	public CurriculumDao getCurriculum() {
+	public CurriculumDao getCurriculumDao() {
 		return new CurriculumDaoJDBC(conn);
 	}
 	
-	public ReportDao getReport() {
+	public ReportDao getReportDao() {
 		return new ReportDaoJDBC(conn);
 	}
 

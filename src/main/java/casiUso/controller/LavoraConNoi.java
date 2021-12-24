@@ -59,7 +59,7 @@ public class LavoraConNoi {
 			String percorso = writeFile(cognome + "_" + nome);
 			foto.transferTo(new File(percorso + "/" + foto.getOriginalFilename()));
 			cv.transferTo(new File(percorso + "/" + cv.getOriginalFilename()));
-			Database.getInstance().getCurriculum().saveOrUpdate(new Curriculum(
+			Database.getInstance().getCurriculumDao().saveOrUpdate(new Curriculum(
 					Database.getInstance().getJobDao().findByPrimaryKey(lavoro), nome, cognome, dataNascita,
 					email, materiaStudio, titoloStudio, funzioneLavoro, classificazioneLavoro, 
 					percorso + "/" + foto.getOriginalFilename(), percorso + "/" + cv.getOriginalFilename(), letteraPresentazione));

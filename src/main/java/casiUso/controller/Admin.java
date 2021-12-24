@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import casiUso.Database;
+import casiUso.model.Job;
 import casiUso.model.Report;
 
 @Controller
@@ -33,12 +34,23 @@ public class Admin {
 	@GetMapping("/visualizzaReports")
 	public String visualizzaReports(HttpServletRequest req) {
 		
-		List<Report> reports = Database.getInstance().getReport().findAll();
+		List<Report> reports = Database.getInstance().getReportDao().findAll();
 		
 		HttpSession session = req.getSession(true);
 		session.setAttribute("report", reports);
 		
 		return "visualizzaReports";
+	}
+	
+	@GetMapping("/visualizzaPosizioniLavoro")
+	public String visualizzaPosizioniLavoro(HttpServletRequest req) {
+		
+		List<Job> jobs = Database.getInstance().getJobDao().findAll();
+		
+		HttpSession session = req.getSession(true);
+		session.setAttribute("lavori", jobs);
+		
+		return "posizioniLavoro";
 	}
 	
 }

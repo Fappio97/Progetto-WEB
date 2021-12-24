@@ -143,7 +143,7 @@ function inviaSegnalazione(){
 			origineProblema += categoriaSelezionata + ". ";
 			origineProblema += "Question n° " + ind + "";
 		} else
-			origineProblema += "choice of categorie";
+			origineProblema += "choice of category";
 			
 		segnalazioneAjax(origineProblema, segnalazione);
 		
@@ -152,11 +152,11 @@ function inviaSegnalazione(){
 	}
 }
 
-function stampaEsitoSegnalazione(data) {
+function stampaEsitoSegnalazione() {
 	var row = document.getElementById("segnalazione2");
-	console.log(data);
-	if(data) 
-		row.innerHTML = "Report sent!";
+	row.innerHTML = "";
+	
+	alert("Report sent!");
 }
 
 

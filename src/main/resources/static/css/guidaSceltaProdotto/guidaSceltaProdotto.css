@@ -1,4 +1,9 @@
 /* --- INDEX --- */
+#navigation {
+	position: sticky;
+	top: 0;
+	z-index: 1;
+}
 
 #linkSelezionaProdotto {
 	text-align: right;
@@ -113,10 +118,10 @@ con absolute*/
 }
 
 .sticky {
-  position: -webkit-sticky;
   position: sticky;
-  top: 0;
+  top: 50px;
   font-size: 20px;
+  z-index: 0;
 }
 
 #pulsanteAvanti, #pulsanteProblema {

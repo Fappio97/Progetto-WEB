@@ -88,6 +88,6 @@ public class GuidaSceltaProdottoREST {
 	
 	@PostMapping("/salvaReport")
 	public boolean salvaReport(@RequestParam String origin, @RequestParam String description) {
-		return Database.getInstance().getReport().saveOrUpdate(new Report(origin, description));
+		return Database.getInstance().getReportDao().saveOrUpdate(new Report(origin, description));
 	}
 }

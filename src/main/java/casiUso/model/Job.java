@@ -56,5 +56,8 @@ public class Job {
 	public void setRequirements(String requirements) {
 		this.requirements = requirements;
 	}
-	
+	public boolean ugualiTotalmente(Job job) {
+		return this.title.equals(job.title) && this.description.equals(job.description) &&
+				this.requirements.equals(job.requirements) && this.active == job.active;
+	}
 }

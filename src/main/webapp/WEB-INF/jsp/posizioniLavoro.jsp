@@ -20,8 +20,9 @@
   	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>	
 
 	<!-- JS -->
-	<script language="javascript" src="js/adminPage/report/report.js"></script>
-
+	<script src="js/adminPage/posizioniLavoro/posizioniLavoro.js"></script>
+	<script src="js/adminPage/posizioniLavoro/chiamateAjax.js"></script>
+	
 	<!--AJAX ha la dipendenza nel pom -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	
@@ -136,29 +137,75 @@
 
 <!------------------------FABIO-------------------------------------------->
 
-		<h1 id = "titolo">All report received</h1>
-		<table id="tabellaReports" class="table table-borderless">
+		<h1 id = "titolo">Job positions</h1>
+		<table id="tabellaLavori" class="table table-borderless">
 			<thead>
 				<tr>
 					<th><input type="checkbox" id = "checkBoxTh" onchange = "checkBoxTh()" /></th>
-					<th>Origin problem</th>
-					<th>Description</th>
+					<th id = "titoloTh">Title</th>
+					<th id = "descrizioneTh">Description</th>
+					<th id = "requisitiTh">Requirements</th>
+					<th id = "attivoTh">Active</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${report}" var="rep">
-					<tr>
-						<td><input id="${rep.id}" type="checkbox" class = "report" /></td>
-						<td>${rep.problem_origin}</td>
-						<td>${rep.description}</td>
-					</tr>
-				</c:forEach>					
+				<c:forEach items="${lavori}" var="lav">
+					<c:if test = "${lav.title ne 'Spontaneous Candidature'}">
+						<tr>
+							<td><input type="checkbox" class = "lavoro"/></td>
+							<td class = "titoloLavoro">${lav.title}</td>
+							<td>${lav.description}</td>
+							<td class = "formattaTesto">${lav.requirements}</td>
+							<td>
+								<c:if test = "${lav.active == true}">
+									<input type="checkbox" id = "lavoroCheckBox" checked/>
+									<figure>
+										<img src = "immagini/admin/posizioniLavoro/si.png">
+									</figure>
+								</c:if>
+								<c:if test = "${lav.active == false}">
+									<input type="checkbox" id = "lavoroCheckBox" unchecked/>
+									<figure>
+										<img src = "immagini/admin/posizioniLavoro/no.png">
+									</figure>
+								</c:if>
+							</td>
+						</tr>
+					</c:if>
+				</c:forEach>			
 			</tbody>
 		</table>
 		
 		<br/>
-		<input class="btn btn-danger" id="btnCancella" type="button" value="Delete report" />
-		<br/><br/>
+		<input class="btn btn-danger" id="btnCancella" type="button" value="Delete job" />
+		<input class="btn btn-warning" id="btnModifica" onclick = "pulsanteModifica()" type="button" value="Edit job" />
+		<input class="btn btn-primary" id="btnInserisci" onclick = "pulsanteAggiungi()" type="button" value="Add job"/>
+		<br/>
+		
+		<form id = "form" method = "post" action = "/aggiugiModificaLavoro">
+			<div id = "divForm" class = "container-fluid">
+				<div class = "row">
+					<div class="col-sm-2">
+						<textarea id="titoloForm" onkeyup="textAreaAdjust(this)" placeholder="Enter the title"/></textarea>
+					</div>
+					<div class="col-sm-4">
+						<textarea id="descrizioneForm" onkeyup="textAreaAdjust(this)" placeholder="Enter the description"/></textarea>
+					</div>
+					<div class="col-sm-5">
+						<textarea id="requisitiForm" onkeyup="textAreaAdjust(this)" placeholder="Enter the requirements"/></textarea>
+					</div>
+					<div class="col-sm-1">
+						<p id = "testoAttivo">Active</p>
+						<input type="checkbox" id = "checkBoxForm" />
+					</div>	
+				</div>
+				<br />
+				<div class = "row">
+					<input class="btn btn-primary" onclick = "inviaLavoro()" id="btnInvia" type="button" value="Send" />
+				</div>
+			</div>
+		</form>
+		<br/>
 
 <!------------------------FABIO-------------------------------------------->
 
