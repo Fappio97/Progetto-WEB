@@ -11,6 +11,11 @@ body .formattaTesto {
 	overflow-wrap: anywhere;
 }
 
+body #tabellaCV {
+	overflow-wrap: anywhere;
+}
+
+
 input[type=button] {
 	margin-left: 10px;
 	margin-bottom: 10px;

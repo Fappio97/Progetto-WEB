@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import casiUso.Database;
+import casiUso.model.Curriculum;
 import casiUso.model.Job;
 import casiUso.model.Report;
 
@@ -51,6 +52,21 @@ public class Admin {
 		session.setAttribute("lavori", jobs);
 		
 		return "posizioniLavoro";
+	}
+	
+	@GetMapping("/visualizzaCurriculum")
+	public String visualizzaCurriculum(HttpServletRequest req) {
+		
+		List<Curriculum> curriculum = Database.getInstance().getCurriculumDao().findAll();
+		
+		for(int i = 0; i < curriculum.size(); ++i) {
+			System.out.println(curriculum.get(i).getDate_birth() + " " + curriculum.get(i).getLast_classification());
+		}
+		
+		HttpSession session = req.getSession(true);
+		session.setAttribute("curriculum", curriculum);
+		
+		return "visualizzaCV";
 	}
 	
 }

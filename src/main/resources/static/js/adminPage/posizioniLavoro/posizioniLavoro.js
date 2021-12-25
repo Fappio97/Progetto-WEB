@@ -146,7 +146,10 @@ function pulsanteModifica() {
 		titoloForm.value = titolo.innerHTML;
 		descrizioneForm.value = descrizione.innerHTML;
 		requisitiForm.value = requisiti.innerHTML;
+/*		console.log("Form attivo " + attivoForm.checked);
+		console.log("Attivo " + attivo.childNodes[1].checked);*/
 		attivoForm.checked = attivo.childNodes[1].checked;
+/*		console.log("Form attivo post " + attivoForm.checked);*/
 		
 	} else
 		alert("You have to select only one element!");

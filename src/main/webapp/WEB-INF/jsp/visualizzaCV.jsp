@@ -141,21 +141,53 @@
 
 <!------------------------FABIO-------------------------------------------->
 
-		<h1 id = "titolo">All report received</h1>
-		<table id="tabellaReports" class="table table-borderless">
+		<h1 id = "titolo">All curriculum received</h1>
+		<table id="tabellaCV" class="table table-borderless">
 			<thead>
 				<tr>
 					<th><input type="checkbox" id = "checkBoxTh" onchange = "checkBoxTh()" /></th>
-					<th>Origin problem</th>
-					<th>Description</th>
+					<th>Scope work</th>
+					<th>Personal data</th>
+					<th>Education and work</th>
+					<th>Photo & Curriculum</th>
+					<th>Presentation</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${report}" var="rep">
+				<c:forEach items="${curriculum}" var="cv">
 					<tr>
-						<td><input id="${rep.id}" type="checkbox" class = "report" /></td>
-						<td>${rep.problem_origin}</td>
-						<td>${rep.description}</td>
+						<td><input id="${cv.id}" type="checkbox" class = "report" /></td>
+						<td>${cv.job.title}</td>
+						<td>
+							${cv.first_name} 
+							<br /> 
+							${cv.last_name} 
+							<br /><br />
+							${cv.date_birth}
+							<br />
+							${cv.email}
+						</td>
+						<td>
+							${cv.educational_qualification} 
+							<br /> 
+							${cv.study_subject}
+							<br /><br />
+							<c:if test = "${cv.last_function == ' -- select an option -- '}">
+							</c:if>
+							<c:if test = "${cv.last_function != ' -- select an option -- '}">
+								${cv.last_function}
+							</c:if>
+							<br />
+							${cv.last_classification}
+						</td>
+						<td>
+							<a href="${cv.photo}" target="_blank">
+								<img src = "${cv.photo}">
+							</a>
+							<br />
+							<a href="${cv.curriculum}" target="_blank">Read curriculum</a>
+						</td>
+						<td>${cv.presentation}</td>
 					</tr>
 				</c:forEach>					
 			</tbody>

@@ -37,15 +37,15 @@ public class AdminREST {
 		Database.getInstance().getJobDao().saveOrUpdate(new Job(titolo, descrizione, requisiti, attivo));
 		
 	}
-	
+/*	
 	@PostMapping("/checkPosizioneLavoro")
 	public boolean checkPosizioneLavoro(@RequestParam String titolo) {
 		
 		return Database.getInstance().getJobDao().checkByPrimaryKey(titolo);
 		
 	}
-	
-/*
+*/	
+
 	@PostMapping("/checkPosizioneLavoro")
 	public String checkPosizioneLavoro(@RequestParam String titolo, @RequestParam String descrizione, @RequestParam String requisiti, @RequestParam boolean attivo) {
 		
@@ -61,5 +61,5 @@ public class AdminREST {
 		}
 		
 	}
-*/
+
 }

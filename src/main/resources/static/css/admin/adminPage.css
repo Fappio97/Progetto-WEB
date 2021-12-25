@@ -12,9 +12,17 @@
 	width: 100%;
 }
 
-#textManagement1{
- margin-top: 10%;
- padding-bottom: 10%;
+#textManagement1, #textManagement2{
+	text-align: center;
+	font-weight: bold;
+}
+
+#textManagement1 > .col-md-3, #textManagement2 > .col-md-4 {
+	padding-top: 6%;
+}
+
+#textManagement2 {
+	margin-bottom: 5%;
 }
 
 #title{

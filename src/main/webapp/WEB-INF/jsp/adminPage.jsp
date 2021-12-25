@@ -50,26 +50,31 @@
 					<!-- ACCOUNT -->
 					<div class="col-md-9">
 						<div class="header-ctn">
-							<div style="padding-right: 5%; margin-top: 3%" id="firstElement">
+							<div style="padding-right: 3%; margin-top: 3%" id="firstElement">
 								<a href="/visualizzaPosizioniLavoro" style="text-decoration: none;">
 									<i class="fas fa-user-plus" id="positions"></i></a>
 								</a>
 							</div>
-							<div style="padding-right: 5%; margin-top: 3%">
+							<div style="padding-right: 3%; margin-top: 3%" id="firstElement">
+								<a href="/visualizzaCurriculum" style="text-decoration: none;">
+									<i class="fas fa-book-open" id="curriculum"></i></a>
+								</a>
+							</div>							
+							<div style="padding-right: 3%; margin-top: 3%">
 								<a href="/visualizzaReports" style="text-decoration: none;">
 									<i class="fas fa-bug" id="report"></i>
 									<!--<div class="qty">0</div>-->
 								</a>
 							</div>
 							<!-- Wishlist -->
-							<div style="padding-right: 5%; margin-top: 3%">
+							<div style="padding-right: 3%; margin-top: 3%">
 								<a href="addProduct" style="text-decoration: none;">
 									<i class="fas fa-cart-plus" id="add"></i>
 									<!--<div class="qty">0</div>-->
 								</a>
 							</div>
 
-							<div style="padding-right: 5%; margin-top: 3%">
+							<div style="padding-right: 3%; margin-top: 3%">
 								<a href="#" style="text-decoration: none;">
 									<i class="fas fa-trash" id="trash"></i>
 									<!--<div class="qty">0</div>-->
@@ -77,7 +82,7 @@
 							</div>
 							
 							<!-- Cart -->
-							<div style="padding-right: 5%; margin-top: 3%">
+							<div style="padding-right: 3%; margin-top: 3%">
 								<a href="#" style="text-decoration: none;">
 									<i class="fas fa-users"></i>
 									<!--<div class="qty">0</div>-->
@@ -86,7 +91,7 @@
 							<!-- /Cart -->
 
 							<!-- User Toogle -->
-							<div style="padding-right: 5%; margin-top: 3%">
+							<div style="padding-right: 3%; margin-top: 3%">
 								<a href="returnRequests" style="text-decoration: none;">
 									<i class="fas fa-truck-loading"></i>
 								</a>
@@ -108,50 +113,56 @@
 
 
 
-
 	<p id="title">WELCOME "ADMIN NAME FROM DB"</p>
 
 	<div class="container-fluid" id="management">
 		<div class="row" id="textManagement1">
-			<div class="col-md-2">
-				Positions management
-				<br /><br />
-				<a href="/visualizzaPosizioniLavoro" style="text-decoration: none;">
-					<i class="fas fa-user-plus fa-5x" id="positions2"></i></a>
-			</div>
-			<div class="col-md-2">
-				View reports
-				<br /><br />
-				<a href="/visualizzaReports" style="text-decoration: none;">
-					<i class="fas fa-bug fa-5x" id="report2"></i></a>
-			</div>
-			<div class="col-md-2">
+			<div class="col-md-3">
 				Add product
 				<br /><br />
 				<a href="addProduct" style="text-decoration: none;">
 					<i class="fas fa-cart-plus fa-5x" id="addProd"></i></a>
 			</div>
-			<div class="col-md-2">
+			<div class="col-md-3">
 				Delete product
 				<br /><br />
 				<a href="collegamento al sito" style="text-decoration: none;">
 					<i class="fas fa-trash fa-5x" id="deleteProd"></i></a>
 			</div>
-			<div class="col-md-2">
+			<div class="col-md-3">
 				Users management
 				<br /><br />
 				<a href="collegamento al sito" style="text-decoration: none;">
 					<i class="fas fa-users fa-5x" id="users2"></i></a>
 			</div>
-			<div class="col-md-2">
+			<div class="col-md-3">
 				Returns management
 				<br /><br />
 				<a href="returnRequests" style="text-decoration: none;">
 					<i class="fas fa-truck-loading fa-5x" id="truck2"></i></a>
 			</div>
 		</div>
+		<div class="row" id="textManagement2">
+			<div class="col-md-4">
+				Positions management
+				<br /><br />
+				<a href="/visualizzaPosizioniLavoro" style="text-decoration: none;">
+					<i class="fas fa-user-plus fa-5x" id="positions2"></i></a>
+			</div>
+			<div class="col-md-4">
+				View reports
+				<br /><br />
+				<a href="/visualizzaReports" style="text-decoration: none;">
+					<i class="fas fa-bug fa-5x" id="report2"></i></a>
+			</div>
+			<div class="col-md-4">
+				View curriculum
+				<br /><br />
+				<a href="/visualizzaCurriculum" style="text-decoration: none;">
+					<i class="fas fa-book-open fa-5x" id="report2"></i></a>
+			</div>
+		</div>
 	</div>
-
 
 
 	<!-- FOOTER -->

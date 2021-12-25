@@ -246,7 +246,7 @@
 				
 				<div id = "titolo">
 					<c:if test= "${posizioneLavoro == null}">
-						<p><strong id = "tipoLavoro">Candidatura Spontanea</strong></p>
+						<p><strong id = "tipoLavoro">Spontaneous Candidature</strong></p>
 					</c:if>
 					<c:if test= "${posizioneLavoro != null}">
 						<p><strong id = "tipoLavoro">${posizioneLavoro}</strong></p>

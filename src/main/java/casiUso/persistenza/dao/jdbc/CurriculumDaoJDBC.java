@@ -33,10 +33,12 @@ public class CurriculumDaoJDBC implements CurriculumDao {
 				cv.setId(rs.getLong("id"));
 				cv.setFirst_name(rs.getString("first_name"));
 				cv.setLast_name(rs.getString("last_name"));
+				cv.setDate_birth(rs.getString("date_birth"));
 				cv.setEmail(rs.getString("email"));
 				cv.setEducational_qualification(rs.getString("educational_qualification"));
 				cv.setStudy_subject(rs.getString("study_subject"));
 				cv.setLast_function(rs.getString("last_function"));
+				cv.setLast_classification(rs.getString("last_classification"));
 				cv.setPhoto(rs.getString("photo"));
 				cv.setCurriculum(rs.getString("curriculum"));
 				cv.setPresentation(rs.getString("presentation"));

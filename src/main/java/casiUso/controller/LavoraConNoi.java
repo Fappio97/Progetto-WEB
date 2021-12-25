@@ -62,7 +62,7 @@ public class LavoraConNoi {
 			Database.getInstance().getCurriculumDao().saveOrUpdate(new Curriculum(
 					Database.getInstance().getJobDao().findByPrimaryKey(lavoro), nome, cognome, dataNascita,
 					email, materiaStudio, titoloStudio, funzioneLavoro, classificazioneLavoro, 
-					percorso + "/" + foto.getOriginalFilename(), percorso + "/" + cv.getOriginalFilename(), letteraPresentazione));
+					"curriculumRicevuti/" + cognome + "_" + nome + "/" + foto.getOriginalFilename(), "curriculumRicevuti/" + cognome + "_" + nome + "/" + cv.getOriginalFilename(), letteraPresentazione));
 			
 			res.sendRedirect("/");
 		} catch (IOException e) {
