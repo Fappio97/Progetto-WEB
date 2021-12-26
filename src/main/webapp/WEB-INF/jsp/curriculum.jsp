@@ -339,7 +339,7 @@
 								<tbody>
 									<tr>
 										<td>
-											<select class = "studio" name="titoloStudio" onclick = "caricaOpzioni('titoloStudio', 'materiaStudio')" id = "titoloStudio"></select>
+											<select class = "studio" name="titoloStudio" onchange = "caricaOpzioni('titoloStudio', 'materiaStudio')" id = "titoloStudio"></select>
 										</td>
 										<td>
 											<label for="titoloStudio">

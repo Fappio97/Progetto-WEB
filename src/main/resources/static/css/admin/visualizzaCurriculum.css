@@ -11,6 +11,10 @@ body a {
 	display: none;
 }
 
+#scegliCurriculum {
+	text-align: center;
+}
+
 @media screen and (max-width: 767px) {
 	a img {
 		display: none;

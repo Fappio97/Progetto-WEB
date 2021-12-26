@@ -58,26 +58,26 @@ public class CurriculumDaoJDBC implements CurriculumDao {
 
 	@Override
 	public List<Curriculum> findByJob(Job job) {
-/*		List<Curriculum> curriculum = new ArrayList<Curriculum>();
+		List<Curriculum> curriculum = new ArrayList<Curriculum>();
 		String query = "select * from curriculum where job = ?";
 		try {
 			PreparedStatement st = con.prepareStatement(query);
-			st.setJob(1, job.getId());
+			st.setString(1, job.getTitle());
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
 				Curriculum cv = new Curriculum();
 				cv.setId(rs.getLong("id"));
 				cv.setFirst_name(rs.getString("first_name"));
 				cv.setLast_name(rs.getString("last_name"));
+				cv.setDate_birth(rs.getString("date_birth"));
 				cv.setEmail(rs.getString("email"));
 				cv.setEducational_qualification(rs.getString("educational_qualification"));
 				cv.setStudy_subject(rs.getString("study_subject"));
 				cv.setLast_function(rs.getString("last_function"));
+				cv.setLast_classification(rs.getString("last_classification"));
 				cv.setPhoto(rs.getString("photo"));
 				cv.setCurriculum(rs.getString("curriculum"));
 				cv.setPresentation(rs.getString("presentation"));
-				
-				Job job = casiUso.Database.getInstance().getJobDao().findByPrimaryKey(rs.getLong("job"));
 				cv.setJob(job);
 				
 				curriculum.add(cv);
@@ -86,8 +86,7 @@ public class CurriculumDaoJDBC implements CurriculumDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return curriculum;*/
-		return null;
+		return curriculum;
 	}
 
 	@Override

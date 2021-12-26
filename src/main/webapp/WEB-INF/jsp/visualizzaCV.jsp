@@ -22,6 +22,7 @@
 
 	<!-- JS -->
 	<script language="javascript" src="js/adminPage/visualizzaCV/visualizzaCV.js"></script>
+	<script language="javascript" src="js/adminPage/visualizzaCV/chiamateAjax.js"></script>
 
 	<!--AJAX ha la dipendenza nel pom -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -138,6 +139,17 @@
 <!------------------------FABIO-------------------------------------------->
 
 		<h1 id = "titolo">All curriculum received</h1>
+		<br />
+		<div id = "scegliCurriculum">
+			<nobr>View job-related resumes</nobr>
+			<select id = "lavori" name = "lavori" onchange = "caricaCurriculum()">
+				 <option value="all">All</option>
+				 <c:forEach items="${lavori}" var="job">
+				 	<option value="${job.title}">${job.title}</option>
+				 </c:forEach>
+			</select>
+		</div>
+		<br />
 		<table id="tabellaCV" class="table table-borderless">
 			<thead>
 				<tr>
@@ -151,9 +163,9 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${curriculum}" var="cv">
-					<tr>
-						<td data-title = "Select deselect"><input id="${cv.id}" type="checkbox" class = "report" /></td>
+<!-- 				<c:forEach items="${curriculum}" var="cv"> -->
+					<tr> 
+<!-- 						<td data-title = "Select deselect"><input id="${cv.id}" type="checkbox" class = "report" /></td>
 						<td data-title = "Job">${cv.job.title}</td>
 						<td data-title = "Personal data">
 							${cv.last_name} ${cv.first_name} 
@@ -186,8 +198,8 @@
 							<a href="${cv.curriculum}" target="_blank">Read curriculum</a>
 						</td>
 						<td data-title = "Free letter">${cv.presentation}</td>
-					</tr>
-				</c:forEach>					
+ -->					</tr>
+<!-- 				</c:forEach>	 -->				
 			</tbody>
 		</table>
 		

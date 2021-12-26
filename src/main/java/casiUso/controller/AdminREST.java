@@ -2,6 +2,7 @@ package casiUso.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -81,6 +82,24 @@ public class AdminREST {
 		
 		
 		Database.getInstance().getCurriculumDao().delete(cv);
+	}
+	
+	@PostMapping("/prendiCurriculum")
+	public List<Curriculum> prendiCurriculum(@RequestParam String titoloLavoro) {
+		
+		List<Curriculum> cv = null;
+		
+		
+		if(titoloLavoro.equals("all"))
+			cv = Database.getInstance().getCurriculumDao().findAll();
+		else {
+			
+			Job lavoro = Database.getInstance().getJobDao().findByPrimaryKey(titoloLavoro);
+			
+			cv = Database.getInstance().getCurriculumDao().findByJob(lavoro);
+		}
+		
+		return cv;
 	}
 
 }
