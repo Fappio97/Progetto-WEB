@@ -86,12 +86,6 @@
 									<i class="fas fa-book-open" id="curriculum"></i></a>
 								</a>
 							</div>							
-							<div style="padding-right: 3%; margin-top: 3%">
-								<a href="/visualizzaReports" style="text-decoration: none;">
-									<i class="fas fa-bug" id="report"></i>
-									<!--<div class="qty">0</div>-->
-								</a>
-							</div>
 							<!-- Wishlist -->
 							<div style="padding-right: 3%; margin-top: 3%">
 								<a href="addProduct" style="text-decoration: none;">
@@ -142,27 +136,29 @@
 <!------------------------FABIO-------------------------------------------->
 
 		<h1 id = "titolo">All report received</h1>
-		<table id="tabellaReports" class="table table-borderless">
+		<table id="tabella" class="table table-borderless">
 			<thead>
 				<tr>
-					<th><input type="checkbox" id = "checkBoxTh" onchange = "checkBoxTh()" /></th>
-					<th>Origin problem</th>
-					<th>Description</th>
+					<th data-title = "Select deselect all"><input type="checkbox" id = "checkBoxTh" onchange = "checkBoxTh()" /></th>
+					<th id = "origineProblema">Origin problem</th>
+					<th id = "descrizioneProblema">Description</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach items="${report}" var="rep">
 					<tr>
-						<td><input id="${rep.id}" type="checkbox" class = "report" /></td>
-						<td>${rep.problem_origin}</td>
-						<td>${rep.description}</td>
+						<td data-title = "Select deselect"><input id="${rep.id}" type="checkbox" class = "report" /></td>
+						<td data-title = "Origin">${rep.problem_origin}</td>
+						<td data-title = "Problem">${rep.description}</td>
 					</tr>
 				</c:forEach>					
 			</tbody>
 		</table>
 		
 		<br/>
-		<input class="btn btn-danger" id="btnCancella" type="button" value="Delete report" />
+		<div id = "pulsanti">
+			<input class="btn btn-danger" id="btnCancella" type="button" value="Delete report" />
+		</div>
 		<br/><br/>
 
 <!------------------------FABIO-------------------------------------------->

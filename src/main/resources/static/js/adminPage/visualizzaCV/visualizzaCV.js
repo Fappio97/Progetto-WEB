@@ -21,7 +21,7 @@ function pulsanteCancella() {
 					
 					$.ajax({
 						type: "POST",
-						url: "/eliminaReport",
+						url: "/eliminaCV",
 						data: {
 							id: id
 						},
@@ -32,7 +32,6 @@ function pulsanteCancella() {
 							alert("tutto male");
 						}
 					});
-						
 				});
 				
 				$("#checkBoxTh").prop("checked", false);

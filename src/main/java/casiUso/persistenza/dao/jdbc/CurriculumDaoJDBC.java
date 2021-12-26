@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import casiUso.Database;
 import casiUso.model.Curriculum;
 import casiUso.model.Job;
 import casiUso.persistenza.dao.CurriculumDao;
@@ -43,7 +44,7 @@ public class CurriculumDaoJDBC implements CurriculumDao {
 				cv.setCurriculum(rs.getString("curriculum"));
 				cv.setPresentation(rs.getString("presentation"));
 				
-				Job job = casiUso.Database.getInstance().getJobDao().findByPrimaryKey(rs.getString("job"));
+				Job job = Database.getInstance().getJobDao().findByPrimaryKey(rs.getString("job"));
 				cv.setJob(job);
 				
 				curriculum.add(cv);
@@ -156,8 +157,50 @@ public class CurriculumDaoJDBC implements CurriculumDao {
 
 	@Override
 	public boolean delete(Curriculum cv) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			String query = "delete from curriculum "
+					+ "where id = ?";
+			PreparedStatement st = con.prepareStatement(query);
+			st.setLong(1, cv.getId());
+			st.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public Curriculum findById(Long id) {
+		Curriculum cv = new Curriculum();
+		String query = "select * from curriculum where id = ?";
+		try {
+			PreparedStatement st = con.prepareStatement(query);
+			st.setLong(1, id);
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				cv.setId(rs.getLong("id"));
+				cv.setFirst_name(rs.getString("first_name"));
+				cv.setLast_name(rs.getString("last_name"));
+				cv.setEmail(rs.getString("email"));
+				cv.setEducational_qualification(rs.getString("educational_qualification"));
+				cv.setStudy_subject(rs.getString("study_subject"));
+				cv.setLast_function(rs.getString("last_function"));
+				cv.setPhoto(rs.getString("photo"));
+				cv.setCurriculum(rs.getString("curriculum"));
+				cv.setPresentation(rs.getString("presentation"));
+				
+				Job job = casiUso.Database.getInstance().getJobDao().findByPrimaryKey(rs.getString("job"));
+				cv.setJob(job);
+
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return cv;
 	}
 
 }

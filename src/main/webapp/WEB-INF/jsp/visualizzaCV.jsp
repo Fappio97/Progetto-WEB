@@ -10,17 +10,18 @@
 	<link rel="icon" href="../immagini/index/logo.png" type="image/x-icon"/>
 	
 	<!-- Titolo -->
-	<title>View reports</title>
+	<title>View curriculum</title>
 	
 	<!-- CSS -->
 	<link href="css/admin/report.css" rel="stylesheet" type="text/css" />
+	<link href="css/admin/visualizzaCurriculum.css" rel="stylesheet" type="text/css" />
 	
 	<!-- Bootstrap -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
   	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>	
 
 	<!-- JS -->
-	<script language="javascript" src="js/adminPage/report/report.js"></script>
+	<script language="javascript" src="js/adminPage/visualizzaCV/visualizzaCV.js"></script>
 
 	<!--AJAX ha la dipendenza nel pom -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -80,12 +81,7 @@
 								<a href="/visualizzaPosizioniLavoro" style="text-decoration: none;">
 									<i class="fas fa-user-plus" id="positions"></i></a>
 								</a>
-							</div>
-							<div style="padding-right: 3%; margin-top: 3%" id="firstElement">
-								<a href="/visualizzaCurriculum" style="text-decoration: none;">
-									<i class="fas fa-book-open" id="curriculum"></i></a>
-								</a>
-							</div>							
+							</div>						
 							<div style="padding-right: 3%; margin-top: 3%">
 								<a href="/visualizzaReports" style="text-decoration: none;">
 									<i class="fas fa-bug" id="report"></i>
@@ -145,29 +141,28 @@
 		<table id="tabellaCV" class="table table-borderless">
 			<thead>
 				<tr>
-					<th><input type="checkbox" id = "checkBoxTh" onchange = "checkBoxTh()" /></th>
-					<th>Scope work</th>
-					<th>Personal data</th>
-					<th>Education and work</th>
-					<th>Photo & Curriculum</th>
-					<th>Presentation</th>
+					<th data-title = "Select deselect all" ><input type="checkbox" id = "checkBoxTh" onchange = "checkBoxTh()" /></th>
+					<th id = "scopeWork">Scope work</th>
+					<th id = "personalData">Personal data</th>
+					<th id = "educationWork">Education and work</th>
+					<th id = "photoCurriculum">Photo</th>
+					<th id = "photoCurriculum">Curriculum</th>
+					<th id = "presentation">Presentation</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach items="${curriculum}" var="cv">
 					<tr>
-						<td><input id="${cv.id}" type="checkbox" class = "report" /></td>
-						<td>${cv.job.title}</td>
-						<td>
-							${cv.first_name} 
-							<br /> 
-							${cv.last_name} 
+						<td data-title = "Select deselect"><input id="${cv.id}" type="checkbox" class = "report" /></td>
+						<td data-title = "Job">${cv.job.title}</td>
+						<td data-title = "Personal data">
+							${cv.last_name} ${cv.first_name} 
 							<br /><br />
 							${cv.date_birth}
 							<br />
 							${cv.email}
 						</td>
-						<td>
+						<td data-title = "Education work">
 							${cv.educational_qualification} 
 							<br /> 
 							${cv.study_subject}
@@ -180,21 +175,26 @@
 							<br />
 							${cv.last_classification}
 						</td>
-						<td>
+						<td data-title = "File">
+							<a id = "fotoSizePiccola" href = "${cv.photo}" target = "_blank">View photo</a>
 							<a href="${cv.photo}" target="_blank">
 								<img src = "${cv.photo}">
 							</a>
 							<br />
+						</td>
+						<td>
 							<a href="${cv.curriculum}" target="_blank">Read curriculum</a>
 						</td>
-						<td>${cv.presentation}</td>
+						<td data-title = "Free letter">${cv.presentation}</td>
 					</tr>
 				</c:forEach>					
 			</tbody>
 		</table>
 		
 		<br/>
-		<input class="btn btn-danger" id="btnCancella" type="button" value="Delete report" />
+			<div id = "pulsanti">
+				<input class="btn btn-danger" id="btnCancella" type="button" value="Delete report" />
+			</div>
 		<br/><br/>
 
 <!------------------------FABIO-------------------------------------------->

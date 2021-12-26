@@ -58,11 +58,7 @@ public class Admin {
 	public String visualizzaCurriculum(HttpServletRequest req) {
 		
 		List<Curriculum> curriculum = Database.getInstance().getCurriculumDao().findAll();
-		
-		for(int i = 0; i < curriculum.size(); ++i) {
-			System.out.println(curriculum.get(i).getDate_birth() + " " + curriculum.get(i).getLast_classification());
-		}
-		
+
 		HttpSession session = req.getSession(true);
 		session.setAttribute("curriculum", curriculum);
 		

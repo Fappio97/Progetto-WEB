@@ -8,6 +8,12 @@ var aggiungi = false;
 function pulsanteAggiungi() {
 
 	var divForm = document.getElementById("divForm");
+	
+	/* svuoto il contenuto */
+	document.getElementById("titoloForm").value = "";
+	document.getElementById("descrizioneForm").value = "";
+	document.getElementById("requisitiForm"). value = "";
+	document.getElementById("checkBoxForm").checked = false;
 
 	if(!aggiungi)
 		divForm.style.display = "inline-block";
@@ -36,7 +42,7 @@ function inviaLavoro() {
 function continuaInvioLavoro(data, titolo, descrizione, requisiti, attivo) {
 	
 	let s = "Do you really want to add the new job position?";
-	if(data)
+	if(data == "titolo")
 		s = "A job with the same title already exists. Continuing will overwrite the previous one. To continue?";
 		
 	
@@ -44,7 +50,7 @@ function continuaInvioLavoro(data, titolo, descrizione, requisiti, attivo) {
 	if(confirm(s)) {
 			
 		/* salva in tabella */
-		if(!data)
+		if(data != "titolo")
 			aggiungiLavoroTabella(titolo, descrizione.value, requisiti.value, attivo.checked);
 		else
 			modificaLavoroTabella(titolo, descrizione.value, requisiti.value, attivo.checked);
@@ -83,7 +89,7 @@ function modificaLavoroTabella(titolo, descrizione, requisiti, attivo) {
 }
 
 function aggiungiLavoroTabella(titolo, descrizione, requisiti, attivo) {
-	var tableElement = document.querySelector("#tabellaLavori tbody");
+	var tableElement = document.querySelector("#tabella tbody");
 	var riga = tableElement.insertRow(-1);
 	
 	var cellaCheckbox = riga.insertCell(0);
@@ -126,6 +132,10 @@ function pulsanteModifica() {
 	var checkBox = document.querySelectorAll('tbody input.lavoro:checked');
 	if (checkBox.length == 1){
 		
+		/* Lo metto falso perché ho notato che dopo che aggiorno mi seleziona
+		quelle checkbox con indice pari a quelle che avevo precedentemente eliminato */
+		checkBox.checked = false;
+		
 		if(!aggiungi)
 			divForm.style.display = "inline-block";
 		
@@ -147,8 +157,8 @@ function pulsanteModifica() {
 		descrizioneForm.value = descrizione.innerHTML;
 		requisitiForm.value = requisiti.innerHTML;
 /*		console.log("Form attivo " + attivoForm.checked);
-		console.log("Attivo " + attivo.childNodes[1].checked);*/
-		attivoForm.checked = attivo.childNodes[1].checked;
+		console.log("Attivo " + attivo.childNodes[1].value);*/
+		attivoForm.checked = attivo.childNodes[1].value;
 /*		console.log("Form attivo post " + attivoForm.checked);*/
 		
 	} else
@@ -164,6 +174,10 @@ function pulsanteCancella() {
 		if (selectedCheckBoxes.length > 0){
 			if(confirm("Are you sure you want to delete?")) {
 				selectedCheckBoxes.forEach(function(checkBox, indice){
+					
+					/* Lo metto falso perché ho notato che dopo che aggiorno mi seleziona
+					quelle checkbox con indice pari a quelle che avevo precedentemente eliminato */
+					checkBox.checked = false;
 					
 					/* Il parent node mi prende il parente di quell'elemento */
 					checkBox.parentNode.parentNode.remove();

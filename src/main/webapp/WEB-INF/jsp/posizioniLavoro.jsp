@@ -10,10 +10,11 @@
 	<link rel="icon" href="../immagini/index/logo.png" type="image/x-icon"/>
 	
 	<!-- Titolo -->
-	<title>View reports</title>
+	<title>Job positions</title>
 	
 	<!-- CSS -->
 	<link href="css/admin/report.css" rel="stylesheet" type="text/css" />
+	<link href="css/admin/posizioniLavoro.css" rel="stylesheet" type="text/css" />
 	
 	<!-- Bootstrap -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -78,8 +79,8 @@
 					<div class="col-md-9">
 						<div class="header-ctn">
 							<div style="padding-right: 5%; margin-top: 3%" id="firstElement">
-								<a href="/visualizzaPosizioniLavoro" style="text-decoration: none;">
-									<i class="fas fa-user-plus" id="positions"></i></a>
+								<a href="/visualizzaCurriculum" style="text-decoration: none;">
+									<i class="fas fa-book-open" id="positions"></i></a>
 								</a>
 							</div>
 							<div style="padding-right: 5%; margin-top: 3%">
@@ -138,10 +139,10 @@
 <!------------------------FABIO-------------------------------------------->
 
 		<h1 id = "titolo">Job positions</h1>
-		<table id="tabellaLavori" class="table table-borderless">
+		<table id="tabella" class="table table-borderless">
 			<thead>
 				<tr>
-					<th><input type="checkbox" id = "checkBoxTh" onchange = "checkBoxTh()" /></th>
+					<th data-title = "Select deselect all"><input type="checkbox" id = "checkBoxTh" onchange = "checkBoxTh()" /></th>
 					<th id = "titoloTh">Title</th>
 					<th id = "descrizioneTh">Description</th>
 					<th id = "requisitiTh">Requirements</th>
@@ -152,19 +153,19 @@
 				<c:forEach items="${lavori}" var="lav">
 					<c:if test = "${lav.title ne 'Spontaneous Candidature'}">
 						<tr>
-							<td><input type="checkbox" class = "lavoro"/></td>
-							<td class = "titoloLavoro">${lav.title}</td>
-							<td>${lav.description}</td>
+							<td data-title = "Select deselect"><input type="checkbox" class = "lavoro"/></td>
+							<td data-title = "Title" class = "titoloLavoro">${lav.title}</td>
+							<td >${lav.description}</td>
 							<td class = "formattaTesto">${lav.requirements}</td>
-							<td>
+							<td data-title = "Active">
 								<c:if test = "${lav.active == true}">
-									<input type="checkbox" id = "lavoroCheckBox" checked/>
+									<input type="checkbox" id = "lavoroCheckBox" value = "true"/>
 									<figure>
 										<img src = "immagini/admin/posizioniLavoro/si.png">
 									</figure>
 								</c:if>
 								<c:if test = "${lav.active == false}">
-									<input type="checkbox" id = "lavoroCheckBox" unchecked/>
+									<input type="checkbox" id = "lavoroCheckBox" value = "false"/>
 									<figure>
 										<img src = "immagini/admin/posizioniLavoro/no.png">
 									</figure>
@@ -177,24 +178,26 @@
 		</table>
 		
 		<br/>
-		<input class="btn btn-danger" id="btnCancella" type="button" value="Delete job" />
-		<input class="btn btn-warning" id="btnModifica" onclick = "pulsanteModifica()" type="button" value="Edit job" />
-		<input class="btn btn-primary" id="btnInserisci" onclick = "pulsanteAggiungi()" type="button" value="Add job"/>
+		<div id = "pulsanti">
+			<input class="btn btn-danger" id="btnCancella" type="button" value="Delete job" />
+			<input class="btn btn-warning" id="btnModifica" onclick = "pulsanteModifica()" type="button" value="Edit job" />
+			<input class="btn btn-primary" id="btnInserisci" onclick = "pulsanteAggiungi()" type="button" value="Add job"/>
+		</div>
 		<br/>
 		
 		<form id = "form" method = "post" action = "/aggiugiModificaLavoro">
 			<div id = "divForm" class = "container-fluid">
 				<div class = "row">
-					<div class="col-sm-2">
+					<div class="col-md-2">
 						<textarea id="titoloForm" onkeyup="textAreaAdjust(this)" placeholder="Enter the title"/></textarea>
 					</div>
-					<div class="col-sm-4">
+					<div class="col-md-4">
 						<textarea id="descrizioneForm" onkeyup="textAreaAdjust(this)" placeholder="Enter the description"/></textarea>
 					</div>
-					<div class="col-sm-5">
+					<div class="col-md-5">
 						<textarea id="requisitiForm" onkeyup="textAreaAdjust(this)" placeholder="Enter the requirements"/></textarea>
 					</div>
-					<div class="col-sm-1">
+					<div class="col-md-1">
 						<p id = "testoAttivo">Active</p>
 						<input type="checkbox" id = "checkBoxForm" />
 					</div>	

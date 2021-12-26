@@ -1,7 +1,9 @@
 package casiUso.controller;
 
-import java.util.List;
+import java.io.File;
+import java.io.IOException;
 
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -60,6 +62,25 @@ public class AdminREST {
 				return "titolo";
 		}
 		
+	}
+	
+	@PostMapping("/eliminaCV")
+	public void eliminaCV(@RequestParam Long id) {
+		
+		Curriculum cv = Database.getInstance().getCurriculumDao().findById(id);
+	
+		String p = System.getProperty("user.dir") + "/src/main/resources/static/curriculumRicevuti/" 
+					+ cv.getLast_name() + "_" + cv.getFirst_name();
+		
+		try {
+			FileUtils.deleteDirectory(new File(p));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		Database.getInstance().getCurriculumDao().delete(cv);
 	}
 
 }

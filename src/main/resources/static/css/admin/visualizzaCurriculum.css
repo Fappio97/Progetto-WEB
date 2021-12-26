@@ -1,0 +1,27 @@
+table img {
+	width: 100%;
+}
+
+body a {
+	text-decoration: none;
+	color: #0b3de1;	
+}
+
+#fotoSizePiccola {
+	display: none;
+}
+
+@media screen and (max-width: 767px) {
+	a img {
+		display: none;
+	}
+	
+	#fotoSizePiccola {
+		display: inline;
+		padding-right: 10%;
+	}
+	
+	iframe {
+		display: none;
+	}
+}

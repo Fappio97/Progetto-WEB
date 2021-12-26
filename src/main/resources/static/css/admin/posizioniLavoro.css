@@ -1,0 +1,74 @@
+#descrizioneTh, #requisitiTh {
+	width: 50%;
+}
+
+#titoloTh, #attivoTh {
+	width: 5%;
+}
+
+form textarea {
+	margin-bottom: 10px;
+}
+
+table textarea {
+	width: 100%;
+	height: 220px;
+}
+
+table img {
+	width: 80%;
+}
+
+#lavoroCheckBox {
+	display:none;
+}
+
+.row > div > textarea {
+	width: 100%;
+}
+
+.col-md-1 {
+	text-align: center;
+}
+
+#btnInvia {
+	width: 15% !important;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+#btnInserisci, #btnInvia {
+	background-color: #0b3de1;
+	border-color: #0b3de1;
+	opacity: 1;
+}
+
+#btnInvia {
+	width: 15%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#btnInserisci:hover, #btnInvia:hover {
+	opacity: 0.9;
+}
+
+
+#divForm textarea, #divForm input {
+	width: 100%;
+	overflow: hidden;
+}
+
+#divForm {
+	display: none;
+}
+
+#testoAttivo {
+	margin-bottom: 0px;
+}
+
+body .formattaTesto {
+	overflow-wrap: anywhere;
+	/* spezza ogni linea con enter*/
+/*	white-space: pre;*/
+}
