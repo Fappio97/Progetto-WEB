@@ -162,44 +162,7 @@
 					<th id = "presentation">Presentation</th>
 				</tr>
 			</thead>
-			<tbody>
-<!-- 				<c:forEach items="${curriculum}" var="cv"> -->
-					<tr> 
-<!-- 						<td data-title = "Select deselect"><input id="${cv.id}" type="checkbox" class = "report" /></td>
-						<td data-title = "Job">${cv.job.title}</td>
-						<td data-title = "Personal data">
-							${cv.last_name} ${cv.first_name} 
-							<br /><br />
-							${cv.date_birth}
-							<br />
-							${cv.email}
-						</td>
-						<td data-title = "Education work">
-							${cv.educational_qualification} 
-							<br /> 
-							${cv.study_subject}
-							<br /><br />
-							<c:if test = "${cv.last_function == ' -- select an option -- '}">
-							</c:if>
-							<c:if test = "${cv.last_function != ' -- select an option -- '}">
-								${cv.last_function}
-							</c:if>
-							<br />
-							${cv.last_classification}
-						</td>
-						<td data-title = "File">
-							<a id = "fotoSizePiccola" href = "${cv.photo}" target = "_blank">View photo</a>
-							<a href="${cv.photo}" target="_blank">
-								<img src = "${cv.photo}">
-							</a>
-							<br />
-						</td>
-						<td>
-							<a href="${cv.curriculum}" target="_blank">Read curriculum</a>
-						</td>
-						<td data-title = "Free letter">${cv.presentation}</td>
- -->					</tr>
-<!-- 				</c:forEach>	 -->				
+			<tbody>			
 			</tbody>
 		</table>
 		

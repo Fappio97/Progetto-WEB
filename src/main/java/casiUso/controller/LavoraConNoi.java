@@ -2,7 +2,6 @@ package casiUso.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import casiUso.Database;
 import casiUso.model.Curriculum;
+import casiUso.model.User;
 
 @Controller
 @RequestMapping("/lavoraConNoi")
@@ -41,14 +41,19 @@ public class LavoraConNoi {
 	@PostMapping("/loginCurriculum")
 	public String faiLogin(HttpServletRequest req, HttpServletResponse resp, String username, String pass) throws IOException {
 		
-		Database.getInstance().getLogin().faiLoginCurriculum(req, resp, username, pass);
+		if(Database.getInstance().getLogin().faiLoginCurriculum(username, pass)) {
+			User utente = Database.getInstance().getUserDao().findByPrimaryKey(username);
+			
+			HttpSession session = req.getSession(true);
+			session.setAttribute("user", utente);
+		}
 		
 		return "curriculum";
 	}
 	
 	@PostMapping("/salvaPresentazione")
 	public String salvaPresentazione(HttpServletRequest req, HttpServletResponse res, String lavoro,
-			String nome, String cognome, String dataNascita, String email, String materiaStudio, 
+			String nome, String cognome, String dataNascita, String email, String phone, String materiaStudio, 
 			String titoloStudio, String funzioneLavoro, String classificazioneLavoro, 
 			MultipartFile foto, MultipartFile cv, String presentazione, String letteraPresentazione) {
 		System.out.println(lavoro + " " + nome + " " + cognome + " " + dataNascita + " " + email + " " + titoloStudio + " " + materiaStudio + " " 
@@ -56,13 +61,17 @@ public class LavoraConNoi {
 				+ cv.getOriginalFilename() + " " + letteraPresentazione);
 		
 		try {
-			String percorso = writeFile(cognome + "_" + nome);
-			foto.transferTo(new File(percorso + "/" + foto.getOriginalFilename()));
-			cv.transferTo(new File(percorso + "/" + cv.getOriginalFilename()));
-			Database.getInstance().getCurriculumDao().saveOrUpdate(new Curriculum(
+			
+			Curriculum curriculum = Database.getInstance().getCurriculumDao().saveOrUpdate(new Curriculum(
 					Database.getInstance().getJobDao().findByPrimaryKey(lavoro), nome, cognome, dataNascita,
 					email, materiaStudio, titoloStudio, funzioneLavoro, classificazioneLavoro, 
-					"curriculumRicevuti/" + cognome + "_" + nome + "/" + foto.getOriginalFilename(), "curriculumRicevuti/" + cognome + "_" + nome + "/" + cv.getOriginalFilename(), letteraPresentazione));
+					"curriculumRicevuti/" + cognome + "_" + nome + "_" + dataNascita + "_" + lavoro + "/" + foto.getOriginalFilename(), 
+					"curriculumRicevuti/" + cognome + "_" + nome + "_" + dataNascita + "_" + lavoro + "/" + cv.getOriginalFilename(), 
+					letteraPresentazione, phone));
+			
+			String percorso = writeFile(cognome + "_" + nome + "_" + dataNascita + "_" + lavoro);
+			foto.transferTo(new File(percorso + "/" + foto.getOriginalFilename()));
+			cv.transferTo(new File(percorso + "/" + cv.getOriginalFilename()));
 			
 			res.sendRedirect("/");
 		} catch (IOException e) {

@@ -31,4 +31,13 @@ function campiForm() {
 		});		
 	});
 	
+	$('input[type=tel]').focusout(function(){
+		let valore = $(this).val();
+		let pattern = /^\d{10}$/;
+		if(!pattern.test(valore))
+			$(this).css("border-color", "red");
+		else
+			$(this).css("border-color", "");
+	});
+
 }

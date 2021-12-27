@@ -48,6 +48,7 @@ function rinizia() {
 
 function risultati() {
 	if(ind != numDomandeTotaliCategoria) {
+		salvaPreferenza();
 		ind = numDomandeTotaliCategoria;
 		compila();
 		abilitaDisabilita();
@@ -62,6 +63,7 @@ function vaiAllaDomanda(i) {
 		else
 			return;
 	}
+	salvaPreferenza();
 	ind = i;
 	compila();
 	abilitaDisabilita();
@@ -178,13 +180,12 @@ function paginaAvanti() {
 			return;
 		}
 	} else {
-		if(ind < numDomandeTotaliCategoria - 1) {
-			
-			salvaPreferenza();
+		salvaPreferenza();
+		
+		if(ind < numDomandeTotaliCategoria - 1)
 			ind++;
 			
-		} else {
-			salvaPreferenza();
+		else {
 			
 			trovaProdottiCorrelati();
 			
@@ -244,7 +245,7 @@ function svuotaArray(array) {
 
 function salvaPreferenza() {
 	var selected = document.querySelectorAll('input[name=collega]:checked');
-				
+
 	if (selected.length >= 1){
 				
 		let risposte = new Array();
@@ -252,9 +253,14 @@ function salvaPreferenza() {
 		selected.forEach(function(input, indice){
 			risposte.push(input.getAttribute('value'));
 		}); 
-				
+			
 		preferenzeUtente[ind] = risposte;
 			
+	} else if(selected.length == 0 && preferenzeUtente[ind] != undefined) {
+		/* se è stata precedentemente selezionata qualcosa e se 
+		ho aggiornato el mie selezioni, non selezionandone alcuna
+		riazzero in quell'indice l'array */
+		preferenzeUtente[ind] = new Array();
 	}
 }
 

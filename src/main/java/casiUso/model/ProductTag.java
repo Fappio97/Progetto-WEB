@@ -25,7 +25,7 @@ public class ProductTag {
 		super();
 		this.product = product;
 		this.tagSoddisfatti = tagSoddisfatti;
-		setRequisitiSoddifatti(0);
+		requisitiSoddifatti = 0;
 		calcolaRequisitiSoddisfatti();
 	}
 
@@ -33,7 +33,7 @@ public class ProductTag {
 		// TODO Auto-generated method stub
 		for(int i = 0; i < tagSoddisfatti.length; ++i) 
 			if(tagSoddisfatti[i])
-				setRequisitiSoddifatti(requisitiSoddifatti + 1);
+				requisitiSoddifatti += 1;
 	}
 
 	public Integer getRequisitiSoddifatti() {

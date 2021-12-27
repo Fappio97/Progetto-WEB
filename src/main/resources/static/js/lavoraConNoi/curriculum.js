@@ -51,20 +51,31 @@ function faiLogin(event) {
 
 function inviaPresentazione(event) {
 		let messaggioErrore = "";
-		if(!controllaInputTypeText() || !controllaSelects() || !controllaDataNascita() || !controllaMail()) {
+		if(!controllaInputTypeText() || !controllaSelects() || !controllaDataNascita() 
+			|| !controllaMail() || !controllaNumero()) {
 			event.preventDefault();
 			messaggioErrore = "Enter the required fields!\n";
 		}
 		if(!controllaImmagine()) {
 			event.preventDefault();
 			messaggioErrore += "Only jpg/jpeg and png files are allowed!\n";
-		}
+		} else {
+			if(!controllaSizeImmagine()) {
+				event.preventDefault();
+				messaggioErrore += "Image size too large!\n";
+			}
+		}		
 		if(!controllaCV()) {
 			event.preventDefault();
-			messaggioErrore += "Only pdf files are allowed!\n";
-		}
-			
-		if(messaggioErrore == "")
+			messaggioErrore += "Only PDF files are allowed!\n";
+		} else {
+			if(!controllaSizeCV()) {
+				event.preventDefault();
+				messaggioErrore += "PDF file size too large!\n";
+			}
+		}	
+		
+		if(messaggioErrore == "") 
 			alert("CV inviato");
 		else
 			alert(messaggioErrore);
@@ -86,6 +97,14 @@ function controllaMail() {
 	let chiocciola = valore.indexOf("@");
 	let punto = valore.lastIndexOf(".");
 	if (chiocciola < 1 || punto < chiocciola + 2 || punto + 2 >= valore.length)
+		return false;
+	return true;
+}
+
+function controllaNumero() {
+	let valore = document.querySelector("input[type=tel]");
+	let pattern = /^\d{10}$/;
+	if(!pattern.test(valore.value))
 		return false;
 	return true;
 }
@@ -114,11 +133,28 @@ function controllaImmagine() {
 	return true;
 }
 
+function controllaSizeImmagine() {
+	let foto = document.getElementById("foto");
+	
+	if (foto.files[0].size > 1048576)
+		return false;
+	return true;
+}
+
 function controllaCV() {
+
 	let cv = document.getElementById("cv");
 	let idxDot = cv.value.lastIndexOf(".") + 1;
 	let extFile = cv.value.substr(idxDot, cv.length).toLowerCase();
 	if (extFile!="pdf")
+		return false;
+	return true;
+}
+
+function controllaSizeCV() {
+	let cv = document.getElementById("cv");
+
+	if (cv.files[0].size > 1048576)
 		return false;
 	return true;
 }

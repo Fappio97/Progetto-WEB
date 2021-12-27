@@ -43,6 +43,7 @@ public class CurriculumDaoJDBC implements CurriculumDao {
 				cv.setPhoto(rs.getString("photo"));
 				cv.setCurriculum(rs.getString("curriculum"));
 				cv.setPresentation(rs.getString("presentation"));
+				cv.setPhone_number(rs.getString("phone_number"));
 				
 				Job job = Database.getInstance().getJobDao().findByPrimaryKey(rs.getString("job"));
 				cv.setJob(job);
@@ -78,6 +79,7 @@ public class CurriculumDaoJDBC implements CurriculumDao {
 				cv.setPhoto(rs.getString("photo"));
 				cv.setCurriculum(rs.getString("curriculum"));
 				cv.setPresentation(rs.getString("presentation"));
+				cv.setPhone_number(rs.getString("phone_number"));
 				cv.setJob(job);
 				
 				curriculum.add(cv);
@@ -90,13 +92,13 @@ public class CurriculumDaoJDBC implements CurriculumDao {
 	}
 
 	@Override
-	public boolean saveOrUpdate(Curriculum cv) {
+	public Curriculum saveOrUpdate(Curriculum cv) {
 		if (cv.getId() == 0) {
 			//INSERT
 			try {
 				cv.setId(IdCurriculum.getId(con));
 				String query = "insert into curriculum "
-						+ "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+						+ "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 				PreparedStatement st = con.prepareStatement(query);
 				st.setLong(1, cv.getId());
 				st.setString(2, cv.getJob().getTitle());
@@ -111,12 +113,13 @@ public class CurriculumDaoJDBC implements CurriculumDao {
 				st.setString(11, cv.getPhoto());
 				st.setString(12, cv.getCurriculum());
 				st.setString(13, cv.getPresentation());
+				st.setString(14, cv.getPhone_number());
 				st.executeUpdate();
 				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				return false;
+				return null;
 			}
 		}else {
 			//UPDATE
@@ -125,7 +128,7 @@ public class CurriculumDaoJDBC implements CurriculumDao {
 						+ "set job = ?, first_name = ?, last_name = ?, "
 						+ "date_birth = ?, email = ?, educational_qualification = ?, "
 						+ "stdy_subject = ?, last_function = ?, last_classification = ?, "
-						+ "photo = ?, curriculum = ?, presentation = ? "
+						+ "photo = ?, curriculum = ?, presentation = ?, phone_numer = ? "
 						+ "where id = ?";
 				PreparedStatement st = con.prepareStatement(query);
 				st.setString(1, cv.getJob().getTitle());
@@ -141,17 +144,17 @@ public class CurriculumDaoJDBC implements CurriculumDao {
 				st.setString(11, cv.getCurriculum());
 				st.setString(12, cv.getPresentation());
 				st.setLong(13, cv.getId());
-				
+				st.setString(14, cv.getPhone_number());
 				st.executeUpdate();
 				
 			} catch (SQLException e) {
 				
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				return false;
+				return null;
 			}
 		}
-		return true;
+		return cv;
 	}
 
 	@Override
@@ -183,15 +186,18 @@ public class CurriculumDaoJDBC implements CurriculumDao {
 				cv.setId(rs.getLong("id"));
 				cv.setFirst_name(rs.getString("first_name"));
 				cv.setLast_name(rs.getString("last_name"));
+				cv.setDate_birth(rs.getString("date_birth"));
 				cv.setEmail(rs.getString("email"));
 				cv.setEducational_qualification(rs.getString("educational_qualification"));
 				cv.setStudy_subject(rs.getString("study_subject"));
 				cv.setLast_function(rs.getString("last_function"));
+				cv.setLast_classification(rs.getString("last_classification"));
 				cv.setPhoto(rs.getString("photo"));
 				cv.setCurriculum(rs.getString("curriculum"));
 				cv.setPresentation(rs.getString("presentation"));
+				cv.setPhone_number(rs.getString("phone_number"));
 				
-				Job job = casiUso.Database.getInstance().getJobDao().findByPrimaryKey(rs.getString("job"));
+				Job job = Database.getInstance().getJobDao().findByPrimaryKey(rs.getString("job"));
 				cv.setJob(job);
 
 			}

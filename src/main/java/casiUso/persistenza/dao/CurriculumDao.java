@@ -9,6 +9,6 @@ public interface CurriculumDao {
 	public List<Curriculum> findAll();
 	public Curriculum findById(Long id);
 	public List<Curriculum> findByJob(Job job);
-	public boolean saveOrUpdate(Curriculum cv);
+	public Curriculum saveOrUpdate(Curriculum cv);
 	public boolean delete(Curriculum cv);
 }

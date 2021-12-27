@@ -8,11 +8,13 @@ import casiUso.persistenza.dao.CurriculumDao;
 import casiUso.persistenza.dao.JobDao;
 import casiUso.persistenza.dao.ProductDao;
 import casiUso.persistenza.dao.ReportDao;
+import casiUso.persistenza.dao.UserDao;
 import casiUso.persistenza.dao.jdbc.CurriculumDaoJDBC;
 import casiUso.persistenza.dao.jdbc.JobDaoJDBC;
 import casiUso.persistenza.Login;
 import casiUso.persistenza.dao.jdbc.ProductDaoJDBC;
 import casiUso.persistenza.dao.jdbc.ReportDaoJDBC;
+import casiUso.persistenza.dao.jdbc.UserDaoJDBC;
 
 public class Database {
 	
@@ -54,6 +56,10 @@ public class Database {
 	
 	public ReportDao getReportDao() {
 		return new ReportDaoJDBC(conn);
+	}
+	
+	public UserDao getUserDao() {
+		return new UserDaoJDBC(conn);
 	}
 
 }

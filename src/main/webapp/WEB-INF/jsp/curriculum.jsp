@@ -226,11 +226,11 @@
 				</div>
 				
 				<div id = "login">
-					<c:if test= "${username == null}">
+					<c:if test= "${user == null}">
 						<a href = "javascript:formLogin()">Registered user? Click here</a>
 					</c:if>
-					<c:if test= "${username != null}">
-						Hi ${username}
+					<c:if test= "${user != null}">
+						Hi ${user.username}
 					</c:if>
 					<div id = "formLogin">
 						<form id = "formCurriculum" method="post" action="loginCurriculum">
@@ -261,14 +261,13 @@
 								<div id = "titolo">
 								</div>
 							</div>
-<!-- 						<c:if test= "${posizioneLavoro == null}">
-								<input type="hidden" name = "lavoro" value ="candidatura spontanea">
+	 						<c:if test= "${posizioneLavoro == null}">
+								<input type="hidden" name = "lavoro" value ="Spontaneous Candidature">
 							</c:if>
 							<c:if test= "${posizioneLavoro != null}">
-								<input type="hidden" name = "lavoro" />${posizioneLavoro}
+								<input type="hidden" name = "lavoro" value = "${posizioneLavoro}"/>
 							</c:if>
 							
- -->						<input type="hidden" id = "lavoro" name = "lavoro" value ="candidatura spontanea">
  							<div id = "divLavoro">
  							</div>
  							<div class = "col-md-6" id = "formSX">
@@ -290,7 +289,7 @@
 												</label>
 											</td>
 											<td>
-												<input type="text" name = "nome" id="nome" placeholder="Your first name ...">
+												<input type="text" name = "nome" id="nome" placeholder="Your first name ..." value = "${user.name}">
 											</td>
 										</tr>
 										<tr>
@@ -301,7 +300,7 @@
 												</label>
 											</td>
 											<td>
-												<input type="text" name = "cognome" id="cognome" placeholder="Your last name ...">
+												<input type="text" name = "cognome" id="cognome" placeholder="Your last name ..." value = "${user.surname}">
 											</td>
 										</tr>
 										<tr>
@@ -323,7 +322,18 @@
 												</label>
 											</td>
 										    <td>
-												<input type="email" name = "email" id="mail" placeholder="Your e-mail ..." >
+												<input type="email" name = "email" id="mail" placeholder="Your e-mail ..." value = "${user.email}">
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<label for="phone">
+													<nobr>Number phone</nobr>
+													<nobr class = "asterisco">*</nobr>
+												</label>
+											</td>
+										    <td>
+												<input type="tel" id="phone" name="phone" placeholder = "Your phone ..." value = "${user.phoneNumber}">
 											</td>
 										</tr>
 									</tbody>

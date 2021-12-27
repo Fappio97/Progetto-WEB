@@ -89,6 +89,8 @@ function modelloTabellaCurriculum(data) {
 					+ "<br /><br />"
 					+ data[i].date_birth
 					+ "<br />"
+					+ data[i].phone_number
+					+ "<br />"
 					+ data[i].email
 				+ "</td>"
 				+ "<td data-title = \"Education work\">"

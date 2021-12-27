@@ -1,22 +1,22 @@
 function trovaProdottiCorrelati() {
-	tag = new Array();
+	tag = "";
 	for(let i = 0; i < preferenzeUtente.length; ++i) {
 		if(preferenzeUtente[i] != undefined) {
-			if(preferenzeUtente[i].length > 1)
-				for(let j = 0; j < preferenzeUtente[i].length; ++j)
-					tag.push(preferenzeUtente[i][j]);
-			else
-				tag.push(preferenzeUtente[i]);
+			for(let j = 0; j < preferenzeUtente[i].length; ++j) {
+				tag += preferenzeUtente[i][j];
+				if(i < preferenzeUtente.length - 1 || j < preferenzeUtente[i].length - 1)
+					tag += ",";
+			}
 		}
 	}
-				
-	var stringa = categoriaSelezionata + "," + tag.toString();
 		
 	$.ajax({
 		type: "POST",
 		url: "/trovaProdotti",
-		contentType: "application/json",
-		data: stringa,
+		data: {
+			categoria: categoriaSelezionata,
+			tag: tag
+		},
 		success: function(data){
 			alert("tutto ok");
 			inserisciProdottiTag(data);

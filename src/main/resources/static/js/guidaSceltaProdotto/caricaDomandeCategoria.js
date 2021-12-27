@@ -42,7 +42,6 @@ function compila() {
 		}
 	}
 	caricaFocusDomanda();
-	console.log(preferenzeUtente.length);
 }
 
 function pannelloSuperiore(stringa) {
@@ -261,11 +260,8 @@ function inserisciProdottiTag(prodottiTag) {
 	let tag = new Array();
 	for(let i = 0; i < preferenzeUtente.length; ++i)
 		if(preferenzeUtente[i] != undefined) {
-			if(preferenzeUtente[i].length > 1)
-				for(let j = 0; j < preferenzeUtente.length; ++j)
-					tag.push(preferenzeUtente[i][j]);
-			else
-				tag.push(preferenzeUtente[i]);
+			for(let j = 0; j < preferenzeUtente[i].length; ++j)
+				tag.push(preferenzeUtente[i][j]);
 		}
 	
 	if(prodottiTag.length == 0) {
@@ -458,7 +454,6 @@ function selezionaRisposteScelte() {
 	
 	var risposte = document.getElementsByName("collega");
 	if(preferenzeUtente[ind] != undefined && preferenzeUtente[ind].length > 0) {
-		console.log(preferenzeUtente[ind]);
 		for(let i = 0; i < preferenzeUtente[ind].length; ++i) {
 			for(let j = 0; j < risposte.length; ++j) {
 				if(risposte[j].getAttribute('value') == preferenzeUtente[ind][i]) {

@@ -23,7 +23,7 @@ public class ProductDaoJDBC implements ProductDao {
 	@Override
 	public List<Product> findAll() {
 		List<Product> prodotti = new ArrayList<Product>();
-		String query = "select * from products";
+		String query = "select * from product";
 		try {
 			Statement st = conn.createStatement();
 			ResultSet rs = st.executeQuery(query);
@@ -34,7 +34,7 @@ public class ProductDaoJDBC implements ProductDao {
 				prodotto.setQuantity(rs.getInt("quantity"));
 				prodotto.setTags(rs.getString("tags"));
 				prodotto.setDescription(rs.getString("description"));
-				prodotto.setType(rs.getString("type"));
+				prodotto.setCategory(rs.getString("category"));
 				prodotto.setReviews(rs.getFloat("reviews"));
 				prodotto.setPrice(rs.getFloat("price"));
 				prodotti.add(prodotto);
@@ -47,12 +47,12 @@ public class ProductDaoJDBC implements ProductDao {
 	}
 
 	@Override
-	public List<Product> findByType(String type) {
+	public List<Product> findByCategory(String category) {
 		List<Product> prodotti = new ArrayList<Product>();
-		String query = "select * from products where type = ?";
+		String query = "select * from product where category = ?";
 		try {
 			PreparedStatement st = conn.prepareStatement(query);
-			st.setString(1, type);
+			st.setString(1, category);
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
 				Product prodotto = new Product();
@@ -61,7 +61,7 @@ public class ProductDaoJDBC implements ProductDao {
 				prodotto.setQuantity(rs.getInt("quantity"));
 				prodotto.setTags(rs.getString("tags"));
 				prodotto.setDescription(rs.getString("description"));
-				prodotto.setType(rs.getString("type"));
+				prodotto.setCategory(rs.getString("category"));
 				prodotto.setReviews(rs.getFloat("reviews"));
 				prodotto.setPrice(rs.getFloat("price"));
 				prodotti.add(prodotto);
@@ -76,7 +76,7 @@ public class ProductDaoJDBC implements ProductDao {
 	@Override
 	public Product findById(Long id) {
 		Product prodotto = new Product();
-		String query = "select * from products where id = ?";
+		String query = "select * from product where id = ?";
 		try {
 			PreparedStatement st = conn.prepareStatement(query);
 			st.setLong(1, id);
@@ -87,7 +87,7 @@ public class ProductDaoJDBC implements ProductDao {
 				prodotto.setQuantity(rs.getInt("quantity"));
 				prodotto.setTags(rs.getString("tags"));
 				prodotto.setDescription(rs.getString("description"));
-				prodotto.setType(rs.getString("type"));
+				prodotto.setCategory(rs.getString("category"));
 				prodotto.setReviews(rs.getFloat("reviews"));
 				prodotto.setPrice(rs.getFloat("price"));
 			}
@@ -96,18 +96,5 @@ public class ProductDaoJDBC implements ProductDao {
 			e.printStackTrace();
 		}
 		return prodotto;
-	}
-
-
-	@Override
-	public boolean saveOrUpdate(Product product) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean delete(Product product) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 }

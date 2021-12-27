@@ -19,21 +19,17 @@ import casiUso.model.Report;
 public class GuidaSceltaProdottoREST {
 	
 	@PostMapping("/trovaProdotti")
-	public List<ProductTag> trovaProdotti(@RequestBody String stringa) {
+	public List<ProductTag> trovaProdotti(@RequestParam String categoria, @RequestParam String tag) {
 
-		String[] diviso = stringa.split(",");
-		String tag = "";
-		for(int i = 1; i < diviso.length; ++i)
-			tag += diviso[i] + ",";
-				
-		List<Product> prodotti = Database.getInstance().getProductsDao().findByType(diviso[0]);
+		System.out.println(categoria + "    " + tag);
+						
+		List<Product> prodotti = Database.getInstance().getProductsDao().findByCategory(categoria);
 		
 		
 		List<ProductTag> prodottiRequisiti = new ArrayList<ProductTag>();
 		List<ProductTag> prodottiPiuTag = new ArrayList<ProductTag>();
 		
 		String[] tagRichiesti = tag.split(","); 
-		
 		
 		for(int i = 0; i < prodotti.size(); ++i) {
 			String[] tagProdotto = prodotti.get(i).getTags().split(",");
@@ -59,7 +55,7 @@ public class GuidaSceltaProdottoREST {
 		    }
 		});
 		
-		for(int i = 0; i < prodottiRequisiti.size() && i < 5; ++i) 
+		for(int i = 0; i < prodottiRequisiti.size() && i < 5; ++i)
 			prodottiPiuTag.add(prodottiRequisiti.get(i));
 		
 		return prodottiPiuTag;
@@ -69,7 +65,7 @@ public class GuidaSceltaProdottoREST {
 	@PostMapping("/prodottiMeglioRecensiti")
 	public List<Product> prodottiMeglioRecensiti(@RequestBody String categoria) {
 			
-		List<Product> prodotti = Database.getInstance().getProductsDao().findByType(categoria);
+		List<Product> prodotti = Database.getInstance().getProductsDao().findByCategory(categoria);
 		
 		List<Product> prodottiMeglioRecensiti = new ArrayList<Product>();
 		

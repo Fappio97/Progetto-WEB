@@ -16,10 +16,11 @@ public class Curriculum {
 	private String photo;
 	private String curriculum;
 	private String presentation;
+	private String phone_number;
 	
 	public Curriculum(Job job, String first_name, String last_name, String date_birth, String email,
 			String educational_qualification, String study_subject, String last_function, String last_classification,
-			String photo, String curriculum, String presentation) {
+			String photo, String curriculum, String presentation, String phone_number) {
 		super();
 		this.id = (long) 0;
 		this.job = job;
@@ -34,6 +35,7 @@ public class Curriculum {
 		this.photo = photo;
 		this.curriculum = curriculum;
 		this.presentation = presentation;
+		this.phone_number = phone_number;
 	}
 
 	public Curriculum() {
@@ -159,6 +161,14 @@ public class Curriculum {
 			return false;
 		Curriculum other = (Curriculum) obj;
 		return Objects.equals(id, other.id);
+	}
+
+	public String getPhone_number() {
+		return phone_number;
+	}
+
+	public void setPhone_number(String phone_number) {
+		this.phone_number = phone_number;
 	}
 	
 }

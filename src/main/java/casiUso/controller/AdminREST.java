@@ -39,15 +39,7 @@ public class AdminREST {
 
 		Database.getInstance().getJobDao().saveOrUpdate(new Job(titolo, descrizione, requisiti, attivo));
 		
-	}
-/*	
-	@PostMapping("/checkPosizioneLavoro")
-	public boolean checkPosizioneLavoro(@RequestParam String titolo) {
-		
-		return Database.getInstance().getJobDao().checkByPrimaryKey(titolo);
-		
-	}
-*/	
+	}	
 
 	@PostMapping("/checkPosizioneLavoro")
 	public String checkPosizioneLavoro(@RequestParam String titolo, @RequestParam String descrizione, @RequestParam String requisiti, @RequestParam boolean attivo) {
@@ -70,8 +62,12 @@ public class AdminREST {
 		
 		Curriculum cv = Database.getInstance().getCurriculumDao().findById(id);
 	
+		System.out.println(cv.getLast_name() + "_" + cv.getFirst_name() + "_" + cv.getDate_birth()
+					+ "_" + cv.getJob().getTitle());
+		
 		String p = System.getProperty("user.dir") + "/src/main/resources/static/curriculumRicevuti/" 
-					+ cv.getLast_name() + "_" + cv.getFirst_name();
+					+ cv.getLast_name() + "_" + cv.getFirst_name() + "_" + cv.getDate_birth()
+					+ "_" + cv.getJob().getTitle();
 		
 		try {
 			FileUtils.deleteDirectory(new File(p));
