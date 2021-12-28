@@ -306,7 +306,7 @@
 										<tr>
 											<td> 
 												<label for="dataNascita"> 
-													<nobr>Date of birth</nobr>
+													<nobr>Date birth</nobr>
 													<nobr class = "asterisco">*</nobr>
 												</label>
 											</td>
@@ -328,7 +328,7 @@
 										<tr>
 											<td>
 												<label for="phone">
-													<nobr>Number phone</nobr>
+													<nobr>Phone</nobr>
 													<nobr class = "asterisco">*</nobr>
 												</label>
 											</td>
@@ -354,7 +354,7 @@
 										<td>
 											<label for="titoloStudio">
 												<nobr class = "asterisco">*</nobr>
-												<nobr>Educational qualification</nobr>
+												<nobr>Study title</nobr>
 											</label>
 										</td>
 									</tr>
@@ -426,7 +426,7 @@
 										<tr>
 											<td class = "dx">
 												<label for="cv">
-													<nobr>CV Attachment</nobr>
+													<nobr>CV</nobr>
 													<nobr class="asterisco">*</nobr>
 												</label>
 											</td>

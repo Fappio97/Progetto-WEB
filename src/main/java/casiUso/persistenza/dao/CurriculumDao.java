@@ -8,7 +8,8 @@ import casiUso.model.Job;
 public interface CurriculumDao {
 	public List<Curriculum> findAll();
 	public Curriculum findById(Long id);
-	public List<Curriculum> findByJob(Job job);
-	public Curriculum saveOrUpdate(Curriculum cv);
+	public List<Curriculum> findByJob(Job job);	
+	public Long checkEsisteCurriculum(Curriculum cv);
+	public boolean saveOrUpdate(Curriculum cv);
 	public boolean delete(Curriculum cv);
 }

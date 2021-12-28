@@ -36,14 +36,14 @@ public class CurriculumDaoJDBC implements CurriculumDao {
 				cv.setLast_name(rs.getString("last_name"));
 				cv.setDate_birth(rs.getString("date_birth"));
 				cv.setEmail(rs.getString("email"));
-				cv.setEducational_qualification(rs.getString("educational_qualification"));
+				cv.setStudy_title(rs.getString("study_title"));
 				cv.setStudy_subject(rs.getString("study_subject"));
 				cv.setLast_function(rs.getString("last_function"));
 				cv.setLast_classification(rs.getString("last_classification"));
 				cv.setPhoto(rs.getString("photo"));
 				cv.setCurriculum(rs.getString("curriculum"));
 				cv.setPresentation(rs.getString("presentation"));
-				cv.setPhone_number(rs.getString("phone_number"));
+				cv.setPhone(rs.getString("phone"));
 				
 				Job job = Database.getInstance().getJobDao().findByPrimaryKey(rs.getString("job"));
 				cv.setJob(job);
@@ -72,14 +72,14 @@ public class CurriculumDaoJDBC implements CurriculumDao {
 				cv.setLast_name(rs.getString("last_name"));
 				cv.setDate_birth(rs.getString("date_birth"));
 				cv.setEmail(rs.getString("email"));
-				cv.setEducational_qualification(rs.getString("educational_qualification"));
+				cv.setStudy_title(rs.getString("study_title"));
 				cv.setStudy_subject(rs.getString("study_subject"));
 				cv.setLast_function(rs.getString("last_function"));
 				cv.setLast_classification(rs.getString("last_classification"));
 				cv.setPhoto(rs.getString("photo"));
 				cv.setCurriculum(rs.getString("curriculum"));
 				cv.setPresentation(rs.getString("presentation"));
-				cv.setPhone_number(rs.getString("phone_number"));
+				cv.setPhone(rs.getString("phone"));
 				cv.setJob(job);
 				
 				curriculum.add(cv);
@@ -92,9 +92,10 @@ public class CurriculumDaoJDBC implements CurriculumDao {
 	}
 
 	@Override
-	public Curriculum saveOrUpdate(Curriculum cv) {
+	public boolean saveOrUpdate(Curriculum cv) {
 		if (cv.getId() == 0) {
 			//INSERT
+			System.out.println("insert");
 			try {
 				cv.setId(IdCurriculum.getId(con));
 				String query = "insert into curriculum "
@@ -106,29 +107,30 @@ public class CurriculumDaoJDBC implements CurriculumDao {
 				st.setString(4, cv.getLast_name());
 				st.setString(5, cv.getDate_birth());
 				st.setString(6, cv.getEmail());
-				st.setString(7, cv.getEducational_qualification());
+				st.setString(7, cv.getStudy_title());
 				st.setString(8, cv.getStudy_subject());
 				st.setString(9, cv.getLast_function());
 				st.setString(10, cv.getLast_classification());
 				st.setString(11, cv.getPhoto());
 				st.setString(12, cv.getCurriculum());
 				st.setString(13, cv.getPresentation());
-				st.setString(14, cv.getPhone_number());
+				st.setString(14, cv.getPhone());
 				st.executeUpdate();
 				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				return null;
+				return false;
 			}
 		}else {
 			//UPDATE
+			System.out.println("update");
 			try {
 				String query = "update curriculum "
 						+ "set job = ?, first_name = ?, last_name = ?, "
-						+ "date_birth = ?, email = ?, educational_qualification = ?, "
-						+ "stdy_subject = ?, last_function = ?, last_classification = ?, "
-						+ "photo = ?, curriculum = ?, presentation = ?, phone_numer = ? "
+						+ "date_birth = ?, email = ?, study_title = ?, "
+						+ "study_subject = ?, last_function = ?, last_classification = ?, "
+						+ "photo = ?, curriculum = ?, presentation = ?, phone = ? "
 						+ "where id = ?";
 				PreparedStatement st = con.prepareStatement(query);
 				st.setString(1, cv.getJob().getTitle());
@@ -136,25 +138,25 @@ public class CurriculumDaoJDBC implements CurriculumDao {
 				st.setString(3, cv.getLast_name());
 				st.setString(4, cv.getDate_birth());
 				st.setString(5, cv.getEmail());
-				st.setString(6, cv.getEducational_qualification());
+				st.setString(6, cv.getStudy_title());
 				st.setString(7, cv.getStudy_subject());
 				st.setString(8, cv.getLast_function());
 				st.setString(9, cv.getLast_classification());
 				st.setString(10, cv.getPhoto());
 				st.setString(11, cv.getCurriculum());
 				st.setString(12, cv.getPresentation());
-				st.setLong(13, cv.getId());
-				st.setString(14, cv.getPhone_number());
+				st.setString(13, cv.getPhone());
+				st.setLong(14, cv.getId());
 				st.executeUpdate();
 				
 			} catch (SQLException e) {
 				
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				return null;
+				return false;
 			}
 		}
-		return cv;
+		return true;
 	}
 
 	@Override
@@ -188,14 +190,14 @@ public class CurriculumDaoJDBC implements CurriculumDao {
 				cv.setLast_name(rs.getString("last_name"));
 				cv.setDate_birth(rs.getString("date_birth"));
 				cv.setEmail(rs.getString("email"));
-				cv.setEducational_qualification(rs.getString("educational_qualification"));
+				cv.setStudy_title(rs.getString("study_title"));
 				cv.setStudy_subject(rs.getString("study_subject"));
 				cv.setLast_function(rs.getString("last_function"));
 				cv.setLast_classification(rs.getString("last_classification"));
 				cv.setPhoto(rs.getString("photo"));
 				cv.setCurriculum(rs.getString("curriculum"));
 				cv.setPresentation(rs.getString("presentation"));
-				cv.setPhone_number(rs.getString("phone_number"));
+				cv.setPhone(rs.getString("phone"));
 				
 				Job job = Database.getInstance().getJobDao().findByPrimaryKey(rs.getString("job"));
 				cv.setJob(job);
@@ -206,6 +208,28 @@ public class CurriculumDaoJDBC implements CurriculumDao {
 			e.printStackTrace();
 		}
 		return cv;
+	}
+
+	@Override
+	public Long checkEsisteCurriculum(Curriculum cv) {
+		String query = "select * from curriculum where job = ? and "
+				+ "first_name = ? and last_name = ? and date_birth = ?";
+		
+		try {
+			PreparedStatement st = con.prepareStatement(query);
+			st.setString(1, cv.getJob().getTitle());
+			st.setString(2, cv.getFirst_name());
+			st.setString(3, cv.getLast_name());
+			st.setString(4, cv.getDate_birth());
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				return rs.getLong("id");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return (long) 0;
 	}
 
 }

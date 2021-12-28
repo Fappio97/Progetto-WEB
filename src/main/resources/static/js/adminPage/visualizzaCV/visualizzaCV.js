@@ -75,12 +75,19 @@ function modelloTabellaCurriculum(data) {
 	
 	let funzione = "";
 	
+	let classificazioneFunzione = "";
+	
 	for(let i = 0; i < data.length; ++i) {
-		if(data[i].last_function == ' -- select an option -- ')
+		if(data[i].last_function != ' -- select an option -- ')
 			funzione = data[i].last_function;
 		else
 			funzione = "";
-		
+			
+		if(data[i].last_classification != null)
+			classificazioneFunzione = data[i].last_classification;
+		else
+			classificazioneFunzione = "";
+				
 		s += "<tr>"
 				+ "<td data-title = \"Select deselect\"><input id=\"" + data[i].id + "\" type=\"checkbox\" class = \"report\" /></td>"
 				+ "<td data-title = \"Job\">" + data[i].job.title + "</td>"
@@ -89,18 +96,18 @@ function modelloTabellaCurriculum(data) {
 					+ "<br /><br />"
 					+ data[i].date_birth
 					+ "<br />"
-					+ data[i].phone_number
+					+ data[i].phone
 					+ "<br />"
 					+ data[i].email
 				+ "</td>"
 				+ "<td data-title = \"Education work\">"
-					+ data[i].educational_qualification
+					+ data[i].study_title
 					+ "<br />"
 					+ data[i].study_subject
 					+ "<br /><br />"
 					+ funzione
 					+ "<br />"
-					+ data[i].last_classification
+					+ classificazioneFunzione
 					+ "</td>"
 				+ "<td data-title = \"Photo\">"
 					+ "<a id = \"fotoSizePiccola\" href = \"" + data[i].photo + "\" target = \"_blank\">View photo</a>"

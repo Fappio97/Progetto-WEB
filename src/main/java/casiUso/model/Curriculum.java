@@ -9,18 +9,18 @@ public class Curriculum {
 	private String last_name;
 	private String date_birth;
 	private String email;
-	private String educational_qualification;
+	private String study_title;
 	private String study_subject;
 	private String last_function;
 	private String last_classification;
 	private String photo;
 	private String curriculum;
 	private String presentation;
-	private String phone_number;
+	private String phone;
 	
 	public Curriculum(Job job, String first_name, String last_name, String date_birth, String email,
-			String educational_qualification, String study_subject, String last_function, String last_classification,
-			String photo, String curriculum, String presentation, String phone_number) {
+			String study_title, String study_subject, String last_function, String last_classification,
+			String photo, String curriculum, String presentation, String phone) {
 		super();
 		this.id = (long) 0;
 		this.job = job;
@@ -28,14 +28,14 @@ public class Curriculum {
 		this.last_name = last_name;
 		this.date_birth = date_birth;
 		this.email = email;
-		this.educational_qualification = educational_qualification;
+		this.study_title = study_title;
 		this.study_subject = study_subject;
 		this.last_function = last_function;
 		this.last_classification = last_classification;
 		this.photo = photo;
 		this.curriculum = curriculum;
 		this.presentation = presentation;
-		this.phone_number = phone_number;
+		this.phone = phone;
 	}
 
 	public Curriculum() {
@@ -90,12 +90,12 @@ public class Curriculum {
 		this.email = email;
 	}
 
-	public String getEducational_qualification() {
-		return educational_qualification;
+	public String getStudy_title() {
+		return study_title;
 	}
 
-	public void setEducational_qualification(String educational_qualification) {
-		this.educational_qualification = educational_qualification;
+	public void setStudy_title(String study_title) {
+		this.study_title = study_title;
 	}
 
 	public String getStudy_subject() {
@@ -163,12 +163,12 @@ public class Curriculum {
 		return Objects.equals(id, other.id);
 	}
 
-	public String getPhone_number() {
-		return phone_number;
+	public String getPhone() {
+		return phone;
 	}
 
-	public void setPhone_number(String phone_number) {
-		this.phone_number = phone_number;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 	
 }

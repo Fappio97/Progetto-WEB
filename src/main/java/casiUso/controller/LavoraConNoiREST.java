@@ -29,8 +29,6 @@ public class LavoraConNoiREST {
 	@PostMapping("/salvaPosizioneLavoro")
 	public String salvaPosizioneLavoro(HttpServletRequest req, @RequestParam String titolo) {
 		
-		System.out.println(titolo);
-		
 		HttpSession session = req.getSession(true);
 		session.setAttribute("posizioneLavoro", titolo);
 		
