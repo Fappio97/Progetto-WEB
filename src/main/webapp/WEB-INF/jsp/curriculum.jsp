@@ -240,6 +240,8 @@
 							<input type="password" id = "pass" name="pass" placeholder="Your password.."/> <br/>
 							<button id = "pulsanteLogin" onclick = "faiLogin(event)">Login</button>
 						</form>
+						<div class = "messaggioErrore" id = "erroreLogin">
+						</div>
 					</div>
 				</div>
 				<br />
@@ -268,7 +270,7 @@
 								<input type="hidden" name = "lavoro" value = "${posizioneLavoro}"/>
 							</c:if>
 							
-							<div id = "messaggioErrore">
+							<div class = "messaggioErrore" id = "erroreForm">
 							</div>
 							
  							<div id = "divLavoro">

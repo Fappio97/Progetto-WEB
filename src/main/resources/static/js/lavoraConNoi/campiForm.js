@@ -9,6 +9,15 @@ function campiForm() {
 		});		
 	});
 	
+	$('input[type=password]').focusin(function(){
+		$(this).css("border-color", "");
+	});
+		
+	$('input[type=password]').focusout(function(){
+		if($(this).val() == "")
+			$(this).css("border-color", "red");
+	});
+	
 	$('input[type=email]').focusin(function(){
 		$(this).css("border-color", "");
 	});

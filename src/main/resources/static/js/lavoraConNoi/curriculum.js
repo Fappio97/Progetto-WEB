@@ -44,49 +44,16 @@ function faiLogin(event) {
 	}
 	
 	if(stringa != "")
-		alert(stringa);
+		stringaErroreLogin(stringa);
 	
 	document.querySelector("#login").submit;
 }
-/*
-function inviaPresentazione(event) {
-		let messaggioErrore;
-		let condizione = true;
-		
-		if(!controllaInputTypeText() || !controllaSelects() || !controllaDataNascita() 
-			|| !controllaMail() || !controllaNumero()) {
-			event.preventDefault();
-			messaggioErrore = "Enter the required fields!%";
-		}
-		if(!controllaImmagine()) {
-			event.preventDefault();
-			messaggioErrore += "Only jpg/jpeg and png files are allowed!%";
-		} else {
-			if(!controllaSizeImmagine()) {
-				event.preventDefault();
-				messaggioErrore += "Image size too large!%";
-			}
-		}		
-		if(!controllaCV()) {
-			event.preventDefault();
-			messaggioErrore += "Only PDF files are allowed!%";
-		} else {
-			if(!controllaSizeCV()) {
-				event.preventDefault();
-				messaggioErrore += "PDF file size too large!%";
-			}
-		}	
-		
-		if(messaggioErrore == "") 
-			alert("CV inviato");
-		else {
-			stringaErrore(messaggioErrore);
-			coloraCampi();
-		}
-			
-		document.querySelector("#presentazione").submit;
+
+function stringaErroreLogin(stringa) {
+	var div = document.getElementById("erroreLogin");
+	
+	div.innerHTML = "<p>" + stringa + "</p>";
 }
-*/
 
 function inviaPresentazione(event) {
 		let messaggioErrore = "";
@@ -115,7 +82,7 @@ function inviaPresentazione(event) {
 		if(messaggioErrore == "") 
 			alert("CV inviato");
 		else {
-			stringaErrore(messaggioErrore);
+			stringaErroreForm(messaggioErrore);
 			event.preventDefault();
 			document.getElementById("titolo").scrollIntoView();
 		}
@@ -123,8 +90,8 @@ function inviaPresentazione(event) {
 		document.querySelector("#presentazione").submit;
 }
 
-function stringaErrore(stringa) {
-	var div = document.getElementById("messaggioErrore");
+function stringaErroreForm(stringa) {
+	var div = document.getElementById("erroreForm");
 	
 	let s = "";
 	for(let i = 0; i < stringa.split("%").length; ++i)

@@ -217,7 +217,11 @@ input[type=text] {
   	text-align: center;
 }
 
-#messaggioErrore {
+#user {
+	margin-bottom: 10px;
+}
+
+.messaggioErrore {
 	text-align: center;
 	color: red;
 }
