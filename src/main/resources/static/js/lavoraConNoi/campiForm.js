@@ -39,5 +39,23 @@ function campiForm() {
 		else
 			$(this).css("border-color", "");
 	});
+	
+	$("#foto").change(function() {
+		let idxDot = $(this).val().lastIndexOf(".") + 1;
+		let extFile = $(this).val().substr(idxDot, idxDot.length).toLowerCase();
+		if (extFile!="jpg" && extFile!="jpeg" && extFile!="png" ||  this.files[0].size > 1048576)
+			$(this).css("border", "2px solid red");
+		else
+			$(this).css("border", "");
+	});
+	
+	$("#cv").change(function() {
+		let idxDot = $(this).val().lastIndexOf(".") + 1;
+		let extFile = $(this).val().substr(idxDot, idxDot.length).toLowerCase();
+		if (extFile!="pdf" || this.files[0].size > 1048576)
+			$(this).css("border", "2px solid red");
+		else
+			$(this).css("border", "");
+	});
 
 }

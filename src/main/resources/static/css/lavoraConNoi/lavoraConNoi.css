@@ -217,10 +217,13 @@ input[type=text] {
   	text-align: center;
 }
 
-@media screen and (max-width: 580px) {
-	/* --- INDEX --- */
+#messaggioErrore {
+	text-align: center;
+	color: red;
+}
 
-	/* --- GUIDA PRODOTTO --- */
+@media screen and (max-width: 580px) {
+
 
 	/*evita che la navbar esce fuori dai bordi quando restringo*/
 	#container {

@@ -268,6 +268,9 @@
 								<input type="hidden" name = "lavoro" value = "${posizioneLavoro}"/>
 							</c:if>
 							
+							<div id = "messaggioErrore">
+							</div>
+							
  							<div id = "divLavoro">
  							</div>
  							<div class = "col-md-6" id = "formSX">
