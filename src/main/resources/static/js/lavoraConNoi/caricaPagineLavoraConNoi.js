@@ -141,10 +141,10 @@ function soloTesto(elemento, titolo, testo) {
 		for(let j = 0; j < frasi[i].length; ++j)
 			s[i] += "<p>" + frasi[i][j] + "</p>";
 	}
-	console.log(titolo);
+//	console.log(titolo);
 	let indice = -1;
 	for(let i = 0; i < posLavoro.length; ++i) {
-		console.log(posLavoro[i]);
+//		console.log(posLavoro[i]);
 		if(posLavoro[i].title == titolo) {
 			indice = i;
 			break;

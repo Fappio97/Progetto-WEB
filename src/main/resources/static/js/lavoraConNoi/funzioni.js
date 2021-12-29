@@ -47,7 +47,7 @@ function caricaListeAperte(data) {
 			posLavoro.push(new PosizioneLavoro(data[i].title, data[i].description, data[i].requirements, data[i].obligatory, data[i].active));
 		}
 	}
-	console.log(posLavoro);
+//	console.log(posLavoro);
 	div.innerHTML = s;
 }
 

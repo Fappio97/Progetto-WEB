@@ -13,9 +13,6 @@ function listeAperte() {
 }
 
 function salvaPosizioneLavoro(indice) {
-	
-	console.log(indice);
-	
 	$.ajax({
 		type: "POST",
 		url: "/salvaPosizioneLavoro",

@@ -7,17 +7,9 @@ function compila() {
 	// metto i valori nelle checkBox
 	popolaComboBox();
 	
-	// 
+	// focus dei campi
 	campiForm();
-//	caricaLavoro();
 }
-
-/* setto il tipo di lavoro in un input hidden perché mi serve passarla nel form */
-/*function caricaLavoro() {
-	var tipoLavoro = document.getElementById("tipoLavoro").innerHTML;
-	console.log(tipoLavoro);
-	$("#lavoro").val(tipoLavoro);
-}*/
 
 function faiLogin(event) {
 	
@@ -92,8 +84,8 @@ function inviaPresentazione(event) {
 					event.preventDefault();
 					return;
 				}
-				else
-					document.getElementsByName("lavoro").value = "Spontaneous Candidature";
+				else 
+					document.getElementsByName("lavoro")[0].value = "Spontaneous Candidature";
 			}
 			alert("CV inviato");
 		}
@@ -273,9 +265,9 @@ function controllaRequisitiObbligatori() {
 		/* se il requisito è dell'età verifico se esco fuori dai limiti
 			in questo caso non soddisfo */
 		if(requisiti[i].name == "Age range") {
-			console.log("Scorrimento eta " + requisiti[i].value1 + " " + requisiti[i].value2)
+//			console.log("Scorrimento eta " + requisiti[i].value1 + " " + requisiti[i].value2)
 			if(eta < requisiti[i].value1 || eta > requisiti[i].value2) {
-				console.log("età false");
+//				console.log("età false");
 				return false;
 			}
 		}
@@ -284,9 +276,9 @@ function controllaRequisitiObbligatori() {
 			quindi se uno è soddisfatto imposto la booleana a true
 			e ritorno */
 		else {
-			console.log("Scorrimento titolo " + requisiti[i].value1 + " " + requisiti[i].value2)
+//			console.log("Scorrimento titolo " + requisiti[i].value1 + " " + requisiti[i].value2)
 			if(requisiti[i].value1 == titoloStudio && requisiti[i].value2 == materiaStudio) {
-				console.log("titolo true");
+//				console.log("titolo true");
 				cond = true;
 			}
 		}
