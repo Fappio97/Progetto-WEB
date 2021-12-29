@@ -12,13 +12,15 @@ function listeAperte() {
 	});
 }
 
-function salvaPosizioneLavoro(titolo) {
+function salvaPosizioneLavoro(indice) {
+	
+	console.log(indice);
+	
 	$.ajax({
 		type: "POST",
 		url: "/salvaPosizioneLavoro",
-		data: {
-			titolo: titolo
-		},
+		contentType: "application/json",
+		data: JSON.stringify(posLavoro[indice]),
 		success: function(){
 			alert("tutto ok");
 			window.location.href = "/lavoraConNoi/curriculum";
@@ -26,5 +28,6 @@ function salvaPosizioneLavoro(titolo) {
 		error: function(xhr){
 			alert("tutto male");
 		}
+
 	});
 }

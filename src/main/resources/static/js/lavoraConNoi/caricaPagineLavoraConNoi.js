@@ -145,22 +145,22 @@ function soloTesto(elemento, titolo, testo) {
 	let indice = -1;
 	for(let i = 0; i < posLavoro.length; ++i) {
 		console.log(posLavoro[i]);
-		if(posLavoro[i].titolo == titolo) {
+		if(posLavoro[i].title == titolo) {
 			indice = i;
 			break;
 		}
 	}
 	
 	let requisitiObbligatori = "";
-	for(let i = 0; i < posLavoro[indice].obbligatori.length; ++i) {
-		requisitiObbligatori += posLavoro[indice].obbligatori[i].nome + ": "
-						+ posLavoro[indice].obbligatori[i].valore1 + " " 
-						+ posLavoro[indice].obbligatori[i].valore2;
+	for(let i = 0; i < posLavoro[indice].obligatory.length; ++i) {
+		requisitiObbligatori += posLavoro[indice].obligatory[i].name + ": "
+						+ posLavoro[indice].obligatory[i].value1 + " - " 
+						+ posLavoro[indice].obligatory[i].value2;
 						
 		// se il successivo requisito obbligatorio ha lo stesso nome li scrivo sulla stessa riga
 		// poiché almeno uno dei due deve esseresoddisfatto e non entrambi
-		if(i + 1 < posLavoro[indice].obbligatori.length 
-		&& posLavoro[indice].obbligatori[i].nome == posLavoro[indice].obbligatori[i + 1].nome)
+		if(i + 1 < posLavoro[indice].obligatory.length 
+		&& posLavoro[indice].obligatory[i].name == posLavoro[indice].obligatory[i + 1].name)
 			requisitiObbligatori += " or ";
 		else
 			requisitiObbligatori += "<br />";
@@ -172,10 +172,10 @@ function soloTesto(elemento, titolo, testo) {
 							+ "<p id = \"titoloSezione\">" + titolo + "</p><br /><br />"
 							+ s[0]
 							+ "<br />"
-							+ posLavoro[indice].descrizione
+							+ posLavoro[indice].description
 							+ "<br /><br /><br />"
 							+ "<p><strong>Requirements</strong></p>"
-							+ posLavoro[indice].requisiti
+							+ posLavoro[indice].requirements
 							+ "<br /><br /><br />"
 							+ "<p><strong>Requirements obligatory</strong></p>"
 							+ requisitiObbligatori
@@ -184,7 +184,7 @@ function soloTesto(elemento, titolo, testo) {
 							+ "<br /><br /><br />"
 							+ "<div>"
 								+ "Introduce yourself<br />"
-									+ "<button class = \"button\" onclick = \"javascript:salvaPosizioneLavoro('" + titolo + "')\">Send your CV</button>"
+									+ "<button class = \"button\" onclick = \"javascript:salvaPosizioneLavoro('" + indice + "')\">Send your CV</button>"
 							+ "</div>"
 						+ "</div>"
 					+ "</div>";

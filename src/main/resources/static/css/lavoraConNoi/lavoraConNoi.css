@@ -226,6 +226,15 @@ input[type=text] {
 	color: red;
 }
 
+.requisito {
+	font-style: italic;
+	display: inline;
+}
+
+.requisito p {
+	display: inline;
+}
+
 @media screen and (max-width: 580px) {
 
 

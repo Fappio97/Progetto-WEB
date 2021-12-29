@@ -41,10 +41,10 @@ function caricaListeAperte(data) {
 			
 			let obbligatori = new Array();
 			for(let j = 0; j < data[i].obligatory.length; ++j)
-				obbligatori.push(new Obbligatorio(data[i].obligatory[j].name, data[i].obligatory[j].value1, data[i].obligatory[j].value2));
+				obbligatori.push(new Obbligatorio(data[i].obligatory.id, data[i].obligatory[j].name, data[i].obligatory[j].value1, data[i].obligatory[j].value2));
 					
 				
-			posLavoro.push(new PosizioneLavoro(data[i].title, data[i].description, data[i].requirements, obbligatori));
+			posLavoro.push(new PosizioneLavoro(data[i].title, data[i].description, data[i].requirements, data[i].obligatory, data[i].active));
 		}
 	}
 	console.log(posLavoro);

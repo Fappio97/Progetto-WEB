@@ -8,17 +8,19 @@ function Sezione(titolo, testo) {
 	this.testo = testo;
 }
 
-function Obbligatorio(nome, valore1, valore2) {
-	this.nome = nome;
-	this.valore1 = valore1;
-	this.valore2 = valore2;
+function Obbligatorio(id, nome, valore1, valore2) {
+	this.id = id;
+	this.name = nome;
+	this.value1 = valore1;
+	this.value2 = valore2;
 }
 
-function PosizioneLavoro(titolo, descrizione, requisiti, obbligatori) {
-	this.titolo = titolo;
-	this.descrizione = descrizione;
-	this.requisiti = requisitiSpezzati(requisiti);
-	this.obbligatori = obbligatori;
+function PosizioneLavoro(titolo, descrizione, requisiti, obbligatori, attivo) {
+	this.title = titolo;
+	this.description = descrizione;
+	this.requirements = requisitiSpezzati(requisiti);
+	this.obligatory = obbligatori;
+	this.active = attivo;
 }
 
 /* --- INDICE PER SCORRERE --- */

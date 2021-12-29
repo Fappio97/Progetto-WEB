@@ -247,29 +247,18 @@ public class JobDaoJDBC implements JobDao {
 	@Override
 	public Job findByPrimaryKey(String nome) {
 		Job lavoro = null;
-		String query = "select * from job j "
-				+ "inner join obligatory_requirements o on j.title = o.job "
-				+ "inner join requirements r on r.id = o.requirements "
-				+ "where title = ?";
+		String query = "select * from job where title = ?";
 		try {
 			PreparedStatement st = con.prepareStatement(query);
 			st.setString(1, nome);
 			ResultSet rs = st.executeQuery();
-			while(rs.next()) {
-				if(lavoro == null) {
-					lavoro = new Job();
-					lavoro.setTitle(rs.getString("title"));
-					lavoro.setDescription(rs.getString("description"));
-					lavoro.setRequirements(rs.getString("requirements"));
-					lavoro.setActive(rs.getBoolean("active"));
-					lavoro.setObligatory(new ArrayList<Requirements>());
-				}
-				Requirements req = new Requirements();
-				req.setId(rs.getLong("r.id"));
-				req.setName(rs.getString("r.name"));
-				req.setValue1(rs.getString("r.value1"));
-				req.setValue1(rs.getString("r.value2"));
-				lavoro.getObligatory().add(req);
+			if(rs.next()) {
+				lavoro = new Job();
+				lavoro.setTitle(rs.getString("title"));
+				lavoro.setDescription(rs.getString("description"));
+				lavoro.setRequirements(rs.getString("requirements"));
+				lavoro.setActive(rs.getBoolean("active"));
+				lavoro.setObligatory(new ArrayList<Requirements>());
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -251,7 +251,26 @@
 						<p><strong id = "tipoLavoro">Spontaneous Candidature</strong></p>
 					</c:if>
 					<c:if test= "${posizioneLavoro != null}">
-						<p><strong id = "tipoLavoro">${posizioneLavoro}</strong></p>
+						<p><strong id = "tipoLavoro">${posizioneLavoro.title}</strong></p>
+						<div id = "requisiti">
+							<c:forEach items = "${posizioneLavoro.obligatory}" var = "obb" varStatus = "obbCount">
+								<div class = "requisito">
+									<p class = "nomeRequisito">${obb.name}</p>:
+									<p class = "valore1Requisito">${obb.value1}</p> 
+									<nobr> - </nobr> 
+									<p class = "valore2Requisito">${obb.value2}</p>
+									<c:if test="${!obb.name.equals('Age range')}">
+										<!-- Vede se è l'ultimo elemento -->
+			  							<c:if test="${not obbCount.last}">
+											or
+										</c:if>
+									</c:if>
+									<c:if test="${obb.name.equals('Age range')}">
+										  <br />
+									</c:if>	
+								</div>
+							</c:forEach>
+						</div>
 					</c:if>
 				</div>
 				<br />
@@ -264,10 +283,10 @@
 								</div>
 							</div>
 	 						<c:if test= "${posizioneLavoro == null}">
-								<input type="hidden" name = "lavoro" value ="Spontaneous Candidature">
+								<input type="hidden" name = "lavoro" id = "lavoro" value ="Spontaneous Candidature">
 							</c:if>
 							<c:if test= "${posizioneLavoro != null}">
-								<input type="hidden" name = "lavoro" value = "${posizioneLavoro}"/>
+								<input type="hidden" name = "lavoro" id = "lavoro" value = "${posizioneLavoro.title}"/>
 							</c:if>
 							
 							<div class = "messaggioErrore" id = "erroreForm">

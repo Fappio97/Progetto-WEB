@@ -1,19 +1,23 @@
 window.onload = function() {
 	compila();
+	prendiRequisitiObbligatori();
 }
 
 function compila() {
+	// metto i valori nelle checkBox
 	popolaComboBox();
+	
+	// 
 	campiForm();
-	caricaLavoro();
+//	caricaLavoro();
 }
 
 /* setto il tipo di lavoro in un input hidden perché mi serve passarla nel form */
-function caricaLavoro() {
+/*function caricaLavoro() {
 	var tipoLavoro = document.getElementById("tipoLavoro").innerHTML;
-	
+	console.log(tipoLavoro);
 	$("#lavoro").val(tipoLavoro);
-}
+}*/
 
 function faiLogin(event) {
 	
@@ -78,9 +82,21 @@ function inviaPresentazione(event) {
 		else if(!controllaSizeCV())
 			messaggioErrore += "PDF file size too large!%";
 
-		
-		if(messaggioErrore == "") 
+		/* se non ho messaggi di errore
+			vedo se sono soddisfatti i requisiti obbligatori,
+			in caso chiedo se vuole inviarla come candidatura spontanea,
+			ed eventualmente proseguo oppure no */
+		if(messaggioErrore == "")  {
+			if(document.getElementById("lavoro").value != "Spontaneous Candidature" && !controllaRequisitiObbligatori()) {
+				if(!confirm("You do not meet the mandatory requirements for this job position.\nDo you want to send your candidature as spontaneous?")) {
+					event.preventDefault();
+					return;
+				}
+				else
+					document.getElementsByName("lavoro").value = "Spontaneous Candidature";
+			}
 			alert("CV inviato");
+		}
 		else {
 			stringaErroreForm(messaggioErrore);
 			event.preventDefault();
@@ -196,6 +212,7 @@ function controllaSizeCV() {
 	return true;
 }
 
+// nascondo o mostro il form di login
 function formLogin() {
 	let form = document.getElementById("formLogin");
 	if(form.style.display == "none" || form.style.display == "")
@@ -203,3 +220,101 @@ function formLogin() {
 	else
 		form.style.display = "none";
 }
+
+/* REQUISITI OBBLIGATORI */
+
+var requisiti = new Array();
+
+/* prende il giorno attuale */
+var today = new Date();
+var annoAttuale = parseInt(today.getFullYear());
+var meseAttuale = parseInt(today.getMonth());
+var giornoAttuale = parseInt(today.getDate());
+
+/* prendo i requisiti da rispettare */
+function prendiRequisitiObbligatori() {
+	requisitiObbligatori = document.querySelectorAll(".requisito");
+	nomeRequisito = document.querySelectorAll(".nomeRequisito");
+	valore1Requisito = document.querySelectorAll(".valore1Requisito");
+	valore2Requisito = document.querySelectorAll(".valore2Requisito");
+	
+	for(let i = 0; i < requisitiObbligatori.length; ++i)
+		requisiti.push(new Obbligatorio(0, nomeRequisito[i].innerHTML, valore1Requisito[i].innerHTML, valore2Requisito[i].innerHTML));
+	
+//	for(let i = 0; i < requisiti.length; ++i)
+//		console.log(requisiti[i].name + " " + requisiti[i].value1 + " " + requisiti[i].value2);
+	
+	return true;
+}
+
+/* controllo se rispetto i requisiti */
+function controllaRequisitiObbligatori() {
+	var eta = document.querySelector("input[type=date]").value;
+	
+	let dataUtente = eta.split("-");
+	
+	eta = calcolaEtaUtente(dataUtente);
+
+//	console.log(dataUtente);
+	
+	var input = document.querySelectorAll('.studio');
+	
+	var titoloStudio = input[0].value;
+	var materiaStudio = input[1].value;
+	
+//	console.log(titoloStudio + " " + materiaStudio);
+	let cond = false;
+	
+//	console.log(eta);
+	
+	// scorro i requisiti obbligatori della posizione di lavoro
+	for(let i = 0; i < requisiti.length; ++i) {
+		
+		/* se il requisito è dell'età verifico se esco fuori dai limiti
+			in questo caso non soddisfo */
+		if(requisiti[i].name == "Age range") {
+			console.log("Scorrimento eta " + requisiti[i].value1 + " " + requisiti[i].value2)
+			if(eta < requisiti[i].value1 || eta > requisiti[i].value2) {
+				console.log("età false");
+				return false;
+			}
+		}
+		/* se il requisito è del titolo di studio
+			possono esserci indicati più requisiti e basta che ne soddisfo uno
+			quindi se uno è soddisfatto imposto la booleana a true
+			e ritorno */
+		else {
+			console.log("Scorrimento titolo " + requisiti[i].value1 + " " + requisiti[i].value2)
+			if(requisiti[i].value1 == titoloStudio && requisiti[i].value2 == materiaStudio) {
+				console.log("titolo true");
+				cond = true;
+			}
+		}
+	}
+	return cond;
+}
+
+/* calcolo dell'età' */
+function calcolaEtaUtente(dataUtente) {
+	var eta = 0;
+	
+//	console.log("Chack dataUtente " + dataUtente[0] + " " + dataUtente[1] + " " + dataUtente[2]);
+//	console.log("Anno attuale " + annoAttuale);
+	
+	/* aumento l'età finché non arrivo all'anno attuale */
+	while(parseInt(dataUtente[0]) + eta < annoAttuale) {
+		++eta;
+	}
+	
+	/* se il suo mese di nascita è mino di quello attuale, ha già compiuto gli anni */
+	if(parseInt(dataUtente[1]) < meseAttuale)
+		++eta;
+	
+	/* stessa ragione per il mese anche per il giorno */
+	if(parseInt(dataUtente[1]) == meseAttuale && parseInt(dataUtente[2]) < giornoAttuale)
+		++eta;
+	
+	return eta;
+}
+
+/* FINE REQUISITI OBBLIGATORI */

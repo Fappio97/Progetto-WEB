@@ -47,7 +47,7 @@ public class CurriculumDaoJDBC implements CurriculumDao {
 				
 				Job job = Database.getInstance().getJobDao().findByPrimaryKey(rs.getString("job"));
 				cv.setJob(job);
-				
+								
 				curriculum.add(cv);
 			}
 		} catch (SQLException e) {

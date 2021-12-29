@@ -82,7 +82,7 @@ public class AdminREST {
 	
 	@PostMapping("/prendiCurriculum")
 	public List<Curriculum> prendiCurriculum(@RequestParam String titoloLavoro) {
-		
+				
 		List<Curriculum> cv = null;
 		
 		
@@ -91,6 +91,8 @@ public class AdminREST {
 		else {
 			
 			Job lavoro = Database.getInstance().getJobDao().findByPrimaryKey(titoloLavoro);
+			
+			System.out.println(lavoro.getTitle());
 			
 			cv = Database.getInstance().getCurriculumDao().findByJob(lavoro);
 		}
