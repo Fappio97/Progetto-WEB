@@ -150,6 +150,21 @@ function soloTesto(elemento, titolo, testo) {
 			break;
 		}
 	}
+	
+	let requisitiObbligatori = "";
+	for(let i = 0; i < posLavoro[indice].obbligatori.length; ++i) {
+		requisitiObbligatori += posLavoro[indice].obbligatori[i].nome + ": "
+						+ posLavoro[indice].obbligatori[i].valore1 + " " 
+						+ posLavoro[indice].obbligatori[i].valore2;
+						
+		// se il successivo requisito obbligatorio ha lo stesso nome li scrivo sulla stessa riga
+		// poiché almeno uno dei due deve esseresoddisfatto e non entrambi
+		if(i + 1 < posLavoro[indice].obbligatori.length 
+		&& posLavoro[indice].obbligatori[i].nome == posLavoro[indice].obbligatori[i + 1].nome)
+			requisitiObbligatori += " or ";
+		else
+			requisitiObbligatori += "<br />";
+	}
 		
 	div.innerHTML = "<div class = \"row\">"
 						+ "<div class = \"col-sm-12\" id = \"testoSezione\">"
@@ -161,6 +176,9 @@ function soloTesto(elemento, titolo, testo) {
 							+ "<br /><br /><br />"
 							+ "<p><strong>Requirements</strong></p>"
 							+ posLavoro[indice].requisiti
+							+ "<br /><br /><br />"
+							+ "<p><strong>Requirements obligatory</strong></p>"
+							+ requisitiObbligatori
 							+ "<br /><br /><br />"
 							+ s[1]
 							+ "<br /><br /><br />"

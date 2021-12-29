@@ -184,7 +184,7 @@ public class CurriculumDaoJDBC implements CurriculumDao {
 			PreparedStatement st = con.prepareStatement(query);
 			st.setLong(1, id);
 			ResultSet rs = st.executeQuery();
-			while (rs.next()) {
+			if(rs.next()) {
 				cv.setId(rs.getLong("id"));
 				cv.setFirst_name(rs.getString("first_name"));
 				cv.setLast_name(rs.getString("last_name"));

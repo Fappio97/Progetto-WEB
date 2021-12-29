@@ -1,9 +1,3 @@
-window.onload = function() {
-	if(ind == 3) {
-		
-	}
-}
-
 /* FUNZIONI */
 
 function avanti() {
@@ -44,7 +38,13 @@ function caricaListeAperte(data) {
 					+ "<th scope=\"row\"><a href = \"javascript:posizione('" + data[i].title + "')\">" + data[i].title + "</a></th>"
 					+ "<td>" + data[i].description + "</td>"
 				+ "</tr>";
-			posLavoro.push(new PosizioneLavoro(data[i].title, data[i].description, data[i].requirements));
+			
+			let obbligatori = new Array();
+			for(let j = 0; j < data[i].obligatory.length; ++j)
+				obbligatori.push(new Obbligatorio(data[i].obligatory[j].name, data[i].obligatory[j].value1, data[i].obligatory[j].value2));
+					
+				
+			posLavoro.push(new PosizioneLavoro(data[i].title, data[i].description, data[i].requirements, obbligatori));
 		}
 	}
 	console.log(posLavoro);
@@ -74,7 +74,7 @@ function caricaOpzioni(stringa1, stringa2) {
 			opzioni.push("Foreign languages");
 			opzioni.push("Mathematics");
 			opzioni.push("Psychology medicine");
-			opzioni.push("Humanities and scientific ");
+			opzioni.push("Humanities and scientific");
 			break;
 		case("Purchasing and Logistics"):
 		case("Customer service"):

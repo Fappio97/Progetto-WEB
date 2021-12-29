@@ -37,7 +37,7 @@ public class AdminREST {
 	@PostMapping("/salvaModificaPosizioneLavoro")
 	public void salvaModificaPosizioneLavoro(@RequestParam String titolo, @RequestParam String descrizione, @RequestParam String requisiti, @RequestParam boolean attivo) {
 
-		Database.getInstance().getJobDao().saveOrUpdate(new Job(titolo, descrizione, requisiti, attivo));
+//		Database.getInstance().getJobDao().saveOrUpdate(new Job(titolo, descrizione, requisiti, attivo));
 		
 	}	
 
@@ -49,12 +49,12 @@ public class AdminREST {
 		if(lavoro == null)
 			return "nuovo";
 		else {
-			if(lavoro.ugualiTotalmente(new Job(titolo, descrizione, requisiti, attivo)))
-				return "uguale";
-			else
-				return "titolo";
+/*			if(lavoro.ugualiTotalmente(new Job(titolo, descrizione, requisiti, attivo)))
+				return "uguale";*/
+/*			else
+				return "titolo";*/
 		}
-		
+		return null; //-------------------------------
 	}
 	
 	@PostMapping("/eliminaCV")

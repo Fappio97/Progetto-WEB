@@ -108,7 +108,7 @@ public class ReportDaoJDBC implements ReportDao {
 			PreparedStatement st = con.prepareStatement(query);
 			st.setLong(1, id);
 			ResultSet rs = st.executeQuery();
-			while (rs.next()) {
+			if (rs.next()) {
 				report.setId(rs.getLong("id"));
 				report.setProblem_origin(rs.getString("problem_origin"));
 				report.setDescription(rs.getString("description"));

@@ -81,7 +81,7 @@ public class ProductDaoJDBC implements ProductDao {
 			PreparedStatement st = conn.prepareStatement(query);
 			st.setLong(1, id);
 			ResultSet rs = st.executeQuery();
-			while (rs.next()) {
+			if (rs.next()) {
 				prodotto.setId(rs.getLong("id"));
 				prodotto.setName(rs.getString("name"));
 				prodotto.setQuantity(rs.getInt("quantity"));

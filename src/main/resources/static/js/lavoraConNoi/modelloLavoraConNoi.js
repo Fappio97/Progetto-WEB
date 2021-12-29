@@ -8,10 +8,17 @@ function Sezione(titolo, testo) {
 	this.testo = testo;
 }
 
-function PosizioneLavoro(titolo, descrizione, requisiti) {
+function Obbligatorio(nome, valore1, valore2) {
+	this.nome = nome;
+	this.valore1 = valore1;
+	this.valore2 = valore2;
+}
+
+function PosizioneLavoro(titolo, descrizione, requisiti, obbligatori) {
 	this.titolo = titolo;
 	this.descrizione = descrizione;
 	this.requisiti = requisitiSpezzati(requisiti);
+	this.obbligatori = obbligatori;
 }
 
 /* --- INDICE PER SCORRERE --- */

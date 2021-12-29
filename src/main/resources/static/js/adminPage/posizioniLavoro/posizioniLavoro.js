@@ -1,5 +1,7 @@
 window.onload = function() {
 	pulsanteCancella();
+	popola("titoloStudio");
+	popolaMinAge();
 }
 
 /* VARIABILI */
@@ -241,4 +243,33 @@ function selezionaDeselezionaTuttiCheckBox(selezionare) {
 	$("input[type=checkbox]").each(function() {
 		$(this).prop("checked", selezionare);
 	});
+}
+
+/* requisiti speciali */
+function popolaMinAge() {
+	var min = document.getElementById("min");
+	
+	for(let i = 18; i < 100; ++i) {
+		let opt = document.createElement('option');
+		opt.value = i;
+		opt.innerHTML = i;
+		min.appendChild(opt);	
+	}
+	
+	caricaOpzioniAge();
+}
+
+function caricaOpzioniAge() {
+	var max = document.getElementById("max");
+	max.innerHTML = "";
+	
+	var min = document.getElementById("min");
+	
+	for(let i = parseInt(min.value) + 1; i <= 100; ++i) {
+		let opt = document.createElement('option');
+		opt.value = i;
+		opt.innerHTML = i;
+		max.appendChild(opt);	
+	}	
+	
 }

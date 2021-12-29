@@ -67,6 +67,14 @@ table img {
 	margin-bottom: 0px;
 }
 
+#requisitiSpeciali {
+	text-align: center;
+}
+
+.row .col-md-4 {
+	margin-bottom: 10px;
+}
+
 body .formattaTesto {
 	overflow-wrap: anywhere;
 	/* spezza ogni linea con enter*/

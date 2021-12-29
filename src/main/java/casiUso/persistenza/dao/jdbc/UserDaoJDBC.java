@@ -50,7 +50,7 @@ public class UserDaoJDBC implements UserDao {
 			PreparedStatement st = conn.prepareStatement(query);
 			st.setString(1, username);
 			ResultSet rs = st.executeQuery();
-			while (rs.next()) {
+			if (rs.next()) {
 				User user = new User();
 				user.setAddressLine1(rs.getString("addressline1"));
 				user.setAddressLine2(rs.getString("addressline2"));
