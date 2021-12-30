@@ -122,12 +122,10 @@ function modelloTabellaCurriculum(data) {
 			+ "</tr>";
 	}
 	
-	console.log(s);
 	return s;
 }
 
 function aggiungiCurriculumTabella(data) {
-	console.log($("#tabella tbody"));
 	$("tbody").html(
 		modelloTabellaCurriculum(data)
 	);

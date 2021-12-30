@@ -12,7 +12,6 @@ import java.util.List;
 
 import casiUso.Database;
 import casiUso.model.Job;
-import casiUso.model.Product;
 import casiUso.model.Requirements;
 import casiUso.persistenza.dao.JobDao;
 
@@ -37,9 +36,6 @@ public class JobDaoJDBC implements JobDao {
 		try {
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(query);
-			while (rs.next()) {
-				System.out.println(rs.getString("j_title"));
-			}
 			Job job = null;
 			while (rs.next()) {
 				if(!prec.equals(rs.getString("j_title"))) {
@@ -63,32 +59,22 @@ public class JobDaoJDBC implements JobDao {
 					prec = job.getTitle();
 				}
 				Requirements req = new Requirements();
-				req.setId(rs.getLong("id"));
-				req.setName(rs.getString("name"));
-				req.setValue1(rs.getString("value1"));
-				req.setValue1(rs.getString("value2"));
+				req.setId(rs.getLong("r_id"));
+				req.setName(rs.getString("r_name"));
+				req.setValue1(rs.getString("r_value1"));
+				req.setValue1(rs.getString("r_value2"));
 				job.getObligatory().add(req);
 			}
 			
-			if(!prec.equals(rs.getString("j_title"))) {
-				
-				if(job != null) {
-					if(lavori.contains(job)) {
-						for(var i : lavori)
-							if(i.equals(job))
-								for(var j : job.getObligatory())
-									i.getObligatory().add(j);
-					}
-					else
-						lavori.add(job);
+			if(job != null) {
+				if(lavori.contains(job)) {
+					for(var i : lavori)
+						if(i.equals(job))
+							for(var j : job.getObligatory())
+								i.getObligatory().add(j);	
 				}
-				job = new Job();
-				job.setTitle(rs.getString("j_title"));
-				job.setDescription(rs.getString("j_description"));
-				job.setRequirements(rs.getString("j_requirements"));
-				job.setActive(rs.getBoolean("j_active"));
-				job.setObligatory(new ArrayList<Requirements>());
-				prec = job.getTitle();
+				else
+					lavori.add(job);
 			}
 			
 		} catch (SQLException e) {

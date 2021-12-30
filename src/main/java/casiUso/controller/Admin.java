@@ -56,12 +56,12 @@ public class Admin {
 	
 	@GetMapping("/visualizzaCurriculum")
 	public String visualizzaCurriculum(HttpServletRequest req) {
-		
-		List<Curriculum> curriculum = Database.getInstance().getCurriculumDao().findAll();
+
+		List<Job> job = Database.getInstance().getJobDao().findAll();
 
 		HttpSession session = req.getSession(true);
-		session.setAttribute("curriculum", curriculum);
-		
+		session.setAttribute("lavori", job);
+
 		return "visualizzaCV";
 	}
 	
