@@ -148,32 +148,26 @@
 					<th id = "titoloTh">Title</th>
 					<th id = "descrizioneTh">Description</th>
 					<th id = "requisitiTh">Requirements</th>
-					<th id = "requisitiTh">Obligatory requirements</th>
+					<th id = "obbligatoryTh">Obligatory requirements</th>
 					<th id = "attivoTh">Active</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${lavori}" var="lav">
+ 				<c:forEach items="${lavori}" var="lav">
 					<c:if test = "${lav.title ne 'Spontaneous Candidature'}">
 						<tr>
 							<td data-title = "Select deselect"><input type="checkbox" class = "lavoro"/></td>
 							<td data-title = "Title" class = "titoloLavoro">${lav.title}</td>
 							<td >${lav.description}</td>
 							<td class = "formattaTesto">${lav.requirements}</td>
-							<td>
+							<td class = "obbligatori">
 								<c:forEach items="${lav.obligatory}" var="obb">
-									<c:if test = "${obb.job == lav.title}">
-										<c:forEach items="${requisiti}" var="req">
-											<c:if test = "${req.id == obb.requirements}">
-												<nobr id = "nomeRequisito">${req.name}</nobr> 
-												<nobr>: </nobr> 
-												<nobr id = "requisito1">${req.value1}</nobr>
-												<nobr> - </nobr>
-												<nobr id = "requisito2">${req.value2}</nobr>
-												<br />
-											</c:if>
-										</c:forEach>
-									</c:if>
+									<nobr id = "nomeRequisito">${obb.name}</nobr> 
+									<nobr>: </nobr> 
+									<nobr id = "requisito1">${obb.value1}</nobr>
+									<nobr> - </nobr>
+									<nobr id = "requisito2">${obb.value2}</nobr>
+									<br /><br />
 								</c:forEach>
 							</td>
 							<td data-title = "Active">
@@ -192,7 +186,7 @@
 							</td>
 						</tr>
 					</c:if>
-				</c:forEach>			
+				</c:forEach>		
 			</tbody>
 		</table>
 		
@@ -222,15 +216,21 @@
 					</div>	
 				</div>
 				<br />
-				<div class = "row" id = "requisitiSpeciali">
-					<div class="col-md-4">
-						<label for ="ageRange">Age range: (min - max)</label><br /><select name="ageRange" id = "min" onchange = "caricaOpzioniAge()"></select> - <select name="ageRange" id = "max"></select>
+				<div id = "requisitiSpeciali">
+					<div class = "row" id = "eta">
+						<div class="col-md-12">
+							<label for ="ageRange">Age range: (min - max)</label><br /><select name="ageRange" id = "min" onchange = "caricaOpzioniAge()"></select> - <select name="ageRange" id = "max"></select>
+						</div>
 					</div>
-					<div class="col-md-4">
-						<label for="titoloStudio">Study title</label><br /><select class = "studio" name="titoloStudio" onchange = "caricaOpzioni('titoloStudio', 'materiaStudio')" id = "titoloStudio"></select>
-					</div>
-					<div class="col-md-4">
-						<label for="materiaStudio">Study subject</label><br /><select class = "studio" name="materiaStudio" id = "materiaStudio"></select>
+					<br />
+					<div id = "requisitoTitoloStudio">
+						<div class = "row" id = "1">
+							<div class="col-2">
+								<a class = "piuMeno" href = "javascript:caricaTitoloStudio()">
+									<img src = "../immagini/admin/posizioniLavoro/piu.png">
+								</a>
+							</div>
+						</div>
 					</div>
 				</div>
 				<br />
@@ -239,7 +239,7 @@
 				</div>
 			</div>
 		</form>
-		<br/>
+		<br/>	
 
 <!------------------------FABIO-------------------------------------------->
 

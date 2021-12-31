@@ -1,14 +1,10 @@
-function salvaLavoro(titolo, descrizione, requisiti, attivo) {
+function salvaLavoro(lavoro) {
 
 	$.ajax({
 		type: "POST",
 		url: "/salvaModificaPosizioneLavoro",
-		data: {
-			titolo: titolo,
-			descrizione: descrizione,
-			requisiti: requisiti,
-			attivo: attivo
-		},
+		contentType: "application/json",
+		data: JSON.stringify(lavoro),
 		success: function(){
 			alert("tutto ok");
 		},
@@ -20,17 +16,13 @@ function salvaLavoro(titolo, descrizione, requisiti, attivo) {
 }
 
 
-function controllaTitoloUnico(titolo, descrizione, requisiti, attivo) {
+function controllaTitoloUnico(lavoro) {
 	
 	$.ajax({
 		type: "POST",
 		url: "/checkPosizioneLavoro",
-		data: {
-			titolo: titolo,
-			descrizione: descrizione.value,
-			requisiti: requisiti.value,
-			attivo: attivo.checked
-		},
+		contentType: "application/json",
+		data: JSON.stringify(lavoro),
 		success: function(data){
 			alert("tutto ok");
 			
@@ -39,7 +31,7 @@ function controllaTitoloUnico(titolo, descrizione, requisiti, attivo) {
 				return;
 			}
 
-			continuaInvioLavoro(data, titolo, descrizione, requisiti, attivo);
+			continuaInvioLavoro(data, lavoro);
 		},
 		error: function(xhr){
 			alert("tutto male");

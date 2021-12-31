@@ -24,6 +24,20 @@ public class Requirements {
 		return Objects.equals(id, other.id);
 	}
 	
+	public boolean uguali(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Requirements other = (Requirements) obj;
+		return Objects.equals(name, other.name) && Objects.equals(value1, other.value1)
+				&& Objects.equals(value2, other.value2);
+	}
+	
+	
+	
 	public Requirements(String name, String value1, String value2) {
 		super();
 		this.id = (long) 0;

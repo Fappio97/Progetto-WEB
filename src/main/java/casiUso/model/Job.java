@@ -3,6 +3,8 @@ package casiUso.model;
 import java.util.List;
 import java.util.Objects;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
+
 public class Job {
 	private String title;
 	private String description;
@@ -60,6 +62,22 @@ public class Job {
 		this.requirements = requirements;
 	}
 	public boolean ugualiTotalmente(Job job) {
+		// controllo se hanno entrambi gli stessi requisiti obbligatori
+		// anche se posizionati in posti diversi
+		int cont = 0;
+		System.out.println(this.obligatory.size());
+		for(int i = 0; i < this.obligatory.size(); ++i) {
+			for(int j = 0; j < job.getObligatory().size(); ++j) {
+				if(this.obligatory.get(i).uguali(job.getObligatory().get(j))) {
+					System.out.println("qui");
+					++cont;
+				}
+			}
+		}
+		
+		if(cont < this.obligatory.size())
+			return false;
+		
 		return this.title.equals(job.title) && this.description.equals(job.description) &&
 				this.requirements.equals(job.requirements) && this.active == job.active;
 	}

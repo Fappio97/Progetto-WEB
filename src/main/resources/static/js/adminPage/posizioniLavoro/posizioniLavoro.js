@@ -1,6 +1,5 @@
 window.onload = function() {
 	pulsanteCancella();
-	popola("titoloStudio");
 	popolaMinAge();
 }
 
@@ -32,16 +31,33 @@ function inviaLavoro() {
 	var requisiti = document.getElementById("requisitiForm");
 	var attivo = document.getElementById("checkBoxForm");
 	
+
+	
+	var min = document.getElementById("min").value;
+	var max = document.getElementById("max").value;
+	
+	var select = document.getElementsByClassName("studio");
+	
+	var obbligatori = new Array();
+	obbligatori.push(new Obbligatorio(0, "Age range", min, max));
+	
+	
+	for(let i = 0; i < select.length - 1; i += 2)
+		if(select[i].value != "" && select[i].value != " -- select an option -- ")
+			obbligatori.push(new Obbligatorio(0, "Study title", select[i].value, select[i + 1].value));
+	
+	var posizioneLavoro = new PosizioneLavoroNoSpezzati(titolo.value, descrizione.value, requisiti.value, obbligatori, attivo.checked)
+	
 	/* verifica se uno dei campi è vuoto */
 	if(controllaSeFormVuoti(titolo.value, descrizione.value, requisiti.value)) {
 		
-		controllaTitoloUnico(titolo.value, descrizione, requisiti, attivo);
+		controllaTitoloUnico(posizioneLavoro);
 		
 	} else
 		alert("Fill in all fields");
 }
 
-function continuaInvioLavoro(data, titolo, descrizione, requisiti, attivo) {
+function continuaInvioLavoro(data, lavoro) {
 	
 	let s = "Do you really want to add the new job position?";
 	if(data == "titolo")
@@ -53,25 +69,32 @@ function continuaInvioLavoro(data, titolo, descrizione, requisiti, attivo) {
 			
 		/* salva in tabella */
 		if(data != "titolo")
-			aggiungiLavoroTabella(titolo, descrizione.value, requisiti.value, attivo.checked);
+			aggiungiLavoroTabella(lavoro);
 		else
-			modificaLavoroTabella(titolo, descrizione.value, requisiti.value, attivo.checked);
+			modificaLavoroTabella(lavoro);
 				
 		/* salva nel db */
-		salvaLavoro(titolo, descrizione.value, requisiti.value, attivo.checked);
+		salvaLavoro(lavoro);
 		
+		/* svuota textarea e checkbox */
 		document.getElementById("titoloForm").value = "";
-		descrizione.value = "";
-		requisiti.value = "";
-		attivo.checked = false;
+		document.getElementById("descrizioneForm").value = "";
+		document.getElementById("requisitiForm").value = "";
+		document.getElementById("checkBoxForm").checked = false;
+		
+		/* setto l'age e elimino eventuali section create */
+		document.getElementById("min").options.selectedIndex = 0;
+		caricaOpzioniAge();
+		svuotaEliminaSection();
+		
 	}
 }
 
-function modificaLavoroTabella(titolo, descrizione, requisiti, attivo) {
+function modificaLavoroTabella(lav) {
 
-	let check = "<input type=\"checkbox\" id = \"lavoroCheckBox\" checked/>";
+	let lavoro = "<input type=\"checkbox\" id = \"lavoroCheckBox\" checked/>";
 	let immagine = "si";
-	if(!attivo) {
+	if(!lav.active) {
 		check = "<input type=\"checkbox\" id = \"lavoroCheckBox\" unchecked/>";
 		immagine = "no";
 	}
@@ -79,43 +102,64 @@ function modificaLavoroTabella(titolo, descrizione, requisiti, attivo) {
 				+ "<img src = \"immagini/admin/posizioniLavoro/" + immagine + ".png\">"
 			+ "</figure>";
 
+	var obb = "";
+	for(let i = 0; i < lav.obligatory.length; ++i)
+		obb += lav.obligatory[i].name + ": " + lav.obligatory[i].value1 + " - " + lav.obligatory[i].value2 + "\n" + " " + "\n";
+
+
 	$(".titoloLavoro").each(function() {
-		if($(this).html() == titolo) {
-			$(this).next().html(descrizione);
-			$(this).next().next().html(requisiti);
-			$(this).next().next().next().html(check + img);
+		if($(this).html() == lav.title) {
+			$(this).next().html(lav.descrizione);
+			$(this).next().next().html(lav.requisiti);
+			$(this).next().next().next().html("");
+			for(let i = 0; i < lav.obligatory.length; ++i)
+				$(this).next().next().next().append(lav.obligatory[i].name + ": " + lav.obligatory[i].value1 + " - " + lav.obligatory[i].value2 + "<br /><br />");
+			$(this).next().next().next().next().html(check + img);
 		}
 			
 	});
 	
 }
 
-function aggiungiLavoroTabella(titolo, descrizione, requisiti, attivo) {
+function aggiungiLavoroTabella(lav) {
 	var tableElement = document.querySelector("#tabella tbody");
+
 	var riga = tableElement.insertRow(-1);
-	
-	var cellaCheckbox = riga.insertCell(0);
-	cellaCheckbox.innerHTML = "<input type=\"checkbox\" class = \"lavoro\"/>";
+		
+	var cellaCheckBox = riga.insertCell(0);
+	cellaCheckBox.setAttribute('data-title', "Select deselect");
+	cellaCheckBox.innerHTML = "<input type=\"checkbox\" class = \"lavoro\"/>";
 	
 	
 	var cellaTitolo = riga.insertCell(1);
-	cellaTitolo.textContent = titolo;
+	cellaTitolo.setAttribute('data-title', "Title");
+	cellaTitolo.textContent = lav.title;
 	
 	var cellaDescrizione = riga.insertCell(2);
-	cellaDescrizione.textContent = descrizione;
+	cellaDescrizione.textContent = lav.description;
 	
 	var cellaRequisiti = riga.insertCell(3);
-	cellaRequisiti.textContent = requisiti;
+	cellaRequisiti.textContent = lav.requirements;
+	
+	var obb = "";
+	for(let i = 0; i < lav.obligatory.length; ++i)
+		obb += lav.obligatory[i].name + ": " + lav.obligatory[i].value1 + " - " + lav.obligatory[i].value2 + "\n" + "\n";
+		
+	var cellaObbligatori = riga.insertCell(4);
+	cellaObbligatori.textContent = obb;
+	
+	/* salvare i requisiti obbligatori */
 	
 	let check = "<input type=\"checkbox\" id = \"lavoroCheckBox\" checked/>";
 	let immagine = "si";
-	if(!attivo) {
+	if(!lav.active) {
 		check = "<input type=\"checkbox\" id = \"lavoroCheckBox\" unchecked/>";
 		immagine = "no";
 	}
 		
 	
-	var cellaAttivo = riga.insertCell(4);
+	var cellaAttivo = riga.insertCell(5);
+	cellaAttivo.setAttribute('data-title', "Active");
 	cellaAttivo.innerHTML = check
 							+ "<figure>"
 								+ "<img src = \"immagini/admin/posizioniLavoro/" + immagine +  ".png\">"
@@ -245,7 +289,8 @@ function selezionaDeselezionaTuttiCheckBox(selezionare) {
 	});
 }
 
-/* requisiti speciali */
+/* REQUISITI SPECIALI */
+	
 function popolaMinAge() {
 	var min = document.getElementById("min");
 	
@@ -273,3 +318,101 @@ function caricaOpzioniAge() {
 	}	
 	
 }
+
+/* SECTION */
+
+/* section delle form del titolo studio e materia studio */
+
+function svuotaEliminaSection() {
+	var div = document.getElementById("requisitoTitoloStudio");
+	while(ind > 1) {
+		--ind;
+		
+		if(ind != 2)
+			eliminaTitoloStudio(ind); 
+			
+	}
+}
+
+// mi serve per inserire il pulsante aggiungi dopo che viene 
+//inserito un requisito di titolo studio
+var ind = 1;
+
+function caricaTitoloStudio() {
+
+	// con la variabile precInd prendo il precedente valore della section
+	// ed impedisco di creare una nuova riga per inserire un'altro titolo di studio
+	// se il precedente è vuoto
+	var precInd = ind - 1;
+	if(precInd == 2)
+		--precInd; 
+
+	var titolo = document.getElementById("titoloStudio" + precInd);
+	
+	if(titolo != null && titolo.value == " -- select an option -- ")
+		return;
+	
+	var div = document.getElementById("requisitoTitoloStudio");
+	
+	// gli id
+	var titolo = "titoloStudio" + ind;
+	var materia = "materiaStudio" + ind;
+	
+	div.childNodes[ind].innerHTML = "<div class = \"row\" id = \"" + ind + "\">"
+					+ "<div class=\"col-2\">"
+						+ "<a class = \"piuMeno\" href = \"javascript:eliminaTitoloStudio(" + ind + ")\">"
+							+ "<img src = \"../immagini/admin/posizioniLavoro/meno.png\">"
+						+ "</a>"
+					+ "</div>"
+	 				+ "<div class=\"col-5\">"
+						+ "<label for=\"titoloStudio\">Study title</label>"
+						+ "<br />"
+						+ "<select class = \"studio\" name=\"titoloStudio\" onchange = \"caricaOpzioni('" + titolo + "', '" + materia + "')\" id = \"" + titolo + "\"></select>"
+					+ "</div>"
+					+ "<div class=\"col-5\">"
+						+ "<label for=\"materiaStudio\">Study subject</label>"
+						+ "<br />"
+						+ "<select class = \"studio\" name=\"materiaStudio\" id = \"" + materia + "\"></select>"
+					+ "</div>"
+				+ "</div>";
+				
+	var creaNodo = document.createElement('div');
+	creaNodo.className = 'row';
+
+	if(ind == 1)
+		++ind;
+	++ind;
+	
+	
+//	console.log(document.getElementById(titolo));
+	
+	popolaVisualizzaPosizioniLavoro(titolo);
+	
+	div.appendChild(creaNodo);
+
+	// inserimento pulsante aggiungi nel nuovo div che ho dovuto creare come nodo	
+	div.childNodes[ind].innerHTML = "<div class = \"row\" id = \"" + ind + "\">"
+						+ "<div class=\"col-2\">"
+							+ "<a class = \"piuMeno\" href = \"javascript:caricaTitoloStudio()\">"
+								+ "<img src = \"../immagini/admin/posizioniLavoro/piu.png\">"
+							+ "</a>"
+						+ "</div>"
+					+ "</div>";
+	
+}
+
+function eliminaTitoloStudio(ind) {
+	var div = document.getElementById(ind);
+	
+	if(ind == 0)
+		div.innerHTML = "<div class=\"col-2\">"
+							+ "<a class = \"piuMeno\" href = \"javascript:caricaTitoloStudio()\">"
+								+ "<img src = \"../immagini/admin/posizioniLavoro/piu.png\">"
+							+ "</a>"
+						+ "</div>";
+	else
+		div.innerHTML = ""
+}
+
+/* FINE SECTION */
+/* FINE REQUISITI SPECIALI */

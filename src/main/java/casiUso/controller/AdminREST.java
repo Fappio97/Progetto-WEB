@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,26 +36,25 @@ public class AdminREST {
 	
 
 	@PostMapping("/salvaModificaPosizioneLavoro")
-	public void salvaModificaPosizioneLavoro(@RequestParam String titolo, @RequestParam String descrizione, @RequestParam String requisiti, @RequestParam boolean attivo) {
+	public void salvaModificaPosizioneLavoro(@RequestBody Job lavoro) {
 
-//		Database.getInstance().getJobDao().saveOrUpdate(new Job(titolo, descrizione, requisiti, attivo));
+		Database.getInstance().getJobDao().saveOrUpdate(lavoro);
 		
 	}	
 
 	@PostMapping("/checkPosizioneLavoro")
-	public String checkPosizioneLavoro(@RequestParam String titolo, @RequestParam String descrizione, @RequestParam String requisiti, @RequestParam boolean attivo) {
+	public String checkPosizioneLavoro(@RequestBody Job lavoro) {
 		
-		Job lavoro = Database.getInstance().getJobDao().findByPrimaryKey(titolo);
-		
-		if(lavoro == null)
+		Job job = Database.getInstance().getJobDao().findByPrimaryKeyWithRequirements(lavoro.getTitle());
+
+		if(job == null)
 			return "nuovo";
-		else {
-/*			if(lavoro.ugualiTotalmente(new Job(titolo, descrizione, requisiti, attivo)))
-				return "uguale";*/
-/*			else
-				return "titolo";*/
+		else {	
+			if(job.ugualiTotalmente(lavoro))
+				return "uguale";
+			else
+				return "titolo";
 		}
-		return null; //-------------------------------
 	}
 	
 	@PostMapping("/eliminaCV")

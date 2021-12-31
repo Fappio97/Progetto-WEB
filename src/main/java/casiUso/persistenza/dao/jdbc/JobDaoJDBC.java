@@ -62,7 +62,7 @@ public class JobDaoJDBC implements JobDao {
 				req.setId(rs.getLong("r_id"));
 				req.setName(rs.getString("r_name"));
 				req.setValue1(rs.getString("r_value1"));
-				req.setValue1(rs.getString("r_value2"));
+				req.setValue2(rs.getString("r_value2"));
 				job.getObligatory().add(req);
 			}
 			
@@ -206,9 +206,15 @@ public class JobDaoJDBC implements JobDao {
 			}
 		}
 		
-		/* aggiungi i requisiti */
-		for(int i = 0; i < job.getObligatory().size(); ++i)
-			Database.getInstance().getRequirementsDao().saveOrUpdate(job.getObligatory().get(i));
+		// deleto prima tutti i collegamenti con requisiti conenuti in 
+		// obligatory_requirements
+		Database.getInstance().getObligatoryRequirementsDao().delete(job);
+		/* aggiungi i requisiti 
+		 * e li colleghi con obligatory_requirements, come con afferisce */
+		for(int i = 0; i < job.getObligatory().size(); ++i) {
+			job.getObligatory().get(i).setId(Database.getInstance().getRequirementsDao().saveOrUpdate(job.getObligatory().get(i)));
+			Database.getInstance().getObligatoryRequirementsDao().save(job, job.getObligatory().get(i));
+		}
 		
 		return true;
 	}
@@ -252,6 +258,42 @@ public class JobDaoJDBC implements JobDao {
 		}
 		return lavoro;
 	}
+	
+	@Override
+	public Job findByPrimaryKeyWithRequirements(String nome) {
+		Job lavoro = null;
+		String query = "select j.title as j_title, j.description as j_description, "
+				+ "j.requirements as j_requirements, j.active as j_active, r.id as r_id, r.name as r_name, "
+				+ "r.value1 as r_value1, r.value2 as r_value2 from job j "
+				+ "inner join obligatory_requirements o on j.title = o.job "
+				+ "inner join requirements r on r.id = o.requirements " 
+				+ "where title = ?";
+		try {
+			PreparedStatement st = con.prepareStatement(query);
+			st.setString(1, nome);
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				if(lavoro == null) {
+					lavoro = new Job();
+					lavoro.setTitle(rs.getString("j_title"));
+					lavoro.setDescription(rs.getString("j_description"));
+					lavoro.setRequirements(rs.getString("j_requirements"));
+					lavoro.setActive(rs.getBoolean("j_active"));
+					lavoro.setObligatory(new ArrayList<Requirements>());
+				}
+				Requirements req = new Requirements();
+				req.setId(rs.getLong("r_id"));
+				req.setName(rs.getString("r_name"));
+				req.setValue1(rs.getString("r_value1"));
+				req.setValue2(rs.getString("r_value2"));
+				lavoro.getObligatory().add(req);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lavoro;
+	}
 
 	@Override
 	public boolean checkByPrimaryKey(String nome) {
@@ -269,5 +311,7 @@ public class JobDaoJDBC implements JobDao {
 		}
 		return false;
 	}
+
+
 	
 }

@@ -65,10 +65,15 @@ public class RequirementsDaoJDBC implements RequirementsDao {
 	}
 
 	@Override
-	public boolean saveOrUpdate(Requirements requirements) {
-		if (requirements.getId() == 0) {
+	public Long saveOrUpdate(Requirements requirements) {
+		
+		Long i = checkUguale(requirements);
+		if(i != -1) {
+			return i;
+		} else {
 			//INSERT
 			try {
+				requirements.setId(IdRequirement.getId(con));
 				String query = "insert into requirements "
 						+ "values (?, ?, ?, ?)";
 				PreparedStatement st = con.prepareStatement(query);
@@ -76,38 +81,18 @@ public class RequirementsDaoJDBC implements RequirementsDao {
 				st.setString(2, requirements.getValue1());
 				st.setString(3, requirements.getValue2());
 				st.setString(4, requirements.getName());
+
 				st.executeUpdate();
 				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				return false;
-			}
-		}else {
-			//UPDATE
-			try {
-				String query = "update job "
-						+ "set value1 = ?, value2 = ?, name = ? "
-						+ "where id = ?";
-				PreparedStatement st = con.prepareStatement(query);
-					
-				st.setString(1, requirements.getValue1());
-				st.setString(2, requirements.getValue2());
-				st.setString(3, requirements.getName());
-				st.setLong(4, requirements.getId());
-				
-				st.executeUpdate();
-				
-			} catch (SQLException e) {
-				
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return false;
+				return (long) -1;
 			}
 		}
-		return true;
+		return requirements.getId();
 	}
-
+/*
 	@Override
 	public boolean delete(Requirements requirements) {
 		try {
@@ -124,5 +109,32 @@ public class RequirementsDaoJDBC implements RequirementsDao {
 		}
 		return true;
 	}
+*/
 
+	@Override
+	public Long checkUguale(Requirements requirements) {
+		try {
+			String query = "select * from requirements "
+					+ "where name = ? and value1 = ? and value2 = ?";
+			
+			PreparedStatement st = con.prepareStatement(query);
+			
+			st.setString(1, requirements.getName());
+			st.setString(2, requirements.getValue1());
+			st.setString(3, requirements.getValue2());
+			
+			ResultSet rs = st.executeQuery();
+			
+			if (rs.next()) {
+				return rs.getLong("id");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return (long) -1;
+		}
+		
+		return (long) -1;
+	}
 }

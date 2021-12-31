@@ -23,6 +23,14 @@ function PosizioneLavoro(titolo, descrizione, requisiti, obbligatori, attivo) {
 	this.active = attivo;
 }
 
+function PosizioneLavoroNoSpezzati(titolo, descrizione, requisiti, obbligatori, attivo) {
+	this.title = titolo;
+	this.description = descrizione;
+	this.requirements = requisiti;
+	this.obligatory = obbligatori;
+	this.active = attivo;
+}
+
 /* --- INDICE PER SCORRERE --- */
 var ind = 0;
 var posizioneApertaTitle = "";

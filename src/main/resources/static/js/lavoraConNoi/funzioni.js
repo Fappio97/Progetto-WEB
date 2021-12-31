@@ -126,4 +126,18 @@ function popola(stringa) {
 	}	
 }
 
+function popolaVisualizzaPosizioniLavoro(stringa) {
+	
+	var section = document.getElementById(stringa);
+	
+	let variabile = opzioni.titoloStudio;
+	
+	for(let i = 0; i < variabile.length; ++i) {
+		let opt = document.createElement('option');
+		opt.value = variabile[i];
+		opt.innerHTML = variabile[i];
+		section.appendChild(opt);	
+	}	
+}
+
 

@@ -6,12 +6,14 @@ import java.sql.SQLException;
 
 import casiUso.persistenza.dao.CurriculumDao;
 import casiUso.persistenza.dao.JobDao;
+import casiUso.persistenza.dao.ObligatoryRequirementsDao;
 import casiUso.persistenza.dao.ProductDao;
 import casiUso.persistenza.dao.ReportDao;
 import casiUso.persistenza.dao.RequirementsDao;
 import casiUso.persistenza.dao.UserDao;
 import casiUso.persistenza.dao.jdbc.CurriculumDaoJDBC;
 import casiUso.persistenza.dao.jdbc.JobDaoJDBC;
+import casiUso.persistenza.dao.jdbc.ObligatoryRequirementsDaoJDBC;
 import casiUso.persistenza.Login;
 import casiUso.persistenza.dao.jdbc.ProductDaoJDBC;
 import casiUso.persistenza.dao.jdbc.ReportDaoJDBC;
@@ -66,5 +68,9 @@ public class Database {
 
 	public RequirementsDao getRequirementsDao() {
 		return new RequirementsDaoJDBC(conn);
+	}
+	
+	public ObligatoryRequirementsDao getObligatoryRequirementsDao() {
+		return new ObligatoryRequirementsDaoJDBC(conn);
 	}
 }
