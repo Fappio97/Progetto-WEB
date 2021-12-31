@@ -6,11 +6,13 @@ window.onload = function() {
 /* VARIABILI */
 var aggiungi = false;
 
+// campi form per gestire i lavori
 function pulsanteAggiungi() {
 
 	var divForm = document.getElementById("divForm");
 	
-	/* svuoto il contenuto */
+	/* svuoto il contenuto perché potrei prima aver lasciato scritte oppure dal tasto edit
+	 che seleziono, poi se clicco su aggiungi voglio che si svuoti*/
 	document.getElementById("titoloForm").value = "";
 	document.getElementById("descrizioneForm").value = "";
 	document.getElementById("requisitiForm"). value = "";
@@ -109,8 +111,8 @@ function modificaLavoroTabella(lav) {
 
 	$(".titoloLavoro").each(function() {
 		if($(this).html() == lav.title) {
-			$(this).next().html(lav.descrizione);
-			$(this).next().next().html(lav.requisiti);
+			$(this).next().html(lav.description);
+			$(this).next().next().html(lav.requirements);
 			$(this).next().next().next().html("");
 			for(let i = 0; i < lav.obligatory.length; ++i)
 				$(this).next().next().next().append(lav.obligatory[i].name + ": " + lav.obligatory[i].value1 + " - " + lav.obligatory[i].value2 + "<br /><br />");
@@ -185,15 +187,33 @@ function pulsanteModifica() {
 		if(!aggiungi)
 			divForm.style.display = "inline-block";
 		
+		// prende il td della checkbox selezionata
+		// 0 e poi prendo i fratelli del td.
+		// Per vederne poi il contenuto devo prendere il figlio al loro interno
 		let titolo = checkBox[0].parentNode.nextElementSibling;
 		let descrizione = titolo.nextElementSibling;
 		let requisiti = descrizione.nextElementSibling;
-		let attivo = requisiti.nextElementSibling;
-/*
-		console.log(titolo.innerHTML + " " + descrizione.innerHTML 
-			+ " " + requisiti.childNodes[0].innerHTML + " " + attivo.childNodes[1].checked
-			+ " " + attivo.childNodes[3].innerHTML);
-			*/
+		let obbligatori = requisiti.nextElementSibling;
+		let attivo = obbligatori.nextElementSibling;
+		
+		
+		obb = new Array();
+//		console.log(obbligatori.childNodes.length);
+		// vedendo nel childNodes di obbligatori, le parti di interesse partono da 1 e sono distanziate di 4
+		// tranne quando c'è un nuovo requisito il quale dista 5 e poi sempre 4 un parametro dall'altro
+		for(let j = 1; j < obbligatori.childNodes.length; j += 13) {
+			obb.push(new Obbligatorio(0, obbligatori.childNodes[j].innerHTML, obbligatori.childNodes[j+4].innerHTML,
+				obbligatori.childNodes[j+8].innerHTML));
+		}
+		
+//		console.log(obb);
+
+/*		console.log(titolo.innerHTML + " " + descrizione.innerHTML 
+			+ " " + requisiti.innerHTML + " " + attivo.childNodes[1].checked);*/
+//		console.log(attivo.childNodes[1].value);
+//		console.log(obbligatori.childNodes.length);
+
+		// campi text e checkbox
 		var titoloForm = document.getElementById("titoloForm");
 		var descrizioneForm = document.getElementById("descrizioneForm");
 		var requisitiForm = document.getElementById("requisitiForm");
@@ -202,10 +222,36 @@ function pulsanteModifica() {
 		titoloForm.value = titolo.innerHTML;
 		descrizioneForm.value = descrizione.innerHTML;
 		requisitiForm.value = requisiti.innerHTML;
-/*		console.log("Form attivo " + attivoForm.checked);
-		console.log("Attivo " + attivo.childNodes[1].value);*/
-		attivoForm.checked = attivo.childNodes[1].value;
-/*		console.log("Form attivo post " + attivoForm.checked);*/
+		
+		// max min range age
+		document.getElementById("min").value = obb[0].value1;
+		document.getElementById("max").value = obb[0].value2;
+		
+		// select
+		
+		/* elimino le precedenti select perché se clicco su un nuovo
+		 edit si aggiungevano alla lsita*/
+		svuotaEliminaSection();
+		
+		
+		for(let i = 1, j = 1; i < obb.length; ++i, ++j) {
+			
+			// alla poszione due c'è sempre uno spazio in piu'
+			if(j == 2)
+				++j;
+			caricaTitoloStudio();
+			document.getElementById("titoloStudio" + j).value = obb[i].value1;
+			caricaOpzioni("titoloStudio" + j, "materiaStudio" + j);
+			document.getElementById("materiaStudio" + j).value = obb[i].value2;
+		}
+		
+		
+		// attivo all'interno della tabella me la prende sempre come stringa
+		// ho provato con checked ma stampa false anche quando è true (PROF)
+		attivoForm.checked = false;
+		if(attivo.childNodes[1].value == "true")
+			attivoForm.checked = true;
+			
 		
 	} else
 		alert("You have to select only one element!");
@@ -321,6 +367,45 @@ function caricaOpzioniAge() {
 
 /* SECTION */
 
+// elimina e metti valore a tutte le altre section esistenti
+// perché se in una section seleziono un tipo titolo e materia, non posso 
+// selezionarla di nuovo in un'altra section
+/*
+function eliminaValoreSelezionabileSection() {
+
+	titolo = new Array();
+	materia = new Array();
+	for(let j = 1; j < ind; ++j) {
+		if(j == 1 && j + 1 < ind)
+			++j;
+			
+		titolo.push(document.getElementById("titoloStudio" + j).value);
+		materia.push(document.getElementById("materiaStudio" + j).value);
+	}
+	
+	console.log(titolo);
+	console.log(materia);
+	
+	for(let j = 1; j < ind; ++j) {
+		if(j == 1 && j + 1 < ind)
+			++j;
+		
+		for()
+		if(document.getElementById("titoloStudio" + j).value == titolo) {
+			let m = document.getElementById("materiaStudio" + j);
+			for (let k = 0; k < m.length; ++k) {
+			    if(m.options[i].value == materia)
+			        m.remove(i);
+			}
+			document.getElementById("materiaStudio" + j)
+		}
+	}  
+}*/
+/*
+function aggiungiValoreSelezionabileAlleSection(i) {
+	
+}
+*/
 /* section delle form del titolo studio e materia studio */
 
 function svuotaEliminaSection() {
@@ -376,6 +461,10 @@ function caricaTitoloStudio() {
 					+ "</div>"
 				+ "</div>";
 				
+	popolaVisualizzaPosizioniLavoro(titolo);
+				
+//	eliminaValoreSelezionabileSection();			
+	
 	var creaNodo = document.createElement('div');
 	creaNodo.className = 'row';
 
@@ -386,7 +475,6 @@ function caricaTitoloStudio() {
 	
 //	console.log(document.getElementById(titolo));
 	
-	popolaVisualizzaPosizioniLavoro(titolo);
 	
 	div.appendChild(creaNodo);
 

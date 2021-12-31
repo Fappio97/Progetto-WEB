@@ -219,7 +219,10 @@
 				<div id = "requisitiSpeciali">
 					<div class = "row" id = "eta">
 						<div class="col-md-12">
-							<label for ="ageRange">Age range: (min - max)</label><br /><select name="ageRange" id = "min" onchange = "caricaOpzioniAge()"></select> - <select name="ageRange" id = "max"></select>
+							<label for ="ageRange">Age range: (min - max)</label>
+							<br />
+							<select name="ageRange" id = "min" onchange = "caricaOpzioniAge()"></select> - 
+							<select name="ageRange" id = "max"></select>
 						</div>
 					</div>
 					<br />
