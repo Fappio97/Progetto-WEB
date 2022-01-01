@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	
 	<!-- Favicon -->
-	<link rel="icon" href="../immagini/index/logo.png" type="image/x-icon"/>
+	<link rel="icon" href="../images/index/logo.png" type="image/x-icon"/>
 	
 	<!-- Titolo -->
 	<title>Work with us</title>
@@ -94,8 +94,8 @@
 					<!-- LOGO -->
 					<div class="col-md-3">
 						<div class="header-logo">
-							<a href="#" class="logo"> <img id="logo"
-								src="images/index/logo.png" alt="">
+							<a href="/" class="logo"> <img id="logo"
+								src="../images/index/logo.png" alt="">
 							</a>
 						</div>
 					</div>
@@ -143,7 +143,7 @@
 								</a>
 								<%} else if(session.getAttribute("loggato") == "si"){%>
 								<a href="account.html" style="text-decoration: none; display: flex; "> 
-									<img class="profilePic" src="images/account/avatar.png" style="border-radius: 50%;" width="29" height="29" alt="Avatar">
+									<img class="profilePic" src="../images/account/avatar.png" style="border-radius: 50%;" width="29" height="29" alt="Avatar">
 									${username}
 								</a>
 								<%}%>
@@ -199,7 +199,7 @@
 		<!-- Grafica superiore %% immagine sfondo -->
 		<div id = "divImmagineTestoSfondo">
 			<figure class = "figure">
-				<img src = "../immagini/lavoraConNoi/lavoraConNoi.png" width = 100% class = "img-fluid">
+				<img src = "../images/lavoraConNoi/lavoraConNoi.png" width = 100% class = "img-fluid">
 			</figure>
 			<div id = "testoSfondo">
 				<p class = "titolo" ><strong>Work with us</strong></p>
@@ -269,7 +269,7 @@
 							<ul class="footer-links">
 								<li><a href="#">About Us</a></li>
 								<li><a href="/contattaci">Contact Us</a></li>
-								<li><a href="#">Work with Us</a></li>
+								<li><a href="/lavoraConNoi/lavoraInAzienda">Work with Us</a></li>
 								<li><a href="#">Privacy Policy</a></li>
 								<li><a href="#">Terms & Conditions</a></li>
 							</ul>

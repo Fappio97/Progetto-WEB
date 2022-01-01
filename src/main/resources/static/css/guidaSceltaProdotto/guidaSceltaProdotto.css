@@ -1,4 +1,5 @@
 /* --- INDEX --- */
+
 #navigation {
 	position: sticky;
 	top: 0;
@@ -71,8 +72,8 @@ con absolute*/
 }
 
 #cercaProdottiMeglioRecensiti, #pulsanteCompraOra {
-	transform: translate(-50%, -50%);
-	position: relative;
+/*	transform: translate(-50%, -50%);
+*/	position: relative;
 	top: 50%;
 	left: 50%;
 }
@@ -211,7 +212,6 @@ con absolute*/
   	vertical-align: middle;
 }
 
-/* da implementare ancora*/
 .numDomande {
 	background-color: white;
 	color: #0b3de1;
@@ -259,12 +259,6 @@ figure img {
 	color: #0b3de1;
 	font-weight: bold;
 }
-
-
-
-
-
-
 
 .image {
 	margin-bottom: 0px;

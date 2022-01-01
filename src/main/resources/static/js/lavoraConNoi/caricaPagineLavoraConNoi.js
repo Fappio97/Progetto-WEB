@@ -77,7 +77,7 @@ function testoSXConFotoDX(elemento, titolo, testo) {
 						+ "</div>"
 						+ "<div class = \"col-sm-6\" id = \"immagineSezione\">"
 							+ "<figure>"
-								+ "<img src = \"../immagini/lavoraConNoi/" + titolo.toLowerCase() + ".png\" class = \"img-fluid\"/>"
+								+ "<img src = \"../images/lavoraConNoi/" + titolo.toLowerCase() + ".png\" class = \"img-fluid\"/>"
 							+ "</figure>"
 						+ "</div>"
 					+ "</div>";
@@ -96,7 +96,7 @@ function testoDXConFotoSX(elemento, titolo, testo) {
 	div.innerHTML = "<div class = \"row\">"
 						+ "<div class = \"col-sm-6\" id = \"immagineSezione\">"
 							+ "<figure>"
-								+ "<img src = \"../immagini/lavoraConNoi/" + titolo.toLowerCase() + ".png\" class = \"img-fluid\"/>"
+								+ "<img src = \"../images/lavoraConNoi/" + titolo.toLowerCase() + ".png\" class = \"img-fluid\"/>"
 							+ "</figure>"
 						+ "</div>"
 						+ "<div class = \"col-sm-6\" id = \"testoSezione\">"

@@ -94,16 +94,16 @@ function continuaInvioLavoro(data, lavoro) {
 
 function modificaLavoroTabella(lav) {
 
-	let lavoro = "<input type=\"checkbox\" id = \"lavoroCheckBox\" checked/>";
+	let check = "<input type=\"checkbox\" id = \"lavoroCheckBox\" checked/>";
 	let immagine = "si";
 	if(!lav.active) {
 		check = "<input type=\"checkbox\" id = \"lavoroCheckBox\" unchecked/>";
 		immagine = "no";
 	}
 	let img = "<figure>"
-				+ "<img src = \"immagini/admin/posizioniLavoro/" + immagine + ".png\">"
+				+ "<img src = \"images/admin/posizioniLavoro/" + immagine + ".png\">"
 			+ "</figure>";
-
+			
 	var obb = "";
 	for(let i = 0; i < lav.obligatory.length; ++i)
 		obb += lav.obligatory[i].name + ": " + lav.obligatory[i].value1 + " - " + lav.obligatory[i].value2 + "\n" + " " + "\n";
@@ -116,6 +116,7 @@ function modificaLavoroTabella(lav) {
 			$(this).next().next().next().html("");
 			for(let i = 0; i < lav.obligatory.length; ++i)
 				$(this).next().next().next().append(lav.obligatory[i].name + ": " + lav.obligatory[i].value1 + " - " + lav.obligatory[i].value2 + "<br /><br />");
+			console.log($(this).next().next().next().next());
 			$(this).next().next().next().next().html(check + img);
 		}
 			
@@ -164,7 +165,7 @@ function aggiungiLavoroTabella(lav) {
 	cellaAttivo.setAttribute('data-title', "Active");
 	cellaAttivo.innerHTML = check
 							+ "<figure>"
-								+ "<img src = \"immagini/admin/posizioniLavoro/" + immagine +  ".png\">"
+								+ "<img src = \"images/admin/posizioniLavoro/" + immagine +  ".png\">"
 							+ "</figure>";
 }
 
@@ -182,7 +183,7 @@ function pulsanteModifica() {
 		
 		/* Lo metto falso perché ho notato che dopo che aggiorno mi seleziona
 		quelle checkbox con indice pari a quelle che avevo precedentemente eliminato */
-		checkBox.checked = false;
+		checkBox[0].checked = false;
 		
 		if(!aggiungi)
 			divForm.style.display = "inline-block";
@@ -201,12 +202,20 @@ function pulsanteModifica() {
 //		console.log(obbligatori.childNodes.length);
 		// vedendo nel childNodes di obbligatori, le parti di interesse partono da 1 e sono distanziate di 4
 		// tranne quando c'è un nuovo requisito il quale dista 5 e poi sempre 4 un parametro dall'altro
-		for(let j = 1; j < obbligatori.childNodes.length; j += 13) {
-			obb.push(new Obbligatorio(0, obbligatori.childNodes[j].innerHTML, obbligatori.childNodes[j+4].innerHTML,
-				obbligatori.childNodes[j+8].innerHTML));
+		
+		console.log(obbligatori.childNodes);
+		for(let j = 0; j < obbligatori.childNodes.length - 3; j += 3) {
+			
+			let stringa = obbligatori.childNodes[j].nodeValue.replaceAll("\t", "");
+			stringa = stringa.replaceAll("\n", "");
+			let diviso = stringa.split(': ');
+			stringa = diviso[1].split(" - ");
+			
+			obb.push(new Obbligatorio(0, diviso[0], stringa[0], stringa[1]));
 		}
 		
-//		console.log(obb);
+		console.log("Obbligatori letti");
+		console.log(obb);
 
 /*		console.log(titolo.innerHTML + " " + descrizione.innerHTML 
 			+ " " + requisiti.innerHTML + " " + attivo.childNodes[1].checked);*/
@@ -223,9 +232,7 @@ function pulsanteModifica() {
 		descrizioneForm.value = descrizione.innerHTML;
 		requisitiForm.value = requisiti.innerHTML;
 		
-		// max min range age
-		document.getElementById("min").value = obb[0].value1;
-		document.getElementById("max").value = obb[0].value2;
+		
 		
 		// select
 		
@@ -234,15 +241,25 @@ function pulsanteModifica() {
 		svuotaEliminaSection();
 		
 		
-		for(let i = 1, j = 1; i < obb.length; ++i, ++j) {
+		for(let i = 0, j = 1; i < obb.length; ++i) {
 			
-			// alla poszione due c'è sempre uno spazio in piu'
-			if(j == 2)
-				++j;
-			caricaTitoloStudio();
-			document.getElementById("titoloStudio" + j).value = obb[i].value1;
-			caricaOpzioni("titoloStudio" + j, "materiaStudio" + j);
-			document.getElementById("materiaStudio" + j).value = obb[i].value2;
+			console.log("i " + i);
+
+			if(obb[i].name == "Age range") {
+				// max min range age
+				document.getElementById("min").value = obb[i].value1;
+				document.getElementById("max").value = obb[i].value2;
+			} else {
+				// alla poszione due c'è sempre uno spazio in piu'
+				if(j == 2)
+					++j;
+				caricaTitoloStudio();
+				console.log("titoloStudio" + j);
+				document.getElementById("titoloStudio" + j).value = obb[i].value1;
+				caricaOpzioni("titoloStudio" + j, "materiaStudio" + j);
+				document.getElementById("materiaStudio" + j).value = obb[i].value2;
+				 ++j;
+			}
 		}
 		
 		
@@ -443,10 +460,12 @@ function caricaTitoloStudio() {
 	var titolo = "titoloStudio" + ind;
 	var materia = "materiaStudio" + ind;
 	
+	console.log("Titolo creato " + titolo);
+	
 	div.childNodes[ind].innerHTML = "<div class = \"row\" id = \"" + ind + "\">"
 					+ "<div class=\"col-2\">"
 						+ "<a class = \"piuMeno\" href = \"javascript:eliminaTitoloStudio(" + ind + ")\">"
-							+ "<img src = \"../immagini/admin/posizioniLavoro/meno.png\">"
+							+ "<img src = \"../images/admin/posizioniLavoro/meno.png\">"
 						+ "</a>"
 					+ "</div>"
 	 				+ "<div class=\"col-5\">"
@@ -482,7 +501,7 @@ function caricaTitoloStudio() {
 	div.childNodes[ind].innerHTML = "<div class = \"row\" id = \"" + ind + "\">"
 						+ "<div class=\"col-2\">"
 							+ "<a class = \"piuMeno\" href = \"javascript:caricaTitoloStudio()\">"
-								+ "<img src = \"../immagini/admin/posizioniLavoro/piu.png\">"
+								+ "<img src = \"../images/admin/posizioniLavoro/piu.png\">"
 							+ "</a>"
 						+ "</div>"
 					+ "</div>";
@@ -495,7 +514,7 @@ function eliminaTitoloStudio(ind) {
 	if(ind == 0)
 		div.innerHTML = "<div class=\"col-2\">"
 							+ "<a class = \"piuMeno\" href = \"javascript:caricaTitoloStudio()\">"
-								+ "<img src = \"../immagini/admin/posizioniLavoro/piu.png\">"
+								+ "<img src = \"../images/admin/posizioniLavoro/piu.png\">"
 							+ "</a>"
 						+ "</div>";
 	else

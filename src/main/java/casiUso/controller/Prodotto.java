@@ -25,7 +25,7 @@ public class Prodotto {
 		Product prodotto = Database.getInstance().getProductsDao().findById(id);
 		
 		HttpSession session = req.getSession(true);
-		session.setAttribute("prodotto", prodotto);		
+		session.setAttribute("product", prodotto);		
 
 		return "product";
 	}	

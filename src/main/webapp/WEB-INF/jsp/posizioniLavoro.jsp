@@ -7,7 +7,7 @@
 	<meta charset="utf-8">
 	
 	<!-- Favicon -->
-	<link rel="icon" href="../immagini/index/logo.png" type="image/x-icon"/>
+	<link rel="icon" href="../images/index/logo.png" type="image/x-icon"/>
 	
 	<!-- Titolo -->
 	<title>Job positions</title>
@@ -23,8 +23,8 @@
 	<!-- JS -->
 	<script src="../js/lavoraConNoi/modelloLavoraConNoi.js"></script>
 	<script src="../js/lavoraConNoi/funzioni.js"></script>
-	<script src="js/adminPage/posizioniLavoro/posizioniLavoro.js"></script>
-	<script src="js/adminPage/posizioniLavoro/chiamateAjax.js"></script>
+	<script src="js/admin/posizioniLavoro/posizioniLavoro.js"></script>
+	<script src="js/admin/posizioniLavoro/chiamateAjax.js"></script>
 	
 	<!--AJAX ha la dipendenza nel pom -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -70,8 +70,8 @@
 					<!-- LOGO -->
 					<div class="col-md-3">
 						<div class="header-logo">
-							<a href="#" class="logo">
-								<img id="logo" src="immagini/index/logo.png" alt="">
+							<a href="/" class="logo">
+								<img id="logo" src="../images/index/logo.png" alt="">
 							</a>
 						</div>
 					</div>
@@ -160,27 +160,20 @@
 							<td data-title = "Title" class = "titoloLavoro">${lav.title}</td>
 							<td >${lav.description}</td>
 							<td class = "formattaTesto">${lav.requirements}</td>
-							<td class = "obbligatori">
-								<c:forEach items="${lav.obligatory}" var="obb">
-									<nobr id = "nomeRequisito">${obb.name}</nobr> 
-									<nobr>: </nobr> 
-									<nobr id = "requisito1">${obb.value1}</nobr>
-									<nobr> - </nobr>
-									<nobr id = "requisito2">${obb.value2}</nobr>
-									<br /><br />
+							<td class = "obbligatori"><c:forEach items="${lav.obligatory}" var="obb">${obb.name}: ${obb.value1} - ${obb.value2}<br /><br />
 								</c:forEach>
 							</td>
 							<td data-title = "Active">
 								<c:if test = "${lav.active == true}">
 									<input type="checkbox" id = "lavoroCheckBox" value = "true"/>
 									<figure>
-										<img src = "immagini/admin/posizioniLavoro/si.png">
+										<img src = "images/admin/posizioniLavoro/si.png">
 									</figure>
 								</c:if>
 								<c:if test = "${lav.active == false}">
 									<input type="checkbox" id = "lavoroCheckBox" value = "false"/>
 									<figure>
-										<img src = "immagini/admin/posizioniLavoro/no.png">
+										<img src = "images/admin/posizioniLavoro/no.png">
 									</figure>
 								</c:if>
 							</td>
@@ -230,7 +223,7 @@
 						<div class = "row" id = "1">
 							<div class="col-2">
 								<a class = "piuMeno" href = "javascript:caricaTitoloStudio()">
-									<img src = "../immagini/admin/posizioniLavoro/piu.png">
+									<img src = "../images/admin/posizioniLavoro/piu.png">
 								</a>
 							</div>
 						</div>
@@ -285,8 +278,8 @@
 							<h3 class="footer-title">Information</h3>
 							<ul class="footer-links">
 								<li><a href="#">About Us</a></li>
-								<li><a href="#">Contact Us</a></li>
-								<li><a href="#">Work with Us</a></li>
+								<li><a href="/contattaci">Contact Us</a></li>
+								<li><a href="/lavoraConNoi/lavoraInAzienda">Work with Us</a></li>
 								<li><a href="#">Privacy Policy</a></li>
 								<li><a href="#">Terms & Conditions</a></li>
 							</ul>

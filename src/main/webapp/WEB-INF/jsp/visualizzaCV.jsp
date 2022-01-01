@@ -7,7 +7,7 @@
 	<meta charset="utf-8">
 	
 	<!-- Favicon -->
-	<link rel="icon" href="../immagini/index/logo.png" type="image/x-icon"/>
+	<link rel="icon" href="../images/index/logo.png" type="image/x-icon"/>
 	
 	<!-- Titolo -->
 	<title>View curriculum</title>
@@ -21,8 +21,8 @@
   	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>	
 
 	<!-- JS -->
-	<script language="javascript" src="js/adminPage/visualizzaCV/visualizzaCV.js"></script>
-	<script language="javascript" src="js/adminPage/visualizzaCV/chiamateAjax.js"></script>
+	<script language="javascript" src="js/admin/visualizzaCV/visualizzaCV.js"></script>
+	<script language="javascript" src="js/admin/visualizzaCV/chiamateAjax.js"></script>
 
 	<!--AJAX ha la dipendenza nel pom -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -68,8 +68,8 @@
 					<!-- LOGO -->
 					<div class="col-md-3">
 						<div class="header-logo">
-							<a href="#" class="logo">
-								<img id="logo" src="immagini/index/logo.png" alt="">
+							<a href="/" class="logo">
+								<img id="logo" src="../images/index/logo.png" alt="">
 							</a>
 						</div>
 					</div>
@@ -213,8 +213,8 @@
 							<h3 class="footer-title">Information</h3>
 							<ul class="footer-links">
 								<li><a href="#">About Us</a></li>
-								<li><a href="#">Contact Us</a></li>
-								<li><a href="#">Work with Us</a></li>
+								<li><a href="/contattaci">Contact Us</a></li>
+								<li><a href="/lavoraConNoi/lavoraInAzienda">Work with Us</a></li>
 								<li><a href="#">Privacy Policy</a></li>
 								<li><a href="#">Terms & Conditions</a></li>
 							</ul>

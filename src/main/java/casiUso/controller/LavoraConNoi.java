@@ -51,7 +51,9 @@ public class LavoraConNoi {
 		
 		return "curriculum";
 	}
+
 	
+	//---------------------------- manca sta parte su techplanet
 	@PostMapping("/salvaPresentazione")
 	public String salvaPresentazione(HttpServletRequest req, HttpServletResponse res, String lavoro,
 			String nome, String cognome, String dataNascita, String email, String phone, String materiaStudio, 

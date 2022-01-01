@@ -31,8 +31,9 @@ function prodottiMeglioRecensiti() {
 	$.ajax({
 		type: "POST",
 		url: "/prodottiMeglioRecensiti",
-		contentType: "application/json",
-		data: categoriaSelezionata,
+		data: {
+			categoria: categoriaSelezionata
+		},
 		success: function(data){
 			alert("tutto ok");
 			inserisciProdotti(data);
