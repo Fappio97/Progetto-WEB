@@ -116,11 +116,16 @@ function inviaSegnalazione(){
  	} else {
 		
 		let origineProblema = "";
-		if(ind != -1) {
-			origineProblema += categoriaSelezionata + ". ";
-			origineProblema += "Question n° " + ind + "";
-		} else
+		if(ind == -1) 
 			origineProblema += "Choice of category";
+		else if(ind == numDomandeTotaliCategoria) {
+			origineProblema += "Results of ";
+			origineProblema += categoriaSelezionata;
+		} else {
+			origineProblema += "Category " + categoriaSelezionata + ". ";
+			origineProblema += "Question n° " + ind + "";
+		}
+			
 			
 		segnalazioneAjax(origineProblema, segnalazione);
 		

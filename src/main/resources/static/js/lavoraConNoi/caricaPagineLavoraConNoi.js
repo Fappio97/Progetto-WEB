@@ -55,7 +55,7 @@ function testoSXConFotoDX(elemento, titolo, testo) {
 	}
 	
 	div.innerHTML = "<div class = \"row\">"
-						+ "<div class = \"col-sm-6\" id = \"testoSezione\">"
+						+ "<div class = \"col-sm-6\" id = \"testoSezione1\">"
 						    + "<br />"
 							+ "<p id = \"titoloSezione\">" + titolo + "</p><br /><br />"
 							+ s
@@ -84,7 +84,7 @@ function testoDXConFotoSX(elemento, titolo, testo) {
 								+ "<img src = \"../images/lavoraConNoi/" + titolo.toLowerCase() + ".png\" class = \"img-fluid\"/>"
 							+ "</figure>"
 						+ "</div>"
-						+ "<div class = \"col-sm-6\" id = \"testoSezione\">"
+						+ "<div class = \"col-sm-6\" id = \"testoSezione2\">"
 						    + "<br />"
 							+ "<p id = \"titoloSezione\">" + titolo + "</p><br /><br />"
 							+ s
@@ -95,7 +95,7 @@ function testoDXConFotoSX(elemento, titolo, testo) {
 function soloTabella(elemento) {
 	var div = document.getElementById(elemento);
 	
-	div.innerHTML = "<div class = \"row\">"
+	div.innerHTML = "<div class = \"row\" id = \"testoSezione1\">"
 						+ "<div class = \"col-sm-12\" id = \"listaPosizioniAperte\">"
 							+ "<table class=\"table\">"
 							  	+ "<thead class=\"thead-dark\">"
@@ -159,7 +159,7 @@ function soloTesto(elemento, titolo, testo) {
 	}
 		
 	div.innerHTML = "<div class = \"row\">"
-						+ "<div class = \"col-sm-12\" id = \"testoSezione\">"
+						+ "<div class = \"col-sm-12\" id = \"testoSezione1\">"
 						    + "<br />"
 							+ "<p id = \"titoloSezione\">" + titolo + "</p><br /><br />"
 							+ s[0]

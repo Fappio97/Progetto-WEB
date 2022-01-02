@@ -66,11 +66,11 @@ function inviaPresentazione(event) {
 		let messaggioErrore = "";
 		var condizione = true;
 		
-		condizione = controllaInputTypeText();
-		condizione = controllaSelects();
-		condizione = controllaDataNascita();
-		condizione = controllaNumero();
-		condizione = controllaMail();
+		condizione *= controllaInputTypeText();
+		condizione *= controllaSelects();
+		condizione *= controllaDataNascita();
+		condizione *= controllaNumero();
+		condizione *= controllaMail();
 		
 		// se uno dei campi testuali è vuoto
 		if(!condizione)
@@ -183,6 +183,7 @@ function controllaSelects() {
 			input[i].style.borderColor = "red";
 			cond = false;
 		}
+		
 	return cond;
 }
 

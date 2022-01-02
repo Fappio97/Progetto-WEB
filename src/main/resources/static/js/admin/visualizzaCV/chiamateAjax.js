@@ -7,7 +7,7 @@ function prendiCurriculum(lavoro) {
 			titoloLavoro: lavoro
 		},
 		success: function(data){
-			alert("tutto ok");
+//			alert("tutto ok");
 			aggiungiCurriculumTabella(data);
 		},
 		error: function(xhr){

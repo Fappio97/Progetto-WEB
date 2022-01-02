@@ -3,7 +3,7 @@ function listeAperte() {
 		type: "GET",
 		url: "/listaPosizioniAperte",
 		success: function(data){
-			alert("tutto ok");
+//			alert("tutto ok");
 			caricaListeAperte(data);
 		},
 		error: function(xhr){
@@ -19,7 +19,7 @@ function salvaPosizioneLavoro(indice) {
 		contentType: "application/json",
 		data: JSON.stringify(posLavoro[indice]),
 		success: function(){
-			alert("tutto ok");
+//			alert("tutto ok");
 			window.location.href = "/lavoraConNoi/curriculum";
 		},
 		error: function(xhr){

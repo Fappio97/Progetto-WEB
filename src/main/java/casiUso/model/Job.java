@@ -75,7 +75,7 @@ public class Job {
 			}
 		}
 		
-		if(cont < this.obligatory.size())
+		if(cont < this.obligatory.size() || cont < job.getObligatory().size())
 			return false;
 		
 		return this.title.equals(job.title) && this.description.equals(job.description) &&

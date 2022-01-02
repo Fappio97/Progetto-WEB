@@ -22,7 +22,7 @@ function trovaProdottiCorrelati() {
 			tag: tag
 		},
 		success: function(data){
-			alert("tutto ok");
+//			alert("tutto ok");
 			inserisciProdottiTag(data);
 		},
 		error: function(xhr){
@@ -39,7 +39,7 @@ function prodottiMeglioRecensiti() {
 			categoria: categoriaSelezionata
 		},
 		success: function(data){
-			alert("tutto ok");
+//			alert("tutto ok");
 			inserisciProdotti(data);
 		},
 		error: function(xhr){

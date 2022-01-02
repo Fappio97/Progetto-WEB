@@ -140,7 +140,7 @@ function popola(stringa) {
 }
 
 function popolaVisualizzaPosizioniLavoro(stringa) {
-	console.log(stringa);
+//	console.log(stringa);
 	var section = document.getElementById(stringa);
 	
 	let variabile = opzioni.titoloStudio;

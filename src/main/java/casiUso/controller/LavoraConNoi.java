@@ -59,11 +59,11 @@ public class LavoraConNoi {
 			String nome, String cognome, String dataNascita, String email, String phone, String materiaStudio, 
 			String titoloStudio, String funzioneLavoro, String classificazioneLavoro, 
 			MultipartFile foto, MultipartFile cv, String presentazione, String letteraPresentazione) {
-		
+/*		
 		System.out.println(lavoro + " " + nome + " " + cognome + " " + dataNascita + " " + email + " " + titoloStudio + " " + materiaStudio + " " 
 			+ classificazioneLavoro + " " + funzioneLavoro + " " + foto.getOriginalFilename() + " " 
 				+ cv.getOriginalFilename() + " " + letteraPresentazione);
-		
+*/		
 		try {
 			
 			// creo un nuovo curriculum
@@ -87,6 +87,7 @@ public class LavoraConNoi {
 			// poiché un utente può inviare infiniti cv, i quali aggiornano
 			// il cv precedentemente inviato per quella posizione
 			if(id != 0) {
+				// se l'id è uguale a 0 elimino quella cartella
 				try {
 					String p = System.getProperty("user.dir") + "/src/main/resources/static/curriculumRicevuti/" 
 							 + cognome + "_" + nome + "_" + dataNascita + "_" + lavoro;

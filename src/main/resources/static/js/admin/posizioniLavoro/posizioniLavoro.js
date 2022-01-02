@@ -17,6 +17,10 @@ function pulsanteAggiungi() {
 	document.getElementById("descrizioneForm").value = "";
 	document.getElementById("requisitiForm"). value = "";
 	document.getElementById("checkBoxForm").checked = false;
+	
+	document.getElementById("min").options.selectedIndex = 0;
+	caricaOpzioniAge();
+	svuotaEliminaSection();
 
 	if(!aggiungi)
 		divForm.style.display = "inline-block";
@@ -73,6 +77,7 @@ function continuaInvioLavoro(data, lavoro) {
 	// chiedi conferma
 	if(confirm(s)) {
 			
+		console.log(data);
 		/* salva in tabella */
 		if(data != "titolo")
 			aggiungiLavoroTabella(lavoro);
@@ -107,7 +112,7 @@ function modificaLavoroTabella(lav) {
 	let img = "<figure>"
 				+ "<img src = \"images/admin/posizioniLavoro/" + immagine + ".png\">"
 			+ "</figure>";
-			
+	
 	/* sono nel td del titolo lavoro e poi con i next prendo i suoi fratelli
 	 e via dicendo fino a prendere tutti i fratelli e modificarli */
 	$(".titoloLavoro").each(function() {
@@ -115,9 +120,13 @@ function modificaLavoroTabella(lav) {
 			$(this).next().html(lav.description);
 			$(this).next().next().html(lav.requirements);
 			$(this).next().next().next().html("");
-			for(let i = 0; i < lav.obligatory.length; ++i)
-				$(this).next().next().next().append(lav.obligatory[i].name + ": " + lav.obligatory[i].value1 + " - " + lav.obligatory[i].value2 + "<br /><br />");
-			console.log($(this).next().next().next().next());
+			for(let i = 0; i <= lav.obligatory.length; ++i) {
+				if(i == lav.obligatory.length)
+					$(this).next().next().next().append("<div></div>");
+				
+				else
+					$(this).next().next().next().append(lav.obligatory[i].name + ": " + lav.obligatory[i].value1 + " - " + lav.obligatory[i].value2 + "<br /><br />");
+			}
 			$(this).next().next().next().next().html(check + img);
 		}
 			
@@ -139,7 +148,12 @@ function aggiungiLavoroTabella(lav) {
 	
 	
 	var cellaTitolo = riga.insertCell(1);
+	
+	// setto il data-title per la formattazione tablet-smartphone
+	// e la classe così che riesco a trovarla quando modifico
+	// la posizione di lavoro
 	cellaTitolo.setAttribute('data-title', "Title");
+	cellaTitolo.setAttribute('class', "titoloLavoro");
 	cellaTitolo.textContent = lav.title;
 	
 	var cellaDescrizione = riga.insertCell(2);
@@ -148,12 +162,14 @@ function aggiungiLavoroTabella(lav) {
 	var cellaRequisiti = riga.insertCell(3);
 	cellaRequisiti.textContent = lav.requirements;
 	
-	var obb = "";
-	for(let i = 0; i < lav.obligatory.length; ++i)
-		obb += lav.obligatory[i].name + ": " + lav.obligatory[i].value1 + " - " + lav.obligatory[i].value2 + "\n" + "\n";
-		
+
 	var cellaObbligatori = riga.insertCell(4);
-	cellaObbligatori.textContent = obb;
+	for(let i = 0; i <= lav.obligatory.length; ++i) {
+		if(i == lav.obligatory.length)
+			cellaObbligatori.innerHTML += "<div></div>";
+		else
+			cellaObbligatori.innerHTML += lav.obligatory[i].name + ": " + lav.obligatory[i].value1 + " - " + lav.obligatory[i].value2 + "<br /><br />";
+	}
 	
 	let check = "<input type=\"checkbox\" id = \"lavoroCheckBox\" checked/>";
 	let immagine = "si";
@@ -245,7 +261,7 @@ function pulsanteModifica() {
 		
 		for(let i = 0, j = 1; i < obb.length; ++i) {
 			
-			console.log("i " + i);
+//			console.log("i " + i);
 
 			if(obb[i].name == "Age range") {
 				// max min range age
@@ -256,7 +272,7 @@ function pulsanteModifica() {
 				if(j == 2)
 					++j;
 				caricaTitoloStudio();
-				console.log("titoloStudio" + j);
+//				console.log("titoloStudio" + j);
 				document.getElementById("titoloStudio" + j).value = obb[i].value1;
 				caricaOpzioni("titoloStudio" + j, "materiaStudio" + j);
 				document.getElementById("materiaStudio" + j).value = obb[i].value2;
@@ -386,6 +402,8 @@ function caricaOpzioniAge() {
 		max.appendChild(opt);	
 	}	
 	
+	// prendo l'ultimo elemento, così se non mette un'età sono tutti accettati
+	max.options.selectedIndex = max.options.length-1
 }
 
 /* SECTION */
@@ -466,7 +484,7 @@ function caricaTitoloStudio() {
 	var titolo = "titoloStudio" + ind;
 	var materia = "materiaStudio" + ind;
 	
-	console.log("Titolo creato " + titolo);
+//	console.log("Titolo creato " + titolo);
 	
 	div.childNodes[ind].innerHTML = "<div class = \"row\" id = \"" + ind + "\">"
 					+ "<div class=\"col-2\">"

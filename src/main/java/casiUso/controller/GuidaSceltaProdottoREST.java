@@ -19,8 +19,6 @@ public class GuidaSceltaProdottoREST {
 	
 	@PostMapping("/trovaProdotti")
 	public List<ProductTag> trovaProdotti(@RequestParam String categoria, @RequestParam String tag) {
-
-		System.out.println(categoria + "    " + tag);
 						
 		List<Product> prodotti = Database.getInstance().getProductsDao().findByCategory(categoria);
 		

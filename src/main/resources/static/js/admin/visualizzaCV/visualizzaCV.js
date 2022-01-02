@@ -27,7 +27,7 @@ function pulsanteCancella() {
 							id: id
 						},
 						success: function(){
-							alert("tutto ok");
+//							alert("tutto ok");
 						},
 						error: function(xhr){
 							alert("tutto male");

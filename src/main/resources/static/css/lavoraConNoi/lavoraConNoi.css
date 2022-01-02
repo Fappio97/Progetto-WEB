@@ -20,7 +20,7 @@
 
 /* PAGINA JSP */
 
-#testoSezione p {
+#testoSezione1 p, #testoSezione2 p {
 	text-align: justify;
 }
 
@@ -221,8 +221,8 @@ input[type=text] {
 	margin-bottom: 10px;
 }
 
-.messaggioErrore {
-	text-align: center;
+.messaggioErrore p {
+	text-align: center !important;
 	color: red;
 }
 

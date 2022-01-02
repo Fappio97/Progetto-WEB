@@ -275,7 +275,7 @@
 				</div>
 				<br />
 				
-				<div id = "testo1">
+				<div id = "testoSezione1">
 					<form method = "post" action = "/lavoraConNoi/salvaPresentazione" enctype="multipart/form-data">
 					<div class = "row">
 							<div class = "col-sm-12" id = "formCentrale">
@@ -473,7 +473,7 @@
 							</div>
 						</div>
 						<br /><br />
-						<div id = "testo2">
+						<div id = "testoSezione2">
 							<div class = "row" id = "mancaLaTuaPosizione">
 								<div class = "col-sm-12">
 									<p><i>By clicking on the "send curriculum" button, you accept the information on online candidates pursuant to art. 13 of Regulation (EU) 2016/679.</i></p>
