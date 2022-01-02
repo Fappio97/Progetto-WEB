@@ -1,4 +1,8 @@
 function trovaProdottiCorrelati() {
+	
+	// i tag preferisco averli ni questo formato, in modo simile ai tag
+	// che salvo di ogni prodotto, per poi slittarli e controllare se quel 
+	// prodotto ha quel tag
 	tag = "";
 	for(let i = 0; i < preferenzeUtente.length; ++i) {
 		if(preferenzeUtente[i] != undefined) {

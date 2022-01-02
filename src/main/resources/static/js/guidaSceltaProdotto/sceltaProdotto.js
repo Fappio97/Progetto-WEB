@@ -6,7 +6,10 @@ window.addEventListener("load", function(){
 /* --- Variabili --- */ 
 
 var categoriaSelezionata;
+
+// parto da due soltanto perché
 var numDomandeTotaliCategoria = 2;
+
 var preferenzeUtente = new Array();
 
 
@@ -83,19 +86,6 @@ function caricaInfo(indiceRisposta) {
 			break;
 	}
 }
-function focusRisposte() {
-
-	var risposte = document.getElementsByName("collega");
-	for(let j = 0; j < risposte.length; ++j) {
-		if(risposte[j].checked == true) {
-			let parentDiv = risposte[j].parentNode;
-			parentDiv.style.border = "2px solid #0b3de1";
-		} else {
-			let parentDiv = risposte[j].parentNode;
-			parentDiv.style.border = "";
-		}
-	}
-}
 
 function cercaProdottiMeglioRecensiti() {
 	prodottiMeglioRecensiti();
@@ -104,24 +94,9 @@ function cercaProdottiMeglioRecensiti() {
 	div.innerHTML = "";
 }
 
-function aggiungiAlCarrello(id) {
-	alert("Prodotto con id " + id + " aggiunto al carrello");
-}
+/* -- FINE FUNZIONI CHE INVOCO DAI BOTTONI CREATI DA JS --- */
 
 /* -- FUNZIONI --- */
-
-function deselezionaRadioButton() {
-/*	
-	$('').click(function(){
-	    if (this.previous) {
-	        this.checked = false;
-			$(this).css("border-color", "#0b3de1");
-	    }
-	    this.previous = this.checked;
-	});
-	
-	selezionaRisposteScelte();*/
-}
 
 function segnalazione(){
 	var row = document.getElementById("segnalazione2");	
@@ -145,7 +120,7 @@ function inviaSegnalazione(){
 			origineProblema += categoriaSelezionata + ". ";
 			origineProblema += "Question n° " + ind + "";
 		} else
-			origineProblema += "choice of category";
+			origineProblema += "Choice of category";
 			
 		segnalazioneAjax(origineProblema, segnalazione);
 		
@@ -213,16 +188,8 @@ function paginaIndietro() {
 	abilitaDisabilita();
 }
 
-function abilitaDisabilita() {
-	if(ind == -1)
-		document.getElementById("pulsanteIndietro").disabled = true;
-	else
-		document.getElementById("pulsanteIndietro").disabled = false;
-	if(ind < numDomandeTotaliCategoria)
-		document.getElementById("pulsanteAvanti").disabled = false;	
-	else 
-		document.getElementById("pulsanteAvanti").disabled = true;
-}
+/* -- FINE FUNZIONI --- */
+
 
 /* --- FUNZIONI AUSILIARIE --- */
 
@@ -236,6 +203,30 @@ function clearText(field){
 	else if (field.value == '') {
 		field.value = field.defaultValue;    
 	}
+}
+
+function numeroDomandeCategoriaSelezionata() {
+	switch(categoriaSelezionata) {
+		case "printers":
+			numDomandeTotaliCategoria = domande.stampanti.elencoDomande.length;
+			break;
+		case "notebook":
+			numDomandeTotaliCategoria = domande.notebook.elencoDomande.length;
+			break;
+		default:
+			return;			
+	}
+}
+
+function abilitaDisabilita() {
+	if(ind == -1)
+		document.getElementById("pulsanteIndietro").disabled = true;
+	else
+		document.getElementById("pulsanteIndietro").disabled = false;
+	if(ind < numDomandeTotaliCategoria)
+		document.getElementById("pulsanteAvanti").disabled = false;	
+	else 
+		document.getElementById("pulsanteAvanti").disabled = true;
 }
 
 function svuotaArray(array) {
@@ -258,7 +249,7 @@ function salvaPreferenza() {
 			
 	} else if(selected.length == 0 && preferenzeUtente[ind] != undefined) {
 		/* se è stata precedentemente selezionata qualcosa e se 
-		ho aggiornato el mie selezioni, non selezionandone alcuna
+		ho aggiornato le mie selezioni, non selezionandone alcuna
 		riazzero in quell'indice l'array */
 		preferenzeUtente[ind] = new Array();
 	}
@@ -269,3 +260,62 @@ function cambiaCategoria() {
 	return domanda;
 }
 
+/* --- FINE FUNZIONI AUSILIARIE --- */
+
+/* --- FOCUS RISPOSTE --- */
+
+// al click su quella risposta coloro il bordo del div che la contiene
+function focusRisposte() {
+
+	var risposte = document.getElementsByName("collega");
+	for(let j = 0; j < risposte.length; ++j) {
+		if(risposte[j].checked == true) {
+			let parentDiv = risposte[j].parentNode;
+			parentDiv.style.border = "2px solid #0b3de1";
+		} else {
+			let parentDiv = risposte[j].parentNode;
+			parentDiv.style.border = "";
+		}
+	}
+}
+
+/* coloro il bordo del div che contiene gli input che ho selezionato
+ precedentemente per quella domadna */
+function selezionaRisposteScelte() {
+	
+	var risposte = document.getElementsByName("collega");
+	if(preferenzeUtente[ind] != undefined && preferenzeUtente[ind].length > 0) {
+		for(let i = 0; i < preferenzeUtente[ind].length; ++i) {
+			for(let j = 0; j < risposte.length; ++j) {
+				if(risposte[j].getAttribute('value') == preferenzeUtente[ind][i]) {
+					risposte[j].checked = true;
+					
+					/* Prende il nodo padre dell'elemento passato */
+					let parentDiv = risposte[j].parentNode;
+					parentDiv.style.border = "2px solid #0b3de1";
+					break;
+				}
+			}
+		}
+	}
+}
+
+/* barra sopra */
+function caricaFocusDomanda() {
+	if(ind == -1)
+		return;
+	
+	var elementi = document.getElementsByClassName("numDomande");
+	for(let i = 0; i < elementi.length; ++i) {
+		if(elementi[i].value == ind) {
+			elementi[i].style.background = '#0b3de1';
+			elementi[i].style.color = 'white';
+		}
+		else {
+			elementi[i].style.background = 'white';
+			elementi[i].style.color = '#0b3de1';	
+		}
+	}
+}
+
+/* --- FINE FOCUS RISPOSTE --- */

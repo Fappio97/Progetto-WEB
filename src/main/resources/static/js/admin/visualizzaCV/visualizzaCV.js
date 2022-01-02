@@ -45,6 +45,7 @@ function pulsanteCancella() {
 	});
 }
 
+/* -- CHECKBOX HEAD TABELLA --- */
 function checkBoxTh() {
 	if($("#checkBoxTh").attr('checked')) {
 		selezionaDeselezionaTuttiCheckBox(false);
@@ -62,6 +63,12 @@ function selezionaDeselezionaTuttiCheckBox(selezionare) {
 	});
 }
 
+/* -- FINE CHECKBOX HEAD TABELLA --- */
+
+
+/* -- FORMATTAZIONE CURRICULUM --- */
+
+// cerco i curriculum a seconda del lavoro selezionato
 function caricaCurriculum() {
 	var lavoroSelezionato = document.getElementById("lavori").value;
 	
@@ -69,6 +76,14 @@ function caricaCurriculum() {
 	
 }
 
+// carico i curriculum presi dal db nella pagina
+function aggiungiCurriculumTabella(data) {
+	$("tbody").html(
+		modelloTabellaCurriculum(data)
+	);
+}
+
+// modello html dei curriculum
 function modelloTabellaCurriculum(data) {
 
 	let s = "";
@@ -125,8 +140,4 @@ function modelloTabellaCurriculum(data) {
 	return s;
 }
 
-function aggiungiCurriculumTabella(data) {
-	$("tbody").html(
-		modelloTabellaCurriculum(data)
-	);
-}
+/* -- FINE FORMATTAZIONE CURRICULUM --- */

@@ -66,18 +66,26 @@ public class LavoraConNoi {
 		
 		try {
 			
+			// creo un nuovo curriculum
 			Curriculum curriculum = new Curriculum(Database.getInstance().getJobDao().findByPrimaryKey(lavoro), nome, cognome, dataNascita,
 					email, titoloStudio, materiaStudio, funzioneLavoro, classificazioneLavoro, 
 					"curriculumRicevuti/" + cognome + "_" + nome + "_" + dataNascita + "_" + lavoro + "/" + foto.getOriginalFilename(), 
 					"curriculumRicevuti/" + cognome + "_" + nome + "_" + dataNascita + "_" + lavoro + "/" + cv.getOriginalFilename(), 
 					letteraPresentazione, phone);
 			
+			// controllo se il curriculum esiste già, in base all'Id che mi viene rimandato
 			Long id = Database.getInstance().getCurriculumDao().checkEsisteCurriculum(curriculum);
 			
+			// setto l'id dell'istanza di curriculum con quello trovato, altrimenti a 0
 			curriculum.setId(id);
 			
+			// salvo il cv
 			Database.getInstance().getCurriculumDao().saveOrUpdate(curriculum);
 			
+			// se l'id è uguale a zero significa che non è creata la cartella
+			// che contiene la sua foto e il suo cv, 
+			// poiché un utente può inviare infiniti cv, i quali aggiornano
+			// il cv precedentemente inviato per quella posizione
 			if(id != 0) {
 				try {
 					String p = System.getProperty("user.dir") + "/src/main/resources/static/curriculumRicevuti/" 
@@ -89,6 +97,7 @@ public class LavoraConNoi {
 				}
 			}
 			
+			// salvo i file nella nuova cartella
 			String percorso = writeFile(cognome + "_" + nome + "_" + dataNascita + "_" + lavoro);
 			foto.transferTo(new File(percorso + "/" + foto.getOriginalFilename()));
 			cv.transferTo(new File(percorso + "/" + cv.getOriginalFilename()));

@@ -1,4 +1,4 @@
-/* FUNZIONI */
+/* FUNZIONI PRINCIPALI */
 
 function avanti() {
 	ind++;
@@ -18,6 +18,10 @@ function indietro() {
 	}
 }
 
+/* FINE FUNZIONI PRINCIPALI */
+
+/* FUNZIONI AUSILIARIE */
+
 function requisitiSpezzati(requisiti) {
 	var stringhe = requisiti.split(".");
 	
@@ -33,23 +37,32 @@ function caricaListeAperte(data) {
 	
 	var s = "";
 	for(let i = 0; i < data.length; ++i) {
+		// evito di far apparire la posizione "candidatura spontanea"
+		// perché non voglio che venga eliminata o modificata
 		if(data[i].title != "Spontaneous Candidature") {
 			s += "<tr>"
 					+ "<th scope=\"row\"><a href = \"javascript:posizione('" + data[i].title + "')\">" + data[i].title + "</a></th>"
 					+ "<td>" + data[i].description + "</td>"
 				+ "</tr>";
 			
+			// prendo i requisiti obbligatori di ciascuna posizione di lavoro
 			let obbligatori = new Array();
 			for(let j = 0; j < data[i].obligatory.length; ++j)
 				obbligatori.push(new Obbligatorio(data[i].obligatory.id, data[i].obligatory[j].name, data[i].obligatory[j].value1, data[i].obligatory[j].value2));
 					
-				
-			posLavoro.push(new PosizioneLavoro(data[i].title, data[i].description, data[i].requirements, data[i].obligatory, data[i].active));
+			// salvo il tutto in un array che mi servirà quando vederemo la pagina del dettaglio di quella posizione di lavoro
+			posLavoro.push(new PosizioneLavoroSpezzati(data[i].title, data[i].description, data[i].requirements, data[i].obligatory, data[i].active));
 		}
 	}
 //	console.log(posLavoro);
+	//carico soltanto le parti essenziali di quella posizione di lavoro
 	div.innerHTML = s;
 }
+
+/* FINE FUNZIONI AUSILIARIE */
+
+
+/* --- OPZIONI SELECT --- */
 
 function caricaOpzioni(stringa1, stringa2) {
 	var titoloStudio = document.getElementById(stringa1).value;
@@ -140,4 +153,4 @@ function popolaVisualizzaPosizioniLavoro(stringa) {
 	}	
 }
 
-
+/* --- FINE OPZIONI SELECT --- */

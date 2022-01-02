@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import casiUso.Database;
-import casiUso.model.Curriculum;
 import casiUso.model.Job;
 import casiUso.model.Report;
 

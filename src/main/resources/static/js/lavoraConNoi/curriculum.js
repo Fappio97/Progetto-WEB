@@ -1,6 +1,5 @@
 window.onload = function() {
 	compila();
-	prendiRequisitiObbligatori();
 }
 
 function compila() {
@@ -9,7 +8,12 @@ function compila() {
 	
 	// focus dei campi
 	campiForm();
+	
+	// prendo i requisiti che dovrà rispettare il cv
+	prendiRequisitiObbligatori();
 }
+
+/* --- LOGIN --- */
 
 function faiLogin(event) {
 	
@@ -45,12 +49,19 @@ function faiLogin(event) {
 	document.querySelector("#login").submit;
 }
 
-function stringaErroreLogin(stringa) {
-	var div = document.getElementById("erroreLogin");
-	
-	div.innerHTML = "<p>" + stringa + "</p>";
+// nascondo o mostro il form di login
+function formLogin() {
+	let form = document.getElementById("formLogin");
+	if(form.style.display == "none" || form.style.display == "")
+		form.style.display = "inline";
+	else
+		form.style.display = "none";
 }
 
+/* --- FINE LOGIN --- */
+
+
+// FORM
 function inviaPresentazione(event) {
 		let messaggioErrore = "";
 		var condizione = true;
@@ -61,6 +72,7 @@ function inviaPresentazione(event) {
 		condizione = controllaNumero();
 		condizione = controllaMail();
 		
+		// se uno dei campi testuali è vuoto
 		if(!condizione)
 			messaggioErrore = "Enter the required fields!%";
 		
@@ -98,6 +110,15 @@ function inviaPresentazione(event) {
 		document.querySelector("#presentazione").submit;
 }
 
+
+/* --- MESSAGGI ERRORE --- */
+
+function stringaErroreLogin(stringa) {
+	var div = document.getElementById("erroreLogin");
+	
+	div.innerHTML = "<p>" + stringa + "</p>";
+}
+
 function stringaErroreForm(stringa) {
 	var div = document.getElementById("erroreForm");
 	
@@ -107,6 +128,10 @@ function stringaErroreForm(stringa) {
 	
 	div.innerHTML = "<p>" + s + "</p>";
 }
+
+/* --- FINE MESSAGGI ERRORE --- */
+
+/* --- CONTROLLO FORM INVIO --- */
 
 function controllaInputTypeText() {
 	var input = document.querySelectorAll('input[type=text]');
@@ -204,14 +229,8 @@ function controllaSizeCV() {
 	return true;
 }
 
-// nascondo o mostro il form di login
-function formLogin() {
-	let form = document.getElementById("formLogin");
-	if(form.style.display == "none" || form.style.display == "")
-		form.style.display = "inline";
-	else
-		form.style.display = "none";
-}
+/* --- FINE CONTROLLO FORM INVIO --- */
+
 
 /* REQUISITI OBBLIGATORI */
 

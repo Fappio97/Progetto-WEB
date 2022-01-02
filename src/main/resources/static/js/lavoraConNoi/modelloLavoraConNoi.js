@@ -15,7 +15,7 @@ function Obbligatorio(id, nome, valore1, valore2) {
 	this.value2 = valore2;
 }
 
-function PosizioneLavoro(titolo, descrizione, requisiti, obbligatori, attivo) {
+function PosizioneLavoroSpezzati(titolo, descrizione, requisiti, obbligatori, attivo) {
 	this.title = titolo;
 	this.description = descrizione;
 	this.requirements = requisitiSpezzati(requisiti);
@@ -23,7 +23,7 @@ function PosizioneLavoro(titolo, descrizione, requisiti, obbligatori, attivo) {
 	this.active = attivo;
 }
 
-function PosizioneLavoroNoSpezzati(titolo, descrizione, requisiti, obbligatori, attivo) {
+function PosizioneLavoro(titolo, descrizione, requisiti, obbligatori, attivo) {
 	this.title = titolo;
 	this.description = descrizione;
 	this.requirements = requisiti;
@@ -31,16 +31,18 @@ function PosizioneLavoroNoSpezzati(titolo, descrizione, requisiti, obbligatori, 
 	this.active = attivo;
 }
 
-/* --- INDICE PER SCORRERE --- */
+/* --- VARIABILI --- */
+
 var ind = 0;
 var posizioneApertaTitle = "";
 
+/* --- FINE VARIABILI --- */
 
 /* salvaPosizioniLavoro */
 
 posLavoro = new Array();
 
-/* nav */
+/* --- NAVBAR --- */
 
 elementiNav = new Array();
 
@@ -59,13 +61,17 @@ elementiNav[2] = new Array(
 	new VoceNav("Required Requirements", "javascript:vaiTesto1()"),
 	new VoceNav("Spontaneous Candidature", "/lavoraConNoi/curriculumSpontaneo"));
 
+/* --- FINE NAVBAR --- */
+
+
+/* --- SEZIONE TESTI --- */
+
 candidatura = new Array();
 
 candidatura[0] = "If at the moment there are no positions in line with your profile, you can in any case send us your application spontaneously: you will be contacted in case positions are opened in line with your characteristics.";
 candidatura[1] = "Don't meet the minimum requirements? You can always send us a spontaneous candidature.";
 
-/* sezioniTesti */	
-				
+		
 sezioniTesti = new Array(
 	new Array(
 		new Sezione("Working in Tech Planet", "Enter a company that is constantly expanding and very stimulating.%We create the best conditions for each employee to express themselves at their best and develop their skills and passions. The centrality of people, their talent and commitment, the sense and pride of belonging are values that have always guided our company.%Every day we look for talent, reliability and the desire to grow in the people we meet.%If you find yourself in this description, do not hesitate to send us your candidature."),
@@ -73,7 +79,11 @@ sezioniTesti = new Array(
 	new Sezione("", ""),
 	new Sezione("", "Are you a tech enthusiast?%Are you always \"technologically\" up to date and on the hunt for the latest Device?%Would you like to work in a dynamic environment in contact with people?%<strong>ENTER THE TECH PLANET!</strong>%Our customers are at the center of our world and our priority is to assist them in the best possible way and get their every need with our products and services.#If you think you are the right person ...%<strong>JOIN OUR TEAM!</strong>")); 
 	
-/* Opzioni combo box */
+/* --- FINE SEZIONE TESTI --- */	
+	
+	
+	
+/* --- OPZIONI COMBOBOX --- */	
 
 opzioni = {
 	"titoloStudio": new Array(),
@@ -82,3 +92,5 @@ opzioni = {
 
 opzioni.titoloStudio = new Array(" -- select an option -- ", "Diploma", "Three-year degree", "Master's degree");
 opzioni.funzioneLavoro = new Array(" -- select an option -- ", "Purchasing and Logistics", "Customer service", "Commercial and Sales", "General direction", "Finance and Administration", "Informatic Technology", "Legal", "Marketing", "New graduate and recent high school graduate", "Production", "Research and development", "Human resources", "Various");
+
+/* --- FINE OPZIONI COMBOBOX --- */	

@@ -6,13 +6,13 @@ window.onload = function() {
 /* VARIABILI */
 var aggiungi = false;
 
-// campi form per gestire i lavori
+/* -- CAMPI FORM PER GESTIRE LAVORI --- */
 function pulsanteAggiungi() {
 
 	var divForm = document.getElementById("divForm");
 	
 	/* svuoto il contenuto perché potrei prima aver lasciato scritte oppure dal tasto edit
-	 che seleziono, poi se clicco su aggiungi voglio che si svuoti*/
+	 che seleziono, poi se clicco su aggiungi voglio che si svuoti */
 	document.getElementById("titoloForm").value = "";
 	document.getElementById("descrizioneForm").value = "";
 	document.getElementById("requisitiForm"). value = "";
@@ -40,19 +40,23 @@ function inviaLavoro() {
 	
 	var select = document.getElementsByClassName("studio");
 	
+	// in obbligatori metto i requisiti obbligatori secondo il modello messo in lavoraConNoi
 	var obbligatori = new Array();
 	obbligatori.push(new Obbligatorio(0, "Age range", min, max));
 	
-	
+	// le select viaggiano a coppie di due, la prima è titolo studio, la successiva materia studios
 	for(let i = 0; i < select.length - 1; i += 2)
 		if(select[i].value != "" && select[i].value != " -- select an option -- ")
 			obbligatori.push(new Obbligatorio(0, "Study title", select[i].value, select[i + 1].value));
 	
-	var posizioneLavoro = new PosizioneLavoroNoSpezzati(titolo.value, descrizione.value, requisiti.value, obbligatori, attivo.checked)
+	var posizioneLavoro = new PosizioneLavoro(titolo.value, descrizione.value, requisiti.value, obbligatori, attivo.checked)
 	
 	/* verifica se uno dei campi è vuoto */
 	if(controllaSeFormVuoti(titolo.value, descrizione.value, requisiti.value)) {
 		
+		// controllo se il lavoro che sto aggiungendo è identico ad uno inserito precedentemente
+		// se ha lo stesso titolo, ma ha qualche parametro diverso
+		// oppure se è completamente nuovo, dal titolo
 		controllaTitoloUnico(posizioneLavoro);
 		
 	} else
@@ -66,7 +70,7 @@ function continuaInvioLavoro(data, lavoro) {
 		s = "A job with the same title already exists. Continuing will overwrite the previous one. To continue?";
 		
 	
-	/* chiedi conferma */
+	// chiedi conferma
 	if(confirm(s)) {
 			
 		/* salva in tabella */
@@ -84,7 +88,7 @@ function continuaInvioLavoro(data, lavoro) {
 		document.getElementById("requisitiForm").value = "";
 		document.getElementById("checkBoxForm").checked = false;
 		
-		/* setto l'age e elimino eventuali section create */
+		/* setto l'age a 18 ed elimino eventuali section create */
 		document.getElementById("min").options.selectedIndex = 0;
 		caricaOpzioniAge();
 		svuotaEliminaSection();
@@ -104,11 +108,8 @@ function modificaLavoroTabella(lav) {
 				+ "<img src = \"images/admin/posizioniLavoro/" + immagine + ".png\">"
 			+ "</figure>";
 			
-	var obb = "";
-	for(let i = 0; i < lav.obligatory.length; ++i)
-		obb += lav.obligatory[i].name + ": " + lav.obligatory[i].value1 + " - " + lav.obligatory[i].value2 + "\n" + " " + "\n";
-
-
+	/* sono nel td del titolo lavoro e poi con i next prendo i suoi fratelli
+	 e via dicendo fino a prendere tutti i fratelli e modificarli */
 	$(".titoloLavoro").each(function() {
 		if($(this).html() == lav.title) {
 			$(this).next().html(lav.description);
@@ -124,6 +125,9 @@ function modificaLavoroTabella(lav) {
 	
 }
 
+/* similmente a come abbiamo visto a lezione
+ prendo inserisco il nuovo lavoro nell'ultima posizione della tabella
+ e poi man mano inserisco i valori */
 function aggiungiLavoroTabella(lav) {
 	var tableElement = document.querySelector("#tabella tbody");
 
@@ -151,8 +155,6 @@ function aggiungiLavoroTabella(lav) {
 	var cellaObbligatori = riga.insertCell(4);
 	cellaObbligatori.textContent = obb;
 	
-	/* salvare i requisiti obbligatori */
-	
 	let check = "<input type=\"checkbox\" id = \"lavoroCheckBox\" checked/>";
 	let immagine = "si";
 	if(!lav.active) {
@@ -169,6 +171,7 @@ function aggiungiLavoroTabella(lav) {
 							+ "</figure>";
 }
 
+// non puoi continuare se questi parametri sono vuoti
 function controllaSeFormVuoti(titolo, descrizione, requisiti) {
 	
 	if(titolo == "" || descrizione == "" || requisiti == "")
@@ -182,7 +185,7 @@ function pulsanteModifica() {
 	if (checkBox.length == 1){
 		
 		/* Lo metto falso perché ho notato che dopo che aggiorno mi seleziona
-		quelle checkbox con indice pari a quelle che avevo precedentemente eliminato */
+		quelle checkbox con indice pari a quelle che avevo precedentemente selezionato */
 		checkBox[0].checked = false;
 		
 		if(!aggiungi)
@@ -200,10 +203,9 @@ function pulsanteModifica() {
 		
 		obb = new Array();
 //		console.log(obbligatori.childNodes.length);
-		// vedendo nel childNodes di obbligatori, le parti di interesse partono da 1 e sono distanziate di 4
-		// tranne quando c'è un nuovo requisito il quale dista 5 e poi sempre 4 un parametro dall'altro
+		// vedendo nel childNodes di obbligatori, le parti di interesse partono da 1 e sono distanziate di 3
 		
-		console.log(obbligatori.childNodes);
+//		console.log(obbligatori.childNodes);
 		for(let j = 0; j < obbligatori.childNodes.length - 3; j += 3) {
 			
 			let stringa = obbligatori.childNodes[j].nodeValue.replaceAll("\t", "");
@@ -214,8 +216,8 @@ function pulsanteModifica() {
 			obb.push(new Obbligatorio(0, diviso[0], stringa[0], stringa[1]));
 		}
 		
-		console.log("Obbligatori letti");
-		console.log(obb);
+//		console.log("Obbligatori letti");
+//		console.log(obb);
 
 /*		console.log(titolo.innerHTML + " " + descrizione.innerHTML 
 			+ " " + requisiti.innerHTML + " " + attivo.childNodes[1].checked);*/
@@ -237,7 +239,7 @@ function pulsanteModifica() {
 		// select
 		
 		/* elimino le precedenti select perché se clicco su un nuovo
-		 edit si aggiungevano alla lsita*/
+		 edit si aggiungevano alla lista*/
 		svuotaEliminaSection();
 		
 		
@@ -322,9 +324,11 @@ function pulsanteCancella() {
 	});
 }
 
+/* -- FINE CAMPI FORM PER GESTIRE LAVORI --- */
+
 /* FUNZIONI AUSILIARIE */
 
-/* aggiusta la grandezza della textarea */
+/* aggiusta la grandezza della textarea in base al testo scritto */
 function textAreaAdjust(element) {
   element.style.height = "1px";
   element.style.height = (25+element.scrollHeight)+"px";
@@ -332,7 +336,7 @@ function textAreaAdjust(element) {
 
 
 
-/* CheckBox nell'head della tabella */
+/* -- CHECKBOX HEAD TABELLA --- */
 
 function checkBoxTh() {
 	if($("#checkBoxTh").attr('checked')) {
@@ -351,6 +355,8 @@ function selezionaDeselezionaTuttiCheckBox(selezionare) {
 		$(this).prop("checked", selezionare);
 	});
 }
+
+/* -- FINE CHECKBOX HEAD TABELLA --- */
 
 /* REQUISITI SPECIALI */
 	

@@ -45,6 +45,7 @@ function pulsanteCancella() {
 	});
 }
 
+/* -- CHECKBOX HEAD TABELLA --- */
 function checkBoxTh() {
 	if($("#checkBoxTh").attr('checked')) {
 		selezionaDeselezionaTuttiCheckBox(false);
@@ -61,3 +62,5 @@ function selezionaDeselezionaTuttiCheckBox(selezionare) {
 		$(this).prop("checked", selezionare);
 	});
 }
+
+/* -- FINE CHECKBOX HEAD TABELLA --- */

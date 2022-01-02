@@ -2,7 +2,6 @@ window.onload = function () {
 	compila();
 }
 
-
 function compila() {
 
 	switch(ind) {
@@ -22,26 +21,12 @@ function compila() {
 			soloTesto("testo1", posizioneApertaTitle, sezioniTesti[ind].testo);
 			inviaCandidatura("testo2", candidatura[ind - 1]);
 			break;
-/*		case 3:
-			barraNavigazione(elementiNav[ind]);
-			form("testo1", posizioneAperta);
-			inviaCandidatura("testo2", candidatura[ind - 1]);
-			popolaComboBox();
-			campiForm();
-			break;*/
 		default:
 			break;
 	}
-/*	mostraNascondiLogin();*/
 }
-/*
-function mostraNascondiLogin() {
-	if(ind == 3) 
-		document.getElementById("login").style.display = "inline";
-	else
-		document.getElementById("login").style.display = "none";
-}
-*/
+
+
 function barraNavigazione(voceNav) {
 	var div = document.getElementById("barra");
 	
@@ -129,6 +114,7 @@ function soloTabella(elemento) {
 function soloTesto(elemento, titolo, testo) {
 	var div = document.getElementById(elemento);
 	
+	// aggiustamento del testo di sezioniTesti
 	let t = testo.split("#");
 	
 	let frasi = new Array();
@@ -142,6 +128,9 @@ function soloTesto(elemento, titolo, testo) {
 			s[i] += "<p>" + frasi[i][j] + "</p>";
 	}
 //	console.log(titolo);
+
+	// trovo l'indice del lavoro in base al titolo che ho cliccato,
+	// che mi passo nel javascript
 	let indice = -1;
 	for(let i = 0; i < posLavoro.length; ++i) {
 //		console.log(posLavoro[i]);
@@ -151,13 +140,16 @@ function soloTesto(elemento, titolo, testo) {
 		}
 	}
 	
+	// prendo i requisiti obbligatori
 	let requisitiObbligatori = "";
 	for(let i = 0; i < posLavoro[indice].obligatory.length; ++i) {
 		requisitiObbligatori += posLavoro[indice].obligatory[i].name + ": "
 						+ posLavoro[indice].obligatory[i].value1 + " - " 
 						+ posLavoro[indice].obligatory[i].value2;
 						
-		// se il successivo requisito obbligatorio ha lo stesso nome li scrivo sulla stessa riga
+		// se il successivo requisito obbligatorio ha lo stesso nome 
+		// (ovvero se sono del titolo di studio, rispetto all'eta')
+		// li scrivo sulla stessa riga
 		// poiché almeno uno dei due deve esseresoddisfatto e non entrambi
 		if(i + 1 < posLavoro[indice].obligatory.length 
 		&& posLavoro[indice].obligatory[i].name == posLavoro[indice].obligatory[i + 1].name)
@@ -189,200 +181,9 @@ function soloTesto(elemento, titolo, testo) {
 						+ "</div>"
 					+ "</div>";
 }
-/*
-function form(elemento, titolo) {
-	var div = document.getElementById(elemento);
-	
-	if(titolo == "")
-		titolo = "Spontaneous candidature";
-	
-	div.innerHTML = "<div class = \"row\">"
-							+ "<div class = \"col-sm-12\" id = \"formCentrale\">"
-								+ "<strong>" 
-									+ titolo
-								+ "</strong>"
-							+ "</div>"
-							+ "<div class = \"col-md-6\" id = \"formSX\">"
-								+ "<table class=\"table table-borderless\">"
-									+ "<div id = \"datiPersonali\">"
-										+ "<p><strong>Personal data</strong></p>"
-									+ "</div>"
-									+ "<thead>"
-	      								+ "<tr>"
-									       + "<th></th>"
-	      								+ "</tr>"
-									+ "</thead>"
-									+ "<tbody>"
-										+ "<form class = \"presentazione\" action = \"salvaPresentazione\">"
-											+ "<tr>"
-												+ "<td>"
-													+ "<label for=\"nome\">"
-														+ "First name" 
-														+ "<nobr class = \"asterisco\">*</nobr>"
-													+ "</label>"
-												+ "</td>"
-												+ "<td>"
-													+ "<input type=\"text\" name = \"nome\" id=\"nome\" placeholder=\"Your first name ...\">"
-												+ "</td>"
-										    + "</tr>"
-										    + "<tr>"
-											    + "<td>"
-													+ "<label for=\"cognome\">"
-														+ "Last name "
-														+ "<nobr class = \"asterisco\">*</nobr>"
-													+ "</label>"
-												+ "</td>"
-											    + "<td>"
-													+ "<input type=\"text\" name = \"cognome\" id=\"cognome\" placeholder=\"Your last name ...\">"
-												+ "</td>"
-										    + "</tr>"
-											+ "<tr>"
-											    + "<td>" 
-													+ "<label for=\"dataNascita\">" 
-														+ "Date of birth "
-														+ "<nobr class = \"asterisco\">*</nobr>"
-													+ "</label>"
-												+ "</td>"
-											    + "<td>"
-													+ "<input type=\"date\" name = \"dataNascita\" id=\"dataNascita\">"
-												+ "</td>"
-										    + "</tr>"
-											+ "<tr>"
-											    + "<td>"
-													+ "<label for=\"email\">"
-														+ "E-Mail "
-														+ "<nobr class = \"asterisco\">*</nobr>"
-													+ "</label>"
-												+ "</td>"
-											    + "<td>"
-													+ "<input type=\"email\" name = \"email\" id=\"mail\" placeholder=\"Your e-mail ...\" pattern=\"/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/\" required>"
-												+ "</td>"
-											+ "</tr>"
-										+ "</form>"	
-									+ "</tbody>"
-								+ "</table>"		
-							+ "</div>"
-							+ "<div class = \"col-md-6\" id = \"formDX\">"
-							    + "<table class=\"table table-borderless\">"
-									+ "<thead>"
-	      								+ "<tr>"
-									       + "<th>Education</th>"
-	      								+ "</tr>"
-									+ "</thead>"
-									+ "<tbody>"
-										+ "<form class = \"presentazione\" action = \"salvaPresentazione\">"
-											+ "<tr>"
-												+ "<td>"
-													+ "<select class = \"studio\" name=\"titoloStudio\" onclick = \"caricaOpzioni('titoloStudio', 'materiaStudio')\" id = \"titoloStudio\">"
-												+ "</td>"
-										    	+ "<td>"
-													+ "<label for=\"titoloStudio\">"
-														+ "<nobr class = \"asterisco\">*</nobr>"
-														+ " Educational qualification"
-													+ "</label>"
-												+ "</td>"
-											+ "</tr>"
-										    + "<tr>"
-												+ "<td>"
-													+ "<select class = \"studio\" name=\"materiaStudio\" id = \"materiaStudio\">"
-												+ "</td>"
-										    	+ "<td>"
-													+ "<label for=\"materiaStudio\">"
-														+ "<nobr class = \"asterisco\">*</nobr>"
-														+ "Study subject"
-													+ "</label>"
-												+ "</td>"
-											+ "</tr>"
-										+ "</form>"
-									+ "</tbody>"
-								+ "</table>"
-								+ "<table class=\"table table-borderless\">"
-									+ "<thead>"
-	      								+ "<tr>"
-									       + "<th>Last Job Position</th>"
-	      								+ "</tr>"
-									+ "</thead>"
-									+ "<tbody>"
-										+ "<form class = \"presentazione\" action = \"salvaPresentazione\">"
-											+ "<tr>"
-												+ "<td>"
-													+ "<select name=\"funzioneLavoro\" onclick = \"caricaOpzioni('funzioneLavoro', 'classificazioneLavoro')\" id = \"funzioneLavoro\">"
-												+ "</td>"
-												+ "<td>"
-													+ "<label for=\"funzioneLavoro\">"
-														+ "Function"
-													+ "</label>"
-												+ "</td>"
-											+ "</tr>"
-										    + "<tr>"
-												+ "<td>"
-													+ "<select name=\"classificazioneLavoro\" id = \"classificazioneLavoro\">"
-												+ "</td>"
-												+ "<td>"
-													+ "<label for=\"classificazioneLavoro\">"
-														+ "Classification"
-													+ "</label>"
-												+ "</td>"
-											+ "</tr>"	
-										+ "</form>"
-									+ "</tbody>"
-								+ "</table>"
-							+ "</div>"
-							+ "<div class = \"col-sm-12\" id = \"formCentrale\">"
-								+ "<div id = \"centro\">"
-									+ "<strong>Curriculum"
-								+ "</div>"
-								+ "<table class=\"table table-borderless\">"
-									+ "<thead>"
-	      								+ "<tr>"
-									       + "<th></th>"
-	      								+ "</tr>"
-									+ "</thead>"
-									+ "<tbody>"
-										+ "<form class = \"presentazione\" action = \"salvaPresentazione\">"
-											+ "<tr>"
-												+ "<td class = \"dx\">"
-													+ "<label for=\"foto\">"
-														+ "Photo "
-														+ "<nobr class = \"asterisco\">*</nobr>"
-													+ "</label>"
-												+ "</td>"
-												+ "<td>"
-													+ "<input type=\"file\" name=\"foto\" id = \"foto\" accept=\"image/png, image/jpeg, image/jpg\">"
-												+ "</td>"
-										    + "</tr>"
-										    + "<tr>"
-											    + "<td class = \"dx\">"
-													+ "<label for=\"cv\">"
-														+ "CV Attachment "
-														+ "<nobr class = \"asterisco\">*</nobr>"
-													+ "</label>"
-												+ "</td>"
-											    + "<td>"
-													+ "<input type=\"file\" name=\"cv\" id = \"cv\" accept=\"application/pdf\">"
-												+ "</td>"
-										    + "</tr>"
-											+ "<tr>"
-											    + "<td class = \"dx\">"
-													+ "<label for=\"letteraPresentazione\">"
-														+ "Cover letter"
-													+ "</label>"
-												+ "</td>"
-											    + "<td>"
-													+ "<textarea name=\"letteraPresentazione\" rows=\"4\" cols=\"20\"></textarea>"
-												+ "</td>"
-										    + "</tr>"
-										+ "</form>"
-									+ "</tbody>"
-								+ "</table>"
-							+ "</div>"
-					+ "</div>";
-					
-}
-*/
-
 
 function inviaCandidatura(elemento, candidatura) {
+	
 	var div = document.getElementById(elemento);
 	div.innerHTML = "<div class = \"row\" id = \"mancaLaTuaPosizione\">"
 						+ "<div class = \"col-sm-12\">"

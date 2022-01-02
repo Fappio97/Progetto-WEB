@@ -44,6 +44,7 @@ function compila() {
 	caricaFocusDomanda();
 }
 
+/* cambio immagine e testo */
 function pannelloSuperiore(stringa) {
 	
 	let prodotto;
@@ -70,6 +71,7 @@ function pannelloSuperiore(stringa) {
 						+"</div>";
 }
 
+/* inserisco la domanda */
 function inserisciDomanda(stringa) {
 	let stringhe = stringa.split("%");
 	var row = document.getElementById("domande");
@@ -97,8 +99,7 @@ function inserisciRisposteCategoria(oggetto) {
 	}
 }
 
-/* Risposta radio button */
-
+/* Risposta radio button, se c'è la descrizione le aggiungo con le info altrimeniti no */
 function inserisciRisposteRadio(oggetto) {
 	/* svuoto il div contenente le risposte */
 	var row = document.getElementById("risposte");
@@ -130,7 +131,7 @@ function inserisciRispostaRadioConInfo(risposta, tag, id, righe){
 	let resourceImg = "../images/guidaSceltaProdotto/risposte/";
 	if(categoriaSelezionata != undefined)
 		resourceImg = "../images/guidaSceltaProdotto/" + categoriaSelezionata + "/risposte/";
-		
+	
 	row.innerHTML = row.innerHTML + rigaInizio + "<label for = \""+ risposta.toLowerCase() + "\" class= \"col-sm-4 \">"
 													+ "<div id = \"rispostaJS\" >" 
 														+ "<input id=\"" + risposta.toLowerCase() + "\" type=\"radio\" name = \"collega\" value = \"" + tag + "\" onclick = \"focusRisposte()\" />"
@@ -176,8 +177,8 @@ function inserisciRispostaRadio(risposta, tag, id, righe){
 								  + rigaFine;
 }
 
-/* Risposta check box */
-
+/* Risposta check box, anche qui se ho la descrizione nel modello le carico con il bottone info
+ altrimenti no */
 function inserisciRisposteCheck(oggetto) {
 	/* svuoto il div contenente le risposte */
 	var row = document.getElementById("risposte");
@@ -254,9 +255,15 @@ function inserisciRispostaCheck(risposta, tag, id, righe){
 									 + rigaFine;
 }
 
+
+/* Pagina risultati, in questo modo inserisco i prodotti con i tag che ho selezionato
+ durante la compilazione delle domande, mostrando quali sono soddisfatti e quali no */
 function inserisciProdottiTag(prodottiTag) {
 	var row = document.getElementById("risposte");
 	
+	// metto tutte le preferenze utente su un array, poiché le preferenze utente 
+	// a sua volta è un array, ma nelle rispsote checkbox, se ne seleziono più di una,
+	// avremo un array di array
 	let tag = new Array();
 	for(let i = 0; i < preferenzeUtente.length; ++i)
 		if(preferenzeUtente[i] != undefined) {
@@ -264,6 +271,7 @@ function inserisciProdottiTag(prodottiTag) {
 				tag.push(preferenzeUtente[i][j]);
 		}
 	
+	// se non ho nessun prodotto restituito
 	if(prodottiTag.length == 0) {
 		row.innerHTML = "<p class = \"testoCentrale\">We don't have products that meet your needs at the moment.</p>"
 						+ "<figure>"
@@ -318,6 +326,8 @@ function inserisciProdottiTag(prodottiTag) {
 	row.innerHTML = stringa;
 }
 
+/* Pagina risultati, in questo modo inserisco i prodotti meglio recensiti
+ mostrando i tutti i loro tag */
 function inserisciProdotti(prodotti) {
 	var row = document.getElementById("risposte");
 	
@@ -401,19 +411,8 @@ function caricaPulsanteAltriProdotti() {
 				+ "</div>";
 }
 
-function numeroDomandeCategoriaSelezionata() {
-	switch(categoriaSelezionata) {
-		case "printers":
-			numDomandeTotaliCategoria = domande.stampanti.elencoDomande.length;
-			break;
-		case "notebook":
-			numDomandeTotaliCategoria = domande.notebook.elencoDomande.length;
-			break;
-		default:
-			return;			
-	}
-}
 
+/* barra navigazione domande */
 function caricaBarraNavigazione() {	
 	let s = "";
 	
@@ -450,39 +449,3 @@ function caricaBarraNavigazione() {
 					+ "</div>";
 }
 
-function selezionaRisposteScelte() {
-	
-	var risposte = document.getElementsByName("collega");
-	if(preferenzeUtente[ind] != undefined && preferenzeUtente[ind].length > 0) {
-		for(let i = 0; i < preferenzeUtente[ind].length; ++i) {
-			for(let j = 0; j < risposte.length; ++j) {
-				if(risposte[j].getAttribute('value') == preferenzeUtente[ind][i]) {
-					risposte[j].checked = true;
-					
-					/* Prende il nodo padre dell'elemento passato */
-					let parentDiv = risposte[j].parentNode;
-					parentDiv.style.border = "2px solid #0b3de1";
-					break;
-				}
-			}
-		}
-	}
-}
-
-/* barra sopra */
-function caricaFocusDomanda() {
-	if(ind == -1)
-		return;
-	
-	var elementi = document.getElementsByClassName("numDomande");
-	for(let i = 0; i < elementi.length; ++i) {
-		if(elementi[i].value == ind) {
-			elementi[i].style.background = '#0b3de1';
-			elementi[i].style.color = 'white';
-		}
-		else {
-			elementi[i].style.background = 'white';
-			elementi[i].style.color = '#0b3de1';	
-		}
-	}
-}
