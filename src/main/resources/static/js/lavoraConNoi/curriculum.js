@@ -96,8 +96,14 @@ function inviaPresentazione(event) {
 					event.preventDefault();
 					return;
 				}
-				else 
+				else {
+					// se accetto di inviarla come candidatura spontanea
+					// elimino i requisiti e cambio i testi in candidatura spontanea
+					// si vedono se ritorno alla pagina indietro
 					document.getElementsByName("lavoro")[0].value = "Spontaneous Candidature";
+					document.getElementsByName("tipoLavoro").innerHTML = "Spontaneous Candidature";
+					document.getElementsByName("requisiti").innerHTML = "";
+				}
 			}
 			alert("CV inviato");
 		}
@@ -270,7 +276,7 @@ function controllaRequisitiObbligatori() {
 //	console.log(dataUtente);
 	
 	var input = document.querySelectorAll('.studio');
-	
+		
 	var titoloStudio = input[0].value;
 	var materiaStudio = input[1].value;
 	
@@ -297,12 +303,23 @@ function controllaRequisitiObbligatori() {
 			e ritorno */
 		else {
 //			console.log("Scorrimento titolo " + requisiti[i].value1 + " " + requisiti[i].value2)
-			if(requisiti[i].value1 == titoloStudio && requisiti[i].value2 == materiaStudio) {
+			// se è richiesto il diploma lo soddisfo se ho una laurea
+			// se ho una laurea magistrale nella stessa materia per cui è richiesta una laurea triennale la soddisfo anche
+			if(requisiti[i].value1 == "Diploma" && titoloStudio != "Diploma")
+				cond = true;
+			else if(requisiti[i].value1 == titoloStudio && requisiti[i].value2 == materiaStudio) {
 //				console.log("titolo true");
 				cond = true;
-			}
+			} else if(requisiti[i].value1 == "Three-year degree" && titoloStudio == "Master's degree" && requisiti[i].value2 == materiaStudio)
+				cond = true;
 		}
 	}
+	
+	// se non ho titoli di studio da soddisfare ritorno true
+	// dato che ho controllato già l'age
+	if(requisiti.length == 1)
+		return true;
+		
 	return cond;
 }
 
