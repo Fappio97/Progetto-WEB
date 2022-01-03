@@ -232,4 +232,42 @@ public class CurriculumDaoJDBC implements CurriculumDao {
 		return (long) 0;
 	}
 
+	@Override
+	public Curriculum findByNameSurnameDateSpontaneous(String name, String surname, String date) {
+		Curriculum cv = new Curriculum();
+		String query = "select * from curriculum where first_name = ? "
+				+ "and last_name = ? and date_birth = ? and job = ?";
+		try {
+			PreparedStatement st = con.prepareStatement(query);
+			st.setString(1, name);
+			st.setString(2, surname);
+			st.setString(3, date);
+			st.setString(4, "Spontaneous Candidature");
+			ResultSet rs = st.executeQuery();
+			if(rs.next()) {
+				cv.setId(rs.getLong("id"));
+				cv.setFirst_name(rs.getString("first_name"));
+				cv.setLast_name(rs.getString("last_name"));
+				cv.setDate_birth(rs.getString("date_birth"));
+				cv.setEmail(rs.getString("email"));
+				cv.setStudy_title(rs.getString("study_title"));
+				cv.setStudy_subject(rs.getString("study_subject"));
+				cv.setLast_function(rs.getString("last_function"));
+				cv.setLast_classification(rs.getString("last_classification"));
+				cv.setPhoto(rs.getString("photo"));
+				cv.setCurriculum(rs.getString("curriculum"));
+				cv.setPresentation(rs.getString("presentation"));
+				cv.setPhone(rs.getString("phone"));
+				
+				Job job = Database.getInstance().getJobDao().findByPrimaryKey(rs.getString("job"));
+				cv.setJob(job);
+
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return cv;
+	}
+
 }

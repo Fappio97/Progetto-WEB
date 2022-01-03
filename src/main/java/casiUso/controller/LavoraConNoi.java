@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import casiUso.Database;
 import casiUso.model.Curriculum;
+import casiUso.model.GestisciCartelle;
 import casiUso.model.User;
 
 @Controller
@@ -69,8 +69,8 @@ public class LavoraConNoi {
 			// creo un nuovo curriculum
 			Curriculum curriculum = new Curriculum(Database.getInstance().getJobDao().findByPrimaryKey(lavoro), nome, cognome, dataNascita,
 					email, titoloStudio, materiaStudio, funzioneLavoro, classificazioneLavoro, 
-					"curriculumRicevuti/" + cognome + "_" + nome + "_" + dataNascita + "_" + lavoro + "/" + foto.getOriginalFilename(), 
-					"curriculumRicevuti/" + cognome + "_" + nome + "_" + dataNascita + "_" + lavoro + "/" + cv.getOriginalFilename(), 
+					"curriculumRicevuti/" + lavoro + "/" + cognome + "_" + nome + "_" + dataNascita + "/" + foto.getOriginalFilename(), 
+					"curriculumRicevuti/" + lavoro + "/" + cognome + "_" + nome + "_" + dataNascita + "/" + cv.getOriginalFilename(), 
 					letteraPresentazione, phone);
 			
 			// controllo se il curriculum esiste già, in base all'Id che mi viene rimandato
@@ -86,20 +86,13 @@ public class LavoraConNoi {
 			// che contiene la sua foto e il suo cv, 
 			// poiché un utente può inviare infiniti cv, i quali aggiornano
 			// il cv precedentemente inviato per quella posizione
-			if(id != 0) {
+			if(id != 0)
 				// se l'id è uguale a 0 elimino quella cartella
-				try {
-					String p = System.getProperty("user.dir") + "/src/main/resources/static/curriculumRicevuti/" 
-							 + cognome + "_" + nome + "_" + dataNascita + "_" + lavoro;
-					FileUtils.deleteDirectory(new File(p));
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
+				GestisciCartelle.eliminaCartella("curriculumRicevuti/" + lavoro, cognome + "_" + nome + "_" + dataNascita);
 			
-			// salvo i file nella nuova cartella
-			String percorso = writeFile(cognome + "_" + nome + "_" + dataNascita + "_" + lavoro);
+			
+			// creo la nuova cartella e salvo i file nella nuova cartella
+			String percorso = GestisciCartelle.scriviCartella("curriculumRicevuti/" + lavoro, cognome + "_" + nome + "_" + dataNascita);
 			foto.transferTo(new File(percorso + "/" + foto.getOriginalFilename()));
 			cv.transferTo(new File(percorso + "/" + cv.getOriginalFilename()));
 			
@@ -109,18 +102,6 @@ public class LavoraConNoi {
 			e.printStackTrace();
 		}
 		return null;
-	}
-	
-	public String writeFile(String cognomeNome){
-		String percorsoProgetto = System.getProperty("user.dir") + "/src/main/resources/static/curriculumRicevuti/" + cognomeNome;
-
-	    File directory = new File(percorsoProgetto);
-	   
-	    if (! directory.exists()) 
-	        if(directory.mkdir()) 
-	        	return percorsoProgetto;
-	       
-	    return null;
 	}
 	
 }
