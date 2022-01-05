@@ -21,11 +21,11 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 	<!-- JS -->
-	<script language="javascript" src="../js/lavoraConNoi/modelloLavoraConNoi.js"></script>
-	<script language="javascript" src="../js/lavoraConNoi/campiForm.js"></script>
-	<script language="javascript" src="../js/lavoraConNoi/vaiA.js"></script>
-	<script language="javascript" src="../js/lavoraConNoi/funzioni.js"></script>
-	<script language="javascript" src="../js/lavoraConNoi/curriculum.js"></script>
+	<script src="../js/lavoraConNoi/modelloLavoraConNoi.js"></script>
+	<script src="../js/lavoraConNoi/campiForm.js"></script>
+	<script src="../js/lavoraConNoi/vaiA.js"></script>
+	<script src="../js/lavoraConNoi/funzioni.js"></script>
+	<script src="../js/lavoraConNoi/curriculum.js"></script>
 
 	<!--AJAX ha la dipendenza nel pom -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -277,7 +277,7 @@
 				
 				<div id = "testoSezione1">
 					<form method = "post" action = "/lavoraConNoi/salvaPresentazione" enctype="multipart/form-data">
-					<div class = "row">
+						<div class = "row">
 							<div class = "col-sm-12" id = "formCentrale">
 								<div id = "titolo">
 								</div>

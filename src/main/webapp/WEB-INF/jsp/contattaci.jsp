@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	
 	<!-- Favicon -->
-	<link rel="icon" href="../immagini/index/logo.png" type="image/x-icon"/>
+	<link rel="icon" href="../images/index/logo.png" type="image/x-icon"/>
 
 	<!-- Titolo -->
 	<title>Contact us</title>
@@ -29,10 +29,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 	<link type="text/css" rel="stylesheet" href="../css/index/style.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<!-- CSS only -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+
 <!------------------------GRUPPO-------------------------------------------->	
 
 
@@ -197,7 +194,7 @@
 						<div class = "row">
 							<div class="col-sm-4">
 								<figure class = "figure">
-									<img src = "../immagini/contattaci/telefono.png" width = 100%>
+									<img src = "../images/contattaci/telefono.png" width = 100%>
 								</figure>
 							</div>
 							<div class="col-sm-8" id = "contatti">
@@ -212,7 +209,7 @@
 						<div class = "row">
 							<div class="col-sm-4">
 								<figure class = "figure">
-									<img src = "../immagini/contattaci/mail.png" width = 100%>
+									<img src = "../images/contattaci/mail.png" width = 100%>
 								</figure>
 							</div>
 							<div class="col-sm-8" id = "contatti">
@@ -227,7 +224,7 @@
 			</div>
 			<div class="col-sm-4">
 				<figure class = "figure">
-					<img src = "../immagini/contattaci/non trovato.png" width = 100% class = "img-fluid">
+					<img src = "../images/contattaci/non trovato.png" width = 100% class = "img-fluid">
 				</figure>
 			</div>
 		</div>

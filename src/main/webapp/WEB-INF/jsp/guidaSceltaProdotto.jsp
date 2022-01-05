@@ -18,10 +18,10 @@
   	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>	
 
 	<!-- JS -->
-	<script language="javascript" src="../js/guidaSceltaProdotto/modelloDomande.js"></script>
-	<script language="javascript" src="../js/guidaSceltaProdotto/chiamateAjax.js"></script>
-	<script language="javascript" src="../js/guidaSceltaProdotto/sceltaProdotto.js"></script>
-	<script language="javascript" src="../js/guidaSceltaProdotto/caricaDomandeCategoria.js"></script>
+	<script src="../js/guidaSceltaProdotto/modelloDomande.js"></script>
+	<script src="../js/guidaSceltaProdotto/chiamateAjax.js"></script>
+	<script src="../js/guidaSceltaProdotto/sceltaProdotto.js"></script>
+	<script src="../js/guidaSceltaProdotto/caricaDomandeCategoria.js"></script>
 	
 	<!--AJAX ha la dipendenza nel pom -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

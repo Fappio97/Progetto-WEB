@@ -38,7 +38,6 @@ function inviaLavoro() {
 	var attivo = document.getElementById("checkBoxForm");
 	
 
-	
 	var min = document.getElementById("min").value;
 	var max = document.getElementById("max").value;
 	
@@ -77,7 +76,7 @@ function continuaInvioLavoro(data, lavoro) {
 	// chiedi conferma
 	if(confirm(s)) {
 			
-		console.log(data);
+//		console.log(data);
 		/* salva in tabella */
 		if(data != "titolo")
 			aggiungiLavoroTabella(lavoro);
@@ -103,10 +102,10 @@ function continuaInvioLavoro(data, lavoro) {
 
 function modificaLavoroTabella(lav) {
 
-	let check = "<input type=\"checkbox\" id = \"lavoroCheckBox\" checked/>";
+	let check = "<input type=\"checkbox\" id = \"lavoroCheckBox\" value = \"true\"/>";
 	let immagine = "si";
 	if(!lav.active) {
-		check = "<input type=\"checkbox\" id = \"lavoroCheckBox\" unchecked/>";
+		check = "<input type=\"checkbox\" id = \"lavoroCheckBox\" value = \"false\"/>";
 		immagine = "no";
 	}
 	let img = "<figure>"
@@ -127,7 +126,7 @@ function modificaLavoroTabella(lav) {
 				else
 					$(this).next().next().next().append(lav.obligatory[i].name + ": " + lav.obligatory[i].value1 + " - " + lav.obligatory[i].value2 + "<br /><br />");
 			}
-			$(this).next().next().next().next().html(check + img);
+			$(this).next().next().next().next().html("<br />" + check + img);
 		}
 			
 	});
@@ -171,17 +170,18 @@ function aggiungiLavoroTabella(lav) {
 			cellaObbligatori.innerHTML += lav.obligatory[i].name + ": " + lav.obligatory[i].value1 + " - " + lav.obligatory[i].value2 + "<br /><br />";
 	}
 	
-	let check = "<input type=\"checkbox\" id = \"lavoroCheckBox\" checked/>";
+	let check = "<input type=\"checkbox\" id = \"lavoroCheckBox\" value = \"true\"/>";
 	let immagine = "si";
 	if(!lav.active) {
-		check = "<input type=\"checkbox\" id = \"lavoroCheckBox\" unchecked/>";
+		check = "<input type=\"checkbox\" id = \"lavoroCheckBox\" value = \"false\"/>";
 		immagine = "no";
 	}
 		
 	
 	var cellaAttivo = riga.insertCell(5);
 	cellaAttivo.setAttribute('data-title', "Active");
-	cellaAttivo.innerHTML = check
+	cellaAttivo.innerHTML = "<br />"
+							+ check
 							+ "<figure>"
 								+ "<img src = \"images/admin/posizioniLavoro/" + immagine +  ".png\">"
 							+ "</figure>";
@@ -283,6 +283,7 @@ function pulsanteModifica() {
 		
 		// attivo all'interno della tabella me la prende sempre come stringa
 		// ho provato con checked ma stampa false anche quando è true (PROF)
+//		console.log(attivo.childNodes[1]);
 		attivoForm.checked = false;
 		if(attivo.childNodes[1].value == "true")
 			attivoForm.checked = true;

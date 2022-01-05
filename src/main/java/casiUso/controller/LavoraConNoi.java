@@ -51,27 +51,29 @@ public class LavoraConNoi {
 		
 		return "curriculum";
 	}
-
 	
-	//---------------------------- manca sta parte su techplanet
 	@PostMapping("/salvaPresentazione")
-	public String salvaPresentazione(HttpServletRequest req, HttpServletResponse res, String lavoro,
-			String nome, String cognome, String dataNascita, String email, String phone, String materiaStudio, 
-			String titoloStudio, String funzioneLavoro, String classificazioneLavoro, 
-			MultipartFile foto, MultipartFile cv, String presentazione, String letteraPresentazione) {
+	public String salvaPresentazione(HttpServletRequest req, HttpServletResponse res, MultipartFile foto, MultipartFile cv) {
+
 /*		
-		System.out.println(lavoro + " " + nome + " " + cognome + " " + dataNascita + " " + email + " " + titoloStudio + " " + materiaStudio + " " 
-			+ classificazioneLavoro + " " + funzioneLavoro + " " + foto.getOriginalFilename() + " " 
-				+ cv.getOriginalFilename() + " " + letteraPresentazione);
+		System.out.println(req.getParameter("lavoro") + " " + req.getParameter("nome") + " " + req.getParameter("cognome") + " " + req.getParameter("dataNascita") + " " + req.getParameter("email") + " " + req.getParameter("titoloStudio") + " " + req.getParameter("materiaStudio") + " " 
+			+ req.getParameter("classificazioneLavoro") + " " + req.getParameter("funzioneLavoro") + " " + foto.getOriginalFilename() + " " 
+				+ cv.getOriginalFilename() + " " + req.getParameter("letteraPresentazione")letteraPresentazione);
 */		
+		
+		String lavoro = req.getParameter("lavoro");
+		String nome = req.getParameter("nome");
+		String cognome = req.getParameter("cognome");
+		String dataNascita = req.getParameter("dataNascita");
+		
 		try {
 			
 			// creo un nuovo curriculum
 			Curriculum curriculum = new Curriculum(Database.getInstance().getJobDao().findByPrimaryKey(lavoro), nome, cognome, dataNascita,
-					email, titoloStudio, materiaStudio, funzioneLavoro, classificazioneLavoro, 
+					req.getParameter("email"), req.getParameter("titoloStudio"), req.getParameter("materiaStudio"), req.getParameter("funzioneLavoro"), req.getParameter("classificazioneLavoro"), 
 					"curriculumRicevuti/" + lavoro + "/" + cognome + "_" + nome + "_" + dataNascita + "/" + foto.getOriginalFilename(), 
 					"curriculumRicevuti/" + lavoro + "/" + cognome + "_" + nome + "_" + dataNascita + "/" + cv.getOriginalFilename(), 
-					letteraPresentazione, phone);
+					req.getParameter("letteraPresentazione"), req.getParameter("phone"));
 			
 			// controllo se il curriculum esiste già, in base all'Id che mi viene rimandato
 			Long id = Database.getInstance().getCurriculumDao().checkEsisteCurriculum(curriculum);
@@ -103,5 +105,5 @@ public class LavoraConNoi {
 		}
 		return null;
 	}
-	
+
 }

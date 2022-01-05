@@ -21,8 +21,8 @@
   	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>	
 
 	<!-- JS -->
-	<script language="javascript" src="js/admin/visualizzaCV/visualizzaCV.js"></script>
-	<script language="javascript" src="js/admin/visualizzaCV/chiamateAjax.js"></script>
+	<script src="js/admin/visualizzaCV/visualizzaCV.js"></script>
+	<script src="js/admin/visualizzaCV/chiamateAjax.js"></script>
 
 	<!--AJAX ha la dipendenza nel pom -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -55,6 +55,7 @@
 					<li><a href="#"><i class="fa fa-envelope"></i> email@email.com</a></li>
 					<li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
 					<li><a href="#"><i class="fa fa-eur"></i> EUR</a></li>
+				</ul>
 			</div>
 		</div>
 		<!-- /TOP HEADER -->
@@ -80,7 +81,7 @@
 						<div class="header-ctn">
 							<div style="padding-right: 3%; margin-top: 3%" id="firstElement">
 								<a href="/visualizzaPosizioniLavoro" style="text-decoration: none;">
-									<i class="fas fa-user-plus" id="positions"></i></a>
+									<i class="fas fa-user-plus" id="positions"></i>
 								</a>
 							</div>						
 							<div style="padding-right: 3%; margin-top: 3%">

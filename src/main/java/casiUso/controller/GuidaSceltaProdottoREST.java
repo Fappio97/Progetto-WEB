@@ -19,7 +19,8 @@ public class GuidaSceltaProdottoREST {
 	
 	@PostMapping("/trovaProdotti")
 	public List<ProductTag> trovaProdotti(@RequestParam String categoria, @RequestParam String tag) {
-						
+			
+		// prendo tutti i prodotti di quella categoria
 		List<Product> prodotti = Database.getInstance().getProductsDao().findByCategory(categoria);
 		
 		
@@ -29,11 +30,14 @@ public class GuidaSceltaProdottoREST {
 		String[] tagRichiesti = tag.split(","); 
 		
 		for(int i = 0; i < prodotti.size(); ++i) {
+			// per ogni prodotto mi creo un array di booleani inizializzato a false
+			// che poi aggiungerò in prodoctTag
 			String[] tagProdotto = prodotti.get(i).getTags().split(",");
 			boolean[] tagSoddisfatti = new boolean[tagRichiesti.length];
 			boolean add = false;
 			for(int j = 0; j < tagRichiesti.length; ++j) {
 				for(int z = 0; z < tagProdotto.length; ++z) {
+					// confronto ad uno ad uno i tag richiesti con quelli del prodotto
 					if(tagRichiesti[j].equals(tagProdotto[z])) {
 						tagSoddisfatti[j] = true;
 						add = true;
@@ -41,10 +45,13 @@ public class GuidaSceltaProdottoREST {
 					}
 				}
 			}
+			// se questo prodotto ha almeno un tag di quelli selezionati dall'utente
+			// lo salvo 
 			if(add)
 				prodottiRequisiti.add(new ProductTag(prodotti.get(i), tagSoddisfatti));
 		}
 		
+		// sorto i prodotti in base al loro numero di requisiti soddisfatti, decrescente
 		Collections.sort(prodottiRequisiti, new Comparator<ProductTag>() {
 		    @Override
 		    public int compare(ProductTag a, ProductTag b) {
@@ -52,6 +59,7 @@ public class GuidaSceltaProdottoREST {
 		    }
 		});
 		
+		// restituisco i primi 5 prodotti che soddisfano meglio i tag
 		for(int i = 0; i < prodottiRequisiti.size() && i < 5; ++i)
 			prodottiPiuTag.add(prodottiRequisiti.get(i));
 		
@@ -62,10 +70,12 @@ public class GuidaSceltaProdottoREST {
 	@PostMapping("/prodottiMeglioRecensiti")
 	public List<Product> prodottiMeglioRecensiti(@RequestParam String categoria) {
 			
+		// prendo tutti i prodotti della categoria selezionata dall'utente
 		List<Product> prodotti = Database.getInstance().getProductsDao().findByCategory(categoria);
 		
 		List<Product> prodottiMeglioRecensiti = new ArrayList<Product>();
 		
+		// li sorto in ordine decrescente
 		Collections.sort(prodotti, new Comparator<Product>() {
 		    @Override
 		    public int compare(Product a, Product b) {
@@ -73,6 +83,7 @@ public class GuidaSceltaProdottoREST {
 		    }
 		});
 		
+		// restituisco i primi 5 prodotti meglio recensiti
 		for(int i = 0; i < prodotti.size() && i < 5; ++i) 
 			prodottiMeglioRecensiti.add(prodotti.get(i));
 		

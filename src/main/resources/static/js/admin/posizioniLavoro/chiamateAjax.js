@@ -6,7 +6,7 @@ function salvaLavoro(lavoro) {
 		contentType: "application/json",
 		data: JSON.stringify(lavoro),
 		success: function(){
-			alert("tutto ok");
+//			alert("tutto ok");
 		},
 		error: function(xhr){
 			alert("tutto male");
@@ -24,7 +24,7 @@ function controllaTitoloUnico(lavoro) {
 		contentType: "application/json",
 		data: JSON.stringify(lavoro),
 		success: function(data){
-			alert("tutto ok");
+//			alert("tutto ok");
 			
 			if(data == "uguale") {
 				alert("The new job position you are entering is identical to the previous one.")

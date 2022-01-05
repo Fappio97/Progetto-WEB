@@ -57,6 +57,7 @@
 					<li><a href="#"><i class="fa fa-envelope"></i> email@email.com</a></li>
 					<li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
 					<li><a href="#"><i class="fa fa-eur"></i> EUR</a></li>
+				</ul>
 			</div>
 		</div>
 		<!-- /TOP HEADER -->
@@ -82,7 +83,7 @@
 						<div class="header-ctn">
 							<div style="padding-right: 5%; margin-top: 3%" id="firstElement">
 								<a href="/visualizzaCurriculum" style="text-decoration: none;">
-									<i class="fas fa-book-open" id="positions"></i></a>
+									<i class="fas fa-book-open" id="positions"></i>
 								</a>
 							</div>
 							<div style="padding-right: 5%; margin-top: 3%">
@@ -164,14 +165,12 @@
 								</c:forEach>
 							</td>
 							<td data-title = "Active">
-								<c:if test = "${lav.active == true}">
-									<input type="checkbox" id = "lavoroCheckBox" value = "true"/>
+								<c:if test = "${lav.active == true}"><input type="checkbox" id = "lavoroCheckBox" value = "true"/>
 									<figure>
 										<img src = "images/admin/posizioniLavoro/si.png">
 									</figure>
 								</c:if>
-								<c:if test = "${lav.active == false}">
-									<input type="checkbox" id = "lavoroCheckBox" value = "false"/>
+								<c:if test = "${lav.active == false}"><input type="checkbox" id = "lavoroCheckBox" value = "false"/>
 									<figure>
 										<img src = "images/admin/posizioniLavoro/no.png">
 									</figure>

@@ -95,7 +95,7 @@ public class CurriculumDaoJDBC implements CurriculumDao {
 	public boolean saveOrUpdate(Curriculum cv) {
 		if (cv.getId() == 0) {
 			//INSERT
-			System.out.println("insert");
+//			System.out.println("insert");
 			try {
 				cv.setId(IdCurriculum.getId(con));
 				String query = "insert into curriculum "
@@ -124,7 +124,7 @@ public class CurriculumDaoJDBC implements CurriculumDao {
 			}
 		}else {
 			//UPDATE
-			System.out.println("update");
+//			System.out.println("update");
 			try {
 				String query = "update curriculum "
 						+ "set job = ?, first_name = ?, last_name = ?, "

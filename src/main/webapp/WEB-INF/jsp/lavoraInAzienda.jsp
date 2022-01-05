@@ -21,11 +21,11 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 	<!-- JS -->
-	<script language="javascript" src="../js/lavoraConNoi/modelloLavoraConNoi.js"></script>
-	<script language="javascript" src="../js/lavoraConNoi/vaiA.js"></script>
-	<script language="javascript" src="../js/lavoraConNoi/funzioni.js"></script>
-	<script language="javascript" src="../js/lavoraConNoi/chiamateAjax.js"></script>
-	<script language="javascript" src="../js/lavoraConNoi/caricaPagineLavoraConNoi.js"></script>
+	<script src="../js/lavoraConNoi/modelloLavoraConNoi.js"></script>
+	<script src="../js/lavoraConNoi/vaiA.js"></script>
+	<script src="../js/lavoraConNoi/funzioni.js"></script>
+	<script src="../js/lavoraConNoi/chiamateAjax.js"></script>
+	<script src="../js/lavoraConNoi/caricaPagineLavoraConNoi.js"></script>
 
 	<!--AJAX ha la dipendenza nel pom -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
