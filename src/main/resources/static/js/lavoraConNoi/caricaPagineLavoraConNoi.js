@@ -189,7 +189,7 @@ function inviaCandidatura(elemento, candidatura) {
 						+ "<div class = \"col-sm-12\">"
 							+ "<p><i>" + candidatura + "</i></p>"
 							+ "<div>"
-								+ "<a href = \"/lavoraConNoi/curriculumSpontaneo\">"
+								+ "<a href = \"/workWithUs/curriculumSpontaneous\">"
 									+ "<button class = \"button\">Submit your CV</button>"
 								+ "</a>"
 							+ "</div>"

@@ -51,17 +51,17 @@
 					<div class="col-md-9">
 						<div class="header-ctn">
 							<div style="padding-right: 3%; margin-top: 3%" id="firstElement">
-								<a href="/visualizzaPosizioniLavoro" style="text-decoration: none;">
+								<a href="/viewJobs" style="text-decoration: none;">
 									<i class="fas fa-user-plus" id="positions"></i></a>
 								</a>
 							</div>
 							<div style="padding-right: 3%; margin-top: 3%" id="firstElement">
-								<a href="/visualizzaCurriculum" style="text-decoration: none;">
+								<a href="/viewCurriculum" style="text-decoration: none;">
 									<i class="fas fa-book-open" id="curriculum"></i></a>
 								</a>
 							</div>							
 							<div style="padding-right: 3%; margin-top: 3%">
-								<a href="/visualizzaReports" style="text-decoration: none;">
+								<a href="/viewReports" style="text-decoration: none;">
 									<i class="fas fa-bug" id="report"></i>
 									<!--<div class="qty">0</div>-->
 								</a>
@@ -146,26 +146,25 @@
 			<div class="col-md-4">
 				Positions management
 				<br /><br />
-				<a href="/visualizzaPosizioniLavoro" style="text-decoration: none;">
+				<a href="/viewJobs" style="text-decoration: none;">
 					<i class="fas fa-user-plus fa-5x" id="positions2"></i></a>
 			</div>
 			<div class="col-md-4">
 				View reports
 				<br /><br />
-				<a href="/visualizzaReports" style="text-decoration: none;">
+				<a href="/viewReports" style="text-decoration: none;">
 					<i class="fas fa-bug fa-5x" id="report2"></i></a>
 			</div>
 			<div class="col-md-4">
 				View curriculum
 				<br /><br />
-				<a href="/visualizzaCurriculum" style="text-decoration: none;">
+				<a href="/viewCurriculum" style="text-decoration: none;">
 					<i class="fas fa-book-open fa-5x" id="report2"></i></a>
 			</div>
 		</div>
 	</div>
 
-
-	<!-- FOOTER -->
+<!-- FOOTER -->
 	<footer id="footer">
 		<!-- top footer -->
 		<div class="section">
@@ -178,7 +177,8 @@
 							<h3 class="footer-title">About Us</h3>
 							<p>We are a friend with a passion of tecnologies.</p>
 							<ul class="footer-links">
-								<li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
+								<li><a href="#"><i class="fa fa-map-marker"></i>1734
+										Stonecoal Road</a></li>
 								<li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>
 								<li><a href="#"><i class="fa fa-envelope"></i>email@email.com</a></li>
 							</ul>
@@ -202,8 +202,8 @@
 							<h3 class="footer-title">Information</h3>
 							<ul class="footer-links">
 								<li><a href="#">About Us</a></li>
-								<li><a href="#">Contact Us</a></li>
-								<li><a href="#">Work with Us</a></li>
+								<li><a href="/contactUs">Contact Us</a></li>
+								<li><a href="/workWithUs/workInCompany">Work with Us</a></li>
 								<li><a href="#">Privacy Policy</a></li>
 								<li><a href="#">Terms & Conditions</a></li>
 							</ul>
@@ -218,7 +218,7 @@
 								<li><a href="#">View Cart</a></li>
 								<li><a href="#">Wishlist</a></li>
 								<li><a href="#">Order and Returns</a></li>
-								<li><a href="#">Help</a></li>
+								<li><a href="/customerSupport">Customer Support</a></li>
 							</ul>
 						</div>
 					</div>
@@ -230,6 +230,7 @@
 		<!-- /top footer -->
 	</footer>
 	<!-- /FOOTER -->
+
 </body>
 
 </html>

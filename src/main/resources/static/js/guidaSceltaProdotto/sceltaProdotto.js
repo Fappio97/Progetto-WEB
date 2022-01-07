@@ -249,8 +249,12 @@ function salvaPreferenza() {
 		selected.forEach(function(input, indice){
 			risposte.push(input.getAttribute('value'));
 		}); 
-			
-		preferenzeUtente[ind] = risposte;
+		
+		// la preferenza indifferent è solo nei radio button
+		// quindi sono sicuro che ci sia soltanto risposte[0]
+		// dato che può selezionarne soltanto una
+		if(risposte[0] != "indifferent")
+			preferenzeUtente[ind] = risposte;
 			
 	} else if(selected.length == 0 && preferenzeUtente[ind] != undefined) {
 		/* se è stata precedentemente selezionata qualcosa e se 

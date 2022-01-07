@@ -276,7 +276,7 @@
 				<br />
 				
 				<div id = "testoSezione1">
-					<form method = "post" action = "/lavoraConNoi/salvaPresentazione" enctype="multipart/form-data">
+					<form method = "post" action = "/workWithUs/saveCurriculum" enctype="multipart/form-data">
 						<div class = "row">
 							<div class = "col-sm-12" id = "formCentrale">
 								<div id = "titolo">
@@ -465,7 +465,7 @@
 												</label>
 											</td>
 											<td>
-												<textarea name="letteraPresentazione" rows="4" cols="20"></textarea>
+												<textarea name="letteraPresentazione" rows="4" cols="20" placeholder="Additional presentation ..."></textarea>
 											</td>
 										</tr>
 									</tbody>
@@ -532,7 +532,7 @@
 							<h3 class="footer-title">Information</h3>
 							<ul class="footer-links">
 								<li><a href="#">About Us</a></li>
-								<li><a href="/contattaci">Contact Us</a></li>
+								<li><a href="/contactUs">Contact Us</a></li>
 								<li><a href="/lavoraConNoi/lavoraInAzienda">Work with Us</a></li>
 								<li><a href="#">Privacy Policy</a></li>
 								<li><a href="#">Terms & Conditions</a></li>
@@ -548,7 +548,7 @@
 								<li><a href="#">View Cart</a></li>
 								<li><a href="#">Wishlist</a></li>
 								<li><a href="#">Order and Returns</a></li>
-								<li><a href="#">Help</a></li>
+								<li><a href="/customerSupport">Customer Support</a></li>
 							</ul>
 						</div>
 					</div>

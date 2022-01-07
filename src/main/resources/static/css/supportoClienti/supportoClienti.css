@@ -1,0 +1,69 @@
+/* NAVBAR BORY E TITOLO */
+
+body {
+	overflow-wrap: break-word;
+}
+
+#navigation {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
+.titolo {
+	/*grandezza di un h3*/
+	font-size: 36px;
+	color: balck;
+	text-align: center;
+	padding-top: 20px;
+}
+
+/* FINE NAVBAR BORY E TITOLO */
+
+/* TESTO OPPOSTO */
+
+#origineAssistenza .col-sm-5 p {
+	text-align: right;
+}
+
+#origineAssistenza .col-sm-5 {
+	text-align: left;
+}
+
+/* FINE TESTO OPPOSTO */
+
+/* CENTRARE ELEMENTI */
+
+#origineAssistenza div {
+	text-align: center;
+	padding-bottom: 10px;
+}
+
+#origineAssistenza button {
+	margin: 0 auto;
+    display: block;
+}
+
+/* FINE CENTRARE ELEMENTI */
+
+.button {
+	background-color: #0b3de1;
+	color: white;
+	border: none;
+	border-radius: 10px;
+	padding: 10px;
+	opacity: 1;
+}
+
+@media screen and (max-width: 580px) {
+
+	#origineAssistenza .col-sm-5 p, #origineAssistenza .col-sm-5 {
+		text-align: center;
+	}
+	
+	#container {
+		padding-left: 0px !important;
+		padding-right: 0px !important;
+	}
+	
+}

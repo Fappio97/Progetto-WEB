@@ -238,7 +238,7 @@ input[type=text] {
 @media screen and (max-width: 580px) {
 
 
-	/*evita che la navbar esce fuori dai bordi quando restringo*/
+	/*evita che il div container esce fuori dai bordi quando restringo*/
 	#container {
 		padding-left: 0px !important;
 		padding-right: 0px !important;

@@ -219,7 +219,7 @@
 				</div>
 			</div>
 			
-			<div class="row">
+			<div class="row" id = "pulsanti">
 				<div class="col-sm-6" id = "indietro">
 					<button type="button" class="btn btn-light" id = "pulsanteIndietro">Back</button>
 				</div>
@@ -242,7 +242,7 @@
 
 <!-------------------------GRUPPO--------------------------------------------->	
 
-	<!-- FOOTER -->
+<!-- FOOTER -->
 	<footer id="footer">
 		<!-- top footer -->
 		<div class="section">
@@ -280,8 +280,8 @@
 							<h3 class="footer-title">Information</h3>
 							<ul class="footer-links">
 								<li><a href="#">About Us</a></li>
-								<li><a href="/contattaci">Contact Us</a></li>
-								<li><a href="/lavoraConNoi/lavoraInAzienda">Work with Us</a></li>
+								<li><a href="/contactUs">Contact Us</a></li>
+								<li><a href="/workWithUs/workInCompany">Work with Us</a></li>
 								<li><a href="#">Privacy Policy</a></li>
 								<li><a href="#">Terms & Conditions</a></li>
 							</ul>
@@ -296,7 +296,7 @@
 								<li><a href="#">View Cart</a></li>
 								<li><a href="#">Wishlist</a></li>
 								<li><a href="#">Order and Returns</a></li>
-								<li><a href="#">Help</a></li>
+								<li><a href="/customerSupport">Customer Support</a></li>
 							</ul>
 						</div>
 					</div>

@@ -94,4 +94,5 @@ public class GuidaSceltaProdottoREST {
 	public boolean salvaReport(@RequestParam String origin, @RequestParam String description) {
 		return Database.getInstance().getReportDao().saveOrUpdate(new Report(origin, description));
 	}
+
 }

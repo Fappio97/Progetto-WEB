@@ -31,7 +31,7 @@ public class Admin {
 		return "addProduct";
 	}
 	
-	@GetMapping("/visualizzaReports")
+	@GetMapping("/viewReports")
 	public String visualizzaReports(HttpServletRequest req) {
 		
 		List<Report> reports = Database.getInstance().getReportDao().findAll();
@@ -42,7 +42,7 @@ public class Admin {
 		return "visualizzaReports";
 	}
 	
-	@GetMapping("/visualizzaPosizioniLavoro")
+	@GetMapping("/viewJobs")
 	public String visualizzaPosizioniLavoro(HttpServletRequest req) {
 		
 		List<Job> jobs = Database.getInstance().getJobDao().findAll();
@@ -53,7 +53,7 @@ public class Admin {
 		return "posizioniLavoro";
 	}
 	
-	@GetMapping("/visualizzaCurriculum")
+	@GetMapping("/viewCurriculum")
 	public String visualizzaCurriculum(HttpServletRequest req) {
 
 		List<Job> job = Database.getInstance().getJobDao().findAll();

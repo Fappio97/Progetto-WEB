@@ -54,12 +54,12 @@ elementiNav[0] = new Array(
 elementiNav[1] = new Array(
 	new VoceNav("Company Presentation", "javascript:indietro()"),
 	new VoceNav("Open Positions", "javascript:vaiTesto1()"),
-	new VoceNav("Spontaneous Candidature", "/lavoraConNoi/curriculumSpontaneo"));
+	new VoceNav("Spontaneous Candidature", "/workWithUs/curriculumSpontaneous"));
 	
 elementiNav[2] = new Array(
 	new VoceNav("Open Positions", "javascript:indietro()"),
 	new VoceNav("Required Requirements", "javascript:vaiTesto1()"),
-	new VoceNav("Spontaneous Candidature", "/lavoraConNoi/curriculumSpontaneo"));
+	new VoceNav("Spontaneous Candidature", "/workWithUs/curriculumSpontaneous"));
 
 /* --- FINE NAVBAR --- */
 

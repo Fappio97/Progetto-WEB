@@ -20,7 +20,7 @@ function salvaPosizioneLavoro(indice) {
 		data: JSON.stringify(posLavoro[indice]),
 		success: function(){
 //			alert("tutto ok");
-			window.location.href = "/lavoraConNoi/curriculum";
+			window.location.href = "/workWithUs/curriculum";
 		},
 		error: function(xhr){
 			alert("tutto male");

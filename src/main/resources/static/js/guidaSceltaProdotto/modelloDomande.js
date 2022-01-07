@@ -59,7 +59,8 @@ domande.stampanti.elencoDomande.push(new Domanda("My new printer is for …", "P
 	new Array(new Risposta("Personal use", "personal use", "Personal use%The device will be used for personal documents, by me and my family."), 
 				new Risposta("Home office", "home office", "Home office%The device will be used in a home office to create professional documents."), 
 				new Risposta("Small business", "small business", "Small business%The device will be used in an office with up to 10 people."),
-				new Risposta("Large company", "large company", "Large company%The device will be used in an office with more than 10 people."))));
+				new Risposta("Large company", "large company", "Large company%The device will be used in an office with more than 10 people."),
+				new Risposta("Indifferent", "indifferent", ""))));
 
 domande.stampanti.elencoDomande.push(new Domanda("What do you want to do with your device?%You can select multiple options","Device features%Our product range offers a wide choice of features and functionalities.%Choose the functionality you need.", false,
 	new Array(new Risposta("Print", "print", ""), 
@@ -69,7 +70,8 @@ domande.stampanti.elencoDomande.push(new Domanda("What do you want to do with yo
 				
 domande.stampanti.elencoDomande.push(new Domanda("I want to print …","Print color%Choose the color you want to print in.", true,
 	new Array(new Risposta("In color and black and white ", "color", ""), 
-				new Risposta("Only in black and white ", "black and white", "" ))));				
+				new Risposta("Only in black and white ", "black and white", "" ),
+				new Risposta("Indifferent", "indifferent", ""))));				
 				
 domande.stampanti.elencoDomande.push(new Domanda("I need to be able to print …%You can select multiple options","Print size%Choose the size you want to print on, from standard A4 to large sizes or photos.", false,
 	new Array(new Risposta("Text-only documents", "text", "Text-only documents%Printed documents will mainly be text documents such as e-mails, Word sheets or spreadsheets."), 
@@ -83,7 +85,8 @@ domande.stampanti.elencoDomande.push(new Domanda("Print frequency","Frequency of
 	new Array(new Risposta("A few times a month", "few", ""), 
 				new Risposta("Once a week", "a little", "" ), 
 				new Risposta("Several times a week", "often", ""),
-				new Risposta("Everyday", "always", ""))));
+				new Risposta("Everyday", "always", ""),
+				new Risposta("Indifferent", "indifferent", ""))));
 				
 domande.stampanti.elencoDomande.push(new Domanda("I want to connect my device by ...%You can select more options ","Device connectivity%Indicate how you want to install and connect your device.%We have a model for all your needs: from wireless to wired network.", false,
 	new Array(new Risposta("LAN (network cable)", "lan","LAN%Do you want to use a LAN connection?%This will make the printer available to every user connected to the same network."), 
@@ -101,17 +104,20 @@ domande.stampanti.elencoDomande.push(new Domanda("I want to…%You can select mo
 domande.notebook.elencoDomande.push(new Domanda("My new notebook is for …","Using the notebook%Choose how you will use the device you are looking for.", true,
 	new Array(new Risposta("Gaming", "gaming", "Gaming%Designed to play the most powerful video games"), 
 				new Risposta("Daily use", "daily use", "Daily use%Designed for a better experience of using in daily operations." ), 
-				new Risposta("Editing", "editing", "Editing%Designed to manipulate and prepare multimedia files using graphics software."))));
+				new Risposta("Editing", "editing", "Editing%Designed to manipulate and prepare multimedia files using graphics software."),
+				new Risposta("Indifferent", "indifferent", ""))));
 
 domande.notebook.elencoDomande.push(new Domanda("I want the processor ...","I want the processor%There is no better family than the other, each model has its strengths and weaknesses.", true,
 	new Array(new Risposta("AMD", "amd", "AMD%US multinational, world leader in the production of CPUs for the workstation and server market"), 
-				new Risposta("Intel", "intel", "Intel%US multinational world leader in CPU manufacturing." ))));		
+				new Risposta("Intel", "intel", "Intel%US multinational world leader in CPU manufacturing." ),
+				new Risposta("Indifferent", "indifferent", ""))));		
 			
 domande.notebook.elencoDomande.push(new Domanda("I want the display ...", "Display size%Choose the display size of your new notebook.", true,
 	new Array(new Risposta("13 inch", "13", ""), 
 				new Risposta("14 inch", "14", "" ),
 				new Risposta("15 inch", "15", "" ),
-				new Risposta("17 inch", "17", "" ))));				
+				new Risposta("17 inch", "17", "" ),
+				new Risposta("Indifferent", "indifferent", ""))));			
 
 domande.notebook.elencoDomande.push(new Domanda("I want ...%You can select more options", "Additional requirements%Before I show you the device that best suits your needs, are there any other features or functionalities you want?", false,
 	new Array(new Risposta("WiFi 6", "wifi 6", "WiFi 6%Faster WiFi means higher upload and download speeds."), 

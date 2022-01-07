@@ -19,10 +19,10 @@ import casiUso.model.GestisciCartelle;
 import casiUso.model.User;
 
 @Controller
-@RequestMapping("/lavoraConNoi")
+@RequestMapping("/workWithUs")
 public class LavoraConNoi {
 	
-	@GetMapping("/lavoraInAzienda")
+	@GetMapping("/workInCompany")
 	public String lavoraInAzienda() {		
 		return "lavoraInAzienda";	
 	}
@@ -32,7 +32,7 @@ public class LavoraConNoi {
 		return "curriculum";	
 	}
 	
-	@GetMapping("/curriculumSpontaneo")
+	@GetMapping("/curriculumSpontaneous")
 	public String curriculumSpontaneo(HttpServletRequest req) {
 		HttpSession session = req.getSession(true);
 		session.setAttribute("posizioneLavoro", null);
@@ -52,7 +52,7 @@ public class LavoraConNoi {
 		return "curriculum";
 	}
 	
-	@PostMapping("/salvaPresentazione")
+	@PostMapping("/saveCurriculum")
 	public String salvaPresentazione(HttpServletRequest req, HttpServletResponse res, MultipartFile foto, MultipartFile cv) {
 
 /*		

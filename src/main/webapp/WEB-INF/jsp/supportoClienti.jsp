@@ -6,12 +6,12 @@
 	
 	<!-- Favicon -->
 	<link rel="icon" href="../images/index/logo.png" type="image/x-icon"/>
-	
+
 	<!-- Titolo -->
-	<title>Work with us</title>
+	<title>Customer support</title>
 	
 	<!-- CSS -->
-	<link href="../css/lavoraConNoi/lavoraConNoi.css" rel="stylesheet" type="text/css" />
+	<link href="../css/supportoClienti/supportoClienti.css" rel="stylesheet" type="text/css" />
 	
 	<!-- Bootstrap -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -21,31 +21,24 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 	<!-- JS -->
-	<script src="../js/lavoraConNoi/modelloLavoraConNoi.js"></script>
-	<script src="../js/lavoraConNoi/vaiA.js"></script>
-	<script src="../js/lavoraConNoi/funzioni.js"></script>
-	<script src="../js/lavoraConNoi/chiamateAjax.js"></script>
-	<script src="../js/lavoraConNoi/caricaPagineLavoraConNoi.js"></script>
+	<script src="../js/supportoClienti/supportoClienti.js"></script>
 
 	<!--AJAX ha la dipendenza nel pom -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+	
 <!------------------------GRUPPO-------------------------------------------->	
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 	<link type="text/css" rel="stylesheet" href="../css/index/style.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<!-- CSS only -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+
 <!------------------------GRUPPO-------------------------------------------->	
-	
+
+
 </head>
 
 <body>
-
 <!-------------------------GRUPPO--------------------------------------------->
 
 	<!-- HEADER -->
@@ -94,8 +87,8 @@
 					<!-- LOGO -->
 					<div class="col-md-3">
 						<div class="header-logo">
-							<a href="/" class="logo"> <img id="logo"
-								src="../images/index/logo.png" alt="">
+							<a href="#" class="logo"> <img id="logo"
+								src="images/index/logo.png" alt="">
 							</a>
 						</div>
 					</div>
@@ -143,7 +136,7 @@
 								</a>
 								<%} else if(session.getAttribute("loggato") == "si"){%>
 								<a href="account.html" style="text-decoration: none; display: flex; "> 
-									<img class="profilePic" src="../images/account/avatar.png" style="border-radius: 50%;" width="29" height="29" alt="Avatar">
+									<img class="profilePic" src="images/account/avatar.png" style="border-radius: 50%;" width="29" height="29" alt="Avatar">
 									${username}
 								</a>
 								<%}%>
@@ -190,45 +183,42 @@
 	</nav>
 	<!-- /SECTION -->
 <!-------------------------GRUPPO--------------------------------------------->
+	
+	
 
-
+<!-------------------------FABIO--------------------------------------------->
+	
+	<div class="container container--grid" id = "container">
+		<div id = "titolo">
+			<p class = "titolo" ><strong>Customer support</strong></p>
+		</div>
+		<form method = "post" action = "/salvaReportHelp" enctype="multipart/form-data">
+			<div id = "origineAssistenza">
+				<div class = "row">
+					<div class="col-sm-5">
+						<p>Origin problem: </p>
+					</div>
+					<div class="col-sm-5">
+						<select name="origin">
+							<option value="problem with purchased device">Problem with purchased device</option>
+							<option value="order assistance">Order assistance</option>
+							<option value="other">Other</option>
+						</select>
+					</div>
+				</div>
+				<div id = "descrizioneProblemaAssistenza">
+					<textarea name = "description" id = "description" rows="" cols="" placeholder = "Write your problem ..."></textarea>
+				</div>
+				<button class = "button" id = "salvaProblema" onclick = "javascript:salvaProblemaAssistenza(event)">Send problem</button>
+			</div>
+		</form>
+	</div>
 <!-------------------------FABIO--------------------------------------------->
 
 	
-	<div class="container container--grid" id = "container">
-		<!-- Grafica superiore %% immagine sfondo -->
-		<div id = "divImmagineTestoSfondo">
-			<figure class = "figure">
-				<img src = "../images/lavoraConNoi/lavoraConNoi.png" width = 100% class = "img-fluid">
-			</figure>
-			<div id = "testoSfondo">
-				<p class = "titolo" ><strong>Work with us</strong></p>
-			</div>
-		</div>
-		
-		<!-- Obiettivi aziendali -->
-		<div class = "row" id = "divSovrapposto">
- 			<div class="col-sm-10" id = "indice">
-				<div id = "barra">
-				</div>
-			
-				<div id = "testo1">
-				</div>
-				
-				
-				<br /><br />
-				<div id = "testo2">
-					
-				</div>
-				<br />
-				
-			</div>
-		</div>
-	</div>
-
-
-<!-------------------------FABIO--------------------------------------------->
-
+	
+	
+	
 <!-------------------------GRUPPO--------------------------------------------->	
 
 <!-- FOOTER -->
@@ -299,5 +289,6 @@
 	<!-- /FOOTER -->
 
 <!-------------------------GRUPPO--------------------------------------------->
+	
 
 </body>

@@ -40,6 +40,7 @@ function compila() {
 			default:
 				return;		
 		}
+		console.log(preferenzeUtente);
 	}
 	caricaFocusDomanda();
 }
@@ -93,9 +94,10 @@ function inserisciRisposteCategoria(oggetto) {
 	var row = document.getElementById("risposte");
 	row.innerHTML = "";
 	
-	var righe = 0;
-	for (let i = 0; i < oggetto.length; ++i){
-		inserisciRispostaRadio(oggetto[i], "", i, righe);
+	righe = -1;
+	for (let i = 0; i < oggetto.length; ++i) {
+//		console.log("Righe " + righe);
+		righe = inserisciRispostaRadio(oggetto[i], "", i, righe);
 	}
 }
 
@@ -105,12 +107,13 @@ function inserisciRisposteRadio(oggetto) {
 	var row = document.getElementById("risposte");
 	row.innerHTML = "";
 	
-	var righe = 0;
+	var righe = -1;
 	for (let i = 0; i < oggetto.length; ++i){
+//		console.log("Righe " + righe);
 		if(oggetto[i].descrizione != "")
-			inserisciRispostaRadioConInfo(oggetto[i].risposta, oggetto[i].tag, i, righe);
+			righe = inserisciRispostaRadioConInfo(oggetto[i].risposta, oggetto[i].tag, i, righe);
 		else
-			inserisciRispostaRadio(oggetto[i].risposta, oggetto[i].tag, i, righe);
+			righe = inserisciRispostaRadio(oggetto[i].risposta, oggetto[i].tag, i, righe);
 	}
 }
 
@@ -120,13 +123,15 @@ function inserisciRispostaRadioConInfo(risposta, tag, id, righe){
 	
 	let rigaInizio = "";
 	let rigaFine = "";
+//	console.log(id%3 + " " + id);
 	if(id % 3 == 0) {
+//		console.log("qui");
+		righe++;
 		rigaInizio = "<div class = \"row\" id = " + righe + " >";	
 		rigaFine = "</div>";
-		righe++;
-	} else {
+		
+	} else
 		row = document.getElementById(righe);
-	}
 	
 	let resourceImg = "../images/guidaSceltaProdotto/risposte/";
 	if(categoriaSelezionata != undefined)
@@ -138,13 +143,16 @@ function inserisciRispostaRadioConInfo(risposta, tag, id, righe){
 														+ "<figure>"	
 															+ "<img src=\"" + resourceImg + risposta.toLowerCase() + ".png\" class=\"img-fluid\"/>" 	
 														+ "</figure>"
-														+ risposta 
-														+ "<button type=\"button\" class = \"informazione\" id = " + risposta + " onclick = caricaInfo(" + id + ")>"
-															+"<img src = ../images/guidaSceltaProdotto/icone/info.png  class=\"img-fluid\"/>"
-														+ "</button>"
+														+ "<div class = \"risposta\">"
+															+ risposta
+															+ "<button type=\"button\" class = \"informazione\" id = " + risposta + " onclick = caricaInfo(" + id + ")>"
+																+"<img src = ../images/guidaSceltaProdotto/icone/info.png  class=\"img-fluid\"/>"
+															+ "</button>"
+														+ "</div>"
 													+ "</div>"
 											+ "</label>" 
 								  + rigaFine;
+	return righe;
 }
 
 function inserisciRispostaRadio(risposta, tag, id, righe){
@@ -154,27 +162,30 @@ function inserisciRispostaRadio(risposta, tag, id, righe){
 	let rigaInizio = "";
 	let rigaFine = "";
 	if(id % 3 == 0) {
+		righe++;
 		rigaInizio = "<div class = \"row\" id = " + righe + " >";	
 		rigaFine = "</div>";
-		righe++;
-	} else {
+		
+	} else
 		row = document.getElementById(righe);
-	}
 	
 	let resourceImg = "../images/guidaSceltaProdotto/risposte/";
 	if(categoriaSelezionata != undefined && ind != -1)
 		resourceImg = "../images/guidaSceltaProdotto/" + categoriaSelezionata + "/risposte/";
 		
-	row.innerHTML = row.innerHTML + rigaInizio + "<label for = \""+ risposta.toLowerCase() + "\" class= \"col-sm-4 \">"
+	row.innerHTML += rigaInizio + "<label for = \""+ risposta.toLowerCase() + "\" class= \"col-sm-4 \">"
 													+ "<div id = \"rispostaJS\" >" 
 														+ "<input id=\"" + risposta.toLowerCase() + "\" type=\"radio\" name = \"collega\" value = \"" + tag + "\" onclick = \"focusRisposte()\" />"
 														+ "<figure>"
 															+ "<img src=\"" + resourceImg + risposta.toLowerCase() + ".png\" class=\"img-fluid\" />" 	
 														+ "</figure>"
-														+ risposta 
+														+ "<p class = \"risposta\">"
+															+ risposta
+														+ "</p>"
 													+ "</div>"
 											+ "</label>" 
 								  + rigaFine;
+	return righe;
 }
 
 /* Risposta check box, anche qui se ho la descrizione nel modello le carico con il bottone info
@@ -184,12 +195,12 @@ function inserisciRisposteCheck(oggetto) {
 	var row = document.getElementById("risposte");
 	row.innerHTML = "";
 
-	var righe = 0;
+	var righe = -1;
 	for (let i = 0; i < oggetto.length; ++i){
 		if(oggetto[i].descrizione != "")
-			inserisciRispostaCheckConInfo(oggetto[i].risposta, oggetto[i].tag, i, righe);
+			righe = inserisciRispostaCheckConInfo(oggetto[i].risposta, oggetto[i].tag, i, righe);
 		else
-			inserisciRispostaCheck(oggetto[i].risposta, oggetto[i].tag, i, righe);
+			righe = inserisciRispostaCheck(oggetto[i].risposta, oggetto[i].tag, i, righe);
 	}
 }
 
@@ -200,12 +211,11 @@ function inserisciRispostaCheckConInfo(risposta, tag,  id, righe){
 	let rigaInizio = "";
 	let rigaFine = "";
 	if(id % 3 == 0) {
+		righe++;
 		rigaInizio = "<div class = \"row\" id = " + righe + " >";	
 		rigaFine = "</div>";
-		righe++;
-	} else {
+	} else
 		row = document.getElementById(righe);
-	}
 	
 	let resourceImg = "../images/guidaSceltaProdotto/risposte/";
 	if(categoriaSelezionata != undefined)
@@ -217,13 +227,17 @@ function inserisciRispostaCheckConInfo(risposta, tag,  id, righe){
 														+ "<figure>"
 															+ "<img src=\"" + resourceImg + risposta.toLowerCase() + ".png\" class=\"img-fluid\" />" 	
 														+ "</figure>"
-														+ risposta
-														+ "<button type=\"button\" class = \"informazione\" id = " + risposta + " onclick = caricaInfo(" + id + ")>"
-															+"<img src = ../images/guidaSceltaProdotto/icone/info.png class=\"img-fluid\" />"
-														+ "</button>"
+														+ "<div class = \"risposta\">"
+															+ risposta
+															+ "<button type=\"button\" class = \"informazione\" id = " + risposta + " onclick = caricaInfo(" + id + ")>"
+																+"<img src = ../images/guidaSceltaProdotto/icone/info.png class=\"img-fluid\" />"
+															+ "</button>"
+														+ "</div>"
 													+ "</div>"
 												+ "</label>"
 								 		 + rigaFine;
+								
+	return righe;
 }
 
 function inserisciRispostaCheck(risposta, tag, id, righe){
@@ -232,12 +246,11 @@ function inserisciRispostaCheck(risposta, tag, id, righe){
 	let rigaInizio = "";
 	let rigaFine = "";
 	if(id % 3 == 0) {
+		righe++;
 		rigaInizio = "<div class = \"row\" id = " + righe + " >";	
 		rigaFine = "</div>";
-		righe++;
-	} else {
+	} else
 		row = document.getElementById(righe);
-	}
 	
 	let resourceImg = "../images/guidaSceltaProdotto/risposte/";
 	if(categoriaSelezionata != undefined && ind != -1)
@@ -249,10 +262,13 @@ function inserisciRispostaCheck(risposta, tag, id, righe){
 														+ "<figure>"
 															+ "<img src=\"" + resourceImg + risposta.toLowerCase() + ".png\" class=\"img-fluid\"/>" 	
 														+ "</figure>"
-														+ risposta
+														+ "<p class = \"risposta\">"
+															+ risposta
+														+ "</p>"
 													+ "</div>"
 											   + "</label>" 
 									 + rigaFine;
+	return righe;
 }
 
 
@@ -313,7 +329,7 @@ function inserisciProdottiTag(prodottiTag) {
 		stringa += "<div class = \"row\" id = \"prodotto\">"
 						+ "<div class=\"col-8\"id = \"immagineProdotto\">"
 							+ "<figure>"
-								+ "<img src = \"../images/prodotti/" + prodottiTag[i].product.name.toLowerCase() + ".png\">"
+								+ "<img src = \"" + prodottiTag[i].product.image + "\">"
 							+ "</figure>"
 						+ "</div>"
 						+ "<div class=\"col-4\" id = \"requisitiUtente\">"
@@ -355,7 +371,7 @@ function inserisciProdotti(prodotti) {
 		stringa += "<div class = \"row\" id = \"prodotto\">"
 						+ "<div class=\"col-8\"id = \"immagineProdotto\">"
 							+ "<figure>"
-								+ "<img src = \"../images/prodotti/" + prodotti[i].name.toLowerCase() + ".png\" class = \"img-fluid\">"
+								+ "<img src = \"" + prodotti[i].image + "\" class = \"img-fluid\">"
 							+ "</figure>"
 						+ "</div>"
 						+ "<div class=\"col-4\" id = \"requisitiUtente\">"

@@ -7,9 +7,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomePage {
 	
 	@GetMapping("/")
-	public String homePge() {
+	public String homePage() {
 		return "index";
 	}
 	
+	@GetMapping("/contactUs")
+	public String contattaci() {
+		return "contattaci";
+	}
+	
+	@GetMapping("/customerSupport")
+	public String supportoClienti() {
+		return "supportoClienti";
+	}
 	
 }
