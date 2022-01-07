@@ -40,7 +40,7 @@ function compila() {
 			default:
 				return;		
 		}
-		console.log(preferenzeUtente);
+//		console.log(preferenzeUtente);
 	}
 	caricaFocusDomanda();
 }
@@ -282,7 +282,7 @@ function inserisciProdottiTag(prodottiTag) {
 	// avremo un array di array
 	let tag = new Array();
 	for(let i = 0; i < preferenzeUtente.length; ++i)
-		if(preferenzeUtente[i] != undefined) {
+		if(preferenzeUtente[i] != undefined && preferenzeUtente[i] != "indifferent") {
 			for(let j = 0; j < preferenzeUtente[i].length; ++j)
 				tag.push(preferenzeUtente[i][j]);
 		}

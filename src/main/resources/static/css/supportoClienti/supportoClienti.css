@@ -22,11 +22,11 @@ body {
 
 /* TESTO OPPOSTO */
 
-#origineAssistenza .col-sm-5 p {
+#origineAssistenza .col-sm-6 p {
 	text-align: right;
 }
 
-#origineAssistenza .col-sm-5 {
+#origineAssistenza .col-sm-6 {
 	text-align: left;
 }
 
@@ -55,9 +55,13 @@ body {
 	opacity: 1;
 }
 
-@media screen and (max-width: 580px) {
+.row {
+	width: 100%;
+}
 
-	#origineAssistenza .col-sm-5 p, #origineAssistenza .col-sm-5 {
+@media screen and (max-width: 576px) {
+
+	#origineAssistenza .col-sm-6 p, #origineAssistenza .col-sm-6 {
 		text-align: center;
 	}
 	

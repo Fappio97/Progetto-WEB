@@ -12,18 +12,17 @@
 	
 	<!-- CSS -->
 	<link href="../css/supportoClienti/supportoClienti.css" rel="stylesheet" type="text/css" />
+	<link href="../css/chatBox/chatBox.css" rel="stylesheet" type="text/css" />
 	
 	<!-- Bootstrap -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
   	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>	
 
-	<!-- JQUERY -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 	<!-- JS -->
 	<script src="../js/supportoClienti/supportoClienti.js"></script>
-
-	<!--AJAX ha la dipendenza nel pom -->
+	<script src="../js/chatBox/chatBox.js"></script>
+	
+	<!-- JQUERY -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	
 <!------------------------GRUPPO-------------------------------------------->	
@@ -195,10 +194,10 @@
 		<form method = "post" action = "/salvaReportHelp" enctype="multipart/form-data">
 			<div id = "origineAssistenza">
 				<div class = "row">
-					<div class="col-sm-5">
+					<div class="col-sm-6">
 						<p>Origin problem: </p>
 					</div>
-					<div class="col-sm-5">
+					<div class="col-sm-6">
 						<select name="origin">
 							<option value="problem with purchased device">Problem with purchased device</option>
 							<option value="order assistance">Order assistance</option>
@@ -206,12 +205,33 @@
 						</select>
 					</div>
 				</div>
-				<div id = "descrizioneProblemaAssistenza">
-					<textarea name = "description" id = "description" rows="" cols="" placeholder = "Write your problem ..."></textarea>
+-				<div id = "descrizioneProblemaAssistenza">
+					<textarea name = "description" onkeyup="textAreaAdjust(this)" id = "description" rows="" cols="" placeholder = "Write your problem ..."></textarea>
 				</div>
 				<button class = "button" id = "salvaProblema" onclick = "javascript:salvaProblemaAssistenza(event)">Send problem</button>
 			</div>
 		</form>
+		<div id = "tuttaChatBox">
+			<div id = "chatBox" >
+				 <div id = "sceltePossibili" class = "row">
+					<div class = "col-5" id = "scelta">
+						<p>Scelta 1</p>
+					</div>
+					<div class = "col-5" id = "scelta">
+						<p>Scelta 2</p>
+					</div>
+				</div>
+				<div class = "messaggioUtente">
+					<p>Ma vaffanculo</p>
+				</div>
+				<div class = "messaggioBot">
+					<p>Ciao come posso esserti utile?</p>
+				</div>
+			</div>
+			<div id = "iconaChat">
+				<i class="fa fa-comment" aria-hidden="true"></i>
+			</div>
+		</div>
 	</div>
 <!-------------------------FABIO--------------------------------------------->
 

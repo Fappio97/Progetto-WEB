@@ -5,7 +5,7 @@ function trovaProdottiCorrelati() {
 	// prodotto ha quel tag
 	tag = "";
 	for(let i = 0; i < preferenzeUtente.length; ++i) {
-		if(preferenzeUtente[i] != undefined) {
+		if(preferenzeUtente[i] != undefined && preferenzeUtente[i] != "indifferent") {
 			for(let j = 0; j < preferenzeUtente[i].length; ++j) {
 				tag += preferenzeUtente[i][j];
 				if(i < preferenzeUtente.length - 1 || j < preferenzeUtente[i].length - 1)
@@ -13,6 +13,9 @@ function trovaProdottiCorrelati() {
 			}
 		}
 	}
+	
+//	console.log("tag");
+//	console.log(tag);
 		
 	$.ajax({
 		type: "POST",
