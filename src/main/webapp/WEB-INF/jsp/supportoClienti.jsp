@@ -21,6 +21,10 @@
 	<!-- JS -->
 	<script src="../js/supportoClienti/supportoClienti.js"></script>
 	<script src="../js/chatBox/chatBox.js"></script>
+	<script src="../js/chatBox/modelloChatBox.js"></script>
+	<script src="../js/chatBox/funzioni.js"></script>
+	<script src="../js/chatBox/caricaTesti.js"></script>
+
 	
 	<!-- JQUERY -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -205,32 +209,21 @@
 						</select>
 					</div>
 				</div>
--				<div id = "descrizioneProblemaAssistenza">
+				<div id = "descrizioneProblemaAssistenza">
 					<textarea name = "description" onkeyup="textAreaAdjust(this)" id = "description" rows="" cols="" placeholder = "Write your problem ..."></textarea>
 				</div>
 				<button class = "button" id = "salvaProblema" onclick = "javascript:salvaProblemaAssistenza(event)">Send problem</button>
 			</div>
 		</form>
 		<div id = "tuttaChatBox">
+		
 			<div id = "chatBox" >
-				 <div id = "sceltePossibili" class = "row">
-					<div class = "col-5" id = "scelta">
-						<p>Scelta 1</p>
-					</div>
-					<div class = "col-5" id = "scelta">
-						<p>Scelta 2</p>
-					</div>
-				</div>
-				<div class = "messaggioUtente">
-					<p>Ma vaffanculo</p>
-				</div>
-				<div class = "messaggioBot">
-					<p>Ciao come posso esserti utile?</p>
-				</div>
 			</div>
+			
 			<div id = "iconaChat">
 				<i class="fa fa-comment" aria-hidden="true"></i>
 			</div>
+			
 		</div>
 	</div>
 <!-------------------------FABIO--------------------------------------------->
