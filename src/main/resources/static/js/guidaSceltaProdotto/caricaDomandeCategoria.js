@@ -323,7 +323,7 @@ function inserisciProdottiTag(prodottiTag) {
 		s += "<br/>"
 				+ "<div class = \"prezzo\">"
 					+ "<strong> € " + prodottiTag[i].product.price + " </strong>"
-					+ "<a href=\"/visualizzaProdotto?id=" + prodottiTag[i].product.id + "\">View details</a>"
+					+ "<a href=\"/viewProduct?id=" + prodottiTag[i].product.id + "\">View details</a>"
 				+ "</div>";
 		
 		stringa += "<div class = \"row\" id = \"prodotto\">"
@@ -365,7 +365,7 @@ function inserisciProdotti(prodotti) {
 		s += "<br/>"
 				+ "<div class = \"prezzo\">"
 					+ "<strong> €" + prodotti[i].price + " </strong>"
-					+ "<a href=\"/visualizzaProdotto?id=" + prodotti[i].id + "\">View details</a>"
+					+ "<a href=\"/viewProduct?id=" + prodotti[i].id + "\">View details</a>"
 				+ "</div>";
 		
 		stringa += "<div class = \"row\" id = \"prodotto\">"

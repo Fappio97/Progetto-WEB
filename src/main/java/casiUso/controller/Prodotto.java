@@ -17,7 +17,7 @@ public class Prodotto {
 		return "product";
 	}	
 	
-	@GetMapping("/visualizzaProdotto")
+	@GetMapping("/viewProduct")
 	public String guidaProdotto(HttpServletRequest req) {
 		
 		Long id = Long.parseLong(req.getParameter("id"));
