@@ -10,6 +10,7 @@
 	border: 1px inset #0b3de1;
  	flex-direction: column-reverse;
  	overflow-y: auto;
+ 	z-index: 12;
 }
 
 #iconaChat {

@@ -60,7 +60,7 @@ function segnalazioneAjax(origine, descrizione) {
 			description: descrizione
 		},
 		success: function(){
-			alert("tutto ok");
+//			alert("tutto ok");
 			stampaEsitoSegnalazione();
 		},
 		error: function(xhr){

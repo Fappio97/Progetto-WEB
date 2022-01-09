@@ -195,26 +195,28 @@
 		<div id = "titolo">
 			<p class = "titolo" ><strong>Customer support</strong></p>
 		</div>
-		<form method = "post" action = "/salvaReportHelp" enctype="multipart/form-data">
-			<div id = "origineAssistenza">
-				<div class = "row">
-					<div class="col-sm-6">
-						<p>Origin problem: </p>
-					</div>
-					<div class="col-sm-6">
-						<select name="origin">
-							<option value="problem with purchased device">Problem with purchased device</option>
-							<option value="order assistance">Order assistance</option>
-							<option value="other">Other</option>
-						</select>
-					</div>
+		<div id = "origineAssistenza">
+			<div class = "row">
+				<div class="col-sm-6">
+					<p>Origin problem: </p>
 				</div>
-				<div id = "descrizioneProblemaAssistenza">
-					<textarea name = "description" onkeyup="textAreaAdjust(this)" id = "description" rows="" cols="" placeholder = "Write your problem ..."></textarea>
+				<div class="col-sm-6">
+					<select name="origin" id = "origin">
+						<option value="problem with purchased device">Problem with purchased device</option>
+						<option value="order assistance">Order assistance</option>
+						<option value="other">Other</option>
+					</select>
 				</div>
-				<button class = "button" id = "salvaProblema" onclick = "javascript:salvaProblemaAssistenza(event)">Send problem</button>
 			</div>
-		</form>
+			<div id = "descrizioneProblemaAssistenza">
+				<textarea name = "description" onkeyup="textAreaAdjust(this)" id = "description" rows="" cols="" placeholder = "Write your problem ..."></textarea>
+			</div>
+			<button class = "button" id = "salvaProblema" onclick = "javascript:salvaProblemaAssistenza()">Send problem</button>
+		</div>
+		
+		<div id = "testoMessaggio">
+		</div>		
+		
 		<div id = "tuttaChatBox">
 		
 			<div id = "chatBox" >
@@ -225,6 +227,8 @@
 			</div>
 			
 		</div>
+		
+		
 	</div>
 <!-------------------------FABIO--------------------------------------------->
 

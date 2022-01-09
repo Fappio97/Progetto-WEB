@@ -55,6 +55,15 @@ body {
 	opacity: 1;
 }
 
+#salvaProblema {
+	margin-bottom: 20px !important;	
+}
+
+#testoMessaggio {
+	text-align: center;
+	margin-bottom: 20px;	
+}
+
 .row {
 	width: 100%;
 }

@@ -135,10 +135,10 @@ function inviaSegnalazione(){
 }
 
 function stampaEsitoSegnalazione() {
-	var row = document.getElementById("segnalazione2");
-	row.innerHTML = "";
 	
-	alert("Report sent!");
+	var row = document.getElementById("segnalazione2");
+	row.innerHTML = "Report sent!";
+	
 }
 
 

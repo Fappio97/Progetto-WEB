@@ -198,7 +198,9 @@ function controllaSeFormVuoti(titolo, descrizione, requisiti) {
 
 function pulsanteModifica() {
 	var checkBox = document.querySelectorAll('tbody input.lavoro:checked');
-	if (checkBox.length == 1){
+	if (checkBox.length == 1) {
+		
+		document.getElementById("checkBoxTh").checked = false;
 		
 		/* Lo metto falso perché ho notato che dopo che aggiorno mi seleziona
 		quelle checkbox con indice pari a quelle che avevo precedentemente selezionato */
@@ -303,6 +305,8 @@ function pulsanteCancella() {
 			if(confirm("Are you sure you want to delete?")) {
 				selectedCheckBoxes.forEach(function(checkBox, indice){
 					
+					document.getElementById("checkBoxTh").checked = false;
+					
 					/* Lo metto falso perché ho notato che dopo che aggiorno mi seleziona
 					quelle checkbox con indice pari a quelle che avevo precedentemente eliminato */
 					checkBox.checked = false;
@@ -322,7 +326,7 @@ function pulsanteCancella() {
 							titolo: title.innerHTML
 						},
 						success: function(){
-							alert("tutto ok");
+//							alert("tutto ok");
 						},
 						error: function(xhr){
 							alert("tutto male");
