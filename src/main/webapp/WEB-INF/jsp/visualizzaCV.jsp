@@ -21,6 +21,7 @@
   	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>	
 
 	<!-- JS -->
+	<script src="js/admin/report_visualizzaCV/pulsanteCancella.js"></script>
 	<script src="js/admin/visualizzaCV/visualizzaCV.js"></script>
 	<script src="js/admin/visualizzaCV/chiamateAjax.js"></script>
 

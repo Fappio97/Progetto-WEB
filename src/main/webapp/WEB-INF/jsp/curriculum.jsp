@@ -213,7 +213,7 @@
 					<nav class="navbar navbar-expand-sm navbar-light">
 						<ul class="navbar-nav" id = "navbar">
 							<li class="nav-item"> 
-								<a class="nav-link" href = "/lavoraConNoi/lavoraInAzienda" ><strong>Get to know Tech Planet</strong></a>
+								<a class="nav-link" href = "/workWithUs/workInCompany" ><strong>Get to know Tech Planet</strong></a>
 							</li>
 							<li class="nav-item"> 
 								<a class="nav-link" href = "javascript:vaiTesto1()" ><strong>Form</strong></a>

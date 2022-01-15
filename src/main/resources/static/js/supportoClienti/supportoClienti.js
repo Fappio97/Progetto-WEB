@@ -20,7 +20,7 @@ function salvaProblemaAssistenza() {
 	if(descrizione == "") 
 		document.getElementById("description").style.borderColor = "red";
 	else {
-		console.log("qui");
+		
 		$.ajax({
 			type: "POST",
 			url: "/salvaReportHelp",
@@ -47,6 +47,7 @@ function textAreaAdjust(element) {
   	element.style.height = "1px";
   	element.style.height = (25+element.scrollHeight)+"px";
 
+	// svuoto l'innerHTML del div che contiene il report send 
 	if(document.getElementById("testoMessaggio").innerHTML != "")
 		document.getElementById("testoMessaggio").innerHTML = "";
 }

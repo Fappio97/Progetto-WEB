@@ -32,45 +32,18 @@ function requisitiSpezzati(requisiti) {
 	return s;
 }
 
-function caricaListeAperte(data) {
-	var div = document.getElementById("listaPosizioniAperta");
-	
-	var s = "";
-	for(let i = 0; i < data.length; ++i) {
-		// evito di far apparire la posizione "candidatura spontanea"
-		// perché non voglio che venga eliminata o modificata
-		if(data[i].title != "Spontaneous Candidature") {
-			s += "<tr>"
-					+ "<th scope=\"row\"><a href = \"javascript:posizione('" + data[i].title + "')\">" + data[i].title + "</a></th>"
-					+ "<td>" + data[i].description + "</td>"
-				+ "</tr>";
-			
-			// prendo i requisiti obbligatori di ciascuna posizione di lavoro
-			let obbligatori = new Array();
-			for(let j = 0; j < data[i].obligatory.length; ++j)
-				obbligatori.push(new Obbligatorio(data[i].obligatory.id, data[i].obligatory[j].name, data[i].obligatory[j].value1, data[i].obligatory[j].value2));
-					
-			// salvo il tutto in un array che mi servirà quando vederemo la pagina del dettaglio di quella posizione di lavoro
-			posLavoro.push(new PosizioneLavoroSpezzati(data[i].title, data[i].description, data[i].requirements, data[i].obligatory, data[i].active));
-		}
-	}
-//	console.log(posLavoro);
-	//carico soltanto le parti essenziali di quella posizione di lavoro
-	div.innerHTML = s;
-}
-
 /* FINE FUNZIONI AUSILIARIE */
 
 
 /* --- OPZIONI SELECT --- */
 
 function caricaOpzioni(stringa1, stringa2) {
-	var titoloStudio = document.getElementById(stringa1).value;
-	var materiaStudio = document.getElementById(stringa2);
-	materiaStudio.innerHTML = "";
+	var select1 = document.getElementById(stringa1).value;
+	var select2 = document.getElementById(stringa2);
+	select2.innerHTML = "";
 	
 	let opzioni = new Array();
-	switch(titoloStudio) {
+	switch(select1) {
 		case("Diploma"):
 			opzioni.push("High School");
 			opzioni.push("Professional School");
@@ -104,7 +77,7 @@ function caricaOpzioni(stringa1, stringa2) {
 			opzioni.push("Manager");
 			opzioni.push("Employee");
 			opzioni.push("Freelance");
-			opzioni.push("Intern ");
+			opzioni.push("Intern");
 			break;
 		default:
 			break;
@@ -113,7 +86,7 @@ function caricaOpzioni(stringa1, stringa2) {
 		let opt = document.createElement('option');
 	    opt.value = opzioni[i];
 	    opt.innerHTML = opzioni[i];
-		materiaStudio.appendChild(opt);
+		select2.appendChild(opt);
 	}
 }
 
@@ -123,7 +96,7 @@ function popolaComboBox() {
 }
 
 function popola(stringa) {
-	var section = document.getElementById(stringa);
+	var select = document.getElementById(stringa);
 	
 	let variabile;
 	if(stringa == "funzioneLavoro")
@@ -135,7 +108,7 @@ function popola(stringa) {
 		let opt = document.createElement('option');
 		opt.value = variabile[i];
 		opt.innerHTML = variabile[i];
-		section.appendChild(opt);	
+		select.appendChild(opt);	
 	}	
 }
 

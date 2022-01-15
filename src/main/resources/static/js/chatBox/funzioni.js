@@ -4,7 +4,7 @@ indice = nodo1;
 
 function scelta(i) {
 	
-	console.log(indice.testo.risposte[i])
+//	console.log(indice.testo.risposte[i])
 	if(indice.testo.risposte[i] == "Restart" && indice.discendenti[i] == undefined) {
 		
 		svuotaTuttaChatBox();
@@ -29,5 +29,6 @@ function eliminaDivSceltePossibili() {
 	
 	var sceltePossibili = document.getElementById("sceltePossibili");
 	
+	// vado nel div chatBox ed elimino il figlio sceltePossibili
 	sceltePossibili.parentNode.removeChild(sceltePossibili);
 }

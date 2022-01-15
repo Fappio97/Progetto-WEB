@@ -41,7 +41,9 @@ function compila() {
 				return;		
 		}
 //		console.log(preferenzeUtente);
+		
 	}
+	// carica il focus delle domanda in cui ci troviamo
 	caricaFocusDomanda();
 }
 
@@ -162,7 +164,7 @@ function inserisciRispostaRadio(risposta, tag, id, righe){
 	let rigaInizio = "";
 	let rigaFine = "";
 	if(id % 3 == 0) {
-		righe++;
+		++righe;
 		rigaInizio = "<div class = \"row\" id = " + righe + " >";	
 		rigaFine = "</div>";
 		

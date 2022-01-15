@@ -3,8 +3,6 @@ package casiUso.model;
 import java.util.List;
 import java.util.Objects;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
-
 public class Job {
 	private String title;
 	private String description;

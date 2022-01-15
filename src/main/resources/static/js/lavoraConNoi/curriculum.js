@@ -51,9 +51,12 @@ function faiLogin(event) {
 
 // nascondo o mostro il form di login
 function formLogin() {
+	
 	let form = document.getElementById("formLogin");
+	
 	if(form.style.display == "none" || form.style.display == "")
 		form.style.display = "inline";
+		
 	else
 		form.style.display = "none";
 }
@@ -151,40 +154,52 @@ function controllaInputTypeText() {
 }
 
 function controllaMail() {
+	
 	var input = document.querySelector("input[type=email]");
 	let valore = input.value;
 	let chiocciola = valore.indexOf("@");
 	let punto = valore.lastIndexOf(".");
+	
 	if (chiocciola < 1 || punto < chiocciola + 2 || punto + 2 >= valore.length) {
 		input.style.borderColor = "red";
 		return false;
 	}
+	
 	return true;
 }
 
 function controllaNumero() {
+	
 	let valore = document.querySelector("input[type=tel]");
 	let pattern = /^\d{10}$/;
+	
 	if(!pattern.test(valore.value)) {
 		valore.style.borderColor = "red";
 		return false;
 	}
+	
 	return true;
 }
 
 function controllaDataNascita() {
+	
 	var input = document.querySelector("input[type=date]");
+	
 	if(!input.value) {
 		input.style.borderColor = "red";
 		return false;
 	}
+	
 	return true;
 }
 
 function controllaSelects() {
+	
 	var input = document.querySelectorAll('.studio');
 	let cond = true;
+	
 	for(let i = 0; i < input.length; ++i)
+	
 		if(input[i].value == "" || input[i].value == " -- select an option -- ") {
 			input[i].style.borderColor = "red";
 			cond = false;
@@ -194,23 +209,28 @@ function controllaSelects() {
 }
 
 function controllaImmagine() {
+	
 	let foto = document.getElementById("foto");
 	let idxDot = foto.value.lastIndexOf(".") + 1;
 	let extFile = foto.value.substr(idxDot, foto.length).toLowerCase();
+	
 	if (extFile!="jpg" && extFile!="jpeg" && extFile!="png") {
 		foto.style.border = "2px solid red";
 		return false;
 	}
+	
 	return true;
 }
 
 function controllaSizeImmagine() {
+	
 	let foto = document.getElementById("foto");
 	
 	if (foto.files[0].size > 1048576) {
 		foto.style.border = "2px solid red";
 		return false;
 	}
+	
 	return true;
 }
 
@@ -219,20 +239,24 @@ function controllaCV() {
 	let cv = document.getElementById("cv");
 	let idxDot = cv.value.lastIndexOf(".") + 1;
 	let extFile = cv.value.substr(idxDot, cv.length).toLowerCase();
+	
 	if (extFile!="pdf") {
 		cv.style.border = "2px solid red";
 		return false;
 	}
+	
 	return true;
 }
 
 function controllaSizeCV() {
+	
 	let cv = document.getElementById("cv");
 
 	if (cv.files[0].size > 1048576) {
 		cv.style.border = "2px solid red";
 		return false;
 	}
+	
 	return true;
 }
 
@@ -251,6 +275,7 @@ var giornoAttuale = parseInt(today.getDate());
 
 /* prendo i requisiti da rispettare */
 function prendiRequisitiObbligatori() {
+	
 	requisitiObbligatori = document.querySelectorAll(".requisito");
 	nomeRequisito = document.querySelectorAll(".nomeRequisito");
 	valore1Requisito = document.querySelectorAll(".valore1Requisito");
@@ -267,6 +292,7 @@ function prendiRequisitiObbligatori() {
 
 /* controllo se rispetto i requisiti */
 function controllaRequisitiObbligatori() {
+	
 	var eta = document.querySelector("input[type=date]").value;
 	
 	let dataUtente = eta.split("-");
@@ -325,6 +351,7 @@ function controllaRequisitiObbligatori() {
 
 /* calcolo dell'età' */
 function calcolaEtaUtente(dataUtente) {
+	
 	var eta = 0;
 	
 //	console.log("Chack dataUtente " + dataUtente[0] + " " + dataUtente[1] + " " + dataUtente[2]);

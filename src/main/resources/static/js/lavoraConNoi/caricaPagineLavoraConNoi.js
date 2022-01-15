@@ -7,8 +7,8 @@ function compila() {
 	switch(ind) {
 		case 0:
 			barraNavigazione(elementiNav[ind]);
-			testoSXConFotoDX("testo1", sezioniTesti[ind][0].titolo, sezioniTesti[ind][0].testo);
-			testoDXConFotoSX("testo2", sezioniTesti[ind][1].titolo, sezioniTesti[ind][1].testo)
+			testoConFoto("testo1", sezioniTesti[ind][0].titolo, sezioniTesti[ind][0].testo, true);
+			testoConFoto("testo2", sezioniTesti[ind][1].titolo, sezioniTesti[ind][1].testo, false)
 			break;
 		case 1:
 			barraNavigazione(elementiNav[ind]);
@@ -44,7 +44,7 @@ function barraNavigazione(voceNav) {
 					+ "</nav>";
 }
 
-function testoSXConFotoDX(elemento, titolo, testo) {
+function testoConFoto(elemento, titolo, testo, testoSinistra) {
 	var div = document.getElementById(elemento);
 	
 	let frasi = testo.split("%");
@@ -54,42 +54,29 @@ function testoSXConFotoDX(elemento, titolo, testo) {
 		s += "<p>" + frasi[i] + "</p>";
 	}
 	
-	div.innerHTML = "<div class = \"row\">"
-						+ "<div class = \"col-sm-6\" id = \"testoSezione1\">"
-						    + "<br />"
-							+ "<p id = \"titoloSezione\">" + titolo + "</p><br /><br />"
-							+ s
-						+ "</div>"
-						+ "<div class = \"col-sm-6\" id = \"immagineSezione\">"
-							+ "<figure>"
-								+ "<img src = \"../images/lavoraConNoi/" + titolo.toLowerCase() + ".png\" class = \"img-fluid\"/>"
-							+ "</figure>"
-						+ "</div>"
-					+ "</div>";
-}
-
-function testoDXConFotoSX(elemento, titolo, testo) {
-	var div = document.getElementById(elemento);
+	let testo = "<div class = \"col-sm-6\" id = \"testoSezione1\">"
+							    + "<br />"
+								+ "<p id = \"titoloSezione\">" + titolo + "</p><br /><br />"
+								+ s
+							+ "</div>";
+							
+	let foto = "<div class = \"col-sm-6\" id = \"immagineSezione\">"
+								+ "<figure>"
+									+ "<img src = \"../images/lavoraConNoi/" + titolo.toLowerCase() + ".png\" class = \"img-fluid\"/>"
+								+ "</figure>"
+							+ "</div>";
 	
-	let frasi = testo.split("%");
+	if(testoSinistra)
+		div.innerHTML = "<div class = \"row\">"
+							+ testo
+							+ foto
+						+ "</div>";
+	else 
+		div.innerHTML = "<div class = \"row\">"
+							+ foto
+							+ testo
+						+ "</div>";
 	
-	let s = "";
-	for(let i = 0; i < frasi.length; ++i) {
-		s += "<p>" + frasi[i] + "</p>";
-	}
-	
-	div.innerHTML = "<div class = \"row\">"
-						+ "<div class = \"col-sm-6\" id = \"immagineSezione\">"
-							+ "<figure>"
-								+ "<img src = \"../images/lavoraConNoi/" + titolo.toLowerCase() + ".png\" class = \"img-fluid\"/>"
-							+ "</figure>"
-						+ "</div>"
-						+ "<div class = \"col-sm-6\" id = \"testoSezione2\">"
-						    + "<br />"
-							+ "<p id = \"titoloSezione\">" + titolo + "</p><br /><br />"
-							+ s
-						+ "</div>"
-					+ "</div>";
 }
 
 function soloTabella(elemento) {
@@ -180,6 +167,33 @@ function soloTesto(elemento, titolo, testo) {
 							+ "</div>"
 						+ "</div>"
 					+ "</div>";
+}
+
+function caricaListeAperte(data) {
+	var div = document.getElementById("listaPosizioniAperta");
+	
+	var s = "";
+	for(let i = 0; i < data.length; ++i) {
+		// evito di far apparire la posizione "candidatura spontanea"
+		// perché non voglio che venga eliminata o modificata
+		if(data[i].title != "Spontaneous Candidature") {
+			s += "<tr>"
+					+ "<th scope=\"row\"><a href = \"javascript:posizione('" + data[i].title + "')\">" + data[i].title + "</a></th>"
+					+ "<td>" + data[i].description + "</td>"
+				+ "</tr>";
+			
+			// prendo i requisiti obbligatori di ciascuna posizione di lavoro
+			let obbligatori = new Array();
+			for(let j = 0; j < data[i].obligatory.length; ++j)
+				obbligatori.push(new Obbligatorio(data[i].obligatory.id, data[i].obligatory[j].name, data[i].obligatory[j].value1, data[i].obligatory[j].value2));
+					
+			// salvo il tutto in un array che mi servirà quando vederemo la pagina del dettaglio di quella posizione di lavoro
+			posLavoro.push(new PosizioneLavoroSpezzati(data[i].title, data[i].description, data[i].requirements, data[i].obligatory, data[i].active));
+		}
+	}
+//	console.log(posLavoro);
+	//carico soltanto le parti essenziali di quella posizione di lavoro
+	div.innerHTML = s;
 }
 
 function inviaCandidatura(elemento, candidatura) {

@@ -43,9 +43,11 @@ public class JobDaoJDBC implements JobDao {
 					if(job != null) {
 						if(lavori.contains(job)) {
 							for(var i : lavori)
-								if(i.equals(job))
+								if(i.equals(job)) {
 									for(var j : job.getObligatory())
 										i.getObligatory().add(j);
+									break;
+								}
 						}
 						else
 							lavori.add(job);
@@ -69,9 +71,11 @@ public class JobDaoJDBC implements JobDao {
 			if(job != null) {
 				if(lavori.contains(job)) {
 					for(var i : lavori)
-						if(i.equals(job))
+						if(i.equals(job)) {
 							for(var j : job.getObligatory())
-								i.getObligatory().add(j);	
+								i.getObligatory().add(j);
+							break;
+						}
 				}
 				else
 					lavori.add(job);
@@ -104,16 +108,18 @@ public class JobDaoJDBC implements JobDao {
 				 * salvo il lavoro creato e ne creo uno nuovo da inserire */
 				if(!prec.equals(rs.getString("j_title"))) {
 					
-					/* all'inizio job è null e prevengo che viene messo nella lista */
+					/* all'inizio job è null e quindi inutile vedere se esiste quel lavoro */
 					if(job != null) {
 						
 						/* se nella lista, ho già quel lavoro, significa che devo prendere
 						 * i suoi requisiti obbligatori e salvarli */
 						if(lavori.contains(job)) {
 							for(var i : lavori)
-								if(i.equals(job))
+								if(i.equals(job)) {
 									for(var j : job.getObligatory())
 										i.getObligatory().add(j);
+									break;
+								}
 						}
 						else
 							lavori.add(job);
@@ -137,9 +143,11 @@ public class JobDaoJDBC implements JobDao {
 			if(job != null) {
 				if(lavori.contains(job)) {
 					for(var i : lavori)
-						if(i.equals(job))
+						if(i.equals(job)) {
 							for(var j : job.getObligatory())
-								i.getObligatory().add(j);	
+								i.getObligatory().add(j);
+							break;
+						}
 				}
 				else
 					lavori.add(job);

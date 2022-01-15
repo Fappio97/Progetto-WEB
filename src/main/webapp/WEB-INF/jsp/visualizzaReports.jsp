@@ -20,7 +20,9 @@
   	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>	
 
 	<!-- JS -->
+	<script src="js/admin/report_visualizzaCV/pulsanteCancella.js"></script>
 	<script src="js/admin/report/report.js"></script>
+	<script src="js/admin/report/chiamateAjax.js"></script>
 
 	<!--AJAX ha la dipendenza nel pom -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

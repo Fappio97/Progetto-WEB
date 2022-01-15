@@ -7,7 +7,7 @@ window.addEventListener("load", function(){
 
 var categoriaSelezionata;
 
-// parto da due soltanto perché
+// parto da due soltanto perché 
 var numDomandeTotaliCategoria = 2;
 
 var preferenzeUtente = new Array();
@@ -19,7 +19,6 @@ function aggiungiEventi(){
 	
 	var pulsanteProblema = document.getElementById("pulsanteProblema");
 	pulsanteProblema.addEventListener("click", segnalazione);
-	
 	
 	var pulsanteInvia = document.getElementById("pulsanteInvia");
 	pulsanteInvia.addEventListener("click", inviaSegnalazione);
@@ -37,10 +36,8 @@ function aggiungiEventi(){
 function rinizia() {
 	if(ind == 0 && preferenzeUtente.length == 0)
 		return;
-		
-	var domanda = confirm("Are you sure you want to start over?");
-	
-  	if (domanda === true) {
+
+  	if (confirm("Are you sure you want to start over?")) {
     	ind = 0;
 		svuotaArray(preferenzeUtente);
 		compila();
@@ -61,7 +58,7 @@ function risultati() {
 
 function vaiAllaDomanda(i) {
 	if(i == -1) {
-		if(cambiaCategoria())
+		if(confirm("Do you really want to change category? You will lose all your answers"))
 			svuotaArray(preferenzeUtente);
 		else
 			return;
@@ -70,6 +67,7 @@ function vaiAllaDomanda(i) {
 	ind = i;
 	compila();
 	abilitaDisabilita();
+	
 	if(ind == numDomandeTotaliCategoria)
 		trovaProdottiCorrelati();
 }
@@ -90,6 +88,7 @@ function caricaInfo(indiceRisposta) {
 function cercaProdottiMeglioRecensiti() {
 	prodottiMeglioRecensiti();
 	
+	// elimino il bottone dove puoi ritrovare i prodotti meglio recensiti
 	var div = document.getElementById("altriProdotti");
 	div.innerHTML = "";
 }
@@ -105,9 +104,9 @@ function segnalazione(){
 	document.getElementById("pulsanteProblema").style.display = 'none';
 }
 
-function inviaSegnalazione(){
+function inviaSegnalazione() {
+	
 	var testo = document.getElementById("testoSegnalazione");
-	var row = document.getElementById("segnalazione2");
 	
 	let segnalazione = testo.value;
 	if(segnalazione == 'Enter your problem ...' || segnalazione == '' || segnalazione == 'Write your problem here ...') {
@@ -143,7 +142,10 @@ function stampaEsitoSegnalazione() {
 
 
 function paginaAvanti() {
+	
+	// categoria
 	if(ind == -1) {
+		
 		var selectedRadio = document.querySelectorAll('input[name=collega]:checked');
 				
 		if (selectedRadio.length == 1){
@@ -156,21 +158,21 @@ function paginaAvanti() {
 			numeroDomandeCategoriaSelezionata();
 			caricaBarraNavigazione();
 		} else {
+			
 			alert("Select a product category to continue !");
 			return;
+			
 		}
 	} else {
+		
 		salvaPreferenza();
 		
-		if(ind < numDomandeTotaliCategoria - 1)
-			ind++;
-			
-		else {
-			
+		if(ind >= numDomandeTotaliCategoria - 1)
 			trovaProdottiCorrelati();
 			
-			ind++;
-		}
+		ind++;
+
+		
 	}
 	abilitaDisabilita();
 	compila();
@@ -178,7 +180,7 @@ function paginaAvanti() {
 
 function paginaIndietro() {
 	if(ind == 0) {
-		if(cambiaCategoria())
+		if(confirm("Do you really want to change category? You will lose all your answers"))
 			svuotaArray(preferenzeUtente);
 		else
 			return;
@@ -202,12 +204,10 @@ function clearText(field){
 	
 	field.style.borderColor = "";
     
-	if (field.defaultValue == field.value || field.value == 'Write your problem here ...')  {
-		field.value = '';
-	}    
-	else if (field.value == '') {
+	if (field.defaultValue == field.value || field.value == 'Write your problem here ...') 
+		field.value = '';  
+	else if (field.value == '')
 		field.value = field.defaultValue;    
-	}
 }
 
 function numeroDomandeCategoriaSelezionata() {
@@ -250,10 +250,6 @@ function salvaPreferenza() {
 			risposte.push(input.getAttribute('value'));
 		}); 
 		
-		// la preferenza indifferent è solo nei radio button
-		// quindi sono sicuro che ci sia soltanto risposte[0]
-		// dato che può selezionarne soltanto una
-//		if(risposte[0] != "indifferent")
 		preferenzeUtente[ind] = risposte;
 			
 	} else if(selected.length == 0 && preferenzeUtente[ind] != undefined) {
@@ -262,11 +258,6 @@ function salvaPreferenza() {
 		riazzero in quell'indice l'array */
 		preferenzeUtente[ind] = new Array();
 	}
-}
-
-function cambiaCategoria() {
-	var domanda = confirm("Do you really want to change category? You will lose all your answers");
-	return domanda;
 }
 
 /* --- FINE FUNZIONI AUSILIARIE --- */
@@ -289,7 +280,7 @@ function focusRisposte() {
 }
 
 /* coloro il bordo del div che contiene gli input che ho selezionato
- precedentemente per quella domadna */
+ precedentemente per quella domanda */
 function selezionaRisposteScelte() {
 	
 	var risposte = document.getElementsByName("collega");

@@ -20,9 +20,11 @@ function caricaTesto() {
 	if(indice.testo.risposte[0] != "") {
 		sceltePossibili = "<div id = \"sceltePossibili\" class = \"row\">";
 		
+		// stabilisco la size delle colonne in base al numero di risposte di quel nodo
 		sizeColonne = 10 / indice.testo.risposte.length;
 //		console.log(10 / indice.testo.risposte.length);
 		testoColonne = "col-" + sizeColonne;
+		
 		for(let i = 0; i < indice.testo.risposte.length; ++i) {
 			sceltePossibili += "<div class = \"col-" + sizeColonne +"\" id = \"scelta\">"
 								+ "<button onclick = \"javascript:scelta(" + i + ")\">"
@@ -34,11 +36,10 @@ function caricaTesto() {
 		sceltePossibili += "</div>";
 	}
 	
-	// occorre salvarsi quello che c'era scritto?
 	
 	div.innerHTML = sceltePossibili + bot + div.innerHTML;
 	
-	// controlla se il nodo è senza opzioni, perhé se è senza opzioni va mostrato subito il successivo
+	// controlla se il nodo è senza opzioni, perhé se è senza opzioni va mostrato subito il successivo nodo
 //	console.log(sceltePossibili);
 	if(sceltePossibili == "") {
 //		console.log("sceltePossibili  vuoto")
@@ -47,6 +48,7 @@ function caricaTesto() {
 	}
 }
 
+// la risposta selezionata diventa messaggio utente poiché aggiorno dopo l'indice
 function inserisciRispostaUtenteSelezionata(i) {
 	
 	var div = document.querySelector("#chatBox");
@@ -58,6 +60,7 @@ function inserisciRispostaUtenteSelezionata(i) {
 	div.innerHTML = utente + div.innerHTML;
 }
 
+// quando resetto
 function svuotaTuttaChatBox() {
 	
 	document.querySelector("#chatBox").innerHTML = "";

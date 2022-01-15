@@ -197,7 +197,9 @@ function controllaSeFormVuoti(titolo, descrizione, requisiti) {
 }
 
 function pulsanteModifica() {
+	
 	var checkBox = document.querySelectorAll('tbody input.lavoro:checked');
+	
 	if (checkBox.length == 1) {
 		
 		document.getElementById("checkBoxTh").checked = false;
@@ -221,7 +223,7 @@ function pulsanteModifica() {
 		
 		obb = new Array();
 //		console.log(obbligatori.childNodes.length);
-		// vedendo nel childNodes di obbligatori, le parti di interesse partono da 1 e sono distanziate di 3
+		// vedendo nel childNodes di obbligatori, le parti di interesse partono da 0 e sono distanziate di 3
 		
 //		console.log(obbligatori.childNodes);
 		for(let j = 0; j < obbligatori.childNodes.length - 3; j += 3) {
@@ -413,49 +415,11 @@ function caricaOpzioniAge() {
 
 /* SECTION */
 
-// elimina e metti valore a tutte le altre section esistenti
-// perché se in una section seleziono un tipo titolo e materia, non posso 
-// selezionarla di nuovo in un'altra section
-/*
-function eliminaValoreSelezionabileSection() {
 
-	titolo = new Array();
-	materia = new Array();
-	for(let j = 1; j < ind; ++j) {
-		if(j == 1 && j + 1 < ind)
-			++j;
-			
-		titolo.push(document.getElementById("titoloStudio" + j).value);
-		materia.push(document.getElementById("materiaStudio" + j).value);
-	}
-	
-	console.log(titolo);
-	console.log(materia);
-	
-	for(let j = 1; j < ind; ++j) {
-		if(j == 1 && j + 1 < ind)
-			++j;
-		
-		for()
-		if(document.getElementById("titoloStudio" + j).value == titolo) {
-			let m = document.getElementById("materiaStudio" + j);
-			for (let k = 0; k < m.length; ++k) {
-			    if(m.options[i].value == materia)
-			        m.remove(i);
-			}
-			document.getElementById("materiaStudio" + j)
-		}
-	}  
-}*/
-/*
-function aggiungiValoreSelezionabileAlleSection(i) {
-	
-}
-*/
 /* section delle form del titolo studio e materia studio */
 
 function svuotaEliminaSection() {
-	var div = document.getElementById("requisitoTitoloStudio");
+
 	while(ind > 1) {
 		--ind;
 		
