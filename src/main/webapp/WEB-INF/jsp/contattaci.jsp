@@ -218,7 +218,7 @@
 			</div>
 			<div class="col-sm-4">
 				<figure class = "figure">
-					<img src = "../images/contattaci/non trovato.png" width = 100% class = "img-fluid">
+					<img src = "../images/contattaci/non trovato.png" width = 100% class = "img-fluid" id = "omino">
 				</figure>
 			</div>
 		</div>

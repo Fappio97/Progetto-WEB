@@ -7,8 +7,8 @@ function compila() {
 	switch(ind) {
 		case 0:
 			barraNavigazione(elementiNav[ind]);
-			testoConFoto("testo1", sezioniTesti[ind][0].titolo, sezioniTesti[ind][0].testo, true);
-			testoConFoto("testo2", sezioniTesti[ind][1].titolo, sezioniTesti[ind][1].testo, false)
+			testoSXConFotoDX("testo1", sezioniTesti[ind][0].titolo, sezioniTesti[ind][0].testo, true);
+			testoDXConFotoSX("testo2", sezioniTesti[ind][1].titolo, sezioniTesti[ind][1].testo, false)
 			break;
 		case 1:
 			barraNavigazione(elementiNav[ind]);
@@ -44,7 +44,7 @@ function barraNavigazione(voceNav) {
 					+ "</nav>";
 }
 
-function testoConFoto(elemento, titolo, testo, testoSinistra) {
+function testoSXConFotoDX(elemento, titolo, testo) {
 	var div = document.getElementById(elemento);
 	
 	let frasi = testo.split("%");
@@ -54,29 +54,42 @@ function testoConFoto(elemento, titolo, testo, testoSinistra) {
 		s += "<p>" + frasi[i] + "</p>";
 	}
 	
-	let testo = "<div class = \"col-sm-6\" id = \"testoSezione1\">"
-							    + "<br />"
-								+ "<p id = \"titoloSezione\">" + titolo + "</p><br /><br />"
-								+ s
-							+ "</div>";
-							
-	let foto = "<div class = \"col-sm-6\" id = \"immagineSezione\">"
-								+ "<figure>"
-									+ "<img src = \"../images/lavoraConNoi/" + titolo.toLowerCase() + ".png\" class = \"img-fluid\"/>"
-								+ "</figure>"
-							+ "</div>";
+	div.innerHTML = "<div class = \"row\">"
+						+ "<div class = \"col-sm-6\" id = \"testoSezione1\">"
+						    + "<br />"
+							+ "<p id = \"titoloSezione\">" + titolo + "</p><br /><br />"
+							+ s
+						+ "</div>"
+						+ "<div class = \"col-sm-6\" id = \"immagineSezione\">"
+							+ "<figure>"
+								+ "<img src = \"../images/lavoraConNoi/" + titolo.toLowerCase() + ".png\" class = \"img-fluid\"/>"
+							+ "</figure>"
+						+ "</div>"
+					+ "</div>";
+}
+
+function testoDXConFotoSX(elemento, titolo, testo) {
+	var div = document.getElementById(elemento);
 	
-	if(testoSinistra)
-		div.innerHTML = "<div class = \"row\">"
-							+ testo
-							+ foto
-						+ "</div>";
-	else 
-		div.innerHTML = "<div class = \"row\">"
-							+ foto
-							+ testo
-						+ "</div>";
+	let frasi = testo.split("%");
 	
+	let s = "";
+	for(let i = 0; i < frasi.length; ++i) {
+		s += "<p>" + frasi[i] + "</p>";
+	}
+	
+	div.innerHTML = "<div class = \"row\">"
+						+ "<div class = \"col-sm-6\" id = \"immagineSezione\">"
+							+ "<figure>"
+								+ "<img src = \"../images/lavoraConNoi/" + titolo.toLowerCase() + ".png\" class = \"img-fluid\"/>"
+							+ "</figure>"
+						+ "</div>"
+						+ "<div class = \"col-sm-6\" id = \"testoSezione2\">"
+						    + "<br />"
+							+ "<p id = \"titoloSezione\">" + titolo + "</p><br /><br />"
+							+ s
+						+ "</div>"
+					+ "</div>";
 }
 
 function soloTabella(elemento) {

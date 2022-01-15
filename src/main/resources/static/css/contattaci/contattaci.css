@@ -15,6 +15,12 @@
 }
 
 
+#omino {
+	position: sticky;
+	top: 50px;
+}
+
+
 body {
 	overflow-wrap: break-word;
 }
@@ -23,15 +29,18 @@ body {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
+  z-index: 1;
 }
 
-.header-ctn>div {
-  display: flex;
-  margin-top:0% !important;
-}
+@media screen and (max-width: 580px) {
 
-.header-ctn>div+div {
-  margin-left: 2%;
-  margin-top:0% !important;
-}
+	#container {
+		padding-left: 0px !important;
+		padding-right: 0px !important;
+	}
+	
+	#contatti {
+		text-align: center;
+	}
 
+}
