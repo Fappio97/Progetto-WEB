@@ -64,10 +64,6 @@ body {
 	margin-bottom: 20px;	
 }
 
-.row {
-	width: 100%;
-}
-
 @media screen and (max-width: 576px) {
 
 	#origineAssistenza .col-sm-6 p, #origineAssistenza .col-sm-6 {

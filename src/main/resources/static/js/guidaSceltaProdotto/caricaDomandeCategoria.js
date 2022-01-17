@@ -43,6 +43,10 @@ function compila() {
 //		console.log(preferenzeUtente);
 		
 	}
+	
+	// elimina l'esito della segnalazione stampata
+	eliminaEsitoSegnalazione();
+	
 	// carica il focus delle domanda in cui ci troviamo
 	caricaFocusDomanda();
 }

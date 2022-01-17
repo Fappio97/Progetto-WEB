@@ -23,7 +23,7 @@ function salvaProblemaAssistenza() {
 		
 		$.ajax({
 			type: "POST",
-			url: "/salvaReportHelp",
+			url: "/salvaReport",
 			data: {
 				origin: origine,
 				description: descrizione
